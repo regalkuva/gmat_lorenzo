@@ -1,0 +1,221 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2022-12-29 14:22:50
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC;
+GMAT DefaultSC.DateFormat = UTCGregorian;
+GMAT DefaultSC.Epoch = '05 Jan 2010 00:00:00.000';
+GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.DisplayStateType = Cartesian;
+GMAT DefaultSC.X = -4089.9;
+GMAT DefaultSC.Y = 4691.8;
+GMAT DefaultSC.Z = -2576.7;
+GMAT DefaultSC.VX = -4.252;
+GMAT DefaultSC.VY = -5.509;
+GMAT DefaultSC.VZ = -3.284;
+GMAT DefaultSC.DryMass = 850;
+GMAT DefaultSC.Cd = 2.2;
+GMAT DefaultSC.Cr = 1.8;
+GMAT DefaultSC.DragArea = 15;
+GMAT DefaultSC.SRPArea = 1;
+GMAT DefaultSC.NAIFId = -10004001;
+GMAT DefaultSC.NAIFIdReferenceFrame = -9004001;
+GMAT DefaultSC.OrbitColor = Red;
+GMAT DefaultSC.TargetColor = Teal;
+GMAT DefaultSC.EstimationStateType = 'Cartesian';
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+070 0 0 0 0 0 ; 0 1e+070 0 0 0 0 ; 0 0 1e+070 0 0 0 ; 0 0 0 1e+070 0 0 ; 0 0 0 0 1e+070 0 ; 0 0 0 0 0 1e+070 ];
+GMAT DefaultSC.CdSigma = 1e+070;
+GMAT DefaultSC.CrSigma = 1e+070;
+GMAT DefaultSC.Id = 'SatId';
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
+GMAT DefaultSC.ModelFile = 'aura.3ds';
+GMAT DefaultSC.ModelOffsetX = 0;
+GMAT DefaultSC.ModelOffsetY = 0;
+GMAT DefaultSC.ModelOffsetZ = 0;
+GMAT DefaultSC.ModelRotationX = 0;
+GMAT DefaultSC.ModelRotationY = 0;
+GMAT DefaultSC.ModelRotationZ = 0;
+GMAT DefaultSC.ModelScale = 1;
+GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.EulerAngleSequence = '321';
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel LEOprop_ForceModel;
+GMAT LEOprop_ForceModel.CentralBody = Earth;
+GMAT LEOprop_ForceModel.PrimaryBodies = {Earth};
+GMAT LEOprop_ForceModel.PointMasses = {Luna, Sun};
+GMAT LEOprop_ForceModel.SRP = On;
+GMAT LEOprop_ForceModel.RelativisticCorrection = Off;
+GMAT LEOprop_ForceModel.ErrorControl = RSSStep;
+GMAT LEOprop_ForceModel.GravityField.Earth.Degree = 4;
+GMAT LEOprop_ForceModel.GravityField.Earth.Order = 4;
+GMAT LEOprop_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT LEOprop_ForceModel.GravityField.Earth.EarthTideModel = 'None';
+GMAT LEOprop_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT LEOprop_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT LEOprop_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT LEOprop_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT LEOprop_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT LEOprop_ForceModel.Drag.F107 = 150;
+GMAT LEOprop_ForceModel.Drag.F107A = 150;
+GMAT LEOprop_ForceModel.Drag.MagneticIndex = 3;
+GMAT LEOprop_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT LEOprop_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT LEOprop_ForceModel.SRP.Flux = 1367;
+GMAT LEOprop_ForceModel.SRP.SRPModel = Spherical;
+GMAT LEOprop_ForceModel.SRP.Nominal_Sun = 149597870.691;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator LEOprop;
+GMAT LEOprop.FM = LEOprop_ForceModel;
+GMAT LEOprop.Type = RungeKutta89;
+GMAT LEOprop.InitialStepSize = 60;
+GMAT LEOprop.Accuracy = 9.999999999999999e-012;
+GMAT LEOprop.MinStep = 0.001;
+GMAT LEOprop.MaxStep = 2700;
+GMAT LEOprop.MaxStepAttempts = 50;
+GMAT LEOprop.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn DeltaV;
+GMAT DeltaV.CoordinateSystem = Local;
+GMAT DeltaV.Origin = Earth;
+GMAT DeltaV.Axes = VNB;
+GMAT DeltaV.Element1 = 0;
+GMAT DeltaV.Element2 = 0;
+GMAT DeltaV.Element3 = 0;
+GMAT DeltaV.DecrementMass = false;
+GMAT DeltaV.Isp = 300;
+GMAT DeltaV.GravitationalAccel = 9.810000000000001;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn DeltaV2;
+GMAT DeltaV2.CoordinateSystem = Local;
+GMAT DeltaV2.Origin = Earth;
+GMAT DeltaV2.Axes = VNB;
+GMAT DeltaV2.Element1 = 0;
+GMAT DeltaV2.Element2 = 0;
+GMAT DeltaV2.Element3 = 0;
+GMAT DeltaV2.DecrementMass = false;
+GMAT DeltaV2.Isp = 300;
+GMAT DeltaV2.GravitationalAccel = 9.810000000000001;
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create DifferentialCorrector DC;
+GMAT DC.ShowProgress = true;
+GMAT DC.ReportStyle = Normal;
+GMAT DC.ReportFile = 'DifferentialCorrectorDC1.data';
+GMAT DC.MaximumIterations = 50;
+GMAT DC.DerivativeMethod = ForwardDifference;
+GMAT DC.Algorithm = NewtonRaphson;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create XYPlot Altitude;
+GMAT Altitude.SolverIterations = Current;
+GMAT Altitude.UpperLeft = [ 0.2994480220791169 0.05583333333333333 ];
+GMAT Altitude.Size = [ 0.5 0.4875 ];
+GMAT Altitude.RelativeZOrder = 152;
+GMAT Altitude.Maximized = false;
+GMAT Altitude.XVariable = DefaultSC.ElapsedDays;
+GMAT Altitude.YVariables = {DefaultSC.Earth.Altitude};
+GMAT Altitude.ShowGrid = true;
+GMAT Altitude.ShowPlot = true;
+
+Create XYPlot ECC;
+GMAT ECC.SolverIterations = Current;
+GMAT ECC.UpperLeft = [ 0.5197792088316467 0.2458333333333333 ];
+GMAT ECC.Size = [ 0.5 0.4875 ];
+GMAT ECC.RelativeZOrder = 219;
+GMAT ECC.Maximized = false;
+GMAT ECC.XVariable = DefaultSC.ElapsedDays;
+GMAT ECC.YVariables = {DefaultSC.Earth.ECC};
+GMAT ECC.ShowGrid = true;
+GMAT ECC.ShowPlot = true;
+
+Create OrbitView OrbitView1;
+GMAT OrbitView1.SolverIterations = Current;
+GMAT OrbitView1.UpperLeft = [ 0.02759889604415823 0.4866666666666667 ];
+GMAT OrbitView1.Size = [ 0.5 0.45 ];
+GMAT OrbitView1.RelativeZOrder = 371;
+GMAT OrbitView1.Maximized = false;
+GMAT OrbitView1.Add = {DefaultSC, Earth};
+GMAT OrbitView1.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.DrawObject = [ true true ];
+GMAT OrbitView1.DataCollectFrequency = 1;
+GMAT OrbitView1.UpdatePlotFrequency = 50;
+GMAT OrbitView1.NumPointsToRedraw = 0;
+GMAT OrbitView1.ShowPlot = true;
+GMAT OrbitView1.ShowLabels = true;
+GMAT OrbitView1.ViewPointReference = Earth;
+GMAT OrbitView1.ViewPointVector = [ 0 0 30000 ];
+GMAT OrbitView1.ViewDirection = Earth;
+GMAT OrbitView1.ViewScaleFactor = 1;
+GMAT OrbitView1.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.ViewUpAxis = Z;
+GMAT OrbitView1.EclipticPlane = Off;
+GMAT OrbitView1.XYPlane = On;
+GMAT OrbitView1.WireFrame = Off;
+GMAT OrbitView1.Axes = On;
+GMAT OrbitView1.Grid = Off;
+GMAT OrbitView1.SunLine = Off;
+GMAT OrbitView1.UseInitialView = On;
+GMAT OrbitView1.StarCount = 7000;
+GMAT OrbitView1.EnableStars = On;
+GMAT OrbitView1.EnableConstellations = On;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable BurnDuration;
+GMAT BurnDuration = 0;
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate 'ToPeriapsis' LEOprop(DefaultSC) {DefaultSC.Earth.Periapsis};
+Target DC {SolveMode = Solve, ExitMode = SaveAndContinue, ShowProgressWindow = true};
+   Vary 'VaryDV1' DC(DeltaV.Element1 = 2.40777112621278, {Perturbation = 0.0001, Lower = 0.0, Upper = 3.14159, MaxStep = 0.5, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Maneuver DeltaV(DefaultSC);
+   Propagate 'ToApoapsis' LEOprop(DefaultSC) {DefaultSC.Earth.Apoapsis};
+   Achieve 'ReachGEO' DC(DefaultSC.Earth.RMAG = 42165.0, {Tolerance = 0.1});
+   Vary 'VaryDV1' DC(DeltaV2.Element1 = 1.468491116540224, {Perturbation = 0.0001, Lower = 0.0, Upper = 3.14159, MaxStep = .5, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Maneuver DeltaV2(DefaultSC);
+   Propagate 'ToPeriapsis' LEOprop(DefaultSC) {DefaultSC.Earth.Periapsis};
+   Achieve 'AchieveECC' DC(DefaultSC.Earth.ECC = .005, {Tolerance = .0001});
+EndTarget;  % For targeter DC

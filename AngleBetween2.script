@@ -1,0 +1,368 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-09-15 14:42:25
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft ReferenceSpacecraft;
+GMAT ReferenceSpacecraft.DateFormat = A1Gregorian;
+GMAT ReferenceSpacecraft.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT ReferenceSpacecraft.CoordinateSystem = EarthMJ2000Eq;
+GMAT ReferenceSpacecraft.DisplayStateType = Keplerian;
+GMAT ReferenceSpacecraft.SMA = 6878.140000000001;
+GMAT ReferenceSpacecraft.ECC = 1.22855599650922e-16;
+GMAT ReferenceSpacecraft.INC = 97.39126678015334;
+GMAT ReferenceSpacecraft.RAAN = 78.51919330032217;
+GMAT ReferenceSpacecraft.AOP = 0;
+GMAT ReferenceSpacecraft.TA = 1.207418269725733e-06;
+GMAT ReferenceSpacecraft.DryMass = 10;
+GMAT ReferenceSpacecraft.Cd = 2.2;
+GMAT ReferenceSpacecraft.Cr = 1.8;
+GMAT ReferenceSpacecraft.DragArea = 10;
+GMAT ReferenceSpacecraft.SRPArea = 1;
+GMAT ReferenceSpacecraft.SPADDragScaleFactor = 1;
+GMAT ReferenceSpacecraft.SPADSRPScaleFactor = 1;
+GMAT ReferenceSpacecraft.AtmosDensityScaleFactor = 1;
+GMAT ReferenceSpacecraft.ExtendedMassPropertiesModel = 'None';
+GMAT ReferenceSpacecraft.NAIFId = -10000001;
+GMAT ReferenceSpacecraft.NAIFIdReferenceFrame = -9000001;
+GMAT ReferenceSpacecraft.OrbitColor = Red;
+GMAT ReferenceSpacecraft.TargetColor = Teal;
+GMAT ReferenceSpacecraft.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT ReferenceSpacecraft.CdSigma = 1e+70;
+GMAT ReferenceSpacecraft.CrSigma = 1e+70;
+GMAT ReferenceSpacecraft.Id = 'SatId';
+GMAT ReferenceSpacecraft.Attitude = CoordinateSystemFixed;
+GMAT ReferenceSpacecraft.SPADSRPInterpolationMethod = Bilinear;
+GMAT ReferenceSpacecraft.SPADSRPScaleFactorSigma = 1e+70;
+GMAT ReferenceSpacecraft.SPADDragInterpolationMethod = Bilinear;
+GMAT ReferenceSpacecraft.SPADDragScaleFactorSigma = 1e+70;
+GMAT ReferenceSpacecraft.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT ReferenceSpacecraft.ModelFile = 'aura.3ds';
+GMAT ReferenceSpacecraft.ModelOffsetX = 0;
+GMAT ReferenceSpacecraft.ModelOffsetY = 0;
+GMAT ReferenceSpacecraft.ModelOffsetZ = 0;
+GMAT ReferenceSpacecraft.ModelRotationX = 0;
+GMAT ReferenceSpacecraft.ModelRotationY = 0;
+GMAT ReferenceSpacecraft.ModelRotationZ = 0;
+GMAT ReferenceSpacecraft.ModelScale = 5;
+GMAT ReferenceSpacecraft.AttitudeDisplayStateType = 'Quaternion';
+GMAT ReferenceSpacecraft.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT ReferenceSpacecraft.AttitudeCoordinateSystem = ReferenceCentered;
+GMAT ReferenceSpacecraft.EulerAngleSequence = '231';
+
+Create Spacecraft TargetSpacecraft;
+GMAT TargetSpacecraft.DateFormat = A1Gregorian;
+GMAT TargetSpacecraft.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT TargetSpacecraft.CoordinateSystem = EarthMJ2000Eq;
+GMAT TargetSpacecraft.DisplayStateType = Keplerian;
+GMAT TargetSpacecraft.SMA = 6878.000000000021;
+GMAT TargetSpacecraft.ECC = 2.019890117873102e-15;
+GMAT TargetSpacecraft.INC = 97.39126678015334;
+GMAT TargetSpacecraft.RAAN = 78.51919330032217;
+GMAT TargetSpacecraft.AOP = 0;
+GMAT TargetSpacecraft.TA = 90;
+GMAT TargetSpacecraft.DryMass = 10;
+GMAT TargetSpacecraft.Cd = 2.2;
+GMAT TargetSpacecraft.Cr = 1.8;
+GMAT TargetSpacecraft.DragArea = 1;
+GMAT TargetSpacecraft.SRPArea = 1;
+GMAT TargetSpacecraft.SPADDragScaleFactor = 1;
+GMAT TargetSpacecraft.SPADSRPScaleFactor = 1;
+GMAT TargetSpacecraft.AtmosDensityScaleFactor = 1;
+GMAT TargetSpacecraft.ExtendedMassPropertiesModel = 'None';
+GMAT TargetSpacecraft.NAIFId = -10000001;
+GMAT TargetSpacecraft.NAIFIdReferenceFrame = -9000001;
+GMAT TargetSpacecraft.OrbitColor = Red;
+GMAT TargetSpacecraft.TargetColor = Teal;
+GMAT TargetSpacecraft.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT TargetSpacecraft.CdSigma = 1e+70;
+GMAT TargetSpacecraft.CrSigma = 1e+70;
+GMAT TargetSpacecraft.Id = 'SatId';
+GMAT TargetSpacecraft.Attitude = CoordinateSystemFixed;
+GMAT TargetSpacecraft.SPADSRPInterpolationMethod = Bilinear;
+GMAT TargetSpacecraft.SPADSRPScaleFactorSigma = 1e+70;
+GMAT TargetSpacecraft.SPADDragInterpolationMethod = Bilinear;
+GMAT TargetSpacecraft.SPADDragScaleFactorSigma = 1e+70;
+GMAT TargetSpacecraft.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT TargetSpacecraft.ModelFile = 'aura.3ds';
+GMAT TargetSpacecraft.ModelOffsetX = 0;
+GMAT TargetSpacecraft.ModelOffsetY = 0;
+GMAT TargetSpacecraft.ModelOffsetZ = 0;
+GMAT TargetSpacecraft.ModelRotationX = 0;
+GMAT TargetSpacecraft.ModelRotationY = 0;
+GMAT TargetSpacecraft.ModelRotationZ = 0;
+GMAT TargetSpacecraft.ModelScale = 5;
+GMAT TargetSpacecraft.AttitudeDisplayStateType = 'Quaternion';
+GMAT TargetSpacecraft.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT TargetSpacecraft.AttitudeCoordinateSystem = TrailCentered;
+GMAT TargetSpacecraft.EulerAngleSequence = '231';
+
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Jupiter, Luna, Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = On;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 0;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 0;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'CSSISpaceWeatherFile';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'SchattenFile';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 190;
+GMAT DefaultProp_ForceModel.Drag.F107A = 190;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT DefaultProp_ForceModel.Drag.DragModel = 'Spherical';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 300;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem ReferenceCentered;
+GMAT ReferenceCentered.Origin = ReferenceSpacecraft;
+GMAT ReferenceCentered.Axes = ObjectReferenced;
+GMAT ReferenceCentered.XAxis = -R;
+GMAT ReferenceCentered.ZAxis = V;
+GMAT ReferenceCentered.Primary = Earth;
+GMAT ReferenceCentered.Secondary = ReferenceSpacecraft;
+
+Create CoordinateSystem TrailCentered;
+GMAT TrailCentered.Origin = TargetSpacecraft;
+GMAT TrailCentered.Axes = ObjectReferenced;
+GMAT TrailCentered.XAxis = -R;
+GMAT TrailCentered.ZAxis = V;
+GMAT TrailCentered.Primary = Earth;
+GMAT TrailCentered.Secondary = TargetSpacecraft;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0.6616830414352841 0 ];
+GMAT DefaultOrbitView.Size = [ 0.3323366082870568 0.9916666666666667 ];
+GMAT DefaultOrbitView.RelativeZOrder = 578;
+GMAT DefaultOrbitView.Maximized = false;
+GMAT DefaultOrbitView.Add = {ReferenceSpacecraft, TargetSpacecraft, Earth};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 40000 40000 40000 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = Off;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = On;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = Off;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+Create OrbitView ReferenceSCView;
+GMAT ReferenceSCView.SolverIterations = Current;
+GMAT ReferenceSCView.UpperLeft = [ 0.3293464331482273 0 ];
+GMAT ReferenceSCView.Size = [ 0.3323366082870568 0.9916666666666667 ];
+GMAT ReferenceSCView.RelativeZOrder = 439;
+GMAT ReferenceSCView.Maximized = false;
+GMAT ReferenceSCView.Add = {ReferenceSpacecraft, TargetSpacecraft, Earth};
+GMAT ReferenceSCView.CoordinateSystem = ReferenceCentered;
+GMAT ReferenceSCView.DrawObject = [ true true true ];
+GMAT ReferenceSCView.DataCollectFrequency = 1;
+GMAT ReferenceSCView.UpdatePlotFrequency = 50;
+GMAT ReferenceSCView.NumPointsToRedraw = 0;
+GMAT ReferenceSCView.ShowPlot = true;
+GMAT ReferenceSCView.MaxPlotPoints = 20000;
+GMAT ReferenceSCView.ShowLabels = true;
+GMAT ReferenceSCView.ViewPointReference = ReferenceSpacecraft;
+GMAT ReferenceSCView.ViewPointVector = [ 45000 45000 45000 ];
+GMAT ReferenceSCView.ViewDirection = ReferenceSpacecraft;
+GMAT ReferenceSCView.ViewScaleFactor = 1;
+GMAT ReferenceSCView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT ReferenceSCView.ViewUpAxis = Z;
+GMAT ReferenceSCView.EclipticPlane = Off;
+GMAT ReferenceSCView.XYPlane = Off;
+GMAT ReferenceSCView.WireFrame = Off;
+GMAT ReferenceSCView.Axes = On;
+GMAT ReferenceSCView.Grid = Off;
+GMAT ReferenceSCView.SunLine = Off;
+GMAT ReferenceSCView.UseInitialView = On;
+GMAT ReferenceSCView.StarCount = 7000;
+GMAT ReferenceSCView.EnableStars = On;
+GMAT ReferenceSCView.EnableConstellations = On;
+
+Create OrbitView TrailSCView;
+GMAT TrailSCView.SolverIterations = Current;
+GMAT TrailSCView.UpperLeft = [ 0 0 ];
+GMAT TrailSCView.Size = [ 0.3323366082870568 0.9916666666666667 ];
+GMAT TrailSCView.RelativeZOrder = 628;
+GMAT TrailSCView.Maximized = false;
+GMAT TrailSCView.Add = {ReferenceSpacecraft, TargetSpacecraft, Earth};
+GMAT TrailSCView.CoordinateSystem = TrailCentered;
+GMAT TrailSCView.DrawObject = [ true true true ];
+GMAT TrailSCView.DataCollectFrequency = 1;
+GMAT TrailSCView.UpdatePlotFrequency = 50;
+GMAT TrailSCView.NumPointsToRedraw = 0;
+GMAT TrailSCView.ShowPlot = true;
+GMAT TrailSCView.MaxPlotPoints = 20000;
+GMAT TrailSCView.ShowLabels = true;
+GMAT TrailSCView.ViewPointReference = TargetSpacecraft;
+GMAT TrailSCView.ViewPointVector = [ 45000 45000 45000 ];
+GMAT TrailSCView.ViewDirection = TargetSpacecraft;
+GMAT TrailSCView.ViewScaleFactor = 1;
+GMAT TrailSCView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT TrailSCView.ViewUpAxis = Z;
+GMAT TrailSCView.EclipticPlane = Off;
+GMAT TrailSCView.XYPlane = Off;
+GMAT TrailSCView.WireFrame = Off;
+GMAT TrailSCView.Axes = On;
+GMAT TrailSCView.Grid = Off;
+GMAT TrailSCView.SunLine = Off;
+GMAT TrailSCView.UseInitialView = On;
+GMAT TrailSCView.StarCount = 7000;
+GMAT TrailSCView.EnableStars = On;
+GMAT TrailSCView.EnableConstellations = On;
+
+Create DynamicDataDisplay DynamicDataDisplay1;
+GMAT DynamicDataDisplay1.UpperLeft = [ 0.3626655275523281 0.4133333333333333 ];
+GMAT DynamicDataDisplay1.Size = [ 0.4873985476292183 0.5758333333333333 ];
+GMAT DynamicDataDisplay1.RelativeZOrder = 414;
+GMAT DynamicDataDisplay1.Maximized = false;
+GMAT DynamicDataDisplay1.AddParameters = {1, ReferenceSpacecraft.ReferenceCentered.X};
+GMAT DynamicDataDisplay1.AddParameters = {2, ReferenceSpacecraft.ReferenceCentered.Y};
+GMAT DynamicDataDisplay1.AddParameters = {3, ReferenceSpacecraft.ReferenceCentered.Z};
+GMAT DynamicDataDisplay1.AddParameters = {4, TargetSpacecraft.ReferenceCentered.X};
+GMAT DynamicDataDisplay1.AddParameters = {5, TargetSpacecraft.ReferenceCentered.Y};
+GMAT DynamicDataDisplay1.AddParameters = {6, TargetSpacecraft.ReferenceCentered.Z};
+GMAT DynamicDataDisplay1.AddParameters = {7, Earth.ReferenceCentered.X};
+GMAT DynamicDataDisplay1.AddParameters = {8, Earth.ReferenceCentered.Y};
+GMAT DynamicDataDisplay1.AddParameters = {9, Earth.ReferenceCentered.Z};
+GMAT DynamicDataDisplay1.AddParameters = {10, TgtTrueAnomaly};
+GMAT DynamicDataDisplay1.AddParameters = {11, ReferenceSpacecraft.Earth.Altitude};
+GMAT DynamicDataDisplay1.AddParameters = {12, TargetSpacecraft.Earth.Altitude};
+GMAT DynamicDataDisplay1.AddParameters = {13, ReferenceSpacecraft.ElapsedDays};
+GMAT DynamicDataDisplay1.RowTextColors = {1, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {2, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {3, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {4, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {5, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {6, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {7, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {8, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {9, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {10, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {11, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {12, [0 0 0]};
+GMAT DynamicDataDisplay1.RowTextColors = {13, [0 0 0]};
+GMAT DynamicDataDisplay1.WarnColor = [218 165 32];
+GMAT DynamicDataDisplay1.CritColor = [255 0 0];
+
+Create XYPlot TrueAnomaly;
+GMAT TrueAnomaly.SolverIterations = Current;
+GMAT TrueAnomaly.UpperLeft = [ 0.4686031610422896 0.0475 ];
+GMAT TrueAnomaly.Size = [ 0.4997864160615122 0.4475 ];
+GMAT TrueAnomaly.RelativeZOrder = 606;
+GMAT TrueAnomaly.Maximized = false;
+GMAT TrueAnomaly.XVariable = ReferenceSpacecraft.ElapsedDays;
+GMAT TrueAnomaly.YVariables = {ReferenceSpacecraft.Earth.TA, TargetSpacecraft.Earth.TA, TgtTrueAnomaly};
+GMAT TrueAnomaly.ShowGrid = true;
+GMAT TrueAnomaly.ShowPlot = true;
+
+Create XYPlot VMAGs;
+GMAT VMAGs.SolverIterations = Current;
+GMAT VMAGs.UpperLeft = [ 0.4087996582656984 0.2325 ];
+GMAT VMAGs.Size = [ 0.4997864160615122 0.4475 ];
+GMAT VMAGs.RelativeZOrder = 586;
+GMAT VMAGs.Maximized = false;
+GMAT VMAGs.XVariable = ReferenceSpacecraft.ElapsedDays;
+GMAT VMAGs.YVariables = {ReferenceSpacecraft.EarthMJ2000Eq.VMAG, TargetSpacecraft.EarthMJ2000Eq.VMAG};
+GMAT VMAGs.ShowGrid = true;
+GMAT VMAGs.ShowPlot = true;
+
+Create XYPlot XYPlot1;
+GMAT XYPlot1.SolverIterations = Current;
+GMAT XYPlot1.UpperLeft = [ 0.1610422896198206 0.39 ];
+GMAT XYPlot1.Size = [ 0.5002135839384878 0.4475 ];
+GMAT XYPlot1.RelativeZOrder = 429;
+GMAT XYPlot1.Maximized = false;
+GMAT XYPlot1.XVariable = ReferenceSpacecraft.ElapsedDays;
+GMAT XYPlot1.YVariables = {ReferenceSpacecraft.Earth.Altitude};
+GMAT XYPlot1.ShowGrid = true;
+GMAT XYPlot1.ShowPlot = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable TgtTrueAnomaly;
+GMAT TgtTrueAnomaly = 0;
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(ReferenceSpacecraft, TargetSpacecraft) {ReferenceSpacecraft.ElapsedSecs = 1};
+While ReferenceSpacecraft.ElapsedDays < 30
+   BeginScript
+      GMAT TgtTrueAnomaly = RadToDeg(atan(TargetSpacecraft.ReferenceCentered.Z / (Earth.ReferenceCentered.X-TargetSpacecraft.ReferenceCentered.X)));
+      %GMAT TgtTrueAnomalyDeg = rad2deg(TgtTrueAnomaly)
+   EndScript;
+   Propagate DefaultProp(ReferenceSpacecraft, TargetSpacecraft);
+   UpdateDynamicData DynamicDataDisplay1;
+EndWhile;

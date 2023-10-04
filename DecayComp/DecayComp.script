@@ -1,0 +1,169 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-01-12 15:51:19
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft Sunstorm;
+GMAT Sunstorm.DateFormat = A1Gregorian;
+GMAT Sunstorm.Epoch = '17 Aug 2021 03:31:00.034';
+GMAT Sunstorm.CoordinateSystem = EarthMJ2000Eq;
+GMAT Sunstorm.DisplayStateType = Keplerian;
+GMAT Sunstorm.SMA = 6923;
+GMAT Sunstorm.ECC = 0.002699999999999872;
+GMAT Sunstorm.INC = 97.56;
+GMAT Sunstorm.RAAN = 305;
+GMAT Sunstorm.AOP = 247.0000000000014;
+GMAT Sunstorm.TA = 360;
+GMAT Sunstorm.DryMass = 2.8;
+GMAT Sunstorm.Cd = 2.2;
+GMAT Sunstorm.Cr = 1;
+GMAT Sunstorm.DragArea = 0.09;
+GMAT Sunstorm.SRPArea = 0.09;
+GMAT Sunstorm.SPADDragScaleFactor = 1;
+GMAT Sunstorm.SPADSRPScaleFactor = 1;
+GMAT Sunstorm.NAIFId = -10000001;
+GMAT Sunstorm.NAIFIdReferenceFrame = -9000001;
+GMAT Sunstorm.OrbitColor = Red;
+GMAT Sunstorm.TargetColor = Teal;
+GMAT Sunstorm.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Sunstorm.CdSigma = 1e+70;
+GMAT Sunstorm.CrSigma = 1e+70;
+GMAT Sunstorm.Id = 'SatId';
+GMAT Sunstorm.Attitude = CoordinateSystemFixed;
+GMAT Sunstorm.SPADSRPInterpolationMethod = Bilinear;
+GMAT Sunstorm.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Sunstorm.SPADDragInterpolationMethod = Bilinear;
+GMAT Sunstorm.SPADDragScaleFactorSigma = 1e+70;
+GMAT Sunstorm.ModelFile = 'aura.3ds';
+GMAT Sunstorm.ModelOffsetX = 0;
+GMAT Sunstorm.ModelOffsetY = 0;
+GMAT Sunstorm.ModelOffsetZ = 0;
+GMAT Sunstorm.ModelRotationX = 0;
+GMAT Sunstorm.ModelRotationY = 0;
+GMAT Sunstorm.ModelRotationZ = 0;
+GMAT Sunstorm.ModelScale = 1;
+GMAT Sunstorm.AttitudeDisplayStateType = 'Quaternion';
+GMAT Sunstorm.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Sunstorm.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Sunstorm.EulerAngleSequence = '321';
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel J2_ForceModel;
+GMAT J2_ForceModel.CentralBody = Earth;
+GMAT J2_ForceModel.PrimaryBodies = {Earth};
+GMAT J2_ForceModel.PointMasses = {Luna, Sun};
+GMAT J2_ForceModel.SRP = On;
+GMAT J2_ForceModel.RelativisticCorrection = Off;
+GMAT J2_ForceModel.ErrorControl = RSSStep;
+GMAT J2_ForceModel.GravityField.Earth.Degree = 4;
+GMAT J2_ForceModel.GravityField.Earth.Order = 4;
+GMAT J2_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT J2_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT J2_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT J2_ForceModel.SRP.Flux = 1367;
+GMAT J2_ForceModel.SRP.SRPModel = Spherical;
+GMAT J2_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT J2_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT J2_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT J2_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT J2_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT J2_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT J2_ForceModel.Drag.F107 = 150;
+GMAT J2_ForceModel.Drag.F107A = 150;
+GMAT J2_ForceModel.Drag.MagneticIndex = 3;
+GMAT J2_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT J2_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT J2_ForceModel.Drag.DragModel = 'Spherical';
+
+Create ForceModel None_ForceModel;
+GMAT None_ForceModel.CentralBody = Earth;
+GMAT None_ForceModel.PrimaryBodies = {Earth};
+GMAT None_ForceModel.PointMasses = {Luna, Sun};
+GMAT None_ForceModel.SRP = On;
+GMAT None_ForceModel.RelativisticCorrection = Off;
+GMAT None_ForceModel.ErrorControl = RSSStep;
+GMAT None_ForceModel.GravityField.Earth.Degree = 0;
+GMAT None_ForceModel.GravityField.Earth.Order = 0;
+GMAT None_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT None_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT None_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT None_ForceModel.SRP.Flux = 1367;
+GMAT None_ForceModel.SRP.SRPModel = Spherical;
+GMAT None_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT None_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT None_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT None_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT None_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT None_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT None_ForceModel.Drag.F107 = 150;
+GMAT None_ForceModel.Drag.F107A = 150;
+GMAT None_ForceModel.Drag.MagneticIndex = 3;
+GMAT None_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT None_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT None_ForceModel.Drag.DragModel = 'Spherical';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator J2;
+GMAT J2.FM = J2_ForceModel;
+GMAT J2.Type = RungeKutta89;
+GMAT J2.InitialStepSize = 60;
+GMAT J2.Accuracy = 9.999999999999999e-12;
+GMAT J2.MinStep = 0.001;
+GMAT J2.MaxStep = 600;
+GMAT J2.MaxStepAttempts = 50;
+GMAT J2.StopIfAccuracyIsViolated = true;
+
+Create Propagator None;
+GMAT None.FM = None_ForceModel;
+GMAT None.Type = RungeKutta89;
+GMAT None.InitialStepSize = 60;
+GMAT None.Accuracy = 9.999999999999999e-12;
+GMAT None.MinStep = 0.001;
+GMAT None.MaxStep = 600;
+GMAT None.MaxStepAttempts = 50;
+GMAT None.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create XYPlot Alt;
+GMAT Alt.SolverIterations = Current;
+GMAT Alt.UpperLeft = [ 0 0 ];
+GMAT Alt.Size = [ 0.9982905982905983 0.4983333333333334 ];
+GMAT Alt.RelativeZOrder = 411;
+GMAT Alt.Maximized = false;
+GMAT Alt.XVariable = Sunstorm.ElapsedDays;
+GMAT Alt.YVariables = {Sunstorm.Earth.Altitude};
+GMAT Alt.ShowGrid = true;
+GMAT Alt.ShowPlot = true;
+
+Create XYPlot SMA;
+GMAT SMA.SolverIterations = Current;
+GMAT SMA.UpperLeft = [ 0 0.4983333333333334 ];
+GMAT SMA.Size = [ 0.9982905982905983 0.4983333333333334 ];
+GMAT SMA.RelativeZOrder = 462;
+GMAT SMA.Maximized = false;
+GMAT SMA.XVariable = Sunstorm.ElapsedDays;
+GMAT SMA.YVariables = {Sunstorm.Earth.SMA};
+GMAT SMA.ShowGrid = true;
+GMAT SMA.ShowPlot = true;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate J2(Sunstorm) {Sunstorm.A1ModJulian = 29958.00000039352};

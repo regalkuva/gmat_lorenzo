@@ -1,0 +1,293 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-09-13 13:39:47
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft Master;
+GMAT Master.DateFormat = A1Gregorian;
+GMAT Master.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT Master.CoordinateSystem = EarthMJ2000Eq;
+GMAT Master.DisplayStateType = Keplerian;
+GMAT Master.SMA = 6878;
+GMAT Master.ECC = 0;
+GMAT Master.INC = 90;
+GMAT Master.RAAN = 78;
+GMAT Master.AOP = 0;
+GMAT Master.TA = 1.478779333471098e-06;
+GMAT Master.DryMass = 100;
+GMAT Master.Cd = 2.2;
+GMAT Master.Cr = 1.8;
+GMAT Master.DragArea = 1;
+GMAT Master.SRPArea = 1;
+GMAT Master.SPADDragScaleFactor = 1;
+GMAT Master.SPADSRPScaleFactor = 1;
+GMAT Master.AtmosDensityScaleFactor = 1;
+GMAT Master.ExtendedMassPropertiesModel = 'None';
+GMAT Master.NAIFId = -10000001;
+GMAT Master.NAIFIdReferenceFrame = -9000001;
+GMAT Master.OrbitColor = Red;
+GMAT Master.TargetColor = Teal;
+GMAT Master.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Master.CdSigma = 1e+70;
+GMAT Master.CrSigma = 1e+70;
+GMAT Master.Id = 'SatId';
+GMAT Master.Attitude = CoordinateSystemFixed;
+GMAT Master.SPADSRPInterpolationMethod = Bilinear;
+GMAT Master.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Master.SPADDragInterpolationMethod = Bilinear;
+GMAT Master.SPADDragScaleFactorSigma = 1e+70;
+GMAT Master.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Master.ModelFile = 'aura.3ds';
+GMAT Master.ModelOffsetX = 0;
+GMAT Master.ModelOffsetY = 0;
+GMAT Master.ModelOffsetZ = 0;
+GMAT Master.ModelRotationX = -90;
+GMAT Master.ModelRotationY = 0;
+GMAT Master.ModelRotationZ = 90;
+GMAT Master.ModelScale = 1;
+GMAT Master.AttitudeDisplayStateType = 'EulerAngles';
+GMAT Master.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Master.AttitudeCoordinateSystem = MasterCentered;
+GMAT Master.EulerAngleSequence = '213';
+
+Create Spacecraft Slave;
+GMAT Slave.DateFormat = A1Gregorian;
+GMAT Slave.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT Slave.CoordinateSystem = EarthMJ2000Eq;
+GMAT Slave.DisplayStateType = Keplerian;
+GMAT Slave.SMA = 6877.999999999999;
+GMAT Slave.ECC = 4.252254618252459e-16;
+GMAT Slave.INC = 90;
+GMAT Slave.RAAN = 78;
+GMAT Slave.AOP = 0;
+GMAT Slave.TA = 45.00000000000001;
+GMAT Slave.DryMass = 100;
+GMAT Slave.Cd = 2.2;
+GMAT Slave.Cr = 1.8;
+GMAT Slave.DragArea = 1.5;
+GMAT Slave.SRPArea = 1;
+GMAT Slave.SPADDragScaleFactor = 1;
+GMAT Slave.SPADSRPScaleFactor = 1;
+GMAT Slave.AtmosDensityScaleFactor = 1;
+GMAT Slave.ExtendedMassPropertiesModel = 'None';
+GMAT Slave.NAIFId = -10000001;
+GMAT Slave.NAIFIdReferenceFrame = -9000001;
+GMAT Slave.OrbitColor = [255 255 0];
+GMAT Slave.TargetColor = Teal;
+GMAT Slave.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Slave.CdSigma = 1e+70;
+GMAT Slave.CrSigma = 1e+70;
+GMAT Slave.Id = 'SatId';
+GMAT Slave.Attitude = CoordinateSystemFixed;
+GMAT Slave.SPADSRPInterpolationMethod = Bilinear;
+GMAT Slave.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Slave.SPADDragInterpolationMethod = Bilinear;
+GMAT Slave.SPADDragScaleFactorSigma = 1e+70;
+GMAT Slave.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Slave.ModelFile = 'aura.3ds';
+GMAT Slave.ModelOffsetX = 0;
+GMAT Slave.ModelOffsetY = 0;
+GMAT Slave.ModelOffsetZ = 0;
+GMAT Slave.ModelRotationX = 0;
+GMAT Slave.ModelRotationY = 0;
+GMAT Slave.ModelRotationZ = 0;
+GMAT Slave.ModelScale = 1;
+GMAT Slave.AttitudeDisplayStateType = 'Quaternion';
+GMAT Slave.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Slave.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Slave.EulerAngleSequence = '321';
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Jupiter, Luna, Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 0;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'CSSISpaceWeatherFile';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'SchattenFile';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 190;
+GMAT DefaultProp_ForceModel.Drag.F107A = 190;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT DefaultProp_ForceModel.Drag.DragModel = 'Spherical';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 1;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem MasterCentered;
+GMAT MasterCentered.Origin = Master;
+GMAT MasterCentered.Axes = LocalAlignedConstrained;
+GMAT MasterCentered.ReferenceObject = Master;
+GMAT MasterCentered.AlignmentVectorX = 0;
+GMAT MasterCentered.AlignmentVectorY = 0;
+GMAT MasterCentered.AlignmentVectorZ = -1;
+GMAT MasterCentered.ConstraintVectorX = 1;
+GMAT MasterCentered.ConstraintVectorY = 0;
+GMAT MasterCentered.ConstraintVectorZ = 0;
+GMAT MasterCentered.ConstraintCoordinateSystem = EarthMJ2000Eq;
+GMAT MasterCentered.ConstraintReferenceVectorX = -1;
+GMAT MasterCentered.ConstraintReferenceVectorY = 0;
+GMAT MasterCentered.ConstraintReferenceVectorZ = 0;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0 0.4966499162479062 ];
+GMAT DefaultOrbitView.Size = [ 0.9982905982905983 0.4983249581239531 ];
+GMAT DefaultOrbitView.RelativeZOrder = 325;
+GMAT DefaultOrbitView.Maximized = false;
+GMAT DefaultOrbitView.Add = {Master, Slave, Earth};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = Off;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = Off;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = Off;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+Create DynamicDataDisplay Angles;
+GMAT Angles.UpperLeft = [ 0.4017094017094017 0.06867671691792294 ];
+GMAT Angles.Size = [ 0.5341880341880342 0.4271356783919598 ];
+GMAT Angles.RelativeZOrder = 181;
+GMAT Angles.Maximized = false;
+GMAT Angles.AddParameters = {1, Master.ElapsedDays};
+GMAT Angles.AddParameters = {2, AngleBetween};
+GMAT Angles.RowTextColors = {1, [0 0 0]};
+GMAT Angles.RowTextColors = {2, [0 0 0]};
+GMAT Angles.WarnColor = [218 165 32];
+GMAT Angles.CritColor = [255 0 0];
+
+Create OrbitView OrbitView1;
+GMAT OrbitView1.SolverIterations = Current;
+GMAT OrbitView1.UpperLeft = [ 0.2226495726495726 0.3182579564489113 ];
+GMAT OrbitView1.Size = [ 0.7162393162393162 0.4991624790619765 ];
+GMAT OrbitView1.RelativeZOrder = 320;
+GMAT OrbitView1.Maximized = false;
+GMAT OrbitView1.Add = {Master, Slave, Earth};
+GMAT OrbitView1.CoordinateSystem = MasterCentered;
+GMAT OrbitView1.DrawObject = [ true true true ];
+GMAT OrbitView1.DataCollectFrequency = 1;
+GMAT OrbitView1.UpdatePlotFrequency = 50;
+GMAT OrbitView1.NumPointsToRedraw = 0;
+GMAT OrbitView1.ShowPlot = true;
+GMAT OrbitView1.MaxPlotPoints = 20000;
+GMAT OrbitView1.ShowLabels = true;
+GMAT OrbitView1.ViewPointReference = Master;
+GMAT OrbitView1.ViewPointVector = [ 10000 10000 10000 ];
+GMAT OrbitView1.ViewDirection = Master;
+GMAT OrbitView1.ViewScaleFactor = 1;
+GMAT OrbitView1.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.ViewUpAxis = Z;
+GMAT OrbitView1.EclipticPlane = Off;
+GMAT OrbitView1.XYPlane = On;
+GMAT OrbitView1.WireFrame = Off;
+GMAT OrbitView1.Axes = On;
+GMAT OrbitView1.Grid = Off;
+GMAT OrbitView1.SunLine = Off;
+GMAT OrbitView1.UseInitialView = On;
+GMAT OrbitView1.StarCount = 7000;
+GMAT OrbitView1.EnableStars = On;
+GMAT OrbitView1.EnableConstellations = On;
+
+Create XYPlot XYZMaster;
+GMAT XYZMaster.SolverIterations = Current;
+GMAT XYZMaster.UpperLeft = [ 0.04273504273504274 0.5201005025125628 ];
+GMAT XYZMaster.Size = [ 0.5 0.449748743718593 ];
+GMAT XYZMaster.RelativeZOrder = 238;
+GMAT XYZMaster.Maximized = false;
+GMAT XYZMaster.XVariable = Master.ElapsedDays;
+GMAT XYZMaster.YVariables = {Master.MasterCentered.X, Master.MasterCentered.Y, Master.MasterCentered.Z};
+GMAT XYZMaster.ShowGrid = true;
+GMAT XYZMaster.ShowPlot = true;
+
+Create XYPlot XYZMaster2;
+GMAT XYZMaster2.SolverIterations = Current;
+GMAT XYZMaster2.UpperLeft = [ 0.05128205128205128 0.5368509212730318 ];
+GMAT XYZMaster2.Size = [ 0.5 0.449748743718593 ];
+GMAT XYZMaster2.RelativeZOrder = 270;
+GMAT XYZMaster2.Maximized = false;
+GMAT XYZMaster2.XVariable = Master.ElapsedDays;
+GMAT XYZMaster2.YVariables = {Slave.MasterCentered.X, Slave.MasterCentered.Y, Slave.MasterCentered.Z};
+GMAT XYZMaster2.ShowGrid = true;
+GMAT XYZMaster2.ShowPlot = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable AngleBetween;
+GMAT AngleBetween = 0;
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+While Master.ElapsedDays < 5
+   Propagate DefaultProp(Master, Slave);
+   
+   BeginScript
+      GMAT AngleBetween = Master.Earth.TA - Slave.Earth.TA;
+   EndScript;
+   UpdateDynamicData Angles;
+EndWhile;

@@ -1,0 +1,199 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-03-29 14:30:57
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HFNG_MorningLTDN;
+GMAT HFNG_MorningLTDN.DateFormat = A1Gregorian;
+GMAT HFNG_MorningLTDN.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT HFNG_MorningLTDN.CoordinateSystem = EarthMJ2000Eq;
+GMAT HFNG_MorningLTDN.DisplayStateType = Keplerian;
+GMAT HFNG_MorningLTDN.SMA = 6728.140000000009;
+GMAT HFNG_MorningLTDN.ECC = 1.000000000117927e-05;
+GMAT HFNG_MorningLTDN.INC = 97.4064;
+GMAT HFNG_MorningLTDN.RAAN = 78;
+GMAT HFNG_MorningLTDN.AOP = 1.207418269725733e-06;
+GMAT HFNG_MorningLTDN.TA = 180;
+GMAT HFNG_MorningLTDN.DryMass = 850;
+GMAT HFNG_MorningLTDN.Cd = 2.2;
+GMAT HFNG_MorningLTDN.Cr = 1.8;
+GMAT HFNG_MorningLTDN.DragArea = 15;
+GMAT HFNG_MorningLTDN.SRPArea = 1;
+GMAT HFNG_MorningLTDN.SPADDragScaleFactor = 1;
+GMAT HFNG_MorningLTDN.SPADSRPScaleFactor = 1;
+GMAT HFNG_MorningLTDN.NAIFId = -10002001;
+GMAT HFNG_MorningLTDN.NAIFIdReferenceFrame = -9002001;
+GMAT HFNG_MorningLTDN.OrbitColor = Red;
+GMAT HFNG_MorningLTDN.TargetColor = Teal;
+GMAT HFNG_MorningLTDN.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HFNG_MorningLTDN.CdSigma = 1e+70;
+GMAT HFNG_MorningLTDN.CrSigma = 1e+70;
+GMAT HFNG_MorningLTDN.Id = 'SatId';
+GMAT HFNG_MorningLTDN.Attitude = NadirPointing;
+GMAT HFNG_MorningLTDN.SPADSRPInterpolationMethod = Bilinear;
+GMAT HFNG_MorningLTDN.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HFNG_MorningLTDN.SPADDragInterpolationMethod = Bilinear;
+GMAT HFNG_MorningLTDN.SPADDragScaleFactorSigma = 1e+70;
+GMAT HFNG_MorningLTDN.ModelFile = 'C:\Users\egeme\Desktop\Kuva\HF_NewGen\CAD\Mk1\12U\HF_NewGeneration_Mk1_12U_PanelsOnly_Tilted.3ds';
+GMAT HFNG_MorningLTDN.ModelOffsetX = 0;
+GMAT HFNG_MorningLTDN.ModelOffsetY = 0;
+GMAT HFNG_MorningLTDN.ModelOffsetZ = 0;
+GMAT HFNG_MorningLTDN.ModelRotationX = 0;
+GMAT HFNG_MorningLTDN.ModelRotationY = 0;
+GMAT HFNG_MorningLTDN.ModelRotationZ = 0;
+GMAT HFNG_MorningLTDN.ModelScale = 1;
+GMAT HFNG_MorningLTDN.AttitudeDisplayStateType = 'Quaternion';
+GMAT HFNG_MorningLTDN.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HFNG_MorningLTDN.EulerAngleSequence = '321';
+GMAT HFNG_MorningLTDN.AttitudeReferenceBody = Earth;
+GMAT HFNG_MorningLTDN.AttitudeConstraintType = 'OrbitNormal';
+GMAT HFNG_MorningLTDN.BodyAlignmentVectorX = 0;
+GMAT HFNG_MorningLTDN.BodyAlignmentVectorY = 0;
+GMAT HFNG_MorningLTDN.BodyAlignmentVectorZ = 1;
+GMAT HFNG_MorningLTDN.BodyConstraintVectorX = -1;
+GMAT HFNG_MorningLTDN.BodyConstraintVectorY = 0;
+GMAT HFNG_MorningLTDN.BodyConstraintVectorZ = 0;
+
+%----------------------------------------
+%---------- GroundStations
+%----------------------------------------
+
+Create GroundStation Helsinki;
+GMAT Helsinki.OrbitColor = Thistle;
+GMAT Helsinki.TargetColor = DarkGray;
+GMAT Helsinki.CentralBody = Earth;
+GMAT Helsinki.StateType = Spherical;
+GMAT Helsinki.HorizonReference = Sphere;
+GMAT Helsinki.Location1 = 60.18858999999999;
+GMAT Helsinki.Location2 = 24.83322;
+GMAT Helsinki.Location3 = 0;
+GMAT Helsinki.Id = 'Helsinki';
+GMAT Helsinki.IonosphereModel = 'None';
+GMAT Helsinki.TroposphereModel = 'None';
+GMAT Helsinki.DataSource = 'Constant';
+GMAT Helsinki.Temperature = 295.1;
+GMAT Helsinki.Pressure = 1013.5;
+GMAT Helsinki.Humidity = 55;
+GMAT Helsinki.MinimumElevationAngle = 5;
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 300;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem Local;
+GMAT Local.Origin = HFNG_MorningLTDN;
+GMAT Local.Axes = MJ2000Eq;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView OrbitView1;
+GMAT OrbitView1.SolverIterations = Current;
+GMAT OrbitView1.UpperLeft = [ 0.07136752136752136 0.009212730318257957 ];
+GMAT OrbitView1.Size = [ 0.4611111111111111 0.518425460636516 ];
+GMAT OrbitView1.RelativeZOrder = 215;
+GMAT OrbitView1.Maximized = false;
+GMAT OrbitView1.Add = {HFNG_MorningLTDN, Earth, Sun};
+GMAT OrbitView1.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.DrawObject = [ true true true ];
+GMAT OrbitView1.DataCollectFrequency = 1;
+GMAT OrbitView1.UpdatePlotFrequency = 50;
+GMAT OrbitView1.NumPointsToRedraw = 0;
+GMAT OrbitView1.ShowPlot = true;
+GMAT OrbitView1.MaxPlotPoints = 20000;
+GMAT OrbitView1.ShowLabels = true;
+GMAT OrbitView1.ViewPointReference = Earth;
+GMAT OrbitView1.ViewPointVector = [ 20000 20000 30000 ];
+GMAT OrbitView1.ViewDirection = Earth;
+GMAT OrbitView1.ViewScaleFactor = 1;
+GMAT OrbitView1.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.ViewUpAxis = Z;
+GMAT OrbitView1.EclipticPlane = Off;
+GMAT OrbitView1.XYPlane = Off;
+GMAT OrbitView1.WireFrame = Off;
+GMAT OrbitView1.Axes = Off;
+GMAT OrbitView1.Grid = Off;
+GMAT OrbitView1.SunLine = On;
+GMAT OrbitView1.UseInitialView = On;
+GMAT OrbitView1.StarCount = 7000;
+GMAT OrbitView1.EnableStars = On;
+GMAT OrbitView1.EnableConstellations = On;
+
+Create OrbitView OrbitView2;
+GMAT OrbitView2.SolverIterations = All;
+GMAT OrbitView2.UpperLeft = [ 0.06965811965811966 0.4539363484087102 ];
+GMAT OrbitView2.Size = [ 0.4995726495726496 0.4489112227805695 ];
+GMAT OrbitView2.RelativeZOrder = 223;
+GMAT OrbitView2.Maximized = false;
+GMAT OrbitView2.Add = {HFNG_MorningLTDN, Earth};
+GMAT OrbitView2.CoordinateSystem = Local;
+GMAT OrbitView2.DrawObject = [ true true ];
+GMAT OrbitView2.DataCollectFrequency = 1;
+GMAT OrbitView2.UpdatePlotFrequency = 50;
+GMAT OrbitView2.NumPointsToRedraw = 0;
+GMAT OrbitView2.ShowPlot = true;
+GMAT OrbitView2.MaxPlotPoints = 20000;
+GMAT OrbitView2.ShowLabels = false;
+GMAT OrbitView2.ViewPointReference = HFNG_MorningLTDN;
+GMAT OrbitView2.ViewPointVector = HFNG_MorningLTDN;
+GMAT OrbitView2.ViewDirection = HFNG_MorningLTDN;
+GMAT OrbitView2.ViewScaleFactor = 0.1;
+GMAT OrbitView2.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView2.ViewUpAxis = Z;
+GMAT OrbitView2.EclipticPlane = Off;
+GMAT OrbitView2.XYPlane = Off;
+GMAT OrbitView2.WireFrame = Off;
+GMAT OrbitView2.Axes = Off;
+GMAT OrbitView2.Grid = Off;
+GMAT OrbitView2.SunLine = On;
+GMAT OrbitView2.UseInitialView = On;
+GMAT OrbitView2.StarCount = 7000;
+GMAT OrbitView2.EnableStars = On;
+GMAT OrbitView2.EnableConstellations = On;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(HFNG_MorningLTDN) {HFNG_MorningLTDN.ElapsedSecs = 5750};

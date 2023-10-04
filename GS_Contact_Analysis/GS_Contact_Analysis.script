@@ -1,0 +1,429 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-04-18 15:44:59
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HF2;
+GMAT HF2.DateFormat = A1Gregorian;
+GMAT HF2.Epoch = '02 Jan 2024 09:30:00.034';
+GMAT HF2.CoordinateSystem = EarthMJ2000Eq;
+GMAT HF2.DisplayStateType = Keplerian;
+GMAT HF2.SMA = 6728.139999999999;
+GMAT HF2.ECC = 9.714768747347962e-15;
+GMAT HF2.INC = 96.86;
+GMAT HF2.RAAN = 78;
+GMAT HF2.AOP = 0;
+GMAT HF2.TA = 0;
+GMAT HF2.DryMass = 850;
+GMAT HF2.Cd = 2.2;
+GMAT HF2.Cr = 1.8;
+GMAT HF2.DragArea = 15;
+GMAT HF2.SRPArea = 1;
+GMAT HF2.SPADDragScaleFactor = 1;
+GMAT HF2.SPADSRPScaleFactor = 1;
+GMAT HF2.NAIFId = -10000001;
+GMAT HF2.NAIFIdReferenceFrame = -9000001;
+GMAT HF2.OrbitColor = Red;
+GMAT HF2.TargetColor = Teal;
+GMAT HF2.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HF2.CdSigma = 1e+70;
+GMAT HF2.CrSigma = 1e+70;
+GMAT HF2.Id = 'SatId';
+GMAT HF2.Attitude = CoordinateSystemFixed;
+GMAT HF2.SPADSRPInterpolationMethod = Bilinear;
+GMAT HF2.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HF2.SPADDragInterpolationMethod = Bilinear;
+GMAT HF2.SPADDragScaleFactorSigma = 1e+70;
+GMAT HF2.ModelFile = 'aura.3ds';
+GMAT HF2.ModelOffsetX = 0;
+GMAT HF2.ModelOffsetY = 0;
+GMAT HF2.ModelOffsetZ = 0;
+GMAT HF2.ModelRotationX = 0;
+GMAT HF2.ModelRotationY = 0;
+GMAT HF2.ModelRotationZ = 0;
+GMAT HF2.ModelScale = 1;
+GMAT HF2.AttitudeDisplayStateType = 'Quaternion';
+GMAT HF2.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HF2.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HF2.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- GroundStations
+%----------------------------------------
+
+Create GroundStation Iceland_SX;
+GMAT Iceland_SX.OrbitColor = Thistle;
+GMAT Iceland_SX.TargetColor = DarkGray;
+GMAT Iceland_SX.CentralBody = Earth;
+GMAT Iceland_SX.StateType = Spherical;
+GMAT Iceland_SX.HorizonReference = Sphere;
+GMAT Iceland_SX.Location1 = 65.66;
+GMAT Iceland_SX.Location2 = 339.73;
+GMAT Iceland_SX.Location3 = 0.05;
+GMAT Iceland_SX.Id = 'Iceland';
+GMAT Iceland_SX.IonosphereModel = 'None';
+GMAT Iceland_SX.TroposphereModel = 'None';
+GMAT Iceland_SX.DataSource = 'Constant';
+GMAT Iceland_SX.Temperature = 295.1;
+GMAT Iceland_SX.Pressure = 1013.5;
+GMAT Iceland_SX.Humidity = 55;
+GMAT Iceland_SX.MinimumElevationAngle = 10;
+
+Create GroundStation Portugal_SX;
+GMAT Portugal_SX.OrbitColor = Thistle;
+GMAT Portugal_SX.TargetColor = DarkGray;
+GMAT Portugal_SX.CentralBody = Earth;
+GMAT Portugal_SX.StateType = Spherical;
+GMAT Portugal_SX.HorizonReference = Sphere;
+GMAT Portugal_SX.Location1 = 36.99;
+GMAT Portugal_SX.Location2 = 334.8700000000001;
+GMAT Portugal_SX.Location3 = 0.05;
+GMAT Portugal_SX.Id = 'Portugal';
+GMAT Portugal_SX.IonosphereModel = 'None';
+GMAT Portugal_SX.TroposphereModel = 'None';
+GMAT Portugal_SX.DataSource = 'Constant';
+GMAT Portugal_SX.Temperature = 295.1;
+GMAT Portugal_SX.Pressure = 1013.5;
+GMAT Portugal_SX.Humidity = 55;
+GMAT Portugal_SX.MinimumElevationAngle = 10;
+
+Create GroundStation UK_SX;
+GMAT UK_SX.OrbitColor = Thistle;
+GMAT UK_SX.TargetColor = DarkGray;
+GMAT UK_SX.CentralBody = Earth;
+GMAT UK_SX.StateType = Spherical;
+GMAT UK_SX.HorizonReference = Sphere;
+GMAT UK_SX.Location1 = 60.74;
+GMAT UK_SX.Location2 = 359.14;
+GMAT UK_SX.Location3 = 0.05;
+GMAT UK_SX.Id = 'StationIdUK';
+GMAT UK_SX.IonosphereModel = 'None';
+GMAT UK_SX.TroposphereModel = 'None';
+GMAT UK_SX.DataSource = 'Constant';
+GMAT UK_SX.Temperature = 295.1;
+GMAT UK_SX.Pressure = 1013.5;
+GMAT UK_SX.Humidity = 55;
+GMAT UK_SX.MinimumElevationAngle = 10;
+
+Create GroundStation Ireland_SUHF;
+GMAT Ireland_SUHF.OrbitColor = Thistle;
+GMAT Ireland_SUHF.TargetColor = DarkGray;
+GMAT Ireland_SUHF.CentralBody = Earth;
+GMAT Ireland_SUHF.StateType = Spherical;
+GMAT Ireland_SUHF.HorizonReference = Sphere;
+GMAT Ireland_SUHF.Location1 = 51.95000000000001;
+GMAT Ireland_SUHF.Location2 = 351.83;
+GMAT Ireland_SUHF.Location3 = 0.05;
+GMAT Ireland_SUHF.Id = 'Ireland';
+GMAT Ireland_SUHF.IonosphereModel = 'None';
+GMAT Ireland_SUHF.TroposphereModel = 'None';
+GMAT Ireland_SUHF.DataSource = 'Constant';
+GMAT Ireland_SUHF.Temperature = 295.1;
+GMAT Ireland_SUHF.Pressure = 1013.5;
+GMAT Ireland_SUHF.Humidity = 55;
+GMAT Ireland_SUHF.MinimumElevationAngle = 10;
+
+Create GroundStation Spain_SUHF;
+GMAT Spain_SUHF.OrbitColor = Thistle;
+GMAT Spain_SUHF.TargetColor = DarkGray;
+GMAT Spain_SUHF.CentralBody = Earth;
+GMAT Spain_SUHF.StateType = Spherical;
+GMAT Spain_SUHF.HorizonReference = Sphere;
+GMAT Spain_SUHF.Location1 = 38.67000000000001;
+GMAT Spain_SUHF.Location2 = 355.84;
+GMAT Spain_SUHF.Location3 = 0;
+GMAT Spain_SUHF.Id = 'Spain';
+GMAT Spain_SUHF.IonosphereModel = 'None';
+GMAT Spain_SUHF.TroposphereModel = 'None';
+GMAT Spain_SUHF.DataSource = 'Constant';
+GMAT Spain_SUHF.Temperature = 295.1;
+GMAT Spain_SUHF.Pressure = 1013.5;
+GMAT Spain_SUHF.Humidity = 55;
+GMAT Spain_SUHF.MinimumElevationAngle = 10;
+
+Create GroundStation Italy_UHF;
+GMAT Italy_UHF.OrbitColor = Thistle;
+GMAT Italy_UHF.TargetColor = DarkGray;
+GMAT Italy_UHF.CentralBody = Earth;
+GMAT Italy_UHF.StateType = Spherical;
+GMAT Italy_UHF.HorizonReference = Sphere;
+GMAT Italy_UHF.Location1 = 45.69;
+GMAT Italy_UHF.Location2 = 9.029999999999999;
+GMAT Italy_UHF.Location3 = 0.05;
+GMAT Italy_UHF.Id = 'Italy';
+GMAT Italy_UHF.IonosphereModel = 'None';
+GMAT Italy_UHF.TroposphereModel = 'None';
+GMAT Italy_UHF.DataSource = 'Constant';
+GMAT Italy_UHF.Temperature = 295.1;
+GMAT Italy_UHF.Pressure = 1013.5;
+GMAT Italy_UHF.Humidity = 55;
+GMAT Italy_UHF.MinimumElevationAngle = 10;
+
+Create GroundStation Bulgaria_SX;
+GMAT Bulgaria_SX.OrbitColor = Thistle;
+GMAT Bulgaria_SX.TargetColor = DarkGray;
+GMAT Bulgaria_SX.CentralBody = Earth;
+GMAT Bulgaria_SX.StateType = Spherical;
+GMAT Bulgaria_SX.HorizonReference = Sphere;
+GMAT Bulgaria_SX.Location1 = 42.48;
+GMAT Bulgaria_SX.Location2 = 23.44;
+GMAT Bulgaria_SX.Location3 = 0.05;
+GMAT Bulgaria_SX.Id = 'Bulgaria_SX';
+GMAT Bulgaria_SX.IonosphereModel = 'None';
+GMAT Bulgaria_SX.TroposphereModel = 'None';
+GMAT Bulgaria_SX.DataSource = 'Constant';
+GMAT Bulgaria_SX.Temperature = 295.1;
+GMAT Bulgaria_SX.Pressure = 1013.5;
+GMAT Bulgaria_SX.Humidity = 55;
+GMAT Bulgaria_SX.MinimumElevationAngle = 10;
+
+Create GroundStation Bulgaria_S;
+GMAT Bulgaria_S.OrbitColor = Thistle;
+GMAT Bulgaria_S.TargetColor = DarkGray;
+GMAT Bulgaria_S.CentralBody = Earth;
+GMAT Bulgaria_S.StateType = Spherical;
+GMAT Bulgaria_S.HorizonReference = Sphere;
+GMAT Bulgaria_S.Location1 = 43.31;
+GMAT Bulgaria_S.Location2 = 27.11;
+GMAT Bulgaria_S.Location3 = 0.05;
+GMAT Bulgaria_S.Id = 'Bulgaria_S';
+GMAT Bulgaria_S.IonosphereModel = 'None';
+GMAT Bulgaria_S.TroposphereModel = 'None';
+GMAT Bulgaria_S.DataSource = 'Constant';
+GMAT Bulgaria_S.Temperature = 295.1;
+GMAT Bulgaria_S.Pressure = 1013.5;
+GMAT Bulgaria_S.Humidity = 55;
+GMAT Bulgaria_S.MinimumElevationAngle = 10;
+
+Create GroundStation SriLanka_SX;
+GMAT SriLanka_SX.OrbitColor = Thistle;
+GMAT SriLanka_SX.TargetColor = DarkGray;
+GMAT SriLanka_SX.CentralBody = Earth;
+GMAT SriLanka_SX.StateType = Spherical;
+GMAT SriLanka_SX.HorizonReference = Sphere;
+GMAT SriLanka_SX.Location1 = 7.27;
+GMAT SriLanka_SX.Location2 = 80.72;
+GMAT SriLanka_SX.Location3 = 0.05;
+GMAT SriLanka_SX.Id = 'SriLanka';
+GMAT SriLanka_SX.IonosphereModel = 'None';
+GMAT SriLanka_SX.TroposphereModel = 'None';
+GMAT SriLanka_SX.DataSource = 'Constant';
+GMAT SriLanka_SX.Temperature = 295.1;
+GMAT SriLanka_SX.Pressure = 1013.5;
+GMAT SriLanka_SX.Humidity = 55;
+GMAT SriLanka_SX.MinimumElevationAngle = 10;
+
+Create GroundStation AUS_SXUHF;
+GMAT AUS_SXUHF.OrbitColor = Thistle;
+GMAT AUS_SXUHF.TargetColor = DarkGray;
+GMAT AUS_SXUHF.CentralBody = Earth;
+GMAT AUS_SXUHF.StateType = Spherical;
+GMAT AUS_SXUHF.HorizonReference = Sphere;
+GMAT AUS_SXUHF.Location1 = -29.01;
+GMAT AUS_SXUHF.Location2 = 115.34;
+GMAT AUS_SXUHF.Location3 = 0.05;
+GMAT AUS_SXUHF.Id = 'AUS_SXUHF';
+GMAT AUS_SXUHF.IonosphereModel = 'None';
+GMAT AUS_SXUHF.TroposphereModel = 'None';
+GMAT AUS_SXUHF.DataSource = 'Constant';
+GMAT AUS_SXUHF.Temperature = 295.1;
+GMAT AUS_SXUHF.Pressure = 1013.5;
+GMAT AUS_SXUHF.Humidity = 55;
+GMAT AUS_SXUHF.MinimumElevationAngle = 10;
+
+Create GroundStation AUS_SX;
+GMAT AUS_SX.OrbitColor = Thistle;
+GMAT AUS_SX.TargetColor = DarkGray;
+GMAT AUS_SX.CentralBody = Earth;
+GMAT AUS_SX.StateType = Spherical;
+GMAT AUS_SX.HorizonReference = Sphere;
+GMAT AUS_SX.Location1 = -32.96000000000001;
+GMAT AUS_SX.Location2 = 138.84;
+GMAT AUS_SX.Location3 = 0.05;
+GMAT AUS_SX.Id = 'AUS_SX';
+GMAT AUS_SX.IonosphereModel = 'None';
+GMAT AUS_SX.TroposphereModel = 'None';
+GMAT AUS_SX.DataSource = 'Constant';
+GMAT AUS_SX.Temperature = 295.1;
+GMAT AUS_SX.Pressure = 1013.5;
+GMAT AUS_SX.Humidity = 55;
+GMAT AUS_SX.MinimumElevationAngle = 10;
+
+Create GroundStation NZ_SX;
+GMAT NZ_SX.OrbitColor = Thistle;
+GMAT NZ_SX.TargetColor = DarkGray;
+GMAT NZ_SX.CentralBody = Earth;
+GMAT NZ_SX.StateType = Spherical;
+GMAT NZ_SX.HorizonReference = Sphere;
+GMAT NZ_SX.Location1 = -46.52000000000001;
+GMAT NZ_SX.Location2 = 168.37;
+GMAT NZ_SX.Location3 = 0.05;
+GMAT NZ_SX.Id = 'NZ';
+GMAT NZ_SX.IonosphereModel = 'None';
+GMAT NZ_SX.TroposphereModel = 'None';
+GMAT NZ_SX.DataSource = 'Constant';
+GMAT NZ_SX.Temperature = 295.1;
+GMAT NZ_SX.Pressure = 1013.5;
+GMAT NZ_SX.Humidity = 55;
+GMAT NZ_SX.MinimumElevationAngle = 10;
+
+Create GroundStation Helsinki_SX;
+GMAT Helsinki_SX.OrbitColor = Thistle;
+GMAT Helsinki_SX.TargetColor = DarkGray;
+GMAT Helsinki_SX.CentralBody = Earth;
+GMAT Helsinki_SX.StateType = Spherical;
+GMAT Helsinki_SX.HorizonReference = Sphere;
+GMAT Helsinki_SX.Location1 = 60.18;
+GMAT Helsinki_SX.Location2 = 24.83;
+GMAT Helsinki_SX.Location3 = 0.05;
+GMAT Helsinki_SX.Id = 'Helsinki';
+GMAT Helsinki_SX.IonosphereModel = 'None';
+GMAT Helsinki_SX.TroposphereModel = 'None';
+GMAT Helsinki_SX.DataSource = 'Constant';
+GMAT Helsinki_SX.Temperature = 295.1;
+GMAT Helsinki_SX.Pressure = 1013.5;
+GMAT Helsinki_SX.Humidity = 55;
+GMAT Helsinki_SX.MinimumElevationAngle = 10;
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- EventLocators
+%----------------------------------------
+
+Create ContactLocator SBand_Contacts;
+GMAT SBand_Contacts.Target = HF2;
+GMAT SBand_Contacts.Filename = 'SBand_Contacts.txt';
+GMAT SBand_Contacts.InputEpochFormat = 'TAIModJulian';
+GMAT SBand_Contacts.InitialEpoch = '21545';
+GMAT SBand_Contacts.StepSize = 10;
+GMAT SBand_Contacts.FinalEpoch = '21545.138';
+GMAT SBand_Contacts.UseLightTimeDelay = true;
+GMAT SBand_Contacts.UseStellarAberration = true;
+GMAT SBand_Contacts.WriteReport = true;
+GMAT SBand_Contacts.RunMode = Automatic;
+GMAT SBand_Contacts.UseEntireInterval = true;
+GMAT SBand_Contacts.Observers = {AUS_SX, AUS_SXUHF, Bulgaria_S, Bulgaria_SX, Helsinki_SX, Iceland_SX, Ireland_SUHF, NZ_SX, Portugal_SX, Spain_SUHF, SriLanka_SX, UK_SX};
+GMAT SBand_Contacts.LightTimeDirection = Transmit;
+
+Create ContactLocator XBand_Contacts;
+GMAT XBand_Contacts.Target = HF2;
+GMAT XBand_Contacts.Filename = 'XBand_Contacts.txt';
+GMAT XBand_Contacts.InputEpochFormat = 'TAIModJulian';
+GMAT XBand_Contacts.InitialEpoch = '21545';
+GMAT XBand_Contacts.StepSize = 10;
+GMAT XBand_Contacts.FinalEpoch = '21545.138';
+GMAT XBand_Contacts.UseLightTimeDelay = true;
+GMAT XBand_Contacts.UseStellarAberration = true;
+GMAT XBand_Contacts.WriteReport = true;
+GMAT XBand_Contacts.RunMode = Automatic;
+GMAT XBand_Contacts.UseEntireInterval = true;
+GMAT XBand_Contacts.Observers = {AUS_SX, AUS_SXUHF, Bulgaria_SX, Helsinki_SX, Iceland_SX, NZ_SX, Portugal_SX, SriLanka_SX, UK_SX};
+GMAT XBand_Contacts.LightTimeDirection = Transmit;
+
+Create EclipseLocator EclipseLocator1;
+GMAT EclipseLocator1.Spacecraft = HF2;
+GMAT EclipseLocator1.Filename = 'EclipseLocator1.txt';
+GMAT EclipseLocator1.OccultingBodies = {Earth, Luna};
+GMAT EclipseLocator1.InputEpochFormat = 'TAIModJulian';
+GMAT EclipseLocator1.InitialEpoch = '21545';
+GMAT EclipseLocator1.StepSize = 10;
+GMAT EclipseLocator1.FinalEpoch = '21545.138';
+GMAT EclipseLocator1.UseLightTimeDelay = true;
+GMAT EclipseLocator1.UseStellarAberration = true;
+GMAT EclipseLocator1.WriteReport = true;
+GMAT EclipseLocator1.RunMode = Automatic;
+GMAT EclipseLocator1.UseEntireInterval = true;
+GMAT EclipseLocator1.EclipseTypes = {'Umbra', 'Penumbra', 'Antumbra'};
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0.001709401709401709 0 ];
+GMAT DefaultOrbitView.Size = [ 0.5 0.4811827956989247 ];
+GMAT DefaultOrbitView.RelativeZOrder = 213;
+GMAT DefaultOrbitView.Maximized = false;
+GMAT DefaultOrbitView.Add = {HF2, Earth, Sun};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = On;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = On;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = On;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+Create GroundTrackPlot DefaultGroundTrackPlot;
+GMAT DefaultGroundTrackPlot.SolverIterations = Current;
+GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.001709401709401709 0.4838709677419355 ];
+GMAT DefaultGroundTrackPlot.Size = [ 0.5 0.4811827956989247 ];
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 5;
+GMAT DefaultGroundTrackPlot.Maximized = false;
+GMAT DefaultGroundTrackPlot.Add = {AUS_SX, AUS_SXUHF, Bulgaria_S, Bulgaria_SX, Helsinki_SX, HF2, Iceland_SX, Ireland_SUHF, Italy_UHF, NZ_SX, Portugal_SX, Spain_SUHF, SriLanka_SX, UK_SX};
+GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
+GMAT DefaultGroundTrackPlot.UpdatePlotFrequency = 50;
+GMAT DefaultGroundTrackPlot.NumPointsToRedraw = 0;
+GMAT DefaultGroundTrackPlot.ShowPlot = true;
+GMAT DefaultGroundTrackPlot.MaxPlotPoints = 20000;
+GMAT DefaultGroundTrackPlot.CentralBody = Earth;
+GMAT DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(HF2) {HF2.EarthMJ2000Eq.RA = HF2.EarthMJ2000Eq.RAAN};

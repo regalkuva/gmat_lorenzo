@@ -1,0 +1,1045 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-02-08 13:30:35
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP1;
+GMAT HP1.DateFormat = UTCGregorian;
+GMAT HP1.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP1.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP1.DisplayStateType = Keplerian;
+GMAT HP1.SMA = 6748.140000000002;
+GMAT HP1.ECC = 0.001000000000000378;
+GMAT HP1.INC = 96.9258;
+GMAT HP1.RAAN = 108.617;
+GMAT HP1.AOP = 8.537736462515939e-07;
+GMAT HP1.TA = 360;
+GMAT HP1.DryMass = 850;
+GMAT HP1.Cd = 2.2;
+GMAT HP1.Cr = 1.8;
+GMAT HP1.DragArea = 15;
+GMAT HP1.SRPArea = 1;
+GMAT HP1.SPADDragScaleFactor = 1;
+GMAT HP1.SPADSRPScaleFactor = 1;
+GMAT HP1.NAIFId = -10000001;
+GMAT HP1.NAIFIdReferenceFrame = -9000001;
+GMAT HP1.OrbitColor = Red;
+GMAT HP1.TargetColor = Teal;
+GMAT HP1.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP1.CdSigma = 1e+70;
+GMAT HP1.CrSigma = 1e+70;
+GMAT HP1.Id = 'SatId';
+GMAT HP1.Attitude = CoordinateSystemFixed;
+GMAT HP1.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP1.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP1.SPADDragInterpolationMethod = Bilinear;
+GMAT HP1.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP1.ModelFile = 'aura.3ds';
+GMAT HP1.ModelOffsetX = 0;
+GMAT HP1.ModelOffsetY = 0;
+GMAT HP1.ModelOffsetZ = 0;
+GMAT HP1.ModelRotationX = 0;
+GMAT HP1.ModelRotationY = 0;
+GMAT HP1.ModelRotationZ = 0;
+GMAT HP1.ModelScale = 1;
+GMAT HP1.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP1.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP1.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP1.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP2;
+GMAT HP2.DateFormat = UTCGregorian;
+GMAT HP2.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP2.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP2.DisplayStateType = Keplerian;
+GMAT HP2.SMA = 6748.140000000003;
+GMAT HP2.ECC = 0.001000000000000583;
+GMAT HP2.INC = 96.9258;
+GMAT HP2.RAAN = 126.617;
+GMAT HP2.AOP = 1.207418269725733e-06;
+GMAT HP2.TA = 341.9999999999863;
+GMAT HP2.DryMass = 850;
+GMAT HP2.Cd = 2.2;
+GMAT HP2.Cr = 1.8;
+GMAT HP2.DragArea = 15;
+GMAT HP2.SRPArea = 1;
+GMAT HP2.SPADDragScaleFactor = 1;
+GMAT HP2.SPADSRPScaleFactor = 1;
+GMAT HP2.NAIFId = -10000001;
+GMAT HP2.NAIFIdReferenceFrame = -9000001;
+GMAT HP2.OrbitColor = [255 128 128];
+GMAT HP2.TargetColor = Teal;
+GMAT HP2.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP2.CdSigma = 1e+70;
+GMAT HP2.CrSigma = 1e+70;
+GMAT HP2.Id = 'SatId';
+GMAT HP2.Attitude = CoordinateSystemFixed;
+GMAT HP2.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP2.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP2.SPADDragInterpolationMethod = Bilinear;
+GMAT HP2.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP2.ModelFile = 'aura.3ds';
+GMAT HP2.ModelOffsetX = 0;
+GMAT HP2.ModelOffsetY = 0;
+GMAT HP2.ModelOffsetZ = 0;
+GMAT HP2.ModelRotationX = 0;
+GMAT HP2.ModelRotationY = 0;
+GMAT HP2.ModelRotationZ = 0;
+GMAT HP2.ModelScale = 1;
+GMAT HP2.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP2.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP2.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP2.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP3;
+GMAT HP3.DateFormat = UTCGregorian;
+GMAT HP3.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP3.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP3.DisplayStateType = Keplerian;
+GMAT HP3.SMA = 6748.140000000001;
+GMAT HP3.ECC = 0.001000000000000505;
+GMAT HP3.INC = 96.9258;
+GMAT HP3.RAAN = 144.617;
+GMAT HP3.AOP = 359.9999991462263;
+GMAT HP3.TA = 115.99999999999;
+GMAT HP3.DryMass = 850;
+GMAT HP3.Cd = 2.2;
+GMAT HP3.Cr = 1.8;
+GMAT HP3.DragArea = 15;
+GMAT HP3.SRPArea = 1;
+GMAT HP3.SPADDragScaleFactor = 1;
+GMAT HP3.SPADSRPScaleFactor = 1;
+GMAT HP3.NAIFId = -10000001;
+GMAT HP3.NAIFIdReferenceFrame = -9000001;
+GMAT HP3.OrbitColor = [255 255 128];
+GMAT HP3.TargetColor = Teal;
+GMAT HP3.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP3.CdSigma = 1e+70;
+GMAT HP3.CrSigma = 1e+70;
+GMAT HP3.Id = 'SatId';
+GMAT HP3.Attitude = CoordinateSystemFixed;
+GMAT HP3.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP3.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP3.SPADDragInterpolationMethod = Bilinear;
+GMAT HP3.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP3.ModelFile = 'aura.3ds';
+GMAT HP3.ModelOffsetX = 0;
+GMAT HP3.ModelOffsetY = 0;
+GMAT HP3.ModelOffsetZ = 0;
+GMAT HP3.ModelRotationX = 0;
+GMAT HP3.ModelRotationY = 0;
+GMAT HP3.ModelRotationZ = 0;
+GMAT HP3.ModelScale = 1;
+GMAT HP3.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP3.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP3.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP3.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP4;
+GMAT HP4.DateFormat = UTCGregorian;
+GMAT HP4.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP4.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP4.DisplayStateType = Keplerian;
+GMAT HP4.SMA = 6748.139999999999;
+GMAT HP4.ECC = 0.0009999999999998864;
+GMAT HP4.INC = 96.9258;
+GMAT HP4.RAAN = 162.617;
+GMAT HP4.AOP = 2.091309789151873e-06;
+GMAT HP4.TA = 24.00000000000737;
+GMAT HP4.DryMass = 850;
+GMAT HP4.Cd = 2.2;
+GMAT HP4.Cr = 1.8;
+GMAT HP4.DragArea = 15;
+GMAT HP4.SRPArea = 1;
+GMAT HP4.SPADDragScaleFactor = 1;
+GMAT HP4.SPADSRPScaleFactor = 1;
+GMAT HP4.NAIFId = -10000001;
+GMAT HP4.NAIFIdReferenceFrame = -9000001;
+GMAT HP4.OrbitColor = [128 255 255];
+GMAT HP4.TargetColor = Teal;
+GMAT HP4.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP4.CdSigma = 1e+70;
+GMAT HP4.CrSigma = 1e+70;
+GMAT HP4.Id = 'SatId';
+GMAT HP4.Attitude = CoordinateSystemFixed;
+GMAT HP4.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP4.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP4.SPADDragInterpolationMethod = Bilinear;
+GMAT HP4.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP4.ModelFile = 'aura.3ds';
+GMAT HP4.ModelOffsetX = 0;
+GMAT HP4.ModelOffsetY = 0;
+GMAT HP4.ModelOffsetZ = 0;
+GMAT HP4.ModelRotationX = 0;
+GMAT HP4.ModelRotationY = 0;
+GMAT HP4.ModelRotationZ = 0;
+GMAT HP4.ModelScale = 1;
+GMAT HP4.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP4.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP4.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP4.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP5;
+GMAT HP5.DateFormat = UTCGregorian;
+GMAT HP5.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP5.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP5.DisplayStateType = Keplerian;
+GMAT HP5.SMA = 6748.140000000004;
+GMAT HP5.ECC = 0.001000000000000619;
+GMAT HP5.INC = 96.9258;
+GMAT HP5.RAAN = 180.617000000001;
+GMAT HP5.AOP = 360;
+GMAT HP5.TA = 359.9999991462263;
+GMAT HP5.DryMass = 850;
+GMAT HP5.Cd = 2.2;
+GMAT HP5.Cr = 1.8;
+GMAT HP5.DragArea = 15;
+GMAT HP5.SRPArea = 1;
+GMAT HP5.SPADDragScaleFactor = 1;
+GMAT HP5.SPADSRPScaleFactor = 1;
+GMAT HP5.NAIFId = -10000001;
+GMAT HP5.NAIFIdReferenceFrame = -9000001;
+GMAT HP5.OrbitColor = [0 128 255];
+GMAT HP5.TargetColor = Teal;
+GMAT HP5.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP5.CdSigma = 1e+70;
+GMAT HP5.CrSigma = 1e+70;
+GMAT HP5.Id = 'SatId';
+GMAT HP5.Attitude = CoordinateSystemFixed;
+GMAT HP5.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP5.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP5.SPADDragInterpolationMethod = Bilinear;
+GMAT HP5.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP5.ModelFile = 'aura.3ds';
+GMAT HP5.ModelOffsetX = 0;
+GMAT HP5.ModelOffsetY = 0;
+GMAT HP5.ModelOffsetZ = 0;
+GMAT HP5.ModelRotationX = 0;
+GMAT HP5.ModelRotationY = 0;
+GMAT HP5.ModelRotationZ = 0;
+GMAT HP5.ModelScale = 1;
+GMAT HP5.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP5.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP5.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP5.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP6;
+GMAT HP6.DateFormat = UTCGregorian;
+GMAT HP6.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP6.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP6.DisplayStateType = Keplerian;
+GMAT HP6.SMA = 6748.140000000002;
+GMAT HP6.ECC = 0.001000000000000769;
+GMAT HP6.INC = 96.9258;
+GMAT HP6.RAAN = 198.617;
+GMAT HP6.AOP = 359.9999991462263;
+GMAT HP6.TA = 254.0000000000052;
+GMAT HP6.DryMass = 850;
+GMAT HP6.Cd = 2.2;
+GMAT HP6.Cr = 1.8;
+GMAT HP6.DragArea = 15;
+GMAT HP6.SRPArea = 1;
+GMAT HP6.SPADDragScaleFactor = 1;
+GMAT HP6.SPADSRPScaleFactor = 1;
+GMAT HP6.NAIFId = -10000001;
+GMAT HP6.NAIFIdReferenceFrame = -9000001;
+GMAT HP6.OrbitColor = [255 128 255];
+GMAT HP6.TargetColor = Teal;
+GMAT HP6.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP6.CdSigma = 1e+70;
+GMAT HP6.CrSigma = 1e+70;
+GMAT HP6.Id = 'SatId';
+GMAT HP6.Attitude = CoordinateSystemFixed;
+GMAT HP6.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP6.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP6.SPADDragInterpolationMethod = Bilinear;
+GMAT HP6.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP6.ModelFile = 'aura.3ds';
+GMAT HP6.ModelOffsetX = 0;
+GMAT HP6.ModelOffsetY = 0;
+GMAT HP6.ModelOffsetZ = 0;
+GMAT HP6.ModelRotationX = 0;
+GMAT HP6.ModelRotationY = 0;
+GMAT HP6.ModelRotationZ = 0;
+GMAT HP6.ModelScale = 1;
+GMAT HP6.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP6.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP6.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP6.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP7;
+GMAT HP7.DateFormat = UTCGregorian;
+GMAT HP7.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP7.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP7.DisplayStateType = Keplerian;
+GMAT HP7.SMA = 6748.14;
+GMAT HP7.ECC = 0.001000000000000153;
+GMAT HP7.INC = 96.9258;
+GMAT HP7.RAAN = 216.617;
+GMAT HP7.AOP = 8.537736462515939e-07;
+GMAT HP7.TA = 77.99999999998174;
+GMAT HP7.DryMass = 850;
+GMAT HP7.Cd = 2.2;
+GMAT HP7.Cr = 1.8;
+GMAT HP7.DragArea = 15;
+GMAT HP7.SRPArea = 1;
+GMAT HP7.SPADDragScaleFactor = 1;
+GMAT HP7.SPADSRPScaleFactor = 1;
+GMAT HP7.NAIFId = -10000001;
+GMAT HP7.NAIFIdReferenceFrame = -9000001;
+GMAT HP7.OrbitColor = [255 0 255];
+GMAT HP7.TargetColor = Teal;
+GMAT HP7.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP7.CdSigma = 1e+70;
+GMAT HP7.CrSigma = 1e+70;
+GMAT HP7.Id = 'SatId';
+GMAT HP7.Attitude = CoordinateSystemFixed;
+GMAT HP7.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP7.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP7.SPADDragInterpolationMethod = Bilinear;
+GMAT HP7.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP7.ModelFile = 'aura.3ds';
+GMAT HP7.ModelOffsetX = 0;
+GMAT HP7.ModelOffsetY = 0;
+GMAT HP7.ModelOffsetZ = 0;
+GMAT HP7.ModelRotationX = 0;
+GMAT HP7.ModelRotationY = 0;
+GMAT HP7.ModelRotationZ = 0;
+GMAT HP7.ModelScale = 1;
+GMAT HP7.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP7.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP7.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP7.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP8;
+GMAT HP8.DateFormat = UTCGregorian;
+GMAT HP8.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP8.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP8.DisplayStateType = Keplerian;
+GMAT HP8.SMA = 6748.14;
+GMAT HP8.ECC = 0.001000000000000711;
+GMAT HP8.INC = 96.9258;
+GMAT HP8.RAAN = 234.617;
+GMAT HP8.AOP = 1.207418269725733e-06;
+GMAT HP8.TA = 92.99999999998948;
+GMAT HP8.DryMass = 850;
+GMAT HP8.Cd = 2.2;
+GMAT HP8.Cr = 1.8;
+GMAT HP8.DragArea = 15;
+GMAT HP8.SRPArea = 1;
+GMAT HP8.SPADDragScaleFactor = 1;
+GMAT HP8.SPADSRPScaleFactor = 1;
+GMAT HP8.NAIFId = -10000001;
+GMAT HP8.NAIFIdReferenceFrame = -9000001;
+GMAT HP8.OrbitColor = [255 128 0];
+GMAT HP8.TargetColor = Teal;
+GMAT HP8.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP8.CdSigma = 1e+70;
+GMAT HP8.CrSigma = 1e+70;
+GMAT HP8.Id = 'SatId';
+GMAT HP8.Attitude = CoordinateSystemFixed;
+GMAT HP8.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP8.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP8.SPADDragInterpolationMethod = Bilinear;
+GMAT HP8.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP8.ModelFile = 'aura.3ds';
+GMAT HP8.ModelOffsetX = 0;
+GMAT HP8.ModelOffsetY = 0;
+GMAT HP8.ModelOffsetZ = 0;
+GMAT HP8.ModelRotationX = 0;
+GMAT HP8.ModelRotationY = 0;
+GMAT HP8.ModelRotationZ = 0;
+GMAT HP8.ModelScale = 1;
+GMAT HP8.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP8.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP8.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP8.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP9;
+GMAT HP9.DateFormat = UTCGregorian;
+GMAT HP9.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP9.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP9.DisplayStateType = Keplerian;
+GMAT HP9.SMA = 6748.140000000003;
+GMAT HP9.ECC = 0.001000000000000831;
+GMAT HP9.INC = 96.9258;
+GMAT HP9.RAAN = 252.617;
+GMAT HP9.AOP = 360;
+GMAT HP9.TA = 63.99999999998376;
+GMAT HP9.DryMass = 850;
+GMAT HP9.Cd = 2.2;
+GMAT HP9.Cr = 1.8;
+GMAT HP9.DragArea = 15;
+GMAT HP9.SRPArea = 1;
+GMAT HP9.SPADDragScaleFactor = 1;
+GMAT HP9.SPADSRPScaleFactor = 1;
+GMAT HP9.NAIFId = -10000001;
+GMAT HP9.NAIFIdReferenceFrame = -9000001;
+GMAT HP9.OrbitColor = [192 192 192];
+GMAT HP9.TargetColor = Teal;
+GMAT HP9.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP9.CdSigma = 1e+70;
+GMAT HP9.CrSigma = 1e+70;
+GMAT HP9.Id = 'SatId';
+GMAT HP9.Attitude = CoordinateSystemFixed;
+GMAT HP9.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP9.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP9.SPADDragInterpolationMethod = Bilinear;
+GMAT HP9.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP9.ModelFile = 'aura.3ds';
+GMAT HP9.ModelOffsetX = 0;
+GMAT HP9.ModelOffsetY = 0;
+GMAT HP9.ModelOffsetZ = 0;
+GMAT HP9.ModelRotationX = 0;
+GMAT HP9.ModelRotationY = 0;
+GMAT HP9.ModelRotationZ = 0;
+GMAT HP9.ModelScale = 1;
+GMAT HP9.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP9.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP9.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP9.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP10;
+GMAT HP10.DateFormat = UTCGregorian;
+GMAT HP10.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP10.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP10.DisplayStateType = Keplerian;
+GMAT HP10.SMA = 6748.140000000001;
+GMAT HP10.ECC = 0.0009999999999995395;
+GMAT HP10.INC = 96.9258;
+GMAT HP10.RAAN = 270.617;
+GMAT HP10.AOP = 359.9999991462263;
+GMAT HP10.TA = 246.9999999999854;
+GMAT HP10.DryMass = 850;
+GMAT HP10.Cd = 2.2;
+GMAT HP10.Cr = 1.8;
+GMAT HP10.DragArea = 15;
+GMAT HP10.SRPArea = 1;
+GMAT HP10.SPADDragScaleFactor = 1;
+GMAT HP10.SPADSRPScaleFactor = 1;
+GMAT HP10.NAIFId = -10000001;
+GMAT HP10.NAIFIdReferenceFrame = -9000001;
+GMAT HP10.OrbitColor = [128 0 64];
+GMAT HP10.TargetColor = Teal;
+GMAT HP10.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP10.CdSigma = 1e+70;
+GMAT HP10.CrSigma = 1e+70;
+GMAT HP10.Id = 'SatId';
+GMAT HP10.Attitude = CoordinateSystemFixed;
+GMAT HP10.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP10.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP10.SPADDragInterpolationMethod = Bilinear;
+GMAT HP10.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP10.ModelFile = 'aura.3ds';
+GMAT HP10.ModelOffsetX = 0;
+GMAT HP10.ModelOffsetY = 0;
+GMAT HP10.ModelOffsetZ = 0;
+GMAT HP10.ModelRotationX = 0;
+GMAT HP10.ModelRotationY = 0;
+GMAT HP10.ModelRotationZ = 0;
+GMAT HP10.ModelScale = 1;
+GMAT HP10.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP10.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP10.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP10.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP11;
+GMAT HP11.DateFormat = UTCGregorian;
+GMAT HP11.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP11.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP11.DisplayStateType = Keplerian;
+GMAT HP11.SMA = 6748.139999999999;
+GMAT HP11.ECC = 0.001000000000000393;
+GMAT HP11.INC = 96.9258;
+GMAT HP11.RAAN = 288.617;
+GMAT HP11.AOP = 1.207418269725733e-06;
+GMAT HP11.TA = 332.9999999999823;
+GMAT HP11.DryMass = 850;
+GMAT HP11.Cd = 2.2;
+GMAT HP11.Cr = 1.8;
+GMAT HP11.DragArea = 15;
+GMAT HP11.SRPArea = 1;
+GMAT HP11.SPADDragScaleFactor = 1;
+GMAT HP11.SPADSRPScaleFactor = 1;
+GMAT HP11.NAIFId = -10000001;
+GMAT HP11.NAIFIdReferenceFrame = -9000001;
+GMAT HP11.OrbitColor = [0 128 128];
+GMAT HP11.TargetColor = Teal;
+GMAT HP11.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP11.CdSigma = 1e+70;
+GMAT HP11.CrSigma = 1e+70;
+GMAT HP11.Id = 'SatId';
+GMAT HP11.Attitude = CoordinateSystemFixed;
+GMAT HP11.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP11.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP11.SPADDragInterpolationMethod = Bilinear;
+GMAT HP11.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP11.ModelFile = 'aura.3ds';
+GMAT HP11.ModelOffsetX = 0;
+GMAT HP11.ModelOffsetY = 0;
+GMAT HP11.ModelOffsetZ = 0;
+GMAT HP11.ModelRotationX = 0;
+GMAT HP11.ModelRotationY = 0;
+GMAT HP11.ModelRotationZ = 0;
+GMAT HP11.ModelScale = 1;
+GMAT HP11.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP11.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP11.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP11.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP12;
+GMAT HP12.DateFormat = UTCGregorian;
+GMAT HP12.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP12.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP12.DisplayStateType = Keplerian;
+GMAT HP12.SMA = 6748.140000000005;
+GMAT HP12.ECC = 0.001000000000000941;
+GMAT HP12.INC = 96.9258;
+GMAT HP12.RAAN = 306.617;
+GMAT HP12.AOP = 0;
+GMAT HP12.TA = 43.99999999999918;
+GMAT HP12.DryMass = 850;
+GMAT HP12.Cd = 2.2;
+GMAT HP12.Cr = 1.8;
+GMAT HP12.DragArea = 15;
+GMAT HP12.SRPArea = 1;
+GMAT HP12.SPADDragScaleFactor = 1;
+GMAT HP12.SPADSRPScaleFactor = 1;
+GMAT HP12.NAIFId = -10000001;
+GMAT HP12.NAIFIdReferenceFrame = -9000001;
+GMAT HP12.OrbitColor = [128 0 255];
+GMAT HP12.TargetColor = Teal;
+GMAT HP12.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP12.CdSigma = 1e+70;
+GMAT HP12.CrSigma = 1e+70;
+GMAT HP12.Id = 'SatId';
+GMAT HP12.Attitude = CoordinateSystemFixed;
+GMAT HP12.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP12.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP12.SPADDragInterpolationMethod = Bilinear;
+GMAT HP12.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP12.ModelFile = 'aura.3ds';
+GMAT HP12.ModelOffsetX = 0;
+GMAT HP12.ModelOffsetY = 0;
+GMAT HP12.ModelOffsetZ = 0;
+GMAT HP12.ModelRotationX = 0;
+GMAT HP12.ModelRotationY = 0;
+GMAT HP12.ModelRotationZ = 0;
+GMAT HP12.ModelScale = 1;
+GMAT HP12.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP12.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP12.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP12.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP13;
+GMAT HP13.DateFormat = UTCGregorian;
+GMAT HP13.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP13.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP13.DisplayStateType = Keplerian;
+GMAT HP13.SMA = 6748.139999999996;
+GMAT HP13.ECC = 0.001000000000000094;
+GMAT HP13.INC = 96.9258;
+GMAT HP13.RAAN = 324.617;
+GMAT HP13.AOP = 360;
+GMAT HP13.TA = 12.00000000002352;
+GMAT HP13.DryMass = 850;
+GMAT HP13.Cd = 2.2;
+GMAT HP13.Cr = 1.8;
+GMAT HP13.DragArea = 15;
+GMAT HP13.SRPArea = 1;
+GMAT HP13.SPADDragScaleFactor = 1;
+GMAT HP13.SPADSRPScaleFactor = 1;
+GMAT HP13.NAIFId = -10000001;
+GMAT HP13.NAIFIdReferenceFrame = -9000001;
+GMAT HP13.OrbitColor = [128 64 0];
+GMAT HP13.TargetColor = Teal;
+GMAT HP13.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP13.CdSigma = 1e+70;
+GMAT HP13.CrSigma = 1e+70;
+GMAT HP13.Id = 'SatId';
+GMAT HP13.Attitude = CoordinateSystemFixed;
+GMAT HP13.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP13.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP13.SPADDragInterpolationMethod = Bilinear;
+GMAT HP13.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP13.ModelFile = 'aura.3ds';
+GMAT HP13.ModelOffsetX = 0;
+GMAT HP13.ModelOffsetY = 0;
+GMAT HP13.ModelOffsetZ = 0;
+GMAT HP13.ModelRotationX = 0;
+GMAT HP13.ModelRotationY = 0;
+GMAT HP13.ModelRotationZ = 0;
+GMAT HP13.ModelScale = 1;
+GMAT HP13.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP13.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP13.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP13.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP14;
+GMAT HP14.DateFormat = UTCGregorian;
+GMAT HP14.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP14.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP14.DisplayStateType = Keplerian;
+GMAT HP14.SMA = 6748.139999999992;
+GMAT HP14.ECC = 0.0009999999999997433;
+GMAT HP14.INC = 96.9258;
+GMAT HP14.RAAN = 342.617;
+GMAT HP14.AOP = 359.9999991462263;
+GMAT HP14.TA = 45.00000000001663;
+GMAT HP14.DryMass = 850;
+GMAT HP14.Cd = 2.2;
+GMAT HP14.Cr = 1.8;
+GMAT HP14.DragArea = 15;
+GMAT HP14.SRPArea = 1;
+GMAT HP14.SPADDragScaleFactor = 1;
+GMAT HP14.SPADSRPScaleFactor = 1;
+GMAT HP14.NAIFId = -10000001;
+GMAT HP14.NAIFIdReferenceFrame = -9000001;
+GMAT HP14.OrbitColor = [0 128 192];
+GMAT HP14.TargetColor = Teal;
+GMAT HP14.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP14.CdSigma = 1e+70;
+GMAT HP14.CrSigma = 1e+70;
+GMAT HP14.Id = 'SatId';
+GMAT HP14.Attitude = CoordinateSystemFixed;
+GMAT HP14.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP14.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP14.SPADDragInterpolationMethod = Bilinear;
+GMAT HP14.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP14.ModelFile = 'aura.3ds';
+GMAT HP14.ModelOffsetX = 0;
+GMAT HP14.ModelOffsetY = 0;
+GMAT HP14.ModelOffsetZ = 0;
+GMAT HP14.ModelRotationX = 0;
+GMAT HP14.ModelRotationY = 0;
+GMAT HP14.ModelRotationZ = 0;
+GMAT HP14.ModelScale = 1;
+GMAT HP14.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP14.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP14.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP14.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP15;
+GMAT HP15.DateFormat = UTCGregorian;
+GMAT HP15.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP15.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP15.DisplayStateType = Keplerian;
+GMAT HP15.SMA = 6748.14;
+GMAT HP15.ECC = 0.001000000000000368;
+GMAT HP15.INC = 96.9258;
+GMAT HP15.RAAN = 0.6170000000009532;
+GMAT HP15.AOP = 360;
+GMAT HP15.TA = 89.00000000000584;
+GMAT HP15.DryMass = 850;
+GMAT HP15.Cd = 2.2;
+GMAT HP15.Cr = 1.8;
+GMAT HP15.DragArea = 15;
+GMAT HP15.SRPArea = 1;
+GMAT HP15.SPADDragScaleFactor = 1;
+GMAT HP15.SPADSRPScaleFactor = 1;
+GMAT HP15.NAIFId = -10000001;
+GMAT HP15.NAIFIdReferenceFrame = -9000001;
+GMAT HP15.OrbitColor = [0 128 255];
+GMAT HP15.TargetColor = Teal;
+GMAT HP15.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP15.CdSigma = 1e+70;
+GMAT HP15.CrSigma = 1e+70;
+GMAT HP15.Id = 'SatId';
+GMAT HP15.Attitude = CoordinateSystemFixed;
+GMAT HP15.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP15.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP15.SPADDragInterpolationMethod = Bilinear;
+GMAT HP15.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP15.ModelFile = 'aura.3ds';
+GMAT HP15.ModelOffsetX = 0;
+GMAT HP15.ModelOffsetY = 0;
+GMAT HP15.ModelOffsetZ = 0;
+GMAT HP15.ModelRotationX = 0;
+GMAT HP15.ModelRotationY = 0;
+GMAT HP15.ModelRotationZ = 0;
+GMAT HP15.ModelScale = 1;
+GMAT HP15.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP15.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP15.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP15.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP16;
+GMAT HP16.DateFormat = UTCGregorian;
+GMAT HP16.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP16.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP16.DisplayStateType = Keplerian;
+GMAT HP16.SMA = 6748.140000000002;
+GMAT HP16.ECC = 0.001000000000000665;
+GMAT HP16.INC = 96.9258;
+GMAT HP16.RAAN = 18.61700000000002;
+GMAT HP16.AOP = 1.707547292503188e-06;
+GMAT HP16.TA = 278.0000000000013;
+GMAT HP16.DryMass = 850;
+GMAT HP16.Cd = 2.2;
+GMAT HP16.Cr = 1.8;
+GMAT HP16.DragArea = 15;
+GMAT HP16.SRPArea = 1;
+GMAT HP16.SPADDragScaleFactor = 1;
+GMAT HP16.SPADSRPScaleFactor = 1;
+GMAT HP16.NAIFId = -10000001;
+GMAT HP16.NAIFIdReferenceFrame = -9000001;
+GMAT HP16.OrbitColor = [0 255 0];
+GMAT HP16.TargetColor = Teal;
+GMAT HP16.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP16.CdSigma = 1e+70;
+GMAT HP16.CrSigma = 1e+70;
+GMAT HP16.Id = 'SatId';
+GMAT HP16.Attitude = CoordinateSystemFixed;
+GMAT HP16.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP16.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP16.SPADDragInterpolationMethod = Bilinear;
+GMAT HP16.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP16.ModelFile = 'aura.3ds';
+GMAT HP16.ModelOffsetX = 0;
+GMAT HP16.ModelOffsetY = 0;
+GMAT HP16.ModelOffsetZ = 0;
+GMAT HP16.ModelRotationX = 0;
+GMAT HP16.ModelRotationY = 0;
+GMAT HP16.ModelRotationZ = 0;
+GMAT HP16.ModelScale = 1;
+GMAT HP16.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP16.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP16.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP16.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP17;
+GMAT HP17.DateFormat = UTCGregorian;
+GMAT HP17.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP17.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP17.DisplayStateType = Keplerian;
+GMAT HP17.SMA = 6748.14;
+GMAT HP17.ECC = 0.001000000000000737;
+GMAT HP17.INC = 96.9258;
+GMAT HP17.RAAN = 36.617;
+GMAT HP17.AOP = 8.537736462515939e-07;
+GMAT HP17.TA = 146.0000000000083;
+GMAT HP17.DryMass = 850;
+GMAT HP17.Cd = 2.2;
+GMAT HP17.Cr = 1.8;
+GMAT HP17.DragArea = 15;
+GMAT HP17.SRPArea = 1;
+GMAT HP17.SPADDragScaleFactor = 1;
+GMAT HP17.SPADSRPScaleFactor = 1;
+GMAT HP17.NAIFId = -10000001;
+GMAT HP17.NAIFIdReferenceFrame = -9000001;
+GMAT HP17.OrbitColor = [128 0 255];
+GMAT HP17.TargetColor = Teal;
+GMAT HP17.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP17.CdSigma = 1e+70;
+GMAT HP17.CrSigma = 1e+70;
+GMAT HP17.Id = 'SatId';
+GMAT HP17.Attitude = CoordinateSystemFixed;
+GMAT HP17.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP17.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP17.SPADDragInterpolationMethod = Bilinear;
+GMAT HP17.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP17.ModelFile = 'aura.3ds';
+GMAT HP17.ModelOffsetX = 0;
+GMAT HP17.ModelOffsetY = 0;
+GMAT HP17.ModelOffsetZ = 0;
+GMAT HP17.ModelRotationX = 0;
+GMAT HP17.ModelRotationY = 0;
+GMAT HP17.ModelRotationZ = 0;
+GMAT HP17.ModelScale = 1;
+GMAT HP17.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP17.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP17.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP17.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP18;
+GMAT HP18.DateFormat = UTCGregorian;
+GMAT HP18.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP18.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP18.DisplayStateType = Keplerian;
+GMAT HP18.SMA = 6748.139999999997;
+GMAT HP18.ECC = 0.0009999999999996442;
+GMAT HP18.INC = 96.9258;
+GMAT HP18.RAAN = 54.617;
+GMAT HP18.AOP = 1.207418269725733e-06;
+GMAT HP18.TA = 99.00000000001218;
+GMAT HP18.DryMass = 850;
+GMAT HP18.Cd = 2.2;
+GMAT HP18.Cr = 1.8;
+GMAT HP18.DragArea = 15;
+GMAT HP18.SRPArea = 1;
+GMAT HP18.SPADDragScaleFactor = 1;
+GMAT HP18.SPADSRPScaleFactor = 1;
+GMAT HP18.NAIFId = -10000001;
+GMAT HP18.NAIFIdReferenceFrame = -9000001;
+GMAT HP18.OrbitColor = [128 128 0];
+GMAT HP18.TargetColor = Teal;
+GMAT HP18.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP18.CdSigma = 1e+70;
+GMAT HP18.CrSigma = 1e+70;
+GMAT HP18.Id = 'SatId';
+GMAT HP18.Attitude = CoordinateSystemFixed;
+GMAT HP18.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP18.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP18.SPADDragInterpolationMethod = Bilinear;
+GMAT HP18.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP18.ModelFile = 'aura.3ds';
+GMAT HP18.ModelOffsetX = 0;
+GMAT HP18.ModelOffsetY = 0;
+GMAT HP18.ModelOffsetZ = 0;
+GMAT HP18.ModelRotationX = 0;
+GMAT HP18.ModelRotationY = 0;
+GMAT HP18.ModelRotationZ = 0;
+GMAT HP18.ModelScale = 1;
+GMAT HP18.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP18.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP18.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP18.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP19;
+GMAT HP19.DateFormat = UTCGregorian;
+GMAT HP19.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP19.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP19.DisplayStateType = Keplerian;
+GMAT HP19.SMA = 6748.139999999997;
+GMAT HP19.ECC = 0.001000000000000559;
+GMAT HP19.INC = 96.9258;
+GMAT HP19.RAAN = 72.617;
+GMAT HP19.AOP = 0;
+GMAT HP19.TA = 87.0000000000128;
+GMAT HP19.DryMass = 850;
+GMAT HP19.Cd = 2.2;
+GMAT HP19.Cr = 1.8;
+GMAT HP19.DragArea = 15;
+GMAT HP19.SRPArea = 1;
+GMAT HP19.SPADDragScaleFactor = 1;
+GMAT HP19.SPADSRPScaleFactor = 1;
+GMAT HP19.NAIFId = -10000001;
+GMAT HP19.NAIFIdReferenceFrame = -9000001;
+GMAT HP19.OrbitColor = [64 0 128];
+GMAT HP19.TargetColor = Teal;
+GMAT HP19.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP19.CdSigma = 1e+70;
+GMAT HP19.CrSigma = 1e+70;
+GMAT HP19.Id = 'SatId';
+GMAT HP19.Attitude = CoordinateSystemFixed;
+GMAT HP19.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP19.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP19.SPADDragInterpolationMethod = Bilinear;
+GMAT HP19.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP19.ModelFile = 'aura.3ds';
+GMAT HP19.ModelOffsetX = 0;
+GMAT HP19.ModelOffsetY = 0;
+GMAT HP19.ModelOffsetZ = 0;
+GMAT HP19.ModelRotationX = 0;
+GMAT HP19.ModelRotationY = 0;
+GMAT HP19.ModelRotationZ = 0;
+GMAT HP19.ModelScale = 1;
+GMAT HP19.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP19.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP19.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP19.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HP20;
+GMAT HP20.DateFormat = UTCGregorian;
+GMAT HP20.Epoch = '01 Jan 2024 11:59:28.000';
+GMAT HP20.CoordinateSystem = EarthMJ2000Eq;
+GMAT HP20.DisplayStateType = Keplerian;
+GMAT HP20.SMA = 6748.140000000001;
+GMAT HP20.ECC = 0.001000000000000158;
+GMAT HP20.INC = 96.9258;
+GMAT HP20.RAAN = 90.617;
+GMAT HP20.AOP = 0;
+GMAT HP20.TA = 63.99999999998022;
+GMAT HP20.DryMass = 850;
+GMAT HP20.Cd = 2.2;
+GMAT HP20.Cr = 1.8;
+GMAT HP20.DragArea = 15;
+GMAT HP20.SRPArea = 1;
+GMAT HP20.SPADDragScaleFactor = 1;
+GMAT HP20.SPADSRPScaleFactor = 1;
+GMAT HP20.NAIFId = -10000001;
+GMAT HP20.NAIFIdReferenceFrame = -9000001;
+GMAT HP20.OrbitColor = [255 128 0];
+GMAT HP20.TargetColor = Teal;
+GMAT HP20.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HP20.CdSigma = 1e+70;
+GMAT HP20.CrSigma = 1e+70;
+GMAT HP20.Id = 'SatId';
+GMAT HP20.Attitude = CoordinateSystemFixed;
+GMAT HP20.SPADSRPInterpolationMethod = Bilinear;
+GMAT HP20.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HP20.SPADDragInterpolationMethod = Bilinear;
+GMAT HP20.SPADDragScaleFactorSigma = 1e+70;
+GMAT HP20.ModelFile = 'aura.3ds';
+GMAT HP20.ModelOffsetX = 0;
+GMAT HP20.ModelOffsetY = 0;
+GMAT HP20.ModelOffsetZ = 0;
+GMAT HP20.ModelRotationX = 0;
+GMAT HP20.ModelRotationY = 0;
+GMAT HP20.ModelRotationZ = 0;
+GMAT HP20.ModelScale = 1;
+GMAT HP20.AttitudeDisplayStateType = 'Quaternion';
+GMAT HP20.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HP20.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HP20.EulerAngleSequence = '321';
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView OrbitView1;
+GMAT OrbitView1.SolverIterations = Current;
+GMAT OrbitView1.UpperLeft = [ 0 0 ];
+GMAT OrbitView1.Size = [ 0.8 0.9125 ];
+GMAT OrbitView1.RelativeZOrder = 2;
+GMAT OrbitView1.Maximized = false;
+GMAT OrbitView1.Add = {HP1, HP10, HP11, HP12, HP13, HP14, HP15, HP16, HP17, HP18, HP19, HP2, HP20, HP3, HP4, HP5, HP6, HP7, HP8, HP9, Earth};
+GMAT OrbitView1.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.DrawObject = [ true true true true true true true true true true true true true true true true true true true true true ];
+GMAT OrbitView1.DataCollectFrequency = 1;
+GMAT OrbitView1.UpdatePlotFrequency = 50;
+GMAT OrbitView1.NumPointsToRedraw = 0;
+GMAT OrbitView1.ShowPlot = true;
+GMAT OrbitView1.MaxPlotPoints = 2000000;
+GMAT OrbitView1.ShowLabels = true;
+GMAT OrbitView1.ViewPointReference = Earth;
+GMAT OrbitView1.ViewPointVector = [ 0 0 30000 ];
+GMAT OrbitView1.ViewDirection = Earth;
+GMAT OrbitView1.ViewScaleFactor = 1;
+GMAT OrbitView1.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.ViewUpAxis = Z;
+GMAT OrbitView1.EclipticPlane = Off;
+GMAT OrbitView1.XYPlane = Off;
+GMAT OrbitView1.WireFrame = Off;
+GMAT OrbitView1.Axes = On;
+GMAT OrbitView1.Grid = Off;
+GMAT OrbitView1.SunLine = Off;
+GMAT OrbitView1.UseInitialView = On;
+GMAT OrbitView1.StarCount = 7000;
+GMAT OrbitView1.EnableStars = On;
+GMAT OrbitView1.EnableConstellations = On;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate Synchronized DefaultProp(HP1, HP2, HP3, HP4, HP10, HP11, HP12, HP13, HP14, HP15, HP16, HP17, HP18, HP19, HP20, HP5, HP6, HP7, HP8, HP9) {HP1.ElapsedDays = 1};

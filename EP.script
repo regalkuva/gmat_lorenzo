@@ -1,0 +1,227 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2022-12-29 10:32:25
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC;
+GMAT DefaultSC.DateFormat = UTCGregorian;
+GMAT DefaultSC.Epoch = '01 Jan 2025 11:59:28.000';
+GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.DisplayStateType = Keplerian;
+GMAT DefaultSC.SMA = 6878.139999999998;
+GMAT DefaultSC.ECC = 4.342459620491224e-018;
+GMAT DefaultSC.INC = 97.40649999999999;
+GMAT DefaultSC.RAAN = 78.06189999999999;
+GMAT DefaultSC.AOP = 0;
+GMAT DefaultSC.TA = 0;
+GMAT DefaultSC.DryMass = 12;
+GMAT DefaultSC.Cd = 2.2;
+GMAT DefaultSC.Cr = 1.8;
+GMAT DefaultSC.DragArea = 0.04;
+GMAT DefaultSC.SRPArea = 0.11;
+GMAT DefaultSC.Tanks = {EnpNanoTank};
+GMAT DefaultSC.Thrusters = {EnpNano};
+GMAT DefaultSC.PowerSystem = SolarPowerSystem1;
+GMAT DefaultSC.NAIFId = -10001001;
+GMAT DefaultSC.NAIFIdReferenceFrame = -9001001;
+GMAT DefaultSC.OrbitColor = Red;
+GMAT DefaultSC.TargetColor = Teal;
+GMAT DefaultSC.EstimationStateType = 'Cartesian';
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+070 0 0 0 0 0 ; 0 1e+070 0 0 0 0 ; 0 0 1e+070 0 0 0 ; 0 0 0 1e+070 0 0 ; 0 0 0 0 1e+070 0 ; 0 0 0 0 0 1e+070 ];
+GMAT DefaultSC.CdSigma = 1e+070;
+GMAT DefaultSC.CrSigma = 1e+070;
+GMAT DefaultSC.Id = 'SatId';
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
+GMAT DefaultSC.ModelFile = 'aura.3ds';
+GMAT DefaultSC.ModelOffsetX = 0;
+GMAT DefaultSC.ModelOffsetY = 0;
+GMAT DefaultSC.ModelOffsetZ = 0;
+GMAT DefaultSC.ModelRotationX = 0;
+GMAT DefaultSC.ModelRotationY = 0;
+GMAT DefaultSC.ModelRotationZ = 0;
+GMAT DefaultSC.ModelScale = 1;
+GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Hardware Components
+%----------------------------------------
+
+Create ElectricThruster EnpNano;
+GMAT EnpNano.CoordinateSystem = Local;
+GMAT EnpNano.Origin = Earth;
+GMAT EnpNano.Axes = VNB;
+GMAT EnpNano.ThrustDirection1 = 1;
+GMAT EnpNano.ThrustDirection2 = 0;
+GMAT EnpNano.ThrustDirection3 = 0;
+GMAT EnpNano.DutyCycle = 1;
+GMAT EnpNano.ThrustScaleFactor = 1;
+GMAT EnpNano.DecrementMass = true;
+GMAT EnpNano.Tank = {EnpNanoTank};
+GMAT EnpNano.MixRatio = [ 1 ];
+GMAT EnpNano.GravitationalAccel = 9.810000000000001;
+GMAT EnpNano.ThrustModel = ConstantThrustAndIsp;
+GMAT EnpNano.MaximumUsablePower = 0.04;
+GMAT EnpNano.MinimumUsablePower = 0.008;
+GMAT EnpNano.ThrustCoeff1 = -5.19082;
+GMAT EnpNano.ThrustCoeff2 = 2.96519;
+GMAT EnpNano.ThrustCoeff3 = -14.4789;
+GMAT EnpNano.ThrustCoeff4 = 54.05382;
+GMAT EnpNano.ThrustCoeff5 = -0.00100092;
+GMAT EnpNano.MassFlowCoeff1 = -0.004776;
+GMAT EnpNano.MassFlowCoeff2 = 0.05717;
+GMAT EnpNano.MassFlowCoeff3 = -0.09956;
+GMAT EnpNano.MassFlowCoeff4 = 0.03211;
+GMAT EnpNano.MassFlowCoeff5 = 2.13781;
+GMAT EnpNano.FixedEfficiency = 0.7;
+GMAT EnpNano.Isp = 2000;
+GMAT EnpNano.ConstantThrust = 0.00033;
+
+Create ElectricTank EnpNanoTank;
+GMAT EnpNanoTank.AllowNegativeFuelMass = false;
+GMAT EnpNanoTank.FuelMass = 0.22;
+
+Create SolarPowerSystem SolarPowerSystem1;
+GMAT SolarPowerSystem1.EpochFormat = 'UTCGregorian';
+GMAT SolarPowerSystem1.InitialEpoch = ''01 Jan 2025 11:59:28.000'';
+GMAT SolarPowerSystem1.InitialMaxPower = 0.053;
+GMAT SolarPowerSystem1.AnnualDecayRate = 2;
+GMAT SolarPowerSystem1.Margin = 5;
+GMAT SolarPowerSystem1.BusCoeff1 = 0.03;
+GMAT SolarPowerSystem1.BusCoeff2 = 0;
+GMAT SolarPowerSystem1.BusCoeff3 = 0;
+GMAT SolarPowerSystem1.ShadowModel = 'DualCone';
+GMAT SolarPowerSystem1.ShadowBodies = {'Earth'};
+GMAT SolarPowerSystem1.SolarCoeff1 = 1.32077;
+GMAT SolarPowerSystem1.SolarCoeff2 = -0.10848;
+GMAT SolarPowerSystem1.SolarCoeff3 = -0.11665;
+GMAT SolarPowerSystem1.SolarCoeff4 = 0.10843;
+GMAT SolarPowerSystem1.SolarCoeff5 = -0.01279;
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Luna, Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.EarthTideModel = 'None';
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 150;
+GMAT DefaultProp_ForceModel.Drag.F107A = 150;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-012;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = false;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create FiniteBurn FiniteBurn1;
+GMAT FiniteBurn1.Thrusters = {EnpNano};
+GMAT FiniteBurn1.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create XYPlot FuelMass;
+GMAT FuelMass.SolverIterations = Current;
+GMAT FuelMass.UpperLeft = [ 0.005982905982905983 0.3444444444444444 ];
+GMAT FuelMass.Size = [ 0.5 0.5454545454545454 ];
+GMAT FuelMass.RelativeZOrder = 933;
+GMAT FuelMass.Maximized = false;
+GMAT FuelMass.XVariable = DefaultSC.ElapsedDays;
+GMAT FuelMass.YVariables = {DefaultSC.EnpNanoTank.FuelMass};
+GMAT FuelMass.ShowGrid = true;
+GMAT FuelMass.ShowPlot = true;
+
+Create XYPlot Altitude;
+GMAT Altitude.SolverIterations = Current;
+GMAT Altitude.UpperLeft = [ 0.4955476402493321 0.5248780487804878 ];
+GMAT Altitude.Size = [ 0.5 0.4497560975609756 ];
+GMAT Altitude.RelativeZOrder = 2005;
+GMAT Altitude.Maximized = false;
+GMAT Altitude.XVariable = DefaultSC.ElapsedDays;
+GMAT Altitude.YVariables = {DefaultSC.Earth.Altitude};
+GMAT Altitude.ShowGrid = true;
+GMAT Altitude.ShowPlot = true;
+
+Create XYPlot BetaDecay;
+GMAT BetaDecay.SolverIterations = Current;
+GMAT BetaDecay.UpperLeft = [ -5.386363636363637 0 ];
+GMAT BetaDecay.Size = [ -5.318181818181818 0.4494949494949495 ];
+GMAT BetaDecay.RelativeZOrder = 886;
+GMAT BetaDecay.Maximized = false;
+GMAT BetaDecay.XVariable = DefaultSC.ElapsedDays;
+GMAT BetaDecay.YVariables = {DefaultSC.Earth.BetaAngle};
+GMAT BetaDecay.ShowGrid = true;
+GMAT BetaDecay.ShowPlot = true;
+
+Create XYPlot AvailablePower;
+GMAT AvailablePower.SolverIterations = Current;
+GMAT AvailablePower.UpperLeft = [ 0.002226179875333927 0 ];
+GMAT AvailablePower.Size = [ 0.5 0.4497560975609756 ];
+GMAT AvailablePower.RelativeZOrder = 1991;
+GMAT AvailablePower.Maximized = false;
+GMAT AvailablePower.XVariable = DefaultSC.ElapsedDays;
+GMAT AvailablePower.YVariables = {DefaultSC.SolarPowerSystem1.ThrustPowerAvailable};
+GMAT AvailablePower.ShowGrid = true;
+GMAT AvailablePower.ShowPlot = true;
+
+Create XYPlot ThrusterDutyCycle;
+GMAT ThrusterDutyCycle.SolverIterations = Current;
+GMAT ThrusterDutyCycle.UpperLeft = [ 0.04007123775601069 0.4809756097560975 ];
+GMAT ThrusterDutyCycle.Size = [ 0.5 0.4497560975609756 ];
+GMAT ThrusterDutyCycle.RelativeZOrder = 2032;
+GMAT ThrusterDutyCycle.Maximized = false;
+GMAT ThrusterDutyCycle.XVariable = DefaultSC.ElapsedDays;
+GMAT ThrusterDutyCycle.YVariables = {DefaultSC.EnpNano.DutyCycle};
+GMAT ThrusterDutyCycle.ShowGrid = true;
+GMAT ThrusterDutyCycle.ShowPlot = true;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+BeginFiniteBurn 'BeginBurn' FiniteBurn1(DefaultSC);
+Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedDays = 30};
+EndFiniteBurn 'EndBurn' FiniteBurn1(DefaultSC);

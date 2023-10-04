@@ -1,0 +1,259 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-07-17 16:28:19
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC;
+GMAT DefaultSC.DateFormat = A1Gregorian;
+GMAT DefaultSC.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.DisplayStateType = Keplerian;
+GMAT DefaultSC.SMA = 6728.139999999999;
+GMAT DefaultSC.ECC = 4.797416665357063e-16;
+GMAT DefaultSC.INC = 98;
+GMAT DefaultSC.RAAN = 78;
+GMAT DefaultSC.AOP = 0;
+GMAT DefaultSC.TA = 0;
+GMAT DefaultSC.DryMass = 850;
+GMAT DefaultSC.Cd = 2.2;
+GMAT DefaultSC.Cr = 1.8;
+GMAT DefaultSC.DragArea = 15;
+GMAT DefaultSC.SRPArea = 1;
+GMAT DefaultSC.SPADDragScaleFactor = 1;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
+GMAT DefaultSC.AtmosDensityScaleFactor = 1;
+GMAT DefaultSC.ExtendedMassPropertiesModel = 'None';
+GMAT DefaultSC.NAIFId = -10000001;
+GMAT DefaultSC.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC.OrbitColor = Red;
+GMAT DefaultSC.TargetColor = Teal;
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC.CdSigma = 1e+70;
+GMAT DefaultSC.CrSigma = 1e+70;
+GMAT DefaultSC.Id = 'SatId';
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT DefaultSC.ModelFile = 'aura.3ds';
+GMAT DefaultSC.ModelOffsetX = 0;
+GMAT DefaultSC.ModelOffsetY = 0;
+GMAT DefaultSC.ModelOffsetZ = 0;
+GMAT DefaultSC.ModelRotationX = 0;
+GMAT DefaultSC.ModelRotationY = 0;
+GMAT DefaultSC.ModelRotationZ = 0;
+GMAT DefaultSC.ModelScale = 1;
+GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.EulerAngleSequence = '321';
+
+Create Spacecraft DefaultSC2;
+GMAT DefaultSC2.DateFormat = A1Gregorian;
+GMAT DefaultSC2.Epoch = '01 Jan 2024 12:00:00.034';
+GMAT DefaultSC2.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC2.DisplayStateType = Keplerian;
+GMAT DefaultSC2.SMA = 6728.139999999996;
+GMAT DefaultSC2.ECC = 3.510239928796641e-16;
+GMAT DefaultSC2.INC = 98;
+GMAT DefaultSC2.RAAN = 78;
+GMAT DefaultSC2.AOP = 0;
+GMAT DefaultSC2.TA = 90;
+GMAT DefaultSC2.DryMass = 850;
+GMAT DefaultSC2.Cd = 2.2;
+GMAT DefaultSC2.Cr = 1.8;
+GMAT DefaultSC2.DragArea = 15;
+GMAT DefaultSC2.SRPArea = 1;
+GMAT DefaultSC2.SPADDragScaleFactor = 1;
+GMAT DefaultSC2.SPADSRPScaleFactor = 1;
+GMAT DefaultSC2.AtmosDensityScaleFactor = 1;
+GMAT DefaultSC2.ExtendedMassPropertiesModel = 'None';
+GMAT DefaultSC2.NAIFId = -10000001;
+GMAT DefaultSC2.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC2.OrbitColor = Red;
+GMAT DefaultSC2.TargetColor = Teal;
+GMAT DefaultSC2.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC2.CdSigma = 1e+70;
+GMAT DefaultSC2.CrSigma = 1e+70;
+GMAT DefaultSC2.Id = 'SatId';
+GMAT DefaultSC2.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC2.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC2.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC2.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC2.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC2.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT DefaultSC2.ModelFile = 'aura.3ds';
+GMAT DefaultSC2.ModelOffsetX = 0;
+GMAT DefaultSC2.ModelOffsetY = 0;
+GMAT DefaultSC2.ModelOffsetZ = 0;
+GMAT DefaultSC2.ModelRotationX = 0;
+GMAT DefaultSC2.ModelRotationY = 0;
+GMAT DefaultSC2.ModelRotationZ = 0;
+GMAT DefaultSC2.ModelScale = 1;
+GMAT DefaultSC2.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC2.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC2.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC2.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Luna, Sun};
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 0;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 190;
+GMAT DefaultProp_ForceModel.Drag.F107A = 190;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT DefaultProp_ForceModel.Drag.DragModel = 'Spherical';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 300;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
+GMAT DefaultOrbitView.Size = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT DefaultOrbitView.RelativeZOrder = 508;
+GMAT DefaultOrbitView.Maximized = false;
+GMAT DefaultOrbitView.Add = {DefaultSC, DefaultSC2, Earth};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = On;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = On;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = Off;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+Create XYPlot XYPlot1;
+GMAT XYPlot1.SolverIterations = Current;
+GMAT XYPlot1.UpperLeft = [ 0.4991452991452991 0 ];
+GMAT XYPlot1.Size = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT XYPlot1.RelativeZOrder = 394;
+GMAT XYPlot1.Maximized = false;
+GMAT XYPlot1.XVariable = DefaultSC.ElapsedDays;
+GMAT XYPlot1.YVariables = {DefaultSC.Earth.TA, DefaultSC2.Earth.TA};
+GMAT XYPlot1.ShowGrid = true;
+GMAT XYPlot1.ShowPlot = true;
+
+Create XYPlot XYPlot2;
+GMAT XYPlot2.SolverIterations = Current;
+GMAT XYPlot2.UpperLeft = [ 0.4991452991452991 0.6633333333333333 ];
+GMAT XYPlot2.Size = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT XYPlot2.RelativeZOrder = 333;
+GMAT XYPlot2.Maximized = false;
+GMAT XYPlot2.XVariable = DefaultSC.ElapsedDays;
+GMAT XYPlot2.YVariables = {DefaultSC.EarthMJ2000Eq.AOP, DefaultSC2.EarthMJ2000Eq.AOP};
+GMAT XYPlot2.ShowGrid = true;
+GMAT XYPlot2.ShowPlot = true;
+
+Create XYPlot XYPlot3;
+GMAT XYPlot3.SolverIterations = Current;
+GMAT XYPlot3.UpperLeft = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT XYPlot3.Size = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT XYPlot3.RelativeZOrder = 388;
+GMAT XYPlot3.Maximized = false;
+GMAT XYPlot3.XVariable = DefaultSC.ElapsedDays;
+GMAT XYPlot3.YVariables = {AoL_1, AoL_2};
+GMAT XYPlot3.ShowGrid = true;
+GMAT XYPlot3.ShowPlot = true;
+
+Create XYPlot XYPlot4;
+GMAT XYPlot4.SolverIterations = Current;
+GMAT XYPlot4.UpperLeft = [ 0 0.6633333333333333 ];
+GMAT XYPlot4.Size = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT XYPlot4.RelativeZOrder = 347;
+GMAT XYPlot4.Maximized = false;
+GMAT XYPlot4.XVariable = DefaultSC.ElapsedDays;
+GMAT XYPlot4.YVariables = {AoL_2};
+GMAT XYPlot4.ShowGrid = true;
+GMAT XYPlot4.ShowPlot = true;
+
+Create XYPlot XYPlot5;
+GMAT XYPlot5.SolverIterations = Current;
+GMAT XYPlot5.UpperLeft = [ 0 0.3316666666666667 ];
+GMAT XYPlot5.Size = [ 0.4991452991452991 0.3316666666666667 ];
+GMAT XYPlot5.RelativeZOrder = 416;
+GMAT XYPlot5.Maximized = false;
+GMAT XYPlot5.XVariable = DefaultSC.ElapsedDays;
+GMAT XYPlot5.YVariables = {AoL_Diff};
+GMAT XYPlot5.ShowGrid = true;
+GMAT XYPlot5.ShowPlot = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable AoL_1 AoL_2 AoL_Diff;
+GMAT AoL_1 = 0;
+GMAT AoL_2 = 0;
+GMAT AoL_Diff = 0;
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+While DefaultSC.ElapsedDays < 360
+   Propagate DefaultProp(DefaultSC, DefaultSC2);
+   
+   BeginScript
+      GMAT AoL_1 = DefaultSC.Earth.TA + DefaultSC.EarthMJ2000Eq.AOP;
+      GMAT AoL_2 = DefaultSC2.Earth.TA + DefaultSC2.EarthMJ2000Eq.AOP;
+      GMAT AoL_Diff = AoL_2 - AoL_1;
+   EndScript;
+EndWhile;

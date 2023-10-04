@@ -1,0 +1,1019 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-03-22 09:30:30
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC11;
+GMAT DefaultSC11.DateFormat = A1Gregorian;
+GMAT DefaultSC11.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC11.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC11.DisplayStateType = Keplerian;
+GMAT DefaultSC11.SMA = 6728.140000000008;
+GMAT DefaultSC11.ECC = 1.500000102642403e-08;
+GMAT DefaultSC11.INC = 96.8659;
+GMAT DefaultSC11.RAAN = 0.9863013698632903;
+GMAT DefaultSC11.AOP = 1.478779333471098e-06;
+GMAT DefaultSC11.TA = 360;
+GMAT DefaultSC11.DryMass = 850;
+GMAT DefaultSC11.Cd = 2.2;
+GMAT DefaultSC11.Cr = 1.8;
+GMAT DefaultSC11.DragArea = 15;
+GMAT DefaultSC11.SRPArea = 1;
+GMAT DefaultSC11.SPADDragScaleFactor = 1;
+GMAT DefaultSC11.SPADSRPScaleFactor = 1;
+GMAT DefaultSC11.NAIFId = -10000001;
+GMAT DefaultSC11.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC11.OrbitColor = Red;
+GMAT DefaultSC11.TargetColor = Teal;
+GMAT DefaultSC11.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC11.CdSigma = 1e+70;
+GMAT DefaultSC11.CrSigma = 1e+70;
+GMAT DefaultSC11.Id = 'SatId';
+GMAT DefaultSC11.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC11.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC11.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC11.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC11.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC11.ModelFile = 'aura.3ds';
+GMAT DefaultSC11.ModelOffsetX = 0;
+GMAT DefaultSC11.ModelOffsetY = 0;
+GMAT DefaultSC11.ModelOffsetZ = 0;
+GMAT DefaultSC11.ModelRotationX = 0;
+GMAT DefaultSC11.ModelRotationY = 0;
+GMAT DefaultSC11.ModelRotationZ = 0;
+GMAT DefaultSC11.ModelScale = 1;
+GMAT DefaultSC11.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC11.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC11.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC11.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC12;
+GMAT DefaultSC12.DateFormat = A1Gregorian;
+GMAT DefaultSC12.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC12.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC12.DisplayStateType = Keplerian;
+GMAT DefaultSC12.SMA = 6728.14000000001;
+GMAT DefaultSC12.ECC = 1.50000010457948e-08;
+GMAT DefaultSC12.INC = 96.8659;
+GMAT DefaultSC12.RAAN = 0.9863013698632903;
+GMAT DefaultSC12.AOP = 2.091309789151873e-06;
+GMAT DefaultSC12.TA = 59.99999815845587;
+GMAT DefaultSC12.DryMass = 850;
+GMAT DefaultSC12.Cd = 2.2;
+GMAT DefaultSC12.Cr = 1.8;
+GMAT DefaultSC12.DragArea = 15;
+GMAT DefaultSC12.SRPArea = 1;
+GMAT DefaultSC12.SPADDragScaleFactor = 1;
+GMAT DefaultSC12.SPADSRPScaleFactor = 1;
+GMAT DefaultSC12.NAIFId = -10000001;
+GMAT DefaultSC12.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC12.OrbitColor = Red;
+GMAT DefaultSC12.TargetColor = Teal;
+GMAT DefaultSC12.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC12.CdSigma = 1e+70;
+GMAT DefaultSC12.CrSigma = 1e+70;
+GMAT DefaultSC12.Id = 'SatId';
+GMAT DefaultSC12.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC12.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC12.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC12.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC12.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC12.ModelFile = 'aura.3ds';
+GMAT DefaultSC12.ModelOffsetX = 0;
+GMAT DefaultSC12.ModelOffsetY = 0;
+GMAT DefaultSC12.ModelOffsetZ = 0;
+GMAT DefaultSC12.ModelRotationX = 0;
+GMAT DefaultSC12.ModelRotationY = 0;
+GMAT DefaultSC12.ModelRotationZ = 0;
+GMAT DefaultSC12.ModelScale = 1;
+GMAT DefaultSC12.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC12.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC12.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC12.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC13;
+GMAT DefaultSC13.DateFormat = A1Gregorian;
+GMAT DefaultSC13.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC13.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC13.DisplayStateType = Keplerian;
+GMAT DefaultSC13.SMA = 6728.140000000006;
+GMAT DefaultSC13.ECC = 1.500000050062728e-08;
+GMAT DefaultSC13.INC = 96.8659;
+GMAT DefaultSC13.RAAN = 0.9863013698632903;
+GMAT DefaultSC13.AOP = 360;
+GMAT DefaultSC13.TA = 120.0000007966678;
+GMAT DefaultSC13.DryMass = 850;
+GMAT DefaultSC13.Cd = 2.2;
+GMAT DefaultSC13.Cr = 1.8;
+GMAT DefaultSC13.DragArea = 15;
+GMAT DefaultSC13.SRPArea = 1;
+GMAT DefaultSC13.SPADDragScaleFactor = 1;
+GMAT DefaultSC13.SPADSRPScaleFactor = 1;
+GMAT DefaultSC13.NAIFId = -10000001;
+GMAT DefaultSC13.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC13.OrbitColor = Red;
+GMAT DefaultSC13.TargetColor = Teal;
+GMAT DefaultSC13.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC13.CdSigma = 1e+70;
+GMAT DefaultSC13.CrSigma = 1e+70;
+GMAT DefaultSC13.Id = 'SatId';
+GMAT DefaultSC13.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC13.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC13.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC13.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC13.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC13.ModelFile = 'aura.3ds';
+GMAT DefaultSC13.ModelOffsetX = 0;
+GMAT DefaultSC13.ModelOffsetY = 0;
+GMAT DefaultSC13.ModelOffsetZ = 0;
+GMAT DefaultSC13.ModelRotationX = 0;
+GMAT DefaultSC13.ModelRotationY = 0;
+GMAT DefaultSC13.ModelRotationZ = 0;
+GMAT DefaultSC13.ModelScale = 1;
+GMAT DefaultSC13.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC13.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC13.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC13.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC14;
+GMAT DefaultSC14.DateFormat = A1Gregorian;
+GMAT DefaultSC14.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC14.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC14.DisplayStateType = Keplerian;
+GMAT DefaultSC14.SMA = 6728.140000000009;
+GMAT DefaultSC14.ECC = 1.500000039700532e-08;
+GMAT DefaultSC14.INC = 96.8659;
+GMAT DefaultSC14.RAAN = 0.9863013698632903;
+GMAT DefaultSC14.AOP = 8.537736462515939e-07;
+GMAT DefaultSC14.TA = 180;
+GMAT DefaultSC14.DryMass = 850;
+GMAT DefaultSC14.Cd = 2.2;
+GMAT DefaultSC14.Cr = 1.8;
+GMAT DefaultSC14.DragArea = 15;
+GMAT DefaultSC14.SRPArea = 1;
+GMAT DefaultSC14.SPADDragScaleFactor = 1;
+GMAT DefaultSC14.SPADSRPScaleFactor = 1;
+GMAT DefaultSC14.NAIFId = -10000001;
+GMAT DefaultSC14.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC14.OrbitColor = Red;
+GMAT DefaultSC14.TargetColor = Teal;
+GMAT DefaultSC14.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC14.CdSigma = 1e+70;
+GMAT DefaultSC14.CrSigma = 1e+70;
+GMAT DefaultSC14.Id = 'SatId';
+GMAT DefaultSC14.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC14.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC14.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC14.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC14.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC14.ModelFile = 'aura.3ds';
+GMAT DefaultSC14.ModelOffsetX = 0;
+GMAT DefaultSC14.ModelOffsetY = 0;
+GMAT DefaultSC14.ModelOffsetZ = 0;
+GMAT DefaultSC14.ModelRotationX = 0;
+GMAT DefaultSC14.ModelRotationY = 0;
+GMAT DefaultSC14.ModelRotationZ = 0;
+GMAT DefaultSC14.ModelScale = 1;
+GMAT DefaultSC14.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC14.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC14.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC14.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC15;
+GMAT DefaultSC15.DateFormat = A1Gregorian;
+GMAT DefaultSC15.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC15.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC15.DisplayStateType = Keplerian;
+GMAT DefaultSC15.SMA = 6728.140000000009;
+GMAT DefaultSC15.ECC = 1.500000202418613e-08;
+GMAT DefaultSC15.INC = 96.8659;
+GMAT DefaultSC15.RAAN = 0.9863013698632903;
+GMAT DefaultSC15.AOP = 359.9999959954466;
+GMAT DefaultSC15.TA = 240.0000041502321;
+GMAT DefaultSC15.DryMass = 850;
+GMAT DefaultSC15.Cd = 2.2;
+GMAT DefaultSC15.Cr = 1.8;
+GMAT DefaultSC15.DragArea = 15;
+GMAT DefaultSC15.SRPArea = 1;
+GMAT DefaultSC15.SPADDragScaleFactor = 1;
+GMAT DefaultSC15.SPADSRPScaleFactor = 1;
+GMAT DefaultSC15.NAIFId = -10000001;
+GMAT DefaultSC15.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC15.OrbitColor = Red;
+GMAT DefaultSC15.TargetColor = Teal;
+GMAT DefaultSC15.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC15.CdSigma = 1e+70;
+GMAT DefaultSC15.CrSigma = 1e+70;
+GMAT DefaultSC15.Id = 'SatId';
+GMAT DefaultSC15.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC15.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC15.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC15.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC15.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC15.ModelFile = 'aura.3ds';
+GMAT DefaultSC15.ModelOffsetX = 0;
+GMAT DefaultSC15.ModelOffsetY = 0;
+GMAT DefaultSC15.ModelOffsetZ = 0;
+GMAT DefaultSC15.ModelRotationX = 0;
+GMAT DefaultSC15.ModelRotationY = 0;
+GMAT DefaultSC15.ModelRotationZ = 0;
+GMAT DefaultSC15.ModelScale = 1;
+GMAT DefaultSC15.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC15.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC15.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC15.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC16;
+GMAT DefaultSC16.DateFormat = A1Gregorian;
+GMAT DefaultSC16.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC16.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC16.DisplayStateType = Keplerian;
+GMAT DefaultSC16.SMA = 6728.140000000008;
+GMAT DefaultSC16.ECC = 1.500000098669731e-08;
+GMAT DefaultSC16.INC = 96.8659;
+GMAT DefaultSC16.RAAN = 0.9863013698632903;
+GMAT DefaultSC16.AOP = 359.9999991462263;
+GMAT DefaultSC16.TA = 300.000000913891;
+GMAT DefaultSC16.DryMass = 850;
+GMAT DefaultSC16.Cd = 2.2;
+GMAT DefaultSC16.Cr = 1.8;
+GMAT DefaultSC16.DragArea = 15;
+GMAT DefaultSC16.SRPArea = 1;
+GMAT DefaultSC16.SPADDragScaleFactor = 1;
+GMAT DefaultSC16.SPADSRPScaleFactor = 1;
+GMAT DefaultSC16.NAIFId = -10000001;
+GMAT DefaultSC16.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC16.OrbitColor = Red;
+GMAT DefaultSC16.TargetColor = Teal;
+GMAT DefaultSC16.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC16.CdSigma = 1e+70;
+GMAT DefaultSC16.CrSigma = 1e+70;
+GMAT DefaultSC16.Id = 'SatId';
+GMAT DefaultSC16.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC16.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC16.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC16.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC16.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC16.ModelFile = 'aura.3ds';
+GMAT DefaultSC16.ModelOffsetX = 0;
+GMAT DefaultSC16.ModelOffsetY = 0;
+GMAT DefaultSC16.ModelOffsetZ = 0;
+GMAT DefaultSC16.ModelRotationX = 0;
+GMAT DefaultSC16.ModelRotationY = 0;
+GMAT DefaultSC16.ModelRotationZ = 0;
+GMAT DefaultSC16.ModelScale = 1;
+GMAT DefaultSC16.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC16.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC16.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC16.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC21;
+GMAT DefaultSC21.DateFormat = A1Gregorian;
+GMAT DefaultSC21.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC21.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC21.DisplayStateType = Keplerian;
+GMAT DefaultSC21.SMA = 6728.140000000004;
+GMAT DefaultSC21.ECC = 1.500000066661779e-08;
+GMAT DefaultSC21.INC = 96.8659;
+GMAT DefaultSC21.RAAN = 120.9863013698633;
+GMAT DefaultSC21.AOP = 359.9999991462263;
+GMAT DefaultSC21.TA = 2.091309789151873e-06;
+GMAT DefaultSC21.DryMass = 850;
+GMAT DefaultSC21.Cd = 2.2;
+GMAT DefaultSC21.Cr = 1.8;
+GMAT DefaultSC21.DragArea = 15;
+GMAT DefaultSC21.SRPArea = 1;
+GMAT DefaultSC21.SPADDragScaleFactor = 1;
+GMAT DefaultSC21.SPADSRPScaleFactor = 1;
+GMAT DefaultSC21.NAIFId = -10000001;
+GMAT DefaultSC21.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC21.OrbitColor = Red;
+GMAT DefaultSC21.TargetColor = Teal;
+GMAT DefaultSC21.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC21.CdSigma = 1e+70;
+GMAT DefaultSC21.CrSigma = 1e+70;
+GMAT DefaultSC21.Id = 'SatId';
+GMAT DefaultSC21.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC21.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC21.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC21.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC21.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC21.ModelFile = 'aura.3ds';
+GMAT DefaultSC21.ModelOffsetX = 0;
+GMAT DefaultSC21.ModelOffsetY = 0;
+GMAT DefaultSC21.ModelOffsetZ = 0;
+GMAT DefaultSC21.ModelRotationX = 0;
+GMAT DefaultSC21.ModelRotationY = 0;
+GMAT DefaultSC21.ModelRotationZ = 0;
+GMAT DefaultSC21.ModelScale = 1;
+GMAT DefaultSC21.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC21.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC21.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC21.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC22;
+GMAT DefaultSC22.DateFormat = A1Gregorian;
+GMAT DefaultSC22.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC22.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC22.DisplayStateType = Keplerian;
+GMAT DefaultSC22.SMA = 6728.140000000006;
+GMAT DefaultSC22.ECC = 1.500000104927566e-08;
+GMAT DefaultSC22.INC = 96.8659;
+GMAT DefaultSC22.RAAN = 120.9863013698633;
+GMAT DefaultSC22.AOP = 8.537736462515939e-07;
+GMAT DefaultSC22.TA = 60.00000028209569;
+GMAT DefaultSC22.DryMass = 850;
+GMAT DefaultSC22.Cd = 2.2;
+GMAT DefaultSC22.Cr = 1.8;
+GMAT DefaultSC22.DragArea = 15;
+GMAT DefaultSC22.SRPArea = 1;
+GMAT DefaultSC22.SPADDragScaleFactor = 1;
+GMAT DefaultSC22.SPADSRPScaleFactor = 1;
+GMAT DefaultSC22.NAIFId = -10000001;
+GMAT DefaultSC22.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC22.OrbitColor = Red;
+GMAT DefaultSC22.TargetColor = Teal;
+GMAT DefaultSC22.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC22.CdSigma = 1e+70;
+GMAT DefaultSC22.CrSigma = 1e+70;
+GMAT DefaultSC22.Id = 'SatId';
+GMAT DefaultSC22.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC22.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC22.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC22.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC22.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC22.ModelFile = 'aura.3ds';
+GMAT DefaultSC22.ModelOffsetX = 0;
+GMAT DefaultSC22.ModelOffsetY = 0;
+GMAT DefaultSC22.ModelOffsetZ = 0;
+GMAT DefaultSC22.ModelRotationX = 0;
+GMAT DefaultSC22.ModelRotationY = 0;
+GMAT DefaultSC22.ModelRotationZ = 0;
+GMAT DefaultSC22.ModelScale = 1;
+GMAT DefaultSC22.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC22.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC22.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC22.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC23;
+GMAT DefaultSC23.DateFormat = A1Gregorian;
+GMAT DefaultSC23.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC23.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC23.DisplayStateType = Keplerian;
+GMAT DefaultSC23.SMA = 6728.140000000002;
+GMAT DefaultSC23.ECC = 1.500000086304419e-08;
+GMAT DefaultSC23.INC = 96.8659;
+GMAT DefaultSC23.RAAN = 120.9863013698633;
+GMAT DefaultSC23.AOP = 359.9999991462263;
+GMAT DefaultSC23.TA = 120.0000015843968;
+GMAT DefaultSC23.DryMass = 850;
+GMAT DefaultSC23.Cd = 2.2;
+GMAT DefaultSC23.Cr = 1.8;
+GMAT DefaultSC23.DragArea = 15;
+GMAT DefaultSC23.SRPArea = 1;
+GMAT DefaultSC23.SPADDragScaleFactor = 1;
+GMAT DefaultSC23.SPADSRPScaleFactor = 1;
+GMAT DefaultSC23.NAIFId = -10000001;
+GMAT DefaultSC23.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC23.OrbitColor = Red;
+GMAT DefaultSC23.TargetColor = Teal;
+GMAT DefaultSC23.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC23.CdSigma = 1e+70;
+GMAT DefaultSC23.CrSigma = 1e+70;
+GMAT DefaultSC23.Id = 'SatId';
+GMAT DefaultSC23.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC23.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC23.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC23.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC23.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC23.ModelFile = 'aura.3ds';
+GMAT DefaultSC23.ModelOffsetX = 0;
+GMAT DefaultSC23.ModelOffsetY = 0;
+GMAT DefaultSC23.ModelOffsetZ = 0;
+GMAT DefaultSC23.ModelRotationX = 0;
+GMAT DefaultSC23.ModelRotationY = 0;
+GMAT DefaultSC23.ModelRotationZ = 0;
+GMAT DefaultSC23.ModelScale = 1;
+GMAT DefaultSC23.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC23.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC23.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC23.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC24;
+GMAT DefaultSC24.DateFormat = A1Gregorian;
+GMAT DefaultSC24.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC24.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC24.DisplayStateType = Keplerian;
+GMAT DefaultSC24.SMA = 6728.140000000006;
+GMAT DefaultSC24.ECC = 1.500000063687615e-08;
+GMAT DefaultSC24.INC = 96.8659;
+GMAT DefaultSC24.RAAN = 120.9863013698633;
+GMAT DefaultSC24.AOP = 8.537736462515939e-07;
+GMAT DefaultSC24.TA = 180;
+GMAT DefaultSC24.DryMass = 850;
+GMAT DefaultSC24.Cd = 2.2;
+GMAT DefaultSC24.Cr = 1.8;
+GMAT DefaultSC24.DragArea = 15;
+GMAT DefaultSC24.SRPArea = 1;
+GMAT DefaultSC24.SPADDragScaleFactor = 1;
+GMAT DefaultSC24.SPADSRPScaleFactor = 1;
+GMAT DefaultSC24.NAIFId = -10000001;
+GMAT DefaultSC24.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC24.OrbitColor = Red;
+GMAT DefaultSC24.TargetColor = Teal;
+GMAT DefaultSC24.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC24.CdSigma = 1e+70;
+GMAT DefaultSC24.CrSigma = 1e+70;
+GMAT DefaultSC24.Id = 'SatId';
+GMAT DefaultSC24.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC24.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC24.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC24.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC24.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC24.ModelFile = 'aura.3ds';
+GMAT DefaultSC24.ModelOffsetX = 0;
+GMAT DefaultSC24.ModelOffsetY = 0;
+GMAT DefaultSC24.ModelOffsetZ = 0;
+GMAT DefaultSC24.ModelRotationX = 0;
+GMAT DefaultSC24.ModelRotationY = 0;
+GMAT DefaultSC24.ModelRotationZ = 0;
+GMAT DefaultSC24.ModelScale = 1;
+GMAT DefaultSC24.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC24.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC24.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC24.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC25;
+GMAT DefaultSC25.DateFormat = A1Gregorian;
+GMAT DefaultSC25.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC25.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC25.DisplayStateType = Keplerian;
+GMAT DefaultSC25.SMA = 6728.140000000006;
+GMAT DefaultSC25.ECC = 1.500000062230313e-08;
+GMAT DefaultSC25.INC = 96.8659;
+GMAT DefaultSC25.RAAN = 120.9863013698633;
+GMAT DefaultSC25.AOP = 2.414836539451467e-06;
+GMAT DefaultSC25.TA = 239.9999994716658;
+GMAT DefaultSC25.DryMass = 850;
+GMAT DefaultSC25.Cd = 2.2;
+GMAT DefaultSC25.Cr = 1.8;
+GMAT DefaultSC25.DragArea = 15;
+GMAT DefaultSC25.SRPArea = 1;
+GMAT DefaultSC25.SPADDragScaleFactor = 1;
+GMAT DefaultSC25.SPADSRPScaleFactor = 1;
+GMAT DefaultSC25.NAIFId = -10000001;
+GMAT DefaultSC25.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC25.OrbitColor = Red;
+GMAT DefaultSC25.TargetColor = Teal;
+GMAT DefaultSC25.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC25.CdSigma = 1e+70;
+GMAT DefaultSC25.CrSigma = 1e+70;
+GMAT DefaultSC25.Id = 'SatId';
+GMAT DefaultSC25.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC25.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC25.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC25.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC25.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC25.ModelFile = 'aura.3ds';
+GMAT DefaultSC25.ModelOffsetX = 0;
+GMAT DefaultSC25.ModelOffsetY = 0;
+GMAT DefaultSC25.ModelOffsetZ = 0;
+GMAT DefaultSC25.ModelRotationX = 0;
+GMAT DefaultSC25.ModelRotationY = 0;
+GMAT DefaultSC25.ModelRotationZ = 0;
+GMAT DefaultSC25.ModelScale = 1;
+GMAT DefaultSC25.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC25.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC25.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC25.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC26;
+GMAT DefaultSC26.DateFormat = A1Gregorian;
+GMAT DefaultSC26.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC26.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC26.DisplayStateType = Keplerian;
+GMAT DefaultSC26.SMA = 6728.140000000008;
+GMAT DefaultSC26.ECC = 1.500000080505375e-08;
+GMAT DefaultSC26.INC = 96.8659;
+GMAT DefaultSC26.RAAN = 120.9863013698633;
+GMAT DefaultSC26.AOP = 360;
+GMAT DefaultSC26.TA = 300.0000007854816;
+GMAT DefaultSC26.DryMass = 850;
+GMAT DefaultSC26.Cd = 2.2;
+GMAT DefaultSC26.Cr = 1.8;
+GMAT DefaultSC26.DragArea = 15;
+GMAT DefaultSC26.SRPArea = 1;
+GMAT DefaultSC26.SPADDragScaleFactor = 1;
+GMAT DefaultSC26.SPADSRPScaleFactor = 1;
+GMAT DefaultSC26.NAIFId = -10000001;
+GMAT DefaultSC26.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC26.OrbitColor = Red;
+GMAT DefaultSC26.TargetColor = Teal;
+GMAT DefaultSC26.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC26.CdSigma = 1e+70;
+GMAT DefaultSC26.CrSigma = 1e+70;
+GMAT DefaultSC26.Id = 'SatId';
+GMAT DefaultSC26.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC26.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC26.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC26.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC26.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC26.ModelFile = 'aura.3ds';
+GMAT DefaultSC26.ModelOffsetX = 0;
+GMAT DefaultSC26.ModelOffsetY = 0;
+GMAT DefaultSC26.ModelOffsetZ = 0;
+GMAT DefaultSC26.ModelRotationX = 0;
+GMAT DefaultSC26.ModelRotationY = 0;
+GMAT DefaultSC26.ModelRotationZ = 0;
+GMAT DefaultSC26.ModelScale = 1;
+GMAT DefaultSC26.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC26.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC26.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC26.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC31;
+GMAT DefaultSC31.DateFormat = A1Gregorian;
+GMAT DefaultSC31.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC31.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC31.DisplayStateType = Keplerian;
+GMAT DefaultSC31.SMA = 6728.140000000012;
+GMAT DefaultSC31.ECC = 1.500000114635945e-08;
+GMAT DefaultSC31.INC = 96.8659;
+GMAT DefaultSC31.RAAN = 240.9863013698633;
+GMAT DefaultSC31.AOP = 8.537736462515939e-07;
+GMAT DefaultSC31.TA = 8.537736462515939e-07;
+GMAT DefaultSC31.DryMass = 850;
+GMAT DefaultSC31.Cd = 2.2;
+GMAT DefaultSC31.Cr = 1.8;
+GMAT DefaultSC31.DragArea = 15;
+GMAT DefaultSC31.SRPArea = 1;
+GMAT DefaultSC31.SPADDragScaleFactor = 1;
+GMAT DefaultSC31.SPADSRPScaleFactor = 1;
+GMAT DefaultSC31.NAIFId = -10000001;
+GMAT DefaultSC31.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC31.OrbitColor = Red;
+GMAT DefaultSC31.TargetColor = Teal;
+GMAT DefaultSC31.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC31.CdSigma = 1e+70;
+GMAT DefaultSC31.CrSigma = 1e+70;
+GMAT DefaultSC31.Id = 'SatId';
+GMAT DefaultSC31.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC31.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC31.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC31.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC31.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC31.ModelFile = 'aura.3ds';
+GMAT DefaultSC31.ModelOffsetX = 0;
+GMAT DefaultSC31.ModelOffsetY = 0;
+GMAT DefaultSC31.ModelOffsetZ = 0;
+GMAT DefaultSC31.ModelRotationX = 0;
+GMAT DefaultSC31.ModelRotationY = 0;
+GMAT DefaultSC31.ModelRotationZ = 0;
+GMAT DefaultSC31.ModelScale = 1;
+GMAT DefaultSC31.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC31.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC31.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC31.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC32;
+GMAT DefaultSC32.DateFormat = A1Gregorian;
+GMAT DefaultSC32.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC32.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC32.DisplayStateType = Keplerian;
+GMAT DefaultSC32.SMA = 6728.140000000014;
+GMAT DefaultSC32.ECC = 1.50000012891465e-08;
+GMAT DefaultSC32.INC = 96.8659;
+GMAT DefaultSC32.RAAN = 240.9863013698633;
+GMAT DefaultSC32.AOP = 8.537736462515939e-07;
+GMAT DefaultSC32.TA = 59.99999869512317;
+GMAT DefaultSC32.DryMass = 850;
+GMAT DefaultSC32.Cd = 2.2;
+GMAT DefaultSC32.Cr = 1.8;
+GMAT DefaultSC32.DragArea = 15;
+GMAT DefaultSC32.SRPArea = 1;
+GMAT DefaultSC32.SPADDragScaleFactor = 1;
+GMAT DefaultSC32.SPADSRPScaleFactor = 1;
+GMAT DefaultSC32.NAIFId = -10000001;
+GMAT DefaultSC32.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC32.OrbitColor = Red;
+GMAT DefaultSC32.TargetColor = Teal;
+GMAT DefaultSC32.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC32.CdSigma = 1e+70;
+GMAT DefaultSC32.CrSigma = 1e+70;
+GMAT DefaultSC32.Id = 'SatId';
+GMAT DefaultSC32.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC32.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC32.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC32.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC32.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC32.ModelFile = 'aura.3ds';
+GMAT DefaultSC32.ModelOffsetX = 0;
+GMAT DefaultSC32.ModelOffsetY = 0;
+GMAT DefaultSC32.ModelOffsetZ = 0;
+GMAT DefaultSC32.ModelRotationX = 0;
+GMAT DefaultSC32.ModelRotationY = 0;
+GMAT DefaultSC32.ModelRotationZ = 0;
+GMAT DefaultSC32.ModelScale = 1;
+GMAT DefaultSC32.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC32.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC32.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC32.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC33;
+GMAT DefaultSC33.DateFormat = A1Gregorian;
+GMAT DefaultSC33.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC33.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC33.DisplayStateType = Keplerian;
+GMAT DefaultSC33.SMA = 6728.140000000008;
+GMAT DefaultSC33.ECC = 1.500000092562255e-08;
+GMAT DefaultSC33.INC = 96.8659;
+GMAT DefaultSC33.RAAN = 240.9863013698633;
+GMAT DefaultSC33.AOP = 0;
+GMAT DefaultSC33.TA = 120.0000003884101;
+GMAT DefaultSC33.DryMass = 850;
+GMAT DefaultSC33.Cd = 2.2;
+GMAT DefaultSC33.Cr = 1.8;
+GMAT DefaultSC33.DragArea = 15;
+GMAT DefaultSC33.SRPArea = 1;
+GMAT DefaultSC33.SPADDragScaleFactor = 1;
+GMAT DefaultSC33.SPADSRPScaleFactor = 1;
+GMAT DefaultSC33.NAIFId = -10000001;
+GMAT DefaultSC33.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC33.OrbitColor = Red;
+GMAT DefaultSC33.TargetColor = Teal;
+GMAT DefaultSC33.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC33.CdSigma = 1e+70;
+GMAT DefaultSC33.CrSigma = 1e+70;
+GMAT DefaultSC33.Id = 'SatId';
+GMAT DefaultSC33.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC33.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC33.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC33.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC33.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC33.ModelFile = 'aura.3ds';
+GMAT DefaultSC33.ModelOffsetX = 0;
+GMAT DefaultSC33.ModelOffsetY = 0;
+GMAT DefaultSC33.ModelOffsetZ = 0;
+GMAT DefaultSC33.ModelRotationX = 0;
+GMAT DefaultSC33.ModelRotationY = 0;
+GMAT DefaultSC33.ModelRotationZ = 0;
+GMAT DefaultSC33.ModelScale = 1;
+GMAT DefaultSC33.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC33.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC33.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC33.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC34;
+GMAT DefaultSC34.DateFormat = A1Gregorian;
+GMAT DefaultSC34.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC34.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC34.DisplayStateType = Keplerian;
+GMAT DefaultSC34.SMA = 6728.140000000016;
+GMAT DefaultSC34.ECC = 1.500000015713449e-08;
+GMAT DefaultSC34.INC = 96.8659;
+GMAT DefaultSC34.RAAN = 240.9863013698633;
+GMAT DefaultSC34.AOP = 8.537736462515939e-07;
+GMAT DefaultSC34.TA = 180.0000008537737;
+GMAT DefaultSC34.DryMass = 850;
+GMAT DefaultSC34.Cd = 2.2;
+GMAT DefaultSC34.Cr = 1.8;
+GMAT DefaultSC34.DragArea = 15;
+GMAT DefaultSC34.SRPArea = 1;
+GMAT DefaultSC34.SPADDragScaleFactor = 1;
+GMAT DefaultSC34.SPADSRPScaleFactor = 1;
+GMAT DefaultSC34.NAIFId = -10000001;
+GMAT DefaultSC34.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC34.OrbitColor = Red;
+GMAT DefaultSC34.TargetColor = Teal;
+GMAT DefaultSC34.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC34.CdSigma = 1e+70;
+GMAT DefaultSC34.CrSigma = 1e+70;
+GMAT DefaultSC34.Id = 'SatId';
+GMAT DefaultSC34.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC34.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC34.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC34.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC34.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC34.ModelFile = 'aura.3ds';
+GMAT DefaultSC34.ModelOffsetX = 0;
+GMAT DefaultSC34.ModelOffsetY = 0;
+GMAT DefaultSC34.ModelOffsetZ = 0;
+GMAT DefaultSC34.ModelRotationX = 0;
+GMAT DefaultSC34.ModelRotationY = 0;
+GMAT DefaultSC34.ModelRotationZ = 0;
+GMAT DefaultSC34.ModelScale = 1;
+GMAT DefaultSC34.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC34.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC34.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC34.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC35;
+GMAT DefaultSC35.DateFormat = A1Gregorian;
+GMAT DefaultSC35.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC35.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC35.DisplayStateType = Keplerian;
+GMAT DefaultSC35.SMA = 6728.140000000017;
+GMAT DefaultSC35.ECC = 1.500000105513041e-08;
+GMAT DefaultSC35.INC = 96.8659;
+GMAT DefaultSC35.RAAN = 240.9863013698633;
+GMAT DefaultSC35.AOP = 359.9999963777452;
+GMAT DefaultSC35.TA = 240.0000046581131;
+GMAT DefaultSC35.DryMass = 850;
+GMAT DefaultSC35.Cd = 2.2;
+GMAT DefaultSC35.Cr = 1.8;
+GMAT DefaultSC35.DragArea = 15;
+GMAT DefaultSC35.SRPArea = 1;
+GMAT DefaultSC35.SPADDragScaleFactor = 1;
+GMAT DefaultSC35.SPADSRPScaleFactor = 1;
+GMAT DefaultSC35.NAIFId = -10000001;
+GMAT DefaultSC35.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC35.OrbitColor = Red;
+GMAT DefaultSC35.TargetColor = Teal;
+GMAT DefaultSC35.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC35.CdSigma = 1e+70;
+GMAT DefaultSC35.CrSigma = 1e+70;
+GMAT DefaultSC35.Id = 'SatId';
+GMAT DefaultSC35.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC35.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC35.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC35.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC35.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC35.ModelFile = 'aura.3ds';
+GMAT DefaultSC35.ModelOffsetX = 0;
+GMAT DefaultSC35.ModelOffsetY = 0;
+GMAT DefaultSC35.ModelOffsetZ = 0;
+GMAT DefaultSC35.ModelRotationX = 0;
+GMAT DefaultSC35.ModelRotationY = 0;
+GMAT DefaultSC35.ModelRotationZ = 0;
+GMAT DefaultSC35.ModelScale = 1;
+GMAT DefaultSC35.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC35.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC35.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC35.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC36;
+GMAT DefaultSC36.DateFormat = A1Gregorian;
+GMAT DefaultSC36.Epoch = '22 Mar 2023 09:28:00.034';
+GMAT DefaultSC36.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC36.DisplayStateType = Keplerian;
+GMAT DefaultSC36.SMA = 6728.140000000006;
+GMAT DefaultSC36.ECC = 1.500000050347477e-08;
+GMAT DefaultSC36.INC = 96.8659;
+GMAT DefaultSC36.RAAN = 240.9863013698633;
+GMAT DefaultSC36.AOP = 1.707547292503188e-06;
+GMAT DefaultSC36.TA = 299.9999998635858;
+GMAT DefaultSC36.DryMass = 850;
+GMAT DefaultSC36.Cd = 2.2;
+GMAT DefaultSC36.Cr = 1.8;
+GMAT DefaultSC36.DragArea = 15;
+GMAT DefaultSC36.SRPArea = 1;
+GMAT DefaultSC36.SPADDragScaleFactor = 1;
+GMAT DefaultSC36.SPADSRPScaleFactor = 1;
+GMAT DefaultSC36.NAIFId = -10000001;
+GMAT DefaultSC36.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC36.OrbitColor = Red;
+GMAT DefaultSC36.TargetColor = Teal;
+GMAT DefaultSC36.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC36.CdSigma = 1e+70;
+GMAT DefaultSC36.CrSigma = 1e+70;
+GMAT DefaultSC36.Id = 'SatId';
+GMAT DefaultSC36.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC36.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC36.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC36.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC36.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC36.ModelFile = 'aura.3ds';
+GMAT DefaultSC36.ModelOffsetX = 0;
+GMAT DefaultSC36.ModelOffsetY = 0;
+GMAT DefaultSC36.ModelOffsetZ = 0;
+GMAT DefaultSC36.ModelRotationX = 0;
+GMAT DefaultSC36.ModelRotationY = 0;
+GMAT DefaultSC36.ModelRotationZ = 0;
+GMAT DefaultSC36.ModelScale = 1;
+GMAT DefaultSC36.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC36.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC36.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC36.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- GroundStations
+%----------------------------------------
+
+Create GroundStation Helsinki;
+GMAT Helsinki.OrbitColor = Thistle;
+GMAT Helsinki.TargetColor = DarkGray;
+GMAT Helsinki.CentralBody = Earth;
+GMAT Helsinki.StateType = Spherical;
+GMAT Helsinki.HorizonReference = Sphere;
+GMAT Helsinki.Location1 = 60.18902;
+GMAT Helsinki.Location2 = 24.83102;
+GMAT Helsinki.Location3 = 0;
+GMAT Helsinki.Id = 'Helsinki';
+GMAT Helsinki.IonosphereModel = 'None';
+GMAT Helsinki.TroposphereModel = 'None';
+GMAT Helsinki.DataSource = 'Constant';
+GMAT Helsinki.Temperature = 295.1;
+GMAT Helsinki.Pressure = 1013.5;
+GMAT Helsinki.Humidity = 55;
+GMAT Helsinki.MinimumElevationAngle = 75;
+
+Create GroundStation Equator;
+GMAT Equator.OrbitColor = Thistle;
+GMAT Equator.TargetColor = DarkGray;
+GMAT Equator.CentralBody = Earth;
+GMAT Equator.StateType = Spherical;
+GMAT Equator.HorizonReference = Sphere;
+GMAT Equator.Location1 = -3.80113;
+GMAT Equator.Location2 = 23.54765;
+GMAT Equator.Location3 = 0;
+GMAT Equator.Id = 'StationId';
+GMAT Equator.IonosphereModel = 'None';
+GMAT Equator.TroposphereModel = 'None';
+GMAT Equator.DataSource = 'Constant';
+GMAT Equator.Temperature = 295.1;
+GMAT Equator.Pressure = 1013.5;
+GMAT Equator.Humidity = 55;
+GMAT Equator.MinimumElevationAngle = 75;
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- EventLocators
+%----------------------------------------
+
+Create ContactLocator ContactLocator1;
+GMAT ContactLocator1.Target = DefaultSC11;
+GMAT ContactLocator1.Filename = 'ContactLocator1.txt';
+GMAT ContactLocator1.InputEpochFormat = 'TAIModJulian';
+GMAT ContactLocator1.InitialEpoch = '21545';
+GMAT ContactLocator1.StepSize = 10;
+GMAT ContactLocator1.FinalEpoch = '21545.138';
+GMAT ContactLocator1.UseLightTimeDelay = true;
+GMAT ContactLocator1.UseStellarAberration = true;
+GMAT ContactLocator1.WriteReport = true;
+GMAT ContactLocator1.RunMode = Automatic;
+GMAT ContactLocator1.UseEntireInterval = true;
+GMAT ContactLocator1.LightTimeDirection = Transmit;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create GroundTrackPlot DefaultGroundTrackPlot;
+GMAT DefaultGroundTrackPlot.SolverIterations = Current;
+GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.0008547008547008547 0.4505862646566164 ];
+GMAT DefaultGroundTrackPlot.Size = [ 0.5 0.449748743718593 ];
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 263;
+GMAT DefaultGroundTrackPlot.Maximized = false;
+GMAT DefaultGroundTrackPlot.Add = {DefaultSC11, DefaultSC12, DefaultSC13, DefaultSC14, DefaultSC15, DefaultSC16, DefaultSC21, DefaultSC22, DefaultSC23, DefaultSC24, DefaultSC25, DefaultSC26, DefaultSC31, DefaultSC32, DefaultSC33, DefaultSC34, DefaultSC35, DefaultSC36, Equator, Helsinki};
+GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
+GMAT DefaultGroundTrackPlot.UpdatePlotFrequency = 50;
+GMAT DefaultGroundTrackPlot.NumPointsToRedraw = 0;
+GMAT DefaultGroundTrackPlot.ShowPlot = true;
+GMAT DefaultGroundTrackPlot.MaxPlotPoints = 20000;
+GMAT DefaultGroundTrackPlot.CentralBody = Earth;
+GMAT DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
+
+Create OrbitView OrbitView1;
+GMAT OrbitView1.SolverIterations = Current;
+GMAT OrbitView1.UpperLeft = [ 0.09316239316239316 0.06197654941373534 ];
+GMAT OrbitView1.Size = [ 0.5 0.449748743718593 ];
+GMAT OrbitView1.RelativeZOrder = 267;
+GMAT OrbitView1.Maximized = false;
+GMAT OrbitView1.Add = {DefaultSC11, DefaultSC12, DefaultSC13, DefaultSC14, DefaultSC15, DefaultSC16, DefaultSC21, DefaultSC22, DefaultSC23, DefaultSC24, DefaultSC25, DefaultSC26, DefaultSC31, DefaultSC32, DefaultSC33, DefaultSC34, DefaultSC35, DefaultSC36, Earth};
+GMAT OrbitView1.CoordinateSystem = EarthFixed;
+GMAT OrbitView1.DrawObject = [ true true true true true true true true true true true true true true true true true true true ];
+GMAT OrbitView1.DataCollectFrequency = 1;
+GMAT OrbitView1.UpdatePlotFrequency = 50;
+GMAT OrbitView1.NumPointsToRedraw = 0;
+GMAT OrbitView1.ShowPlot = true;
+GMAT OrbitView1.MaxPlotPoints = 20000;
+GMAT OrbitView1.ShowLabels = true;
+GMAT OrbitView1.ViewPointReference = Earth;
+GMAT OrbitView1.ViewPointVector = [ 0 0 30000 ];
+GMAT OrbitView1.ViewDirection = Earth;
+GMAT OrbitView1.ViewScaleFactor = 1;
+GMAT OrbitView1.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView1.ViewUpAxis = Z;
+GMAT OrbitView1.EclipticPlane = Off;
+GMAT OrbitView1.XYPlane = On;
+GMAT OrbitView1.WireFrame = Off;
+GMAT OrbitView1.Axes = On;
+GMAT OrbitView1.Grid = Off;
+GMAT OrbitView1.SunLine = Off;
+GMAT OrbitView1.UseInitialView = On;
+GMAT OrbitView1.StarCount = 7000;
+GMAT OrbitView1.EnableStars = On;
+GMAT OrbitView1.EnableConstellations = On;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(DefaultSC11, DefaultSC12, DefaultSC13, DefaultSC14, DefaultSC15, DefaultSC16, DefaultSC21, DefaultSC22, DefaultSC23, DefaultSC24, DefaultSC25, DefaultSC26, DefaultSC31, DefaultSC32, DefaultSC33, DefaultSC34, DefaultSC35, DefaultSC36) {DefaultSC11.ElapsedSecs = 28500};

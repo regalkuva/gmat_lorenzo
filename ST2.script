@@ -1,0 +1,298 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2022-12-29 14:22:50
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft Hyperfield1;
+GMAT Hyperfield1.DateFormat = UTCGregorian;
+GMAT Hyperfield1.Epoch = '05 Jan 2000 11:59:28.000';
+GMAT Hyperfield1.CoordinateSystem = EarthMJ2000Eq;
+GMAT Hyperfield1.DisplayStateType = Keplerian;
+GMAT Hyperfield1.SMA = 6740.52000000001;
+GMAT Hyperfield1.ECC = 1.322182902950321e-015;
+GMAT Hyperfield1.INC = 0;
+GMAT Hyperfield1.RAAN = 0;
+GMAT Hyperfield1.AOP = 0;
+GMAT Hyperfield1.TA = 78.06189999999999;
+GMAT Hyperfield1.DryMass = 12;
+GMAT Hyperfield1.Cd = 2.2;
+GMAT Hyperfield1.Cr = 1.8;
+GMAT Hyperfield1.DragArea = 0.04;
+GMAT Hyperfield1.SRPArea = 0.11;
+GMAT Hyperfield1.Tanks = {ElectricTank1};
+GMAT Hyperfield1.Thrusters = {ElectricThruster1};
+GMAT Hyperfield1.PowerSystem = SolarPowerSystem1;
+GMAT Hyperfield1.NAIFId = -10004001;
+GMAT Hyperfield1.NAIFIdReferenceFrame = -9004001;
+GMAT Hyperfield1.OrbitColor = Red;
+GMAT Hyperfield1.TargetColor = Teal;
+GMAT Hyperfield1.EstimationStateType = 'Cartesian';
+GMAT Hyperfield1.OrbitErrorCovariance = [ 1e+070 0 0 0 0 0 ; 0 1e+070 0 0 0 0 ; 0 0 1e+070 0 0 0 ; 0 0 0 1e+070 0 0 ; 0 0 0 0 1e+070 0 ; 0 0 0 0 0 1e+070 ];
+GMAT Hyperfield1.CdSigma = 1e+070;
+GMAT Hyperfield1.CrSigma = 1e+070;
+GMAT Hyperfield1.Id = 'SatId';
+GMAT Hyperfield1.Attitude = CoordinateSystemFixed;
+GMAT Hyperfield1.SPADSRPScaleFactor = 1;
+GMAT Hyperfield1.ModelFile = 'aura.3ds';
+GMAT Hyperfield1.ModelOffsetX = 0;
+GMAT Hyperfield1.ModelOffsetY = 0;
+GMAT Hyperfield1.ModelOffsetZ = 0;
+GMAT Hyperfield1.ModelRotationX = 0;
+GMAT Hyperfield1.ModelRotationY = 0;
+GMAT Hyperfield1.ModelRotationZ = 0;
+GMAT Hyperfield1.ModelScale = 1;
+GMAT Hyperfield1.AttitudeDisplayStateType = 'Quaternion';
+GMAT Hyperfield1.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Hyperfield1.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Hyperfield1.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Hardware Components
+%----------------------------------------
+
+Create ElectricTank ElectricTank1;
+GMAT ElectricTank1.AllowNegativeFuelMass = false;
+GMAT ElectricTank1.FuelMass = 0.22;
+
+Create ElectricThruster ElectricThruster1;
+GMAT ElectricThruster1.CoordinateSystem = Local;
+GMAT ElectricThruster1.Origin = Earth;
+GMAT ElectricThruster1.Axes = VNB;
+GMAT ElectricThruster1.ThrustDirection1 = 1;
+GMAT ElectricThruster1.ThrustDirection2 = 1;
+GMAT ElectricThruster1.ThrustDirection3 = 1;
+GMAT ElectricThruster1.DutyCycle = 1;
+GMAT ElectricThruster1.ThrustScaleFactor = 1;
+GMAT ElectricThruster1.DecrementMass = true;
+GMAT ElectricThruster1.Tank = {ElectricTank1};
+GMAT ElectricThruster1.MixRatio = [ 1 ];
+GMAT ElectricThruster1.GravitationalAccel = 9.810000000000001;
+GMAT ElectricThruster1.ThrustModel = ConstantThrustAndIsp;
+GMAT ElectricThruster1.MaximumUsablePower = 7.266;
+GMAT ElectricThruster1.MinimumUsablePower = 0.1;
+GMAT ElectricThruster1.ThrustCoeff1 = -5.19082;
+GMAT ElectricThruster1.ThrustCoeff2 = 2.96519;
+GMAT ElectricThruster1.ThrustCoeff3 = -14.4789;
+GMAT ElectricThruster1.ThrustCoeff4 = 54.05382;
+GMAT ElectricThruster1.ThrustCoeff5 = -0.00100092;
+GMAT ElectricThruster1.MassFlowCoeff1 = -0.004776;
+GMAT ElectricThruster1.MassFlowCoeff2 = 0.05717;
+GMAT ElectricThruster1.MassFlowCoeff3 = -0.09956;
+GMAT ElectricThruster1.MassFlowCoeff4 = 0.03211;
+GMAT ElectricThruster1.MassFlowCoeff5 = 2.13781;
+GMAT ElectricThruster1.FixedEfficiency = 0.7;
+GMAT ElectricThruster1.Isp = 2000;
+GMAT ElectricThruster1.ConstantThrust = 0.00033;
+
+Create SolarPowerSystem SolarPowerSystem1;
+GMAT SolarPowerSystem1.EpochFormat = 'UTCGregorian';
+GMAT SolarPowerSystem1.InitialEpoch = ''01 Jan 2000 11:59:28.000'';
+GMAT SolarPowerSystem1.InitialMaxPower = 1.2;
+GMAT SolarPowerSystem1.AnnualDecayRate = 5;
+GMAT SolarPowerSystem1.Margin = 5;
+GMAT SolarPowerSystem1.BusCoeff1 = 0.3;
+GMAT SolarPowerSystem1.BusCoeff2 = 0;
+GMAT SolarPowerSystem1.BusCoeff3 = 0;
+GMAT SolarPowerSystem1.ShadowModel = 'DualCone';
+GMAT SolarPowerSystem1.ShadowBodies = {'Earth'};
+GMAT SolarPowerSystem1.SolarCoeff1 = 1.32077;
+GMAT SolarPowerSystem1.SolarCoeff2 = -0.10848;
+GMAT SolarPowerSystem1.SolarCoeff3 = -0.11665;
+GMAT SolarPowerSystem1.SolarCoeff4 = 0.10843;
+GMAT SolarPowerSystem1.SolarCoeff5 = -0.01279;
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel LEOprop_ForceModel;
+GMAT LEOprop_ForceModel.CentralBody = Earth;
+GMAT LEOprop_ForceModel.PrimaryBodies = {Earth};
+GMAT LEOprop_ForceModel.PointMasses = {Luna, Sun};
+GMAT LEOprop_ForceModel.SRP = On;
+GMAT LEOprop_ForceModel.RelativisticCorrection = Off;
+GMAT LEOprop_ForceModel.ErrorControl = RSSStep;
+GMAT LEOprop_ForceModel.GravityField.Earth.Degree = 20;
+GMAT LEOprop_ForceModel.GravityField.Earth.Order = 20;
+GMAT LEOprop_ForceModel.GravityField.Earth.PotentialFile = 'JGM3.cof';
+GMAT LEOprop_ForceModel.GravityField.Earth.EarthTideModel = 'None';
+GMAT LEOprop_ForceModel.SRP.Flux = 1367;
+GMAT LEOprop_ForceModel.SRP.SRPModel = Spherical;
+GMAT LEOprop_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT LEOprop_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT LEOprop_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT LEOprop_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT LEOprop_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT LEOprop_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT LEOprop_ForceModel.Drag.F107 = 150;
+GMAT LEOprop_ForceModel.Drag.F107A = 150;
+GMAT LEOprop_ForceModel.Drag.MagneticIndex = 3;
+GMAT LEOprop_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT LEOprop_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator LEOprop;
+GMAT LEOprop.FM = LEOprop_ForceModel;
+GMAT LEOprop.Type = RungeKutta89;
+GMAT LEOprop.InitialStepSize = 1;
+GMAT LEOprop.Accuracy = 9.999999999999999e-012;
+GMAT LEOprop.MinStep = 0.001;
+GMAT LEOprop.MaxStep = 2700;
+GMAT LEOprop.MaxStepAttempts = 50;
+GMAT LEOprop.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create FiniteBurn FiniteBurn1;
+GMAT FiniteBurn1.Thrusters = {ElectricThruster1};
+GMAT FiniteBurn1.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+Create FiniteBurn FiniteBurn2;
+GMAT FiniteBurn2.Thrusters = {ElectricThruster1};
+GMAT FiniteBurn2.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+Create ImpulsiveBurn DefaultIB;
+GMAT DefaultIB.CoordinateSystem = Local;
+GMAT DefaultIB.Origin = Earth;
+GMAT DefaultIB.Axes = VNB;
+GMAT DefaultIB.Element1 = 0;
+GMAT DefaultIB.Element2 = 0;
+GMAT DefaultIB.Element3 = 0;
+GMAT DefaultIB.DecrementMass = false;
+GMAT DefaultIB.Isp = 300;
+GMAT DefaultIB.GravitationalAccel = 9.810000000000001;
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create DifferentialCorrector DC;
+GMAT DC.ShowProgress = true;
+GMAT DC.ReportStyle = Concise;
+GMAT DC.ReportFile = 'DifferentialCorrectorDC1.data';
+GMAT DC.MaximumIterations = 500;
+GMAT DC.DerivativeMethod = ForwardDifference;
+GMAT DC.Algorithm = NewtonRaphson;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create XYPlot SMA;
+GMAT SMA.SolverIterations = Current;
+GMAT SMA.UpperLeft = [ 0.005678233438485805 0.4796163069544365 ];
+GMAT SMA.Size = [ 0.4813880126182966 0.447242206235012 ];
+GMAT SMA.RelativeZOrder = 842;
+GMAT SMA.Maximized = false;
+GMAT SMA.XVariable = Hyperfield1.ElapsedDays;
+GMAT SMA.YVariables = {Hyperfield1.Earth.SMA};
+GMAT SMA.ShowGrid = true;
+GMAT SMA.ShowPlot = true;
+
+Create XYPlot ECC;
+GMAT ECC.SolverIterations = Current;
+GMAT ECC.UpperLeft = [ 0.02712933753943218 0.01558752997601919 ];
+GMAT ECC.Size = [ 0.4813880126182966 0.447242206235012 ];
+GMAT ECC.RelativeZOrder = 848;
+GMAT ECC.Maximized = false;
+GMAT ECC.XVariable = Hyperfield1.ElapsedDays;
+GMAT ECC.YVariables = {Hyperfield1.Earth.ECC};
+GMAT ECC.ShowGrid = true;
+GMAT ECC.ShowPlot = true;
+
+Create XYPlot FuelMass;
+GMAT FuelMass.SolverIterations = Current;
+GMAT FuelMass.UpperLeft = [ 0.4958990536277603 0.026378896882494 ];
+GMAT FuelMass.Size = [ 0.4649842271293375 0.3920863309352518 ];
+GMAT FuelMass.RelativeZOrder = 827;
+GMAT FuelMass.Maximized = false;
+GMAT FuelMass.XVariable = Hyperfield1.ElapsedDays;
+GMAT FuelMass.YVariables = {Hyperfield1.ElectricTank1.FuelMass};
+GMAT FuelMass.ShowGrid = true;
+GMAT FuelMass.ShowPlot = true;
+
+Create XYPlot RMAG;
+GMAT RMAG.SolverIterations = Current;
+GMAT RMAG.UpperLeft = [ 0.4473186119873817 0.4232613908872902 ];
+GMAT RMAG.Size = [ 0.4675078864353313 0.4496402877697842 ];
+GMAT RMAG.RelativeZOrder = 832;
+GMAT RMAG.Maximized = false;
+GMAT RMAG.XVariable = Hyperfield1.ElapsedDays;
+GMAT RMAG.YVariables = {Hyperfield1.Earth.RMAG};
+GMAT RMAG.ShowGrid = true;
+GMAT RMAG.ShowPlot = true;
+
+Create XYPlot ALT;
+GMAT ALT.SolverIterations = Current;
+GMAT ALT.UpperLeft = [ 0.4725552050473186 0.4832134292565947 ];
+GMAT ALT.Size = [ 0.5369085173501578 0.4496402877697842 ];
+GMAT ALT.RelativeZOrder = 837;
+GMAT ALT.Maximized = false;
+GMAT ALT.XVariable = Hyperfield1.ElapsedDays;
+GMAT ALT.YVariables = {Hyperfield1.Earth.Altitude};
+GMAT ALT.ShowGrid = true;
+GMAT ALT.ShowPlot = true;
+
+Create XYPlot XYPlot1;
+GMAT XYPlot1.SolverIterations = Current;
+GMAT XYPlot1.UpperLeft = [ 0.003154574132492114 0 ];
+GMAT XYPlot1.Size = [ 0.5003154574132492 0.4496402877697842 ];
+GMAT XYPlot1.RelativeZOrder = 864;
+GMAT XYPlot1.Maximized = false;
+GMAT XYPlot1.XVariable = Hyperfield1.ElapsedDays;
+GMAT XYPlot1.YVariables = {Hyperfield1.ElectricThruster1.DutyCycle};
+GMAT XYPlot1.ShowGrid = true;
+GMAT XYPlot1.ShowPlot = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable BurnDuration1 BurnDuration2;
+GMAT BurnDuration1 = 0;
+GMAT BurnDuration2 = 0;
+
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+While Hyperfield1.ElapsedDays < 30
+   Propagate LEOprop(Hyperfield1);
+   If Hyperfield1.Earth.RMAG < 6730.52
+      Propagate LEOprop(Hyperfield1) {Hyperfield1.Earth.Periapsis};
+      Target DC {SolveMode = Solve, ExitMode = SaveAndContinue, ShowProgressWindow = true};
+         Vary 'VaryFirstBurnDuration' DC(BurnDuration1 = 752.6076780580162, {Perturbation = 0.0001, Lower = 0.0, Upper = 50000, MaxStep = 0.05, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+         BeginFiniteBurn 'BeginFirstBurn' FiniteBurn1(Hyperfield1);
+         Propagate 'PropFirstBurnDuration' LEOprop(Hyperfield1) {Hyperfield1.ElapsedSecs = BurnDuration1};
+         EndFiniteBurn 'EndFirstBurn' FiniteBurn1(Hyperfield1);
+         Achieve 'RaiseOrbit' DC(Hyperfield1.Earth.SMA = 6740.52, {Tolerance = 0.6});
+      EndTarget;  % For targeter DC
+      Propagate LEOprop(Hyperfield1) {Hyperfield1.Earth.Apoapsis};
+      Target DC {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
+         Vary DC(BurnDuration2 = 0, {Perturbation = 0.0001, Lower = 0.0, Upper = 5000, MaxStep = 5, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+         BeginFiniteBurn FiniteBurn2(Hyperfield1);
+         Propagate LEOprop(Hyperfield1) {Hyperfield1.ElapsedSecs = BurnDuration2};
+         EndFiniteBurn FiniteBurn2(Hyperfield1);
+         Achieve DC(Hyperfield1.Earth.ECC = 0.0001, {Tolerance = 0.0002});
+      EndTarget;  % For targeter DC
+   EndIf;
+EndWhile;
