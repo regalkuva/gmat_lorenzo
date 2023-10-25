@@ -1,0 +1,180 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-10-19 15:52:05
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft RHW;
+GMAT RHW.DateFormat = A1Gregorian;
+GMAT RHW.Epoch = '22 Oct 2023 20:38:42.288';
+GMAT RHW.CoordinateSystem = EarthMJ2000Eq;
+GMAT RHW.DisplayStateType = Cartesian;
+GMAT RHW.X = 5682.36099349;
+GMAT RHW.Y = 3198.52350568;
+GMAT RHW.Z = 14.71709719;
+GMAT RHW.VX = 0.47908982;
+GMAT RHW.VY = -0.8681241;
+GMAT RHW.VZ = 7.75519622;
+GMAT RHW.DryMass = 2.007;
+GMAT RHW.Cd = 2.2;
+GMAT RHW.Cr = 1.8;
+GMAT RHW.DragArea = 0.008500000000000001;
+GMAT RHW.SRPArea = 0.08500000000000001;
+GMAT RHW.SPADDragScaleFactor = 1;
+GMAT RHW.SPADSRPScaleFactor = 1;
+GMAT RHW.AtmosDensityScaleFactor = 1;
+GMAT RHW.ExtendedMassPropertiesModel = 'None';
+GMAT RHW.NAIFId = -10000001;
+GMAT RHW.NAIFIdReferenceFrame = -9000001;
+GMAT RHW.OrbitColor = Red;
+GMAT RHW.TargetColor = Teal;
+GMAT RHW.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT RHW.CdSigma = 1e+70;
+GMAT RHW.CrSigma = 1e+70;
+GMAT RHW.Id = 'SatId';
+GMAT RHW.Attitude = CoordinateSystemFixed;
+GMAT RHW.SPADSRPInterpolationMethod = Bilinear;
+GMAT RHW.SPADSRPScaleFactorSigma = 1e+70;
+GMAT RHW.SPADDragInterpolationMethod = Bilinear;
+GMAT RHW.SPADDragScaleFactorSigma = 1e+70;
+GMAT RHW.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT RHW.ModelFile = 'aura.3ds';
+GMAT RHW.ModelOffsetX = 0;
+GMAT RHW.ModelOffsetY = 0;
+GMAT RHW.ModelOffsetZ = 0;
+GMAT RHW.ModelRotationX = 0;
+GMAT RHW.ModelRotationY = 0;
+GMAT RHW.ModelRotationZ = 0;
+GMAT RHW.ModelScale = 1;
+GMAT RHW.AttitudeDisplayStateType = 'Quaternion';
+GMAT RHW.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT RHW.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT RHW.EulerAngleSequence = '321';
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Jupiter, Luna, Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 21;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 21;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 150;
+GMAT DefaultProp_ForceModel.Drag.F107A = 150;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT DefaultProp_ForceModel.Drag.DragModel = 'Spherical';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 1;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 1;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create DynamicDataDisplay Data;
+GMAT Data.UpperLeft = [ 0.08205128205128205 0.09798994974874371 ];
+GMAT Data.Size = [ 0.2025641025641026 0.4798994974874372 ];
+GMAT Data.RelativeZOrder = 77;
+GMAT Data.Maximized = false;
+GMAT Data.AddParameters = {1, RHW.ElapsedSecs};
+GMAT Data.AddParameters = {2, RHW.Earth.Altitude};
+GMAT Data.AddParameters = {3, RHW.EarthMJ2000Eq.BrouwerLongSMA};
+GMAT Data.AddParameters = {4, RHW.Earth.SMA};
+GMAT Data.AddParameters = {5, OrbitNo};
+GMAT Data.AddParameters = {6, RHW.A1Gregorian};
+GMAT Data.AddParameters = {7, RHW.Earth.Latitude};
+GMAT Data.AddParameters = {8, RHW.Earth.Longitude};
+GMAT Data.AddParameters = {9, RHW.Earth.LST};
+GMAT Data.AddParameters = {10, RHW.Earth.RadApo};
+GMAT Data.AddParameters = {11, RHW.Earth.RadPer};
+GMAT Data.RowTextColors = {1, [0 0 0]};
+GMAT Data.RowTextColors = {2, [0 0 0]};
+GMAT Data.RowTextColors = {3, [0 0 0]};
+GMAT Data.RowTextColors = {4, [0 0 0]};
+GMAT Data.RowTextColors = {5, [0 0 0]};
+GMAT Data.RowTextColors = {6, [0 0 0]};
+GMAT Data.RowTextColors = {7, [0 0 0]};
+GMAT Data.RowTextColors = {8, [0 0 0]};
+GMAT Data.RowTextColors = {9, [0 0 0]};
+GMAT Data.RowTextColors = {10, [0 0 0]};
+GMAT Data.RowTextColors = {11, [0 0 0]};
+GMAT Data.WarnColor = [218 165 32];
+GMAT Data.CritColor = [255 0 0];
+
+Create ReportFile DefaultReportFile;
+GMAT DefaultReportFile.SolverIterations = Current;
+GMAT DefaultReportFile.UpperLeft = [ 0.1 0.195 ];
+GMAT DefaultReportFile.Size = [ 0.5995726495726496 0.7991666666666667 ];
+GMAT DefaultReportFile.RelativeZOrder = 200;
+GMAT DefaultReportFile.Maximized = false;
+GMAT DefaultReportFile.Filename = 'DefaultReportFile.txt';
+GMAT DefaultReportFile.Precision = 16;
+GMAT DefaultReportFile.WriteHeaders = true;
+GMAT DefaultReportFile.LeftJustify = On;
+GMAT DefaultReportFile.ZeroFill = Off;
+GMAT DefaultReportFile.FixedWidth = true;
+GMAT DefaultReportFile.Delimiter = ' ';
+GMAT DefaultReportFile.ColumnWidth = 23;
+GMAT DefaultReportFile.WriteReport = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable OrbitNo;
+GMAT OrbitNo = 0;
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+While RHW.ElapsedDays < 3600
+   Propagate DefaultProp(RHW) {RHW.EarthMJ2000Eq.RA = RHW.EarthMJ2000Eq.RAAN};
+   
+   BeginScript
+      GMAT OrbitNo = OrbitNo + 1;
+   EndScript;
+   Report DefaultReportFile RHW.ElapsedDays RHW.Earth.SMA RHW.Earth.ECC RHW.Earth.Altitude RHW.Earth.RadApo RHW.Earth.RadPer;
+   UpdateDynamicData Data;
+EndWhile;
