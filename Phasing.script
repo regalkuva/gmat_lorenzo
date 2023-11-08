@@ -24,6 +24,8 @@ GMAT DefaultLower.DragArea = 15;
 GMAT DefaultLower.SRPArea = 1;
 GMAT DefaultLower.SPADDragScaleFactor = 1;
 GMAT DefaultLower.SPADSRPScaleFactor = 1;
+GMAT DefaultLower.AtmosDensityScaleFactor = 1;
+GMAT DefaultLower.ExtendedMassPropertiesModel = 'None';
 GMAT DefaultLower.NAIFId = -10000001;
 GMAT DefaultLower.NAIFIdReferenceFrame = -9000001;
 GMAT DefaultLower.OrbitColor = Red;
@@ -37,6 +39,7 @@ GMAT DefaultLower.SPADSRPInterpolationMethod = Bilinear;
 GMAT DefaultLower.SPADSRPScaleFactorSigma = 1e+70;
 GMAT DefaultLower.SPADDragInterpolationMethod = Bilinear;
 GMAT DefaultLower.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultLower.AtmosDensityScaleFactorSigma = 1e+70;
 GMAT DefaultLower.ModelFile = 'aura.3ds';
 GMAT DefaultLower.ModelOffsetX = 0;
 GMAT DefaultLower.ModelOffsetY = 0;
@@ -62,8 +65,8 @@ GMAT DefaultHigher.DateFormat = TAIModJulian;
 GMAT DefaultHigher.Epoch = '21545';
 GMAT DefaultHigher.CoordinateSystem = EarthMJ2000Eq;
 GMAT DefaultHigher.DisplayStateType = Keplerian;
-GMAT DefaultHigher.SMA = 7591.938817629008;
-GMAT DefaultHigher.ECC = 4.633068598906538e-16;
+GMAT DefaultHigher.SMA = 7581.938817629011;
+GMAT DefaultHigher.ECC = 7.921862556380526e-16;
 GMAT DefaultHigher.INC = 12.85008005658091;
 GMAT DefaultHigher.RAAN = 306.6148021947984;
 GMAT DefaultHigher.AOP = 0;
@@ -75,6 +78,8 @@ GMAT DefaultHigher.DragArea = 15;
 GMAT DefaultHigher.SRPArea = 1;
 GMAT DefaultHigher.SPADDragScaleFactor = 1;
 GMAT DefaultHigher.SPADSRPScaleFactor = 1;
+GMAT DefaultHigher.AtmosDensityScaleFactor = 1;
+GMAT DefaultHigher.ExtendedMassPropertiesModel = 'None';
 GMAT DefaultHigher.NAIFId = -10000001;
 GMAT DefaultHigher.NAIFIdReferenceFrame = -9000001;
 GMAT DefaultHigher.OrbitColor = [255 255 0];
@@ -88,6 +93,7 @@ GMAT DefaultHigher.SPADSRPInterpolationMethod = Bilinear;
 GMAT DefaultHigher.SPADSRPScaleFactorSigma = 1e+70;
 GMAT DefaultHigher.SPADDragInterpolationMethod = Bilinear;
 GMAT DefaultHigher.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultHigher.AtmosDensityScaleFactorSigma = 1e+70;
 GMAT DefaultHigher.ModelFile = 'aura.3ds';
 GMAT DefaultHigher.ModelOffsetX = 0;
 GMAT DefaultHigher.ModelOffsetY = 0;
@@ -124,6 +130,7 @@ GMAT Propagator1_ForceModel.GravityField.Earth.Order = 4;
 GMAT Propagator1_ForceModel.GravityField.Earth.StmLimit = 100;
 GMAT Propagator1_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
 GMAT Propagator1_ForceModel.GravityField.Earth.TideModel = 'None';
+
 
 
 
@@ -320,6 +327,7 @@ GMAT TA_Lower = 0;
 GMAT TA_Higher = 0;
 GMAT TA_Difference = 0;
 GMAT DistanceBtwSC = 0;
+
 
 
 
