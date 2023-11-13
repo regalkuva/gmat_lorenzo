@@ -1,0 +1,158 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-11-09 18:05:33
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft HWR;
+GMAT HWR.DateFormat = UTCGregorian;
+GMAT HWR.Epoch = '30 Nov 2018 03:52:48.000';
+GMAT HWR.CoordinateSystem = EarthMJ2000Eq;
+GMAT HWR.DisplayStateType = Keplerian;
+GMAT HWR.SMA = 6865.501217185904;
+GMAT HWR.ECC = 0.001662799999999826;
+GMAT HWR.INC = 97.4864;
+GMAT HWR.RAAN = 39.16399999999999;
+GMAT HWR.AOP = 8.537736462515939e-07;
+GMAT HWR.TA = 8.537736462515939e-07;
+GMAT HWR.DryMass = 2.4;
+GMAT HWR.Cd = 2.2;
+GMAT HWR.Cr = 1.8;
+GMAT HWR.DragArea = 0.01;
+GMAT HWR.SRPArea = 0.02;
+GMAT HWR.SPADDragScaleFactor = 1;
+GMAT HWR.SPADSRPScaleFactor = 1;
+GMAT HWR.AtmosDensityScaleFactor = 1;
+GMAT HWR.ExtendedMassPropertiesModel = 'None';
+GMAT HWR.NAIFId = -10000001;
+GMAT HWR.NAIFIdReferenceFrame = -9000001;
+GMAT HWR.OrbitColor = Red;
+GMAT HWR.TargetColor = Teal;
+GMAT HWR.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT HWR.CdSigma = 1e+70;
+GMAT HWR.CrSigma = 1e+70;
+GMAT HWR.Id = 'SatId';
+GMAT HWR.Attitude = CoordinateSystemFixed;
+GMAT HWR.SPADSRPInterpolationMethod = Bilinear;
+GMAT HWR.SPADSRPScaleFactorSigma = 1e+70;
+GMAT HWR.SPADDragInterpolationMethod = Bilinear;
+GMAT HWR.SPADDragScaleFactorSigma = 1e+70;
+GMAT HWR.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT HWR.ModelFile = 'aura.3ds';
+GMAT HWR.ModelOffsetX = 0;
+GMAT HWR.ModelOffsetY = 0;
+GMAT HWR.ModelOffsetZ = 0;
+GMAT HWR.ModelRotationX = 0;
+GMAT HWR.ModelRotationY = 0;
+GMAT HWR.ModelRotationZ = 0;
+GMAT HWR.ModelScale = 1;
+GMAT HWR.AttitudeDisplayStateType = 'Quaternion';
+GMAT HWR.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT HWR.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT HWR.EulerAngleSequence = '321';
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Luna, Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = MSISE90;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 150;
+GMAT DefaultProp_ForceModel.Drag.F107A = 150;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT DefaultProp_ForceModel.Drag.DragModel = 'Spherical';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create DifferentialCorrector DC1;
+GMAT DC1.ShowProgress = true;
+GMAT DC1.ReportStyle = Normal;
+GMAT DC1.ReportFile = 'DifferentialCorrectorDC1.data';
+GMAT DC1.MaximumIterations = 25;
+GMAT DC1.DerivativeMethod = ForwardDifference;
+GMAT DC1.Algorithm = NewtonRaphson;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
+GMAT DefaultOrbitView.Size = [ 0.9976470588235294 0.3308457711442786 ];
+GMAT DefaultOrbitView.RelativeZOrder = 473;
+GMAT DefaultOrbitView.Maximized = false;
+GMAT DefaultOrbitView.Add = {HWR, Earth};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = On;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = On;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = Off;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+While HWR.ElapsedDays < 1788
+   Propagate 'Propagate1orbit' DefaultProp(HWR) {HWR.EarthMJ2000Eq.RA = HWR.EarthMJ2000Eq.RAAN};
+EndWhile;
