@@ -137,7 +137,8 @@ print(df)
 #     df_string = df.to_string()
 #     f.write(df_string)
 
-
+# RANDOM UPDATE FOR GITHUB
+print(f'\nProcess finished --- {time.time() - process_start_time}')
 
 fig, ax = plt.subplots(2,3, figsize=(20,12))
 ax[0,0].plot(range(len(a_list)), a_list)
@@ -171,5 +172,3 @@ ax[1,2].set(title = "True anomaly vs Elapsed Time",
        ylabel = "TA [deg]")
 
 plt.show()
-
-print(f'\nProcess finished --- {time.time() - process_start_time}')
