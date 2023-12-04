@@ -1,20 +1,19 @@
 ## ORBIT PROPAGATOR WITH J2 + ATMOSPHERIC DRAG PERTUBATIONS
 
 from astropy import units as u
-from astropy.time import Time
+from astropy.time import Time, TimeDelta
 
 from poliastro.bodies import Earth
 from poliastro.constants import rho0_earth, H0_earth
 from poliastro.twobody import Orbit
 from poliastro.twobody.propagation import CowellPropagator
-from poliastro.core.perturbations import J2_perturbation
+from poliastro.twobody.sampling import EpochsArray
+from poliastro.core.perturbations import J2_perturbation, atmospheric_drag_exponential
 from poliastro.core.propagation import func_twobody 
 from poliastro.util import Time
 #from poliastro.plotting import OrbitPlotter2D
 
-from atmo_drag_functions import jb2008_pertubation
-
-#from numba import njit as jit
+from numba import njit as jit
 
 import pandas as pd
 import numpy as np
@@ -59,13 +58,6 @@ C_D = 2.2
 A_over_m = ((0.01 * u.m**2) / (2.5 * u.kg)).to_value(u.km**2 / u.kg)   # km**2/kg
 B = C_D * A_over_m   # ballistic coefficient at low drag mode
 
-# JB200 atmpospheric pertubation
-from pyatmos import download_sw_jb2008,read_sw_jb2008
-# Download or update the space weather file from https://sol.spacenvironment.net
-swfile = download_sw_jb2008() 
-# Read the space weather data
-swdata = read_sw_jb2008(swfile) 
-
 a_list     = [in_orbit.a.value]
 ecc_list   = [in_orbit.ecc.value]
 inc_list   = [in_orbit.inc.value]
@@ -74,19 +66,17 @@ argp_list  = [in_orbit.argp.value]
 nu_list    = [in_orbit.nu.value]
 epoch_list = [in_orbit.epoch.value]
 
-t = time_step
-old_orbit = in_orbit
-
-def a_d(t0, state, k, J2, R, C_D, A_over_m, epoch, swdata):
+@jit
+def a_d(t0, state, k, J2, R, C_D, A_over_m, H0, rho0):
 
         return J2_perturbation(
         t0, state, k, J2, R
-        ) + jb2008_pertubation(
-            epoch, state, R, C_D, A_over_m, swdata
+        ) + atmospheric_drag_exponential(
+            t0, state, k, R, C_D, A_over_m, H0, rho0
         )
         
 def f(t0, state, k):
-
+        
         du_kep = func_twobody(t0, state, k)
         ax, ay, az = a_d(
             t0, 
@@ -96,32 +86,28 @@ def f(t0, state, k):
             R = R, 
             C_D = C_D, 
             A_over_m = A_over_m, 
-            epoch=date, 
-            swdata=swdata
+            H0 = H0, 
+            rho0 = rho0
             )
         du_ad = np.array([0, 0, 0, ax, ay, az])
 
         return du_kep + du_ad
 
 
+numero = int(time_frame.to_value(u.s) / time_step.value)
 
-while t <= time_frame:
+tofs = TimeDelta(np.linspace(0, time_frame, num=numero))
+ephem_tofs = in_orbit.to_ephem(EpochsArray(start_date + tofs, method=CowellPropagator(rtol=1e-5, f=f)))
+
+for epoch in range(len(tofs)):
     
-    date = old_orbit.epoch.value
-
-    new_orbit = old_orbit.propagate(time_step, method=CowellPropagator(rtol=1e-5, f=f))
-
-
-    a_list.append(new_orbit.a.value)
-    ecc_list.append(new_orbit.ecc.value)
-    inc_list.append(new_orbit.inc.to_value(u.deg))
-    raan_list.append(new_orbit.raan.to_value(u.deg))
-    argp_list.append(new_orbit.argp.to_value(u.deg))
-    nu_list.append(new_orbit.nu.to_value(u.deg))
-    epoch_list.append(new_orbit.epoch.value)
-
-    old_orbit = new_orbit
-    t = t + time_step
+    a_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).a.value)
+    ecc_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).ecc.value)
+    inc_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).inc.to_value(u.deg))
+    raan_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).raan.to_value(u.deg))
+    argp_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).argp.to_value(u.deg))
+    nu_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).nu.to_value(u.deg))
+    epoch_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).epoch.value)
 
 # Orbital elements data
 data_table = zip(epoch_list, a_list, ecc_list, inc_list, raan_list, argp_list, nu_list)
@@ -137,11 +123,10 @@ print(df)
 #     df_string = df.to_string()
 #     f.write(df_string)
 
-# RANDOM UPDATE FOR GITHUB
 print(f'\nProcess finished --- {time.time() - process_start_time}')
 
 fig, ax = plt.subplots(2,3, figsize=(20,12))
-ax[0,0].plot(range(len(a_list)), a_list)
+ax[0,0].plot(epoch_list, a_list)
 ax[0,0].set(title = "Semi-major axis vs Elapsed Time",
        xlabel = "t [days]",
        ylabel = "SMA [Km]")
