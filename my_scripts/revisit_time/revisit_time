@@ -1,0 +1,76 @@
+## REVISIT TIME CALCULATOR ON A SPECIFIC LOCATION ON EARTH
+
+from astropy import units as u
+from astropy.time import Time, TimeDelta
+
+from poliastro.bodies import Earth
+from poliastro.twobody import Orbit
+from poliastro.twobody.events import Event
+from poliastro.twobody.sampling import EpochsArray
+from poliastro.twobody.propagation import CowellPropagator
+from poliastro.util import Time
+from poliastro.plotting import OrbitPlotter2D
+
+from haversine import haversine
+
+import numpy as np
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+print('\nKEPLERIAN TWO-BODY PROPAGATOR\n')
+# initial orbital elements
+alt  = 380         * u.km
+a    = Earth.R + alt
+ecc  = 0.0016628   * u.one
+inc  = 97.4864     * u.deg
+raan = 39.164      * u.deg
+argp = 325.3203    * u.deg
+nu   = 126.202     * u.deg 
+
+start_date = Time("2018-11-30 03:53:03.550", scale = "utc")   # epoch
+
+# sensor parameters
+sw = 50*0.5 # [km]
+
+# 25 km --> 0.22483 deg of latitude
+
+target = (40.8518, 14.2681)   # Napoli latitude/longitude [deg]
+
+# Definition of the initial orbit (poliastro)
+in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, start_date)
+
+# Keplerian two-body propagation (poliastro)
+time_frame = 300 * u.day   #float(input('Time frame [days]: '))
+time_step  = 60 * u.s     #float(input('Time step [sec]: '))
+
+number = int(time_frame.to_value(u.s) / time_step.value)
+tofs = TimeDelta(np.linspace(0, time_frame, num=number))
+
+
+
+ephems = in_orbit.to_ephem(EpochsArray(start_date + tofs, CowellPropagator(rtol=1e-5)))
+rvec, _ = ephems.rv()
+rvec = rvec.value
+
+access_time = []
+
+for idx in range(len(rvec)):
+    lat = (np.arctan2(rvec[idx][2], np.sqrt(rvec[idx][0]**2 + rvec[idx][1]**2))) * u.rad
+    lon = (np.arctan2(rvec[idx][1], rvec[idx][0])) * u.rad
+
+    pos = (lat.to_value(u.deg), lon.to_value(u.deg))
+
+    dist = haversine(pos, target)
+
+    if  dist < sw:
+        access_time.append(ephems.epochs[idx])
+
+
+print(access_time)
+
+
+
+
+
+
