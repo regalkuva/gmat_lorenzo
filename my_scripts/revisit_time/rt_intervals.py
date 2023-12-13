@@ -57,7 +57,7 @@ ephems = in_orbit.to_ephem(EpochsArray(start_date + tofs, CowellPropagator(rtol=
 revisit_time = []
 i = 0
 
-while len(revisit_time) < 3:
+for i in range(len(tofs))
     curr_orbit = Orbit.from_ephem(Earth, ephems, ephems.epochs[i])
 
     xyz  = curr_orbit.represent_as(coord.CartesianRepresentation)
@@ -76,7 +76,7 @@ while len(revisit_time) < 3:
 print(revisit_time)
 
     
-
+print(f'\nProcess finished --- {int(time.time() - process_start_time)}')
 
 
 

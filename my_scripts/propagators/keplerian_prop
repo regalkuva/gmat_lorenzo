@@ -106,6 +106,3 @@ path = r'C:\Users\Lorenzo\Documents\GitHub\gmat_lorenzo\my_scripts\keplerian_pro
 with open(path, 'a') as f:
     df_string = df.to_string()
     f.write(df_string)
-
-
-

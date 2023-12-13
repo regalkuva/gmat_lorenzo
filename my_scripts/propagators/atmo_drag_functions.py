@@ -2,7 +2,9 @@
 
 import numpy as np
 
-from pyatmos import expo, jb2008
+from astropy import units as u
+
+from pyatmos import expo, jb2008, coesa76
 
 # Exponential model
 def atmoexpo_pertubation(state, R, C_D, A_over_m):
@@ -24,6 +26,21 @@ def atmoexpo_pertubation(state, R, C_D, A_over_m):
     rho = expo_geom.rho
 
     return - 0.5 * rho * C_D * A_over_m * v * v_vec
+
+
+def coesa76_pertubation(state, R, C_D, A_over_m):
+    
+    H = np.linalg.norm(state[:3])
+
+    v_vec = state[3:]
+    v = np.linalg.norm(v_vec)
+    
+    coesa_geom = coesa76(H - R)
+    rho = coesa_geom.rho
+
+    return - 0.5 * rho * C_D * A_over_m * v * v_vec
+
+
 
 # JB2008 model
 def jb2008_pertubation(epoch, state, R, C_D, A_over_m, swdata):
@@ -56,6 +73,6 @@ def jb2008_pertubation(epoch, state, R, C_D, A_over_m, swdata):
     date = epoch
 
     jb08 = jb2008(date,(lat,lon,H-R),swdata)
-    rho = jb08.rho
+    rho = (jb08.rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
     return - 0.5 * rho * C_D * A_over_m * v * v_vec

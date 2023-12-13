@@ -63,8 +63,6 @@ def a_d(t0, state, k, J2, R, C_D, A_over_m, H0, rho0):
         t0, state, k, R, C_D, A_over_m, H0, rho0
     )
 
-
-
 tofs = TimeDelta(np.linspace(0, 10 * u.day, num=10 * 500))
 
 def f(t0, state, k):

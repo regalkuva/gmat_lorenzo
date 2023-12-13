@@ -36,7 +36,7 @@ argp = 0 * u.deg
 
 start_date = Time("2023-01-01 00:00:00.000", scale = "utc")
 
-time_frame = 5 * u.day   #float(input('Time frame [days]: ')) * u.day
+time_frame = 3 * u.day   #float(input('Time frame [days]: ')) * u.day
 time_step  = 1 * u.s #float(input('Time step [sec]: ')) * u.s
 
 number = int(time_frame.to_value(u.s) / time_step.value)
@@ -70,31 +70,31 @@ access_time = []
 revisit_time = []
 j = 0
 
-while len(revisit_time) == 0:
+#while len(revisit_time) < 2:
 
-    for inst in range(len(tofs)):
+for inst in range(len(tofs)):
 
-        for sat in range(t):
-            curr_orbit = Orbit.from_ephem(Earth, sats_orbit_list[sat], sats_orbit_list[0].epochs[inst])
-            xyz  = curr_orbit.represent_as(coord.CartesianRepresentation)
-            gcrs = coord.GCRS(xyz, obstime=sats_orbit_list[0].epochs[inst])
-            itrs = gcrs.transform_to(coord.ITRS(obstime=sats_orbit_list[0].epochs[inst]))
-            loc  = coord.EarthLocation.from_geocentric(itrs.x, itrs.y, itrs.z)
+    for sat in range(t):
+        curr_orbit = Orbit.from_ephem(Earth, sats_orbit_list[sat], sats_orbit_list[0].epochs[inst])
+        xyz  = curr_orbit.represent_as(coord.CartesianRepresentation)
+        gcrs = coord.GCRS(xyz, obstime=sats_orbit_list[0].epochs[inst])
+        itrs = gcrs.transform_to(coord.ITRS(obstime=sats_orbit_list[0].epochs[inst]))
+        loc  = coord.EarthLocation.from_geocentric(itrs.x, itrs.y, itrs.z)
 
-            lon, lat, _ = loc.to_geodetic()
-            pos = (lat.value, lon.value)
-            dist = haversine(pos, target)
-            print(dist)
+        lon, lat, _ = loc.to_geodetic()
+        pos = (lat.value, lon.value)
+        dist = haversine(pos, target)
+        #print(dist)
 
-            if  dist < sw:
-                access_time.append(sats_orbit_list[0].epochs[inst])
+        if  dist < sw:
+            access_time.append(sats_orbit_list[0].epochs[inst])
                 
-                if (len(access_time)>1) and (((access_time[j].jd - access_time[j-1].jd)) > ((5*u.s).to_value(u.day))):
-                    revisit_time.append(access_time[j].jd - access_time[j-1].jd)
+            if (len(access_time)>1) and (((access_time[j].jd - access_time[j-1].jd)) > ((60*u.s).to_value(u.day))):
+                revisit_time.append(access_time[j].jd - access_time[j-1].jd)
 
-                j += 1
+            j += 1
 
-
+print(f'\n{access_time}\n')
 print(f'\nRevisit time = {revisit_time} s\n')
 print(f'\nProcess finished --- {int(time.time() - process_start_time)}')
 

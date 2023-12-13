@@ -17,8 +17,8 @@ from inc_from_smaecc import required_inc
 import numpy as np
 import time
 
-from poliastro.plotting import OrbitPlotter3D
-from matplotlib import pyplot as plt
+# from poliastro.plotting import OrbitPlotter3D
+# from matplotlib import pyplot as plt
 
 # 3 planes, 90 satellite, wd: i:90/3/5, 380km SSO 
 
@@ -36,14 +36,14 @@ argp = 0 * u.deg
 
 start_date = Time("2023-01-01 12:00:00.000", scale = "utc")
 
-time_frame = 0.1 * u.day   #float(input('Time frame [days]: ')) * u.day
+time_frame = 1 * u.day   #float(input('Time frame [days]: ')) * u.day
 time_step  = 5 * u.s #float(input('Time step [sec]: ')) * u.s
 
 number = int(time_frame.to_value(u.s) / time_step.value)
 tofs = TimeDelta(np.linspace(0, time_frame, num=number))
 
 # sensor parameters
-sw = 200 * 0.5 # [km]
+sw = 50 * 0.5 # [km]
 
 targets_coord = {'Naples': (40.8518, 14.2681), 'Helsinki': (60.1699, 24.9384)}
 target = targets_coord['Naples']   # latitude/longitude [deg]
@@ -65,36 +65,26 @@ for plane in range(p):
         ephem = orbit_0.to_ephem(EpochsArray(start_date + tofs, method=CowellPropagator(rtol=1e-5)))
         sats_orbit_list.append(ephem)
 
-
 access_time = []
-revisit_time = []
-j = 0
 
-while len(revisit_time) == 0:
 
-    for inst in range(len(tofs)):
+for inst in range(len(tofs)):
 
-        for sat in range(t):
-            curr_orbit = Orbit.from_ephem(Earth, sats_orbit_list[sat], sats_orbit_list[0].epochs[inst])
-            xyz  = curr_orbit.represent_as(coord.CartesianRepresentation)
-            gcrs = coord.GCRS(xyz, obstime=sats_orbit_list[0].epochs[inst])
-            itrs = gcrs.transform_to(coord.ITRS(obstime=sats_orbit_list[0].epochs[inst]))
-            loc  = coord.EarthLocation.from_geocentric(itrs.x, itrs.y, itrs.z)
+    for sat in range(t):
+        curr_orbit = Orbit.from_ephem(Earth, sats_orbit_list[sat], sats_orbit_list[0].epochs[inst])
+        xyz  = curr_orbit.represent_as(coord.CartesianRepresentation)
+        gcrs = coord.GCRS(xyz, obstime=sats_orbit_list[0].epochs[inst])
+        itrs = gcrs.transform_to(coord.ITRS(obstime=sats_orbit_list[0].epochs[inst]))
+        loc  = coord.EarthLocation.from_geocentric(itrs.x, itrs.y, itrs.z)
 
-            lon, lat, _ = loc.to_geodetic()
-            pos = (lat.value, lon.value)
-            dist = haversine(pos, target)
+        lon, lat, _ = loc.to_geodetic()
+        pos = (lat.value, lon.value)
+        dist = haversine(pos, target)
 
-            if  dist < sw:
-                access_time.append(sats_orbit_list[0].epochs[inst])
+        if  dist < sw:
+            access_time.append(sats_orbit_list[0].epochs[inst])
                 
-                if (len(access_time)>1) and (((access_time[j].jd - access_time[j-1].jd)) > ((10*u.s).to_value(u.day))):
-                    revisit_time.append(((access_time[j].jd - access_time[j-1].jd)*u.day).to(u.h))
 
-                j += 1
-
-
-print(f'\nRevisit time = {(revisit_time)} hours')
 print(f'\nAccess Times = {access_time}\n')
 print(f'\nProcess finished --- {int(time.time() - process_start_time)}')
 

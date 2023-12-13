@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2023-12-12 11:03:10
+%Created: 2023-12-11 16:52:35
 
 
 %----------------------------------------
@@ -73,7 +73,7 @@ GMAT Naples.DataSource = 'Constant';
 GMAT Naples.Temperature = 295.1;
 GMAT Naples.Pressure = 1013.5;
 GMAT Naples.Humidity = 55;
-GMAT Naples.MinimumElevationAngle = 82;
+GMAT Naples.MinimumElevationAngle = 80;
 
 %----------------------------------------
 %---------- ForceModels
@@ -138,7 +138,7 @@ Create OrbitView DefaultOrbitView;
 GMAT DefaultOrbitView.SolverIterations = Current;
 GMAT DefaultOrbitView.UpperLeft = [ 0.001282051282051282 0 ];
 GMAT DefaultOrbitView.Size = [ 0.5 0.4496644295302014 ];
-GMAT DefaultOrbitView.RelativeZOrder = 499;
+GMAT DefaultOrbitView.RelativeZOrder = 422;
 GMAT DefaultOrbitView.Maximized = false;
 GMAT DefaultOrbitView.Add = {DefaultSC, Earth};
 GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
@@ -170,7 +170,7 @@ Create GroundTrackPlot DefaultGroundTrackPlot;
 GMAT DefaultGroundTrackPlot.SolverIterations = Current;
 GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.0008547008547008547 0.450503355704698 ];
 GMAT DefaultGroundTrackPlot.Size = [ 0.4995726495726496 0.4488255033557047 ];
-GMAT DefaultGroundTrackPlot.RelativeZOrder = 495;
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 390;
 GMAT DefaultGroundTrackPlot.Maximized = false;
 GMAT DefaultGroundTrackPlot.Add = {DefaultSC, Naples};
 GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
@@ -187,4 +187,4 @@ GMAT DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
 %----------------------------------------
 
 BeginMissionSequence;
-Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedDays = 20};
+Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedDays = 10};
