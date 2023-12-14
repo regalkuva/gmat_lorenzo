@@ -27,7 +27,7 @@ print('\nTWO-BODY PROPAGATOR - ATMOSPHERIC DRAG PERTUBATION\n')
 # initial orbital elements
 # RHW:
 a    = 6865.501217 * u.km         #6865.501217
-ecc  = 0.0016628   * u.one
+ecc  = 0.000001   * u.one        #0.0016628  
 inc  = 97.4864     * u.deg
 raan = 39.164      * u.deg
 argp = 325.3203    * u.deg
@@ -60,7 +60,7 @@ rho0 = rho0_earth.to(u.kg/u.km**3).value
 H0   = H0_earth.to(u.km).value
 
 C_D = 2.2
-A_over_m = ((0.01 * u.m**2) / (2.5 * u.kg)).to_value(u.km**2 / u.kg)   # km**2/kg
+A_over_m = ((100 * u.m**2) / (2.5 * u.kg)).to_value(u.km**2 / u.kg)   # km**2/kg
 B = C_D * A_over_m   # ballistic coefficient at low drag mode
 
 @jit
