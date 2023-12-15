@@ -35,8 +35,8 @@ argp = 0 * u.deg
 
 start_date = Time("2023-01-01 00:00:00.000", scale = "utc")
 
-time_frame = 5 * u.day   #float(input('Time frame [days]: ')) * u.day
-time_step  = 1 * u.s #float(input('Time step [sec]: ')) * u.s
+time_frame = 0.3 * u.day   #float(input('Time frame [days]: ')) * u.day
+time_step  = 3600 * u.s #float(input('Time step [sec]: ')) * u.s
 
 number = int(time_frame.to_value(u.s) / time_step.value)
 tofs = TimeDelta(np.linspace(0, time_frame, num=number))

@@ -37,7 +37,7 @@ argp = 0 * u.deg
 start_date = Time("2023-01-01 12:00:00.000", scale = "utc")
 
 time_frame = 1 * u.day   #float(input('Time frame [days]: ')) * u.day
-time_step  = 5 * u.s #float(input('Time step [sec]: ')) * u.s
+time_step  = 8 * u.s #float(input('Time step [sec]: ')) * u.s
 
 number = int(time_frame.to_value(u.s) / time_step.value)
 tofs = TimeDelta(np.linspace(0, time_frame, num=number))
@@ -66,7 +66,6 @@ for plane in range(p):
         sats_orbit_list.append(ephem)
 
 access_time = []
-
 
 for inst in range(len(tofs)):
 

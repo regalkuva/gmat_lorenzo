@@ -21,7 +21,7 @@ A_over_m_low = ((0.01 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^
 
 B_low = C_D * A_over_m_low
 
-A_over_m_high = ((0.1 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
+A_over_m_high = ((10 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
 
 B_high = C_D * A_over_m_high
 
@@ -126,3 +126,15 @@ def pertubations_coesa_high(t0, state, k):
     du_ad = np.array([0, 0, 0, ax, ay, az])
 
     return du_kep + du_ad
+
+
+def acc_max_vs_min(r_vec,v_vec):
+
+    v = np.linalg.norm(v_vec)
+    H = np.linalg.norm(r_vec)
+
+    coesa_geom = coesa76(H - R, 'geometric')
+    rho = (coesa_geom.rho)
+    rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
+
+    return (3/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H

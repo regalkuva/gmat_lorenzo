@@ -117,7 +117,7 @@ for timestamp in range(len(timestamps)):
     ang_vel_diff =  ang_vel_ref - ang_vel_trail
     ang_vel_list.append(ang_vel_diff.value)
 
-    
+
     # ang_vel_ref_list.append(ang_vel_ref.value)
     # ang_vel_trail_list.append(ang_vel_trail.value)
     #  plt.pause(0.00001)
