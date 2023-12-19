@@ -66,7 +66,6 @@ for plane in range(p):
         sats_orbit_list.append(ephem)
 
 access_time = []
-
 for inst in range(len(tofs)):
 
     for sat in range(t):

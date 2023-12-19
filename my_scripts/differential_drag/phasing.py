@@ -18,7 +18,10 @@ from astropy.time import Time
 from datetime import datetime, timedelta
 from sso_inc import inc_from_alt, raan_from_ltan,angle_between
 
-from perturbations import perturbations_atm_low, perturbations_atm_high, perturbations_atm_J2, pertubations_coesa_high, pertubations_coesa_low
+import sys
+sys.path.append('../my_scripts')
+
+from propagators.perturbations import pertubations_coesa_high, pertubations_coesa_low
 
 toc = time.time()
 ## Orbit
