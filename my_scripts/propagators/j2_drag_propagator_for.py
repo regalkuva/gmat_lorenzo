@@ -1,4 +1,4 @@
-## ORBIT PROPAGATOR WITH J2 + ATMOSPHERIC DRAG PERTUBATIONS
+## ORBIT PROPAGATOR WITH J2 + ATMOSPHERIC DRAG PERTURBATIONS
 
 from astropy import units as u
 from astropy.time import Time, TimeDelta
@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import time
 
 
-print('\n--- TWO-BODY PROPAGATOR - J2 & ATMOSPHERIC DRAG PERTUBATIONS ---\n')
+print('\n--- TWO-BODY PROPAGATOR - J2 & ATMOSPHERIC DRAG PERTURBATIONS ---\n')
 # initial orbital elements
 # RHW:
 a    = 6865.501217 * u.km         #6865.501217

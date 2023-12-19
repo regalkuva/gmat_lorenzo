@@ -4,8 +4,6 @@ from astropy import units as u
 
 from poliastro.bodies import Earth
 
-import inc_from_sma&ecc
-
 
 def required_inc(sma, ecc):
     '''This functions provides the required inclination related to the 
@@ -30,9 +28,9 @@ def required_inc(sma, ecc):
     return inc
 
 # # main
-R = Earth.R.to(u.km).value
-h = 350   #altitude
-sma = R + h
-ecc = .00001
-inc = required_inc(sma, ecc)
-print(f'The required inclination for {h} km of altitude is: {inc} degrees')
+# R = Earth.R.to(u.km).value
+# h = 350   #altitude
+# sma = R + h
+# ecc = .00001
+# inc = required_inc(sma, ecc)
+# print(f'The required inclination for {h} km of altitude is: {inc} degrees')
