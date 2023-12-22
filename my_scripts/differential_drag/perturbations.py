@@ -137,4 +137,4 @@ def acc_max_vs_min(r_vec,v_vec):
     rho = (coesa_geom.rho)
     rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
-    return (3/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
+    return (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
