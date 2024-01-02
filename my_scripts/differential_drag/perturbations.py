@@ -138,3 +138,15 @@ def acc_max_vs_min(r_vec,v_vec):
     rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
     return (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
+
+
+def relative_acc(r_vec,v_vec):
+    
+    v = np.linalg.norm(v_vec)
+    H = np.linalg.norm(r_vec)
+
+    coesa_geom = coesa76(H - R, 'geometric')
+    rho = (coesa_geom.rho)
+    rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
+
+    return (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
