@@ -25,6 +25,8 @@ A_over_m_high = ((0.1 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^
 
 B_high = C_D * A_over_m_high
 
+A_over_m_med = ((0.05 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
+
 # parameters of the atmosphere
 rho0 = rho0_earth.to(u.kg / u.km**3).value  # kg/km^3
 H0 = H0_earth.to(u.km).value
@@ -127,6 +129,18 @@ def pertubations_coesa_high(t0, state, k):
 
     return du_kep + du_ad
 
+def pertubations_coesa_med(t0, state, k):
+    du_kep = func_twobody(t0, state, k)
+    ax, ay, az = coesa76_model(
+        state,
+        R=R,
+        C_D=C_D,
+        A_over_m=A_over_m_med
+    )
+    du_ad = np.array([0, 0, 0, ax, ay, az])
+
+    return du_kep + du_ad
+
 
 def acc_max_vs_min(r_vec,v_vec):
 
@@ -137,7 +151,7 @@ def acc_max_vs_min(r_vec,v_vec):
     rho = (coesa_geom.rho)
     rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
-    return (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
+    return 3 * (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
 
 
 def relative_acc(r_vec,v_vec):
@@ -149,4 +163,4 @@ def relative_acc(r_vec,v_vec):
     rho = (coesa_geom.rho)
     rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
-    return (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
+    return 3 * (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
