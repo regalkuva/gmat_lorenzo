@@ -44,8 +44,8 @@ reference_orbit = Orbit.from_classical(
     ecc,
     inc,
     raan,
+    argp
     nu,
-    argp,
     epoch
     )
 trailing_orbit = Orbit.from_classical(
@@ -54,8 +54,8 @@ trailing_orbit = Orbit.from_classical(
     ecc,
     inc,
     raan,
-    nu+(0<<u.deg),
     argp,
+    nu+(0<<u.deg),
     epoch
     )
 
