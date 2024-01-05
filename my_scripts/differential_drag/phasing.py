@@ -44,7 +44,7 @@ reference_orbit = Orbit.from_classical(
     ecc,
     inc,
     raan,
-    argp
+    argp,
     nu,
     epoch
     )
@@ -61,7 +61,7 @@ trailing_orbit = Orbit.from_classical(
 
 # Prop
 start_date_ts = datetime.timestamp(start_date)
-stop_date_ts = datetime.timestamp(start_date + timedelta(hours = 24*7*5))
+stop_date_ts = datetime.timestamp(start_date + timedelta(hours = 24))
 sample_num = 9*1*16*7*2
 timestamps = np.linspace(start_date_ts, stop_date_ts, sample_num)
 time_step = (timestamps[1]-timestamps[0]) << u.s
