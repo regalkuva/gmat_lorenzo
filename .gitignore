@@ -1,6 +1,10 @@
 
-*.pyc
+# *.pyc
 
+# *.txt
+# *.txt
+# my_scripts/RHW/RHW_ECC_data.txt
+
+my_scripts/propagators/rhw_1week.txt
 *.txt
-*.txt
-my_scripts/RHW/RHW_ECC_data.txt
+my_scripts/SSO_functions/__pycache__/raan_from_epoch.cpython-39.pyc
