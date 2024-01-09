@@ -1,0 +1,111 @@
+import numpy as np
+
+def osc2mean(oeosc):
+    global req, j2
+    pi2 = 2.0 * np.pi
+    oetmp = np.zeros(6)
+    
+    for i in range(6):
+        oetmp[i] = oeosc[i]
+
+    a = np.sin(oetmp[5]) * np.sqrt(1.0 - oetmp[1] * oetmp[1])
+    b = oetmp[1] + np.cos(oetmp[5])
+
+    
+    # eccentric anomaly
+    eanom = np.arctan2(a, b)
+    
+    # mean anomaly
+    oetmp[5] = (eanom - oetmp[1] * np.sin(eanom)) % pi2
+    
+    aos = oetmp[0]
+    eos = oetmp[1]
+    ios = oetmp[2]
+    apos = oetmp[3]
+    ranos = oetmp[4]
+    maos = oetmp[5]
+
+    aa = 1.0 / 3.0 - 0.5 * np.sin(ios) ** 2
+    bb = 0.5 * np.sin(ios) ** 2
+
+    if eos < 0.01:
+        lamos = (maos + apos) % pi2
+        zos = eos * np.cos(apos)
+        etaos = eos * np.sin(apos)
+        sl = np.sin(lamos)
+        cl = np.cos(lamos)
+        s2l = np.sin(2 * lamos)
+        c2l = np.cos(2 * lamos)
+        s3l = np.sin(3 * lamos)
+        c3l = np.cos(3 * lamos)
+        s4l = np.sin(4 * lamos)
+        c4l = np.cos(4 * lamos)
+        s2i = np.sin(2 * ios)
+        ci = np.cos(ios)
+
+        am = aos
+        im = ios
+        ranm = ranos
+        mam = maos
+        lamm = lamos
+        zm = zos
+        etam = etaos
+
+        for _ in range(5):
+            asp = 3 * j2 * req * req / am * (bb * c2l + (1 - 3.5 * bb) * zm * cl + (1 - 2.5 * bb) * etam * sl + 3.5 * bb * (zm * c3l + etam * s3l))
+            am = aos - asp
+            isp = 3 * j2 / 8 * req * req / am**2 * s2i * (c2l - zm * cl + etam * sl + 7 / 3 * (zm * c3l + etam * s3l))
+            im = ios - isp
+            ci = np.cos(im)
+            s2i = np.sin(2 * im)
+            bb = 0.5 * np.sin(im) ** 2
+            ransp = 1.5 * j2 * req * req / am**2 * ci * (0.5 * s2l - 3.5 * zm * sl + 2.5 * etam * cl + 7 / 6 * (zm * s3l - etam * c3l))
+            ranm = ranos - ransp
+            lamsp = 1.5 * j2 * req * req / (am**2) * (
+                    -0.5 * (1 - 5 * bb) * s2l + (7 - 77 / 4 * bb) * zm * sl - (6 - 55 / 4 * bb) * etam * cl - (
+                    7 / 6 - 77 / 12 * bb) * (zm * s3l - etam * c3l))
+            lamm = lamos - lamsp
+            sl = np.sin(lamm)
+            cl = np.cos(lamm)
+            s2l = np.sin(2 * lamm)
+            c2l = np.cos(2 * lamm)
+            s3l = np.sin(3 * lamm)
+            c3l = np.cos(3 * lamm)
+            s4l = np.sin(4 * lamm)
+            c4l = np.cos(4 * lamm)
+            zsp = 1.5 * j2 * req * req / am**2 * ((1 - 2.5 * bb) * cl + 7 / 6 * bb * c3l + (
+                    1.5 - 5 * bb) * zm * c2l + (2 - 3 * bb) * etam * s2l + 17 / 4 * bb * (zm * c4l + etam * s4l))
+            zm = zos - zsp
+            etasp = 1.5 * j2 * req * req / am**2 * ((1 - 3.5 * bb) * sl + 7 / 6 * bb * s3l + (1 - 6 * bb) * zm * s2l - (
+                    1.5 - 4 * bb) * etam * c2l + 17 / 4 * bb * (zm * s4l - etam * c4l))
+            etam = etaos - etasp
+
+        em = np.sqrt(etam**2 + zm**2)
+        apm = 0
+
+        if em > 1.0e-8:
+            apm = np.arctan2(etam, zm)
+
+        # "mean" mean anomaly
+        mam = (lamm - apm) % pi2
+
+    else:
+        pm = aos * (1 - eos**2)
+        am = aos
+        em = eos
+        im = ios
+        apm = apos
+        ranm = ranos
+        mam = maos
+        tam = kepler1(mam, em)[1]
+        um = (apm + tam) % pi2
+        hm = pm / (1 + em * np.cos(tam))
+
+        for _ in range(5):
+            asp = 3 * j2 * req * req / am * ((am / hm) ** 3 * (aa + bb * np.cos(2 * um)) - aa * (1 - em**2) ** (-1.5))
+            am = aos - asp
+            isp = 3 / 8 * j2 * req ** 2 / pm ** 2 * np.sin(2 * im) * (
+                    np.cos(2 * um) + em * np.cos(tam + 2 * apm) + 1 / 3 * em * np.cos(3 * tam + 2 * apm))
+            im = ios - isp
+            aa = 1 / 3 - 0.5 * np.sin(im) ** 2
+            bb = 0.5 * np

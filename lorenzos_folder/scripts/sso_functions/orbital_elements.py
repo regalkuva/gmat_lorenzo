@@ -9,12 +9,21 @@ R  = R_earth.to_value(u.km)
 
 def osc2mean(a, ecc, inc, raan, argp, nu):
 
-    a = a.value
-    inc = inc.to_value(u.rad)
-    raan = raan.to_value(u.rad)
-    argp = argp.to_value(u.rad)
-    nu = nu.to_value(u.rad)
-    ma = nu   # supposing ecc<<1
+    # a = a.value
+    # inc = inc.to_value(u.rad)
+    # raan = raan.to_value(u.rad)
+    # argp = argp.to_value(u.rad)
+    # nu = nu.to_value(u.rad)
+
+    a = a
+    inc = (inc<<u.deg).to_value(u.rad)
+    raan = (raan<<u.deg).to_value(u.rad)
+    argp = (argp<<u.deg).to_value(u.rad)
+    nu = (nu<<u.deg).to_value(u.rad)
+
+    ecc_anomaly = np.arccos((ecc + np.cos(nu))/(1 + ecc*np.cos(nu)))
+    ma = ecc_anomaly - ecc*np.sin(ecc_anomaly)
+    # supposing ecc<<1: ma = nu
 
     gamma_2 = - J2 * 0.5 * (R/a)**2   #(G.297)
     eta = (1 - ecc**2)**(0.5)
@@ -85,7 +94,17 @@ def osc2mean(a, ecc, inc, raan, argp, nu):
 
     argp_mean = ma_argp_raan_mean - ma_mean - raan_mean   #(G.317)
 
-    return (a_mean, ecc_mean, inc_mean, raan_mean, argp_mean, ma_mean)
+    inc_mean = inc_mean*180/np.pi
+    if raan_mean < 0:
+        raan_mean = (raan_mean + np.pi)%np.pi * 180/np.pi
+    else:
+        raan_mean = raan_mean*180/np.pi
+    argp_mean = argp_mean*180/np.pi
+    ma_mean = ma_mean*180/np.pi
+    
+    mean_elements = [a_mean, ecc_mean, inc_mean, raan_mean, argp_mean, ma_mean]
+
+    return mean_elements
 
 
 
