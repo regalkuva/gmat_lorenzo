@@ -108,8 +108,9 @@ def osc2mean(a, ecc, inc, raan, argp, nu):
     
     ma_mean = ma_mean*360/np.pi
 
-    argp_mean = (argp_mean*180/np.pi)%360
+    argp_mean = argp_mean*90/np.pi
     
+
     mean_elements = [a_mean, ecc_mean, inc_mean, raan_mean, argp_mean, ma_mean]
 
     return mean_elements

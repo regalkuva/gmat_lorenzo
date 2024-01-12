@@ -164,3 +164,53 @@ def relative_acc(r_vec,v_vec):
     rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
     return 3 * (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
+
+def coesa_J2(t0, state, k, J2, R, C_D, A_over_m):
+    return J2_perturbation(t0, state, k, J2, R) + coesa76_model(
+        state, R, C_D, A_over_m
+    )
+
+def perturbations_coesa_J2_high(t0, state, k):
+    du_kep = func_twobody(t0, state, k)
+    ax, ay, az = coesa_J2(
+        t0,
+        state,
+        k,
+        R=R,
+        C_D=C_D,
+        A_over_m=A_over_m_high,
+        J2=Earth.J2.value
+    )
+    du_ad = np.array([0, 0, 0, ax, ay, az])
+
+    return du_kep + du_ad
+
+def perturbations_coesa_J2_low(t0, state, k):
+    du_kep = func_twobody(t0, state, k)
+    ax, ay, az = coesa_J2(
+        t0,
+        state,
+        k,
+        R=R,
+        C_D=C_D,
+        A_over_m=A_over_m_low,
+        J2=Earth.J2.value
+    )
+    du_ad = np.array([0, 0, 0, ax, ay, az])
+
+    return du_kep + du_ad
+
+def perturbations_coesa_J2_med(t0, state, k):
+    du_kep = func_twobody(t0, state, k)
+    ax, ay, az = coesa_J2(
+        t0,
+        state,
+        k,
+        R=R,
+        C_D=C_D,
+        A_over_m=A_over_m_med,
+        J2=Earth.J2.value
+    )
+    du_ad = np.array([0, 0, 0, ax, ay, az])
+
+    return du_kep + du_ad

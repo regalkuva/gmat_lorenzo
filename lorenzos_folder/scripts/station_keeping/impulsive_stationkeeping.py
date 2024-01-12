@@ -86,7 +86,7 @@ a_down = (R + 360)<<u.km
 inc_up = inc_from_alt(400,ecc)[0] << u.deg
 inc_down = inc_from_alt(360,ecc)[0] << u.deg
 
-acc = 2.4e-6 * (u.km / u.s**2)
+acc = 2.4e-8 * (u.km / u.s**2)
 
 
 def a_d(t0, state, k, J2, R, C_D, A_over_m):
@@ -150,13 +150,17 @@ nu_mean_list = [mean_elements[5]]
 
 sat_orbit = in_orbit
 
+no_maneuver = True
 
 for timestamp in range(len(timestamps)):
     secs += time_step.value
-    if  mean_elements[0] > a_down.value:
+    if  mean_elements[0] > a_down.value and no_maneuver:
         sat_orbit = sat_orbit.propagate(time_step, method=CowellPropagator(rtol=1e-5, f=f_no_thrust))
     else:
+        no_maneuver = False
         sat_orbit = sat_orbit.propagate(time_step, method=CowellPropagator(rtol=1e-5, f=f_thrust))
+        if mean_elements[0] > a_up.value:
+            no_maneuver = True
 
     elapsedsecs.append(secs)
 
