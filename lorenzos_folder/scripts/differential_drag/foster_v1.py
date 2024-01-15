@@ -15,7 +15,7 @@ from poliastro.twobody.propagation import CowellPropagator
 from astropy import units as u
 from astropy.time import Time, TimeDelta
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from sso_inc import inc_from_alt, raan_from_ltan,angle_between
 
 from perturbations import perturbations_coesa_J2_low, perturbations_coesa_J2_high
@@ -24,6 +24,7 @@ from osc2mean_dd import osc2mean
 
 
 toc = time.time()
+
 ## Orbit
 h = 300
 start_date = datetime(2024,1,1,9,0,0)
@@ -38,7 +39,7 @@ nu = 1e-6 << u.deg
 
 epoch = Time(val=start_date.isoformat(), format='isot')
 
-delta_a = 1
+delta_a = 2
 delta_nu = 0
 
 reference_orbit = Orbit.from_classical(
@@ -63,7 +64,7 @@ trailing_orbit = Orbit.from_classical(
     )
 
 
-time_step = 3600<<u.s
+time_step = 900<<u.s
 assignment = 50%360
 pred_days = 10
 
@@ -76,22 +77,18 @@ trailsmalist_mean = []
 
 ref_vel = []
 trail_vel = []
-
 elapsedsecs = []
 secs = 0
-
 rmag_ref = []
 rmag_trail = []
-
 vmag_ref = []
 vmag_trail = []
-
 angle_list = []
 ang_vel_list = []
-
 theta_err_list = []
-
 mean_ang_list = []
+hd_window = []
+hd_duration = []
 
 start_date_prop = epoch
 ref_mean = osc2mean(a.value, ecc.value, inc.value, raan.value, argp.value, nu.value)
@@ -99,12 +96,9 @@ ref_mean_orbit = Orbit.from_classical(Earth, ref_mean[0]<<u.km, ref_mean[1]<<u.o
 trail_mean = osc2mean(a.value+delta_a, ecc.value, inc.value, raan.value, argp.value, nu.value+delta_nu)
 trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu<<u.deg), epoch)
 
-hd_window = []
-hd_duration = []
+mans = 1
 
-mans = 0
-
-while mans <= 3:
+while mans <= 1:
     mans += 1 
 
     theta_err = (assignment - angle_between(trailing_orbit.r.value, reference_orbit.r.value))%360
@@ -280,36 +274,48 @@ while mans <= 3:
 
 elapsed_days = []
 for sec in range(len(elapsedsecs)):
-    elapsed_days = elapsedsecs[sec] / (60*60*24)
+    elapsed_days.append(elapsedsecs[sec]/(60*60*24))
 
 fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
 
-ax[0,0].plot(elapsedsecs,trailsmalist,label='Trail')
-ax[0,0].plot(elapsedsecs,refsmalist,label='Ref')
+ax[0,0].plot(elapsed_days,trailsmalist,label='Trail')
+ax[0,0].plot(elapsed_days,refsmalist,label='Ref')
 ax[0,0].legend(loc = 'center right')
 ax[0,0].set_title('Ref vs Trail SMA')
+ax[0,0].set_xlabel('Days')
+ax[0,0].set_ylabel('Km')
 
-ax[0,1].plot(elapsedsecs,rmag_trail,label='Trail')
-ax[0,1].plot(elapsedsecs,rmag_ref,label='Ref')
+ax[0,1].plot(elapsed_days,rmag_trail,label='Trail')
+ax[0,1].plot(elapsed_days,rmag_ref,label='Ref')
 ax[0,1].legend(loc = 'center right')
 ax[0,1].set_title('Ref vs Trail RMAG')
+ax[0,1].set_xlabel('Days')
+ax[0,1].set_ylabel('Km')
 
-ax[1,0].plot(elapsedsecs,vmag_trail,label='Trail')
-ax[1,0].plot(elapsedsecs,vmag_ref, label='Ref')
+ax[1,0].plot(elapsed_days,vmag_trail,label='Trail')
+ax[1,0].plot(elapsed_days,vmag_ref, label='Ref')
 ax[1,0].legend(loc = 'center right')
 ax[1,0].set_title('Ref vs Trail VMAG')
+ax[1,0].set_xlabel('Days')
+ax[1,0].set_ylabel('Km/s')
 
-ax[1,1].plot(elapsedsecs,angle_list)
+ax[1,1].plot(elapsed_days,angle_list)
 ax[1,1].axhline(assignment,linestyle='--',color='red',label = f'Assigned Slot at {assignment}deg')
 ax[1,1].legend(loc = 'upper left')
 ax[1,1].set_title('Angle Between Satellites')
+ax[1,1].set_xlabel('Days')
+ax[1,1].set_ylabel('Degrees')
 
-ax[0,2].plot(elapsedsecs,ang_vel_list)
+ax[0,2].plot(elapsed_days,ang_vel_list)
 ax[0,2].set_title('Angular Vel. Difference between Satellites')
+ax[0,2].set_xlabel('Days')
+ax[0,2].set_ylabel('Degrees/s')
 
-ax[1,2].plot(elapsedsecs,trailsmalist_mean,label='Trail')
-ax[1,2].plot(elapsedsecs,refsmalist_mean,label='Ref')
+ax[1,2].plot(elapsed_days,trailsmalist_mean,label='Trail')
+ax[1,2].plot(elapsed_days,refsmalist_mean,label='Ref')
 ax[1,2].set_title('Ref vs Trail Mean SMA')
+ax[1,2].set_xlabel('Days')
+ax[1,2].set_ylabel('Km')
 
 
 print(f'Starting HD windows time step [s]: {hd_window}')

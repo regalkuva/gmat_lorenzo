@@ -19,13 +19,13 @@ from datetime import datetime, timedelta
 from sso_inc import inc_from_alt, raan_from_ltan,angle_between
 
 import sys
-sys.path.append('../my_scripts')
+sys.path.append('../scripts')
 
 from propagators.perturbations import pertubations_coesa_high, pertubations_coesa_low
 
 toc = time.time()
 ## Orbit
-h = 300
+h = 500
 start_date = datetime(2024,1,1,9,0,0)
 ltan = 22.5
 
@@ -61,7 +61,7 @@ trailing_orbit = Orbit.from_classical(
 
 # Prop
 start_date_ts = datetime.timestamp(start_date)
-stop_date_ts = datetime.timestamp(start_date + timedelta(hours = 24))
+stop_date_ts = datetime.timestamp(start_date + timedelta(hours = 24*10))
 sample_num = 9*1*16*7*2
 timestamps = np.linspace(start_date_ts, stop_date_ts, sample_num)
 time_step = (timestamps[1]-timestamps[0]) << u.s
