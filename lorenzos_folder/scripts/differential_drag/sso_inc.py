@@ -1,6 +1,8 @@
 from poliastro.bodies import Earth
+from poliastro.twobody import Orbit
 from poliastro.constants import M_earth, GM_earth, J2_earth
 from astropy.coordinates import Longitude, Angle, get_sun
+from astropy import units as u
 
 import math
 import numpy as np
@@ -55,4 +57,20 @@ if __name__ == '__main__':
     print(f'Orbit altitude is {h:.2f} km')
     print(f'Orbital period is {inc_from_alt(h,e)[1]:.2f}  mins')
     print(f'Inclination required is {inc_from_alt(h,e)[0]:.4f} deg')
+
+
+def argl_difference(reference_orbit, trailing_orbit):
+
+    argl_1 = (reference_orbit.argp.to_value(u.deg) + reference_orbit.nu.to_value(u.deg))%360
+    argl_2 = (trailing_orbit.argp.to_value(u.deg) + trailing_orbit.nu.to_value(u.deg))%360
+    
+    return (argl_1 - argl_2)%360
+
+
+
+
+
+
+
+
 

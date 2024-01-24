@@ -16,7 +16,7 @@ from astropy import units as u
 from astropy.time import Time, TimeDelta
 
 from datetime import datetime
-from sso_inc import inc_from_alt, raan_from_ltan,angle_between
+from sso_inc import inc_from_alt, raan_from_ltan, argl_difference
 
 from perturbations import perturbations_coesa_J2_low, perturbations_coesa_J2_high
 
@@ -39,8 +39,8 @@ nu = 1e-6 << u.deg
 
 epoch = Time(val=start_date.isoformat(), format='isot')
 
-delta_a = 2
-delta_nu = 0
+delta_a = 1
+delta_nu = -0.1
 
 reference_orbit = Orbit.from_classical(
     Earth,
@@ -79,14 +79,7 @@ ref_vel = []
 trail_vel = []
 elapsedsecs = []
 secs = 0
-rmag_ref = []
-rmag_trail = []
-vmag_ref = []
-vmag_trail = []
 angle_list = []
-ang_vel_list = []
-theta_err_list = []
-mean_ang_list = []
 hd_window = []
 hd_duration = []
 
@@ -96,12 +89,13 @@ ref_mean_orbit = Orbit.from_classical(Earth, ref_mean[0]<<u.km, ref_mean[1]<<u.o
 trail_mean = osc2mean(a.value+delta_a, ecc.value, inc.value, raan.value, argp.value, nu.value+delta_nu)
 trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu<<u.deg), epoch)
 
-mans = 1
+mans = 2
 
-while mans <= 1:
-    mans += 1 
-
-    theta_err = (assignment - angle_between(trailing_orbit.r.value, reference_orbit.r.value))%360
+for i in range(mans):
+    if argl_difference(reference_orbit, trailing_orbit) > 50:
+        theta_err = (assignment - argl_difference(trailing_orbit, reference_orbit))%360
+    else:
+        theta_err = (assignment - argl_difference(reference_orbit, trailing_orbit))%360
     
     tra_orb_pred = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
     tra_pred_mean = osc2mean(tra_orb_pred.a.value, tra_orb_pred.ecc.value, tra_orb_pred.inc.to_value(u.deg), tra_orb_pred.raan.to_value(u.deg), tra_orb_pred.argp.to_value(u.deg), tra_orb_pred.nu.to_value(u.deg))
@@ -151,19 +145,8 @@ while mans <= 1:
 
         refsmalist_mean.append(ref_mean[0])
         trailsmalist_mean.append(trail_mean[0])
-
-        rmag_ref.append(np.linalg.norm(ref_from_ephem.r.value))
-        rmag_trail.append(np.linalg.norm(trail_from_ephem.r.value))  
-
-        vmag_ref.append(np.linalg.norm(ref_from_ephem.v.value))
-        vmag_trail.append(np.linalg.norm(trail_from_ephem.v.value))
         
-        angle_list.append(angle_between(trail_from_ephem.r.value, ref_from_ephem.r.value))
-
-        ang_vel_ref = (360 << u.deg) / ref_from_ephem.period
-        ang_vel_trail = (360 <<u.deg) / trail_from_ephem.period
-        ang_vel_diff =  ang_vel_ref - ang_vel_trail
-        ang_vel_list.append(ang_vel_diff.value)
+        angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
 
         elapsedsecs.append(secs)
     
@@ -208,28 +191,14 @@ while mans <= 1:
 
         refsmalist_mean.append(ref_mean[0])
         trailsmalist_mean.append(trail_mean[0])
-
-        if ref_mean[0] == trail_mean[0]:
-            print(f'Same altitude achieved at: {secs}[s]')
-
-        rmag_ref.append(np.linalg.norm(ref_from_ephem.r.value))
-        rmag_trail.append(np.linalg.norm(trail_from_ephem.r.value))  
-
-        vmag_ref.append(np.linalg.norm(ref_from_ephem.v.value))
-        vmag_trail.append(np.linalg.norm(trail_from_ephem.v.value))
         
-        angle_list.append(angle_between(trail_from_ephem.r.value, ref_from_ephem.r.value))
-        #angle_list.append((Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epochs[t]).nu.to_value(u.deg)) - Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[t]).nu.value)
-
-        ang_vel_ref = (360 << u.deg) / ref_from_ephem.period
-        ang_vel_trail = (360 <<u.deg) / trail_from_ephem.period
-        ang_vel_diff =  ang_vel_ref - ang_vel_trail
-        ang_vel_list.append(ang_vel_diff.value)
+        angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
 
         elapsedsecs.append(secs)
 
     reference_orbit = Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epochs[-1])
     trailing_orbit = Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[-1])
+
 
     ref_mean = osc2mean(
         reference_orbit.a.value, 
@@ -272,6 +241,106 @@ while mans <= 1:
     start_date_prop = reference_orbit.epoch
     #pred_days = pred_days * 0.5
 
+# while (trailsmalist_mean[-1] - refsmalist_mean[-1]) > 0.12:
+
+#     tra_orb_pred = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
+#     tra_pred_mean = osc2mean(tra_orb_pred.a.value, tra_orb_pred.ecc.value, tra_orb_pred.inc.to_value(u.deg), tra_orb_pred.raan.to_value(u.deg), tra_orb_pred.argp.to_value(u.deg), tra_orb_pred.nu.to_value(u.deg))
+#     tra_orb_pred_mean = Orbit.from_classical(Earth, tra_pred_mean[0]<<u.km, tra_pred_mean[1]<<u.one, tra_pred_mean[2]<<u.deg, tra_pred_mean[3]<<u.deg, tra_pred_mean[4]<<u.deg, tra_orb_pred.nu.to(u.deg), tra_orb_pred.epoch)
+
+#     theta_dot_dot = (tra_orb_pred_mean.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / ((pred_days*60*60*24)<<u.s)
+#     t_hd = (ref_mean_orbit.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / theta_dot_dot
+
+#     num_hd = int(t_hd.value / time_step.value)
+#     tofs_hd = TimeDelta(np.linspace(0, t_hd, num=num_hd))
+
+#     reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_ephem.epochs[-1] + tofs_hd, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
+#     trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_ephem.epochs[-1] + tofs_hd, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high)))
+
+
+#     for t in range(len(tofs_hd)):
+
+#         secs += time_step.value
+
+#         ref_from_ephem = Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epochs[t])
+#         trail_from_ephem = Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[t])
+
+#         refsmalist.append(ref_from_ephem.a.value)
+#         trailsmalist.append(trail_from_ephem.a.value)
+
+#         ref_mean = osc2mean(
+#             ref_from_ephem.a.value,
+#             ref_from_ephem.ecc.value,
+#             ref_from_ephem.inc.to_value(u.deg),
+#             ref_from_ephem.raan.to_value(u.deg),
+#             ref_from_ephem.argp.to_value(u.deg),
+#             ref_from_ephem.nu.to_value(u.deg)
+
+#         )
+#         trail_mean = osc2mean(
+#             trail_from_ephem.a.value,
+#             trail_from_ephem.ecc.value,
+#             trail_from_ephem.inc.to_value(u.deg),
+#             trail_from_ephem.raan.to_value(u.deg),
+#             trail_from_ephem.argp.to_value(u.deg),
+#             trail_from_ephem.nu.to_value(u.deg)
+#         )
+
+#         refsmalist_mean.append(ref_mean[0])
+#         trailsmalist_mean.append(trail_mean[0])
+
+#         angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
+
+#         elapsedsecs.append(secs)
+
+#     reference_orbit = Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epochs[-1])
+#     trailing_orbit = Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[-1])
+
+# t_prop = (60*60*24*10)<<u.s
+
+# num_prop = int(t_prop.value / time_step.value)
+# tofs_prop = TimeDelta(np.linspace(0, t_prop, num=num_prop))
+
+# reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_ephem.epochs[-1] + tofs_prop, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
+# trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_ephem.epochs[-1] + tofs_prop, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
+
+# for t in range(len(tofs_prop)):
+
+#     secs += time_step.value
+
+#     ref_from_ephem = Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epochs[t])
+#     trail_from_ephem = Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[t])
+
+#     refsmalist.append(ref_from_ephem.a.value)
+#     trailsmalist.append(trail_from_ephem.a.value)
+
+#     ref_mean = osc2mean(
+#         ref_from_ephem.a.value,
+#         ref_from_ephem.ecc.value,
+#         ref_from_ephem.inc.to_value(u.deg),
+#         ref_from_ephem.raan.to_value(u.deg),
+#         ref_from_ephem.argp.to_value(u.deg),
+#         ref_from_ephem.nu.to_value(u.deg)
+
+#     )
+#     trail_mean = osc2mean(
+#         trail_from_ephem.a.value,
+#         trail_from_ephem.ecc.value,
+#         trail_from_ephem.inc.to_value(u.deg),
+#         trail_from_ephem.raan.to_value(u.deg),
+#         trail_from_ephem.argp.to_value(u.deg),
+#         trail_from_ephem.nu.to_value(u.deg)
+#     )
+
+#     refsmalist_mean.append(ref_mean[0])
+#     trailsmalist_mean.append(trail_mean[0])
+
+#     angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
+
+#     elapsedsecs.append(secs)
+
+
+
+
 elapsed_days = []
 for sec in range(len(elapsedsecs)):
     elapsed_days.append(elapsedsecs[sec]/(60*60*24))
@@ -290,47 +359,6 @@ ax[0,1].plot(elapsed_days,refsmalist_mean,label='Ref')
 ax[0,1].set_title('Ref vs Trail Mean SMA')
 ax[0,1].set_xlabel('Days')
 ax[0,1].set_ylabel('Km')
-
-# fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
-
-# ax[0,0].plot(elapsed_days,trailsmalist,label='Trail')
-# ax[0,0].plot(elapsed_days,refsmalist,label='Ref')
-# ax[0,0].legend(loc = 'center right')
-# ax[0,0].set_title('Ref vs Trail SMA')
-# ax[0,0].set_xlabel('Days')
-# ax[0,0].set_ylabel('Km')
-
-# ax[0,1].plot(elapsed_days,rmag_trail,label='Trail')
-# ax[0,1].plot(elapsed_days,rmag_ref,label='Ref')
-# ax[0,1].legend(loc = 'center right')
-# ax[0,1].set_title('Ref vs Trail RMAG')
-# ax[0,1].set_xlabel('Days')
-# ax[0,1].set_ylabel('Km')
-
-# ax[1,0].plot(elapsed_days,vmag_trail,label='Trail')
-# ax[1,0].plot(elapsed_days,vmag_ref, label='Ref')
-# ax[1,0].legend(loc = 'center right')
-# ax[1,0].set_title('Ref vs Trail VMAG')
-# ax[1,0].set_xlabel('Days')
-# ax[1,0].set_ylabel('Km/s')
-
-# ax[1,1].plot(elapsed_days,angle_list)
-# ax[1,1].axhline(assignment,linestyle='--',color='red',label = f'Assigned Slot at {assignment}deg')
-# ax[1,1].legend(loc = 'upper left')
-# ax[1,1].set_title('Angle Between Satellites')
-# ax[1,1].set_xlabel('Days')
-# ax[1,1].set_ylabel('Degrees')
-
-# ax[0,2].plot(elapsed_days,ang_vel_list)
-# ax[0,2].set_title('Angular Vel. Difference between Satellites')
-# ax[0,2].set_xlabel('Days')
-# ax[0,2].set_ylabel('Degrees/s')
-
-# ax[1,2].plot(elapsed_days,trailsmalist_mean,label='Trail')
-# ax[1,2].plot(elapsed_days,refsmalist_mean,label='Ref')
-# ax[1,2].set_title('Ref vs Trail Mean SMA')
-# ax[1,2].set_xlabel('Days')
-# ax[1,2].set_ylabel('Km')
 
 
 print(f'Starting HD windows time step [s]: {hd_window}')

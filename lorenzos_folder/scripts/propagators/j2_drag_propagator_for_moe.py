@@ -64,22 +64,20 @@ C_D = 2.2
 A_over_m = ((0.01 * u.m**2) / (2.5 * u.kg)).to_value(u.km**2 / u.kg)   # km**2/kg
 B = C_D * A_over_m   # ballistic coefficient at low drag mode
 
-a_list     = [in_orbit.a.value]
-ecc_list   = [in_orbit.ecc.value]
-inc_list   = [in_orbit.inc.value]
-raan_list  = [in_orbit.raan.value]
-argp_list  = [in_orbit.argp.value]
-nu_list    = [in_orbit.nu.value]
-epoch_list = [in_orbit.epoch.value]
+a_list     = []
+ecc_list   = []
+inc_list   = []
+raan_list  = []
+argp_list  = []
+nu_list    = []
+epoch_list = []
 
-mean_elements = osc2mean(a_list[0], ecc_list[0], inc_list[0], raan_list[0], argp_list[0], nu_list[0])
-
-a_mean_list = [mean_elements[0]]
-ecc_mean_list = [mean_elements[1]]
-inc_mean_list = [mean_elements[2]]
-raan_mean_list = [mean_elements[3]]
-argp_mean_list = [mean_elements[4]]
-ma_mean_list = [mean_elements[-1]]
+a_mean_list = []
+ecc_mean_list = []
+inc_mean_list = []
+raan_mean_list = []
+argp_mean_list = []
+ma_mean_list = []
 
 @jit
 def a_d(t0, state, k, J2, R, C_D, A_over_m, H0, rho0):
@@ -115,27 +113,29 @@ tofs = TimeDelta(np.linspace(0, time_frame, num=number))
 ephem_tofs = in_orbit.to_ephem(EpochsArray(start_date + tofs, method=CowellPropagator(rtol=1e-5, f=f)))
 
 secs = 0
-elapsedsecs = [0]
+elapsedsecs = []
 
 for epoch in range(len(tofs)):
     
     secs += time_step.value
+    
+    orb_from_eph = Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch])
 
-    a_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).a.value)
-    ecc_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).ecc.value)
-    inc_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).inc.to_value(u.deg))
-    raan_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).raan.to_value(u.deg))
-    argp_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).argp.to_value(u.deg))
-    nu_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).nu.to_value(u.deg))
-    epoch_list.append(Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).epoch.value)
-
+    a_list.append(orb_from_eph.a.value)
+    ecc_list.append(orb_from_eph.ecc.value)
+    inc_list.append(orb_from_eph.inc.to_value(u.deg))
+    raan_list.append(orb_from_eph.raan.to_value(u.deg))
+    argp_list.append(orb_from_eph.argp.to_value(u.deg))
+    nu_list.append(orb_from_eph.nu.to_value(u.deg))
+    epoch_list.append(orb_from_eph.epoch.value)
+    
     mean_elements = osc2mean(
-        Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).a.value,
-        Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).ecc.value,
-        Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).inc.to_value(u.deg),
-        Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).raan.to_value(u.deg),
-        Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).argp.to_value(u.deg),
-        Orbit.from_ephem(Earth, ephem_tofs, ephem_tofs.epochs[epoch]).nu.to_value(u.deg)
+          orb_from_eph.a.value,
+          orb_from_eph.ecc.value,
+          orb_from_eph.inc.to_value(u.deg),
+          orb_from_eph.raan.to_value(u.deg),
+          orb_from_eph.argp.to_value(u.deg),
+          orb_from_eph.nu.to_value(u.deg)
     )
 
     a_mean_list.append(mean_elements[0])
@@ -147,38 +147,40 @@ for epoch in range(len(tofs)):
 
     elapsedsecs.append(secs)
 
-
+elapsed_days = []
+for sec in range(len(elapsedsecs)):
+    elapsed_days.append(elapsedsecs[sec]/(60*60*24))
 
 print(f'\nProcess finished --- {time.time() - process_start_time}')
 
 fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
 
-ax[0,0].plot(elapsedsecs, a_list, label='Osculating SMA')
-ax[0,0].plot(elapsedsecs, a_mean_list, label='Mean SMA')
+ax[0,0].plot(elapsed_days, a_list, label='Osculating SMA')
+ax[0,0].plot(elapsed_days, a_mean_list, label='Mean SMA')
 ax[0,0].legend(loc = 'center right')
 ax[0,0].set_title('SMA')
 
-ax[0,1].plot(elapsedsecs, ecc_list, label='Osculating ECC')
-ax[0,1].plot(elapsedsecs, ecc_mean_list, label='Mean ECC')
+ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
+ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')
 ax[0,1].legend(loc = 'center right')
 ax[0,1].set_title('ECC')
 
-ax[1,0].plot(elapsedsecs, inc_list, label='Osculating INC')
-ax[1,0].plot(elapsedsecs, inc_mean_list, label='Mean INC')
+ax[1,0].plot(elapsed_days, inc_list, label='Osculating INC')
+ax[1,0].plot(elapsed_days, inc_mean_list, label='Mean INC')
 ax[1,0].legend(loc = 'center right')
 ax[1,0].set_title('INC')
 
-ax[1,1].plot(elapsedsecs, raan_list, label='Osculating RAAN')
-ax[1,1].plot(elapsedsecs, raan_mean_list, label='Mean RAAN')
+ax[1,1].plot(elapsed_days, raan_list, label='Osculating RAAN')
+ax[1,1].plot(elapsed_days, raan_mean_list, label='Mean RAAN')
 ax[1,1].legend(loc = 'upper left')
 ax[1,1].set_title('RAAN')
 
-ax[0,2].plot(elapsedsecs,argp_list, label='Osculating ARGP')
-ax[0,2].plot(elapsedsecs, argp_mean_list, label='Mean ARGP')
+ax[0,2].plot(elapsed_days, argp_list, label='Osculating ARGP')
+ax[0,2].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
 ax[0,2].set_title('ARGP')
 
-ax[1,2].plot(elapsedsecs, nu_list, label='Osculating TA')
-ax[1,2].plot(elapsedsecs, ma_mean_list, label='Mean MA')
+ax[1,2].plot(elapsed_days, nu_list, label='Osculating TA')
+ax[1,2].plot(elapsed_days, ma_mean_list, label='Mean MA')
 ax[1,2].set_title('MEAN ANOMALY')
 
 plt.show()

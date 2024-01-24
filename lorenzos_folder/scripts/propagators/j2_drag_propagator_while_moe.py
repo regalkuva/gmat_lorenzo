@@ -1,4 +1,4 @@
-## ORBIT PROPAGATOR WITH J2 + ATMOSPHERIC DRAG PERTUBATIONS
+## ORBIT PROPAGATOR WITH J2 + ATMOSPHERIC DRAG PERTURBATIONS
 
 from astropy import units as u
 from astropy.time import Time
@@ -10,9 +10,6 @@ from poliastro.twobody.propagation import CowellPropagator
 from poliastro.core.perturbations import J2_perturbation, atmospheric_drag_exponential
 from poliastro.core.propagation import func_twobody 
 from poliastro.util import Time
-#from poliastro.plotting import OrbitPlotter2D
-
-from atmo_drag_functions import jb2008_pertubation
 
 from numba import njit as jit
 
@@ -23,8 +20,13 @@ import matplotlib.pyplot as plt
 
 import time
 
+import sys
+sys.path.append('../scripts')
 
-print('\n--- TWO-BODY PROPAGATOR - J2 & ATMOSPHERIC DRAG PERTUBATIONS ---\n')
+from sso_functions.orbital_elements import osc2mean
+
+
+print('\n--- TWO-BODY PROPAGATOR - J2 & ATMOSPHERIC DRAG PERTURBATIONS ---\n')
 # initial orbital elements
 # RHW:
 a    = 6865.501217 * u.km         #6865.501217
@@ -39,12 +41,9 @@ start_date = Time("2018-11-30 03:53:03.550", scale = "utc")   # epoch 2018 11-30
 # Definition of the initial orbit (poliastro)
 in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, start_date)
 
-# Propagation time selection (poliastro)
-# time_frame = float(input('- Time frame [days]: ')) * u.day
-# time_step  = float(input('- Time step   [sec]: ')) * u.s
 
 time_frame = 10<<u.day
-time_step  = 3600<<u.s
+time_step  = 1<<u.s
 
 process_start_time = time.time()   # start time of python code
 
@@ -72,41 +71,15 @@ argp_list  = []
 nu_list    = []
 epoch_list = []
 
+a_mean_list = []
+ecc_mean_list = []
+inc_mean_list = []
+raan_mean_list = []
+argp_mean_list = []
+ma_mean_list = []
+
 t = time_step
 old_orbit = in_orbit
-
-# # JB200 atmpospheric pertubation
-# from pyatmos import download_sw_jb2008,read_sw_jb2008
-# # Download or update the space weather file from https://sol.spacenvironment.net
-# swfile = download_sw_jb2008() 
-# # Read the space weather data
-# swdata = read_sw_jb2008(swfile) 
-
-# def a_d(t0, state, k, J2, R, C_D, A_over_m, epoch, swdata):
-
-#         return J2_perturbation(
-#         t0, state, k, J2, R
-#         ) + jb2008_pertubation(
-#             epoch, state, R, C_D, A_over_m, swdata
-#         )
-        
-# def f(t0, state, k):
-
-#         du_kep = func_twobody(t0, state, k)
-#         ax, ay, az = a_d(
-#             t0, 
-#             state, 
-#             k=k, 
-#             J2 = J2, 
-#             R = R, 
-#             C_D = C_D, 
-#             A_over_m = A_over_m, 
-#             epoch=date, 
-#             swdata=swdata
-#             )
-#         du_ad = np.array([0, 0, 0, ax, ay, az])
-
-#         return du_kep + du_ad
 
 @jit
 def a_d(t0, state, k, J2, R, C_D, A_over_m, H0, rho0):
@@ -152,25 +125,25 @@ while t <= time_frame:
     nu_list.append(new_orbit.nu.to_value(u.deg))
     epoch_list.append(new_orbit.epoch.value)
 
+    mean_elements = osc2mean(
+          new_orbit.a.value,
+          new_orbit.ecc.value,
+          new_orbit.inc.to_value(u.deg),
+          new_orbit.raan.to_value(u.deg),
+          new_orbit.argp.to_value(u.deg),
+          new_orbit.nu.to_value(u.deg)
+    )
+
+    a_mean_list.append(mean_elements[0])
+    ecc_mean_list.append(mean_elements[1])
+    inc_mean_list.append(mean_elements[2])
+    raan_mean_list.append(mean_elements[3])
+    argp_mean_list.append(mean_elements[4])
+    ma_mean_list.append(mean_elements[5])
+
+
     old_orbit = new_orbit
     t = t + time_step
-
-
-# Orbital elements data
-data_table = zip(epoch_list, a_list, ecc_list, inc_list, raan_list, argp_list, nu_list)
-df = pd.DataFrame(data = data_table, columns = [
-    'Epoch [UTC]', 'SMA [Km]', 'ECC', 'INC [deg]', 'RAAN [deg]', 'ARGP [deg]', 'TA [deg]'
-    ])
-print(df)
-
-# Data to .txt file
-# path = r'C:\Users\Lorenzo\Documents\GitHub\gmat_lorenzo\my_scripts\keplerian_propagator\rhw_1week.txt'
-
-# with open(path, 'a') as f:
-#     df_string = df.to_string()
-#     f.write(df_string)
-
-# RANDOM UPDATE FOR GITHUB
 
 elapsed_days = []
 for sec in range(len(elapsedsecs)):
@@ -180,34 +153,32 @@ for sec in range(len(elapsedsecs)):
 print(f'\nProcess finished --- {time.time() - process_start_time}')
 
 fig, ax = plt.subplots(2,3, figsize=(20,12))
-ax[0,0].plot(elapsed_days, a_list)
-ax[0,0].set(title = "Semi-major axis vs Elapsed Time",
-       xlabel = "t [days]",
-       ylabel = "SMA [Km]")
+ax[0,0].plot(elapsed_days, a_list, label='Osculating SMA')
+ax[0,0].plot(elapsed_days, a_mean_list, label='Mean SMA')
+ax[0,0].legend(loc = 'center right')
+ax[0,0].set_title('SMA')
 
-ax[0,1].plot(elapsed_days, ecc_list)
-ax[0,1].set(title = "Eccentricity vs Elapsed Time",
-       xlabel = "t [days]",
-       ylabel = "ECC")
+ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
+ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')
+ax[0,1].legend(loc = 'center right')
+ax[0,1].set_title('ECC')
 
-ax[0,2].plot(elapsed_days, inc_list)
-ax[0,2].set(title = "Inclination vs Elapsed Time",
-       xlabel = "t [days]",
-       ylabel = "INC [deg]")
+ax[1,0].plot(elapsed_days, inc_list, label='Osculating INC')
+ax[1,0].plot(elapsed_days, inc_mean_list, label='Mean INC')
+ax[1,0].legend(loc = 'center right')
+ax[1,0].set_title('INC')
 
-ax[1,0].plot(elapsed_days, raan_list)
-ax[1,0].set(title = "Right ascension of the ascending node vs Elapsed Time",
-       xlabel = "t [days]",
-       ylabel = "RAAN [deg]")
+ax[1,1].plot(elapsed_days, raan_list, label='Osculating RAAN')
+ax[1,1].plot(elapsed_days, raan_mean_list, label='Mean RAAN')
+ax[1,1].legend(loc = 'upper left')
+ax[1,1].set_title('RAAN')
 
-ax[1,1].plot(elapsed_days, argp_list)
-ax[1,1].set(title = "Argument of the perigee vs Elapsed Time",
-       xlabel = "t [days]",
-       ylabel = "ARGP [deg]")
+ax[0,2].plot(elapsed_days, argp_list, label='Osculating ARGP')
+ax[0,2].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
+ax[0,2].set_title('ARGP')
 
-ax[1,2].plot(elapsed_days, nu_list)
-ax[1,2].set(title = "True anomaly vs Elapsed Time",
-       xlabel = "t [days]",
-       ylabel = "TA [deg]")
+ax[1,2].plot(elapsed_days, nu_list, label='Osculating TA')
+ax[1,2].plot(elapsed_days, ma_mean_list, label='Mean MA')
+ax[1,2].set_title('MEAN ANOMALY')
 
 plt.show()
