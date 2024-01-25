@@ -276,6 +276,12 @@ elapsed_days = []
 for sec in range(len(elapsedsecs)):
     elapsed_days.append(elapsedsecs[sec]/(60*60*24))
 
+trail_mean_altitudes = []
+ref_mean_altitudes = []
+for sma in range(len(trailsmalist_mean)):
+    trail_mean_altitudes.append(trailsmalist_mean[sma] - Earth.R_mean.to_value(u.km))
+    ref_mean_altitudes.append(refsmalist_mean[sma] - Earth.R_mean.to_value(u.km))
+
 fig, ax = plt.subplots(1, 2, figsize=(22,9), squeeze=False) 
 
 ax[0,0].plot(elapsed_days,angle_list)
@@ -285,8 +291,8 @@ ax[0,0].set_title('Angle Between Satellites')
 ax[0,0].set_xlabel('Days')
 ax[0,0].set_ylabel('Degrees')
 
-ax[0,1].plot(elapsed_days,trailsmalist_mean,label='Trail')
-ax[0,1].plot(elapsed_days,refsmalist_mean,label='Ref')
+ax[0,1].plot(elapsed_days,trail_mean_altitudes,label='Trail')
+ax[0,1].plot(elapsed_days,ref_mean_altitudes,label='Ref')
 ax[0,1].set_title('Ref vs Trail Mean SMA')
 ax[0,1].set_xlabel('Days')
 ax[0,1].set_ylabel('Km')
