@@ -23,7 +23,7 @@ from perturbations import perturbations_coesa_J2_low, perturbations_coesa_J2_hig
 toc = time.time()
 
 ## Orbit
-h = 350
+h = 500
 start_date = datetime(2024,1,1,9,0,0)
 ltan = 22.5
 
@@ -36,7 +36,7 @@ nu = 1e-6 << u.deg
 
 epoch = Time(val=start_date.isoformat(), format='isot')
 
-delta_a = 1
+delta_a = 0.5
 delta_nu = -0.1
 
 reference_orbit = Orbit.from_classical(
@@ -63,7 +63,7 @@ trailing_orbit = Orbit.from_classical(
 
 time_step = 900<<u.s
 assignment = 100%360
-pred_days = 10
+pred_days = 200
 
 refsmalist = []
 refsmalist_mean = []
@@ -82,7 +82,7 @@ ref_mean_orbit = Orbit.from_classical(Earth, ref_mean[0]<<u.km, ref_mean[1]<<u.o
 trail_mean = osc2mean(a.value+delta_a, ecc.value, inc.value, raan.value, argp.value, nu.value+delta_nu)
 trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu<<u.deg), epoch)
 
-mans = 2
+mans = 1
 
 for i in range(mans):
 
@@ -235,7 +235,7 @@ for i in range(mans):
     #pred_days = pred_days * 0.5
 
 # while (trailsmalist_mean[-1] - refsmalist_mean[-1]) > 0.05:
-for i in range(3):
+for i in range(10):
 
     tra_orb_pred = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
     tra_pred_mean = osc2mean(tra_orb_pred.a.value, tra_orb_pred.ecc.value, tra_orb_pred.inc.to_value(u.deg), tra_orb_pred.raan.to_value(u.deg), tra_orb_pred.argp.to_value(u.deg), tra_orb_pred.nu.to_value(u.deg))

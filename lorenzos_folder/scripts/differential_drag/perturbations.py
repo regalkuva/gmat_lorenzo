@@ -17,15 +17,15 @@ k = Earth.k.to(u.km**3 / u.s**2).value
 C_D = 2.2  # dimentionless (any value would do)
 
 
-A_over_m_low = ((0.01 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
+A_over_m_low = ((0.01 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
 
 B_low = C_D * A_over_m_low
 
-A_over_m_high = ((0.1 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
+A_over_m_high = ((0.1 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
 
 B_high = C_D * A_over_m_high
 
-A_over_m_med = ((0.05 << u.m**2) / (100 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
+A_over_m_med = ((0.05 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
 
 # parameters of the atmosphere
 rho0 = rho0_earth.to(u.kg / u.km**3).value  # kg/km^3
