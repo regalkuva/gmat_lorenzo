@@ -27,6 +27,8 @@ B_high = C_D * A_over_m_high
 
 A_over_m_med = ((0.05 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
 
+B_med = C_D * A_over_m_med
+
 # parameters of the atmosphere
 rho0 = rho0_earth.to(u.kg / u.km**3).value  # kg/km^3
 H0 = H0_earth.to(u.km).value
