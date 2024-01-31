@@ -25,7 +25,7 @@ toc = time.time()
 ## Orbit
 h = 500
 alpha_hd = 17
-alpha_wait = 0.7
+alpha_wait = 0.001
 start_date = datetime(2024,1,1,9,0,0)
 ltan = 22.5
 
@@ -38,8 +38,8 @@ nu = 1e-6 << u.deg
 
 epoch = Time(val=start_date.isoformat(), format='isot')
 
-delta_a = 0.5
-delta_nu = -0.1
+delta_a = 1
+delta_nu = -10
 
 reference_orbit = Orbit.from_classical(
     Earth,
@@ -97,7 +97,7 @@ for i in range(mans):
     theta_dot_dot = (tra_orb_pred_mean.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / ((pred_days*60*60*24)<<u.s)
     t_hd = (ref_mean_orbit.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / theta_dot_dot
     theta_hd = 0.5 * theta_dot_dot * t_hd**2
-    t_wait = ((theta_err - theta_hd.value) / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s)))
+    t_wait = ((theta_err - theta_hd.value) / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s))) - t_hd.value
     t_wait = t_wait * alpha_wait
     t_hd = t_hd * alpha_hd
     # if t_wait < 0:
