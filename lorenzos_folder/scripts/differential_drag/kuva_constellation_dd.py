@@ -24,9 +24,7 @@ toc = time.time()
 ## Orbit
 sats_num = 15
 trail_sats = sats_num - 1
-h = 400
-alpha_wait = 1
-alpha_hd = 1
+h = 600
 start_date = datetime(2024,1,1,9,0,0)
 ltan = 22.5
 
@@ -93,13 +91,16 @@ for sat in range(trail_sats):
     trail_mean = osc2mean(a.value+delta_a[sat], ecc.value, inc.value, raan.value, argp.value, nu.value+delta_nu[sat])
     trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu[sat]<<u.deg), epoch)
 
-    theta_err = (assignment[sat] - argl_difference(reference_orbit, trailing_orbit))%360
-    
-    tra_orb_pred = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
-    tra_pred_mean = osc2mean(tra_orb_pred.a.value, tra_orb_pred.ecc.value, tra_orb_pred.inc.to_value(u.deg), tra_orb_pred.raan.to_value(u.deg), tra_orb_pred.argp.to_value(u.deg), tra_orb_pred.nu.to_value(u.deg))
-    tra_orb_pred_mean = Orbit.from_classical(Earth, tra_pred_mean[0]<<u.km, tra_pred_mean[1]<<u.one, tra_pred_mean[2]<<u.deg, tra_pred_mean[3]<<u.deg, tra_pred_mean[4]<<u.deg, tra_orb_pred.nu.to(u.deg), tra_orb_pred.epoch)
-    
-    theta_dot_dot = (tra_orb_pred_mean.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / ((pred_days*60*60*24)<<u.s)
+    tra_orb_pred_high = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
+    tra_pred_mean_high = osc2mean(tra_orb_pred_high.a.value, tra_orb_pred_high.ecc.value, tra_orb_pred_high.inc.to_value(u.deg), tra_orb_pred_high.raan.to_value(u.deg), tra_orb_pred_high.argp.to_value(u.deg), tra_orb_pred_high.nu.to_value(u.deg))
+    tra_orb_pred_mean_high = Orbit.from_classical(Earth, tra_pred_mean_high[0]<<u.km, tra_pred_mean_high[1]<<u.one, tra_pred_mean_high[2]<<u.deg, tra_pred_mean_high[3]<<u.deg, tra_pred_mean_high[4]<<u.deg, tra_orb_pred_high.nu.to(u.deg), tra_orb_pred_high.epoch)
+
+    tra_orb_pred_low = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low))
+    tra_pred_mean_low = osc2mean(tra_orb_pred_low.a.value, tra_orb_pred_low.ecc.value, tra_orb_pred_low.inc.to_value(u.deg), tra_orb_pred_low.raan.to_value(u.deg), tra_orb_pred_low.argp.to_value(u.deg), tra_orb_pred_low.nu.to_value(u.deg))
+    tra_orb_pred_mean_low = Orbit.from_classical(Earth, tra_pred_mean_low[0]<<u.km, tra_pred_mean_low[1]<<u.one, tra_pred_mean_low[2]<<u.deg, tra_pred_mean_low[3]<<u.deg, tra_pred_mean_low[4]<<u.deg, tra_orb_pred_low.nu.to(u.deg), tra_orb_pred_low.epoch)
+
+    theta_dot_dot = (tra_orb_pred_mean_high.n.to(u.deg/u.s) - tra_orb_pred_mean_low.n.to(u.deg/u.s)) / ((pred_days*60*60*24)<<u.s) 
+
     t_hd = (ref_mean_orbit.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / theta_dot_dot
     theta_hd = 0.5 * theta_dot_dot * t_hd**2
     t_wait = ((theta_err - theta_hd.value) / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s))) - t_hd.value
@@ -261,11 +262,7 @@ fig, ax = plt.subplots(1, 2, figsize=(22,9), squeeze=False)
 
 for i in range(trail_sats):
     ax[0,0].plot(elapsed_days,angle_list[i])
-    # ax[0,0].plot(elapsedsecs[1],angle_list[1])
-    # ax[0,0].plot(elapsedsecs[2],angle_list[2])
     ax[0,0].axhline(assignment[i],linestyle='--',color='red',label = f'Assigned Slot at {assignment[i]}deg')
-    # ax[0,0].axhline(assignment[1],linestyle='--',color='red',label = f'Assigned Slot at {assignment[1]}deg')
-    # ax[0,0].axhline(assignment[2],linestyle='--',color='red',label = f'Assigned Slot at {assignment[2]}deg')
 ax[0,0].legend(loc = 'upper left')
 ax[0,0].set_title('Angle Between Satellites')
 ax[0,0].set_xlabel('Days')
@@ -273,8 +270,6 @@ ax[0,0].set_ylabel('Degrees')
 
 for i in range(trail_sats):
     ax[0,1].plot(elapsed_days,trail_mean_altitudes[i],label='Trail')
-    # ax[0,1].plot(elapsedsecs[1],trail_mean_altitudes[1],label='Trail')
-    # ax[0,1].plot(elapsedsecs[2],trail_mean_altitudes[2],label='Trail')
 ax[0,1].plot(elapsed_days,ref_mean_altitudes,label='Ref')
 ax[0,1].set_title('Ref vs Trail Mean Altitude')
 ax[0,1].set_xlabel('Days')
