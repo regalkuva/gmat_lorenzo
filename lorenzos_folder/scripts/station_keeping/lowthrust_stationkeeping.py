@@ -95,7 +95,7 @@ def a_d(t0, state, k, J2, R, C_D, A_over_m):
             state, R, C_D, A_over_m
             )
 
-a_d_thrust, deltaV, t_f = change_a_inc(k, a_down, a_up, inc_down, inc_up, acc)
+a_d_thrust, deltaV, t_f = change_a_inc(k, a_down, a_up, inc_up, inc_up, acc)
 
 def f_thrust(t0, state, k):
 

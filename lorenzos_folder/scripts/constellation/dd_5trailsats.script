@@ -1,0 +1,386 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2024-02-05 18:03:11
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft Trail1;
+GMAT Trail1.DateFormat = UTCGregorian;
+GMAT Trail1.Epoch = '06 Mar 2024 12:23:11.769';
+GMAT Trail1.CoordinateSystem = EarthMJ2000Eq;
+GMAT Trail1.DisplayStateType = Cartesian;
+GMAT Trail1.X = -1504.51881439;
+GMAT Trail1.Y = -3099.37416164;
+GMAT Trail1.Z = -5789.00921919;
+GMAT Trail1.VX = -4.45637687;
+GMAT Trail1.VY = -4.96879825;
+GMAT Trail1.VZ = 13.81540105;
+GMAT Trail1.DryMass = 50;
+GMAT Trail1.Cd = 2.2;
+GMAT Trail1.Cr = 1.8;
+GMAT Trail1.DragArea = 0.01;
+GMAT Trail1.SRPArea = 1;
+GMAT Trail1.SPADDragScaleFactor = 1;
+GMAT Trail1.SPADSRPScaleFactor = 1;
+GMAT Trail1.AtmosDensityScaleFactor = 1;
+GMAT Trail1.ExtendedMassPropertiesModel = 'None';
+GMAT Trail1.NAIFId = -10000001;
+GMAT Trail1.NAIFIdReferenceFrame = -9000001;
+GMAT Trail1.OrbitColor = Red;
+GMAT Trail1.TargetColor = Teal;
+GMAT Trail1.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Trail1.CdSigma = 1e+70;
+GMAT Trail1.CrSigma = 1e+70;
+GMAT Trail1.Id = 'SatId';
+GMAT Trail1.Attitude = CoordinateSystemFixed;
+GMAT Trail1.SPADSRPInterpolationMethod = Bilinear;
+GMAT Trail1.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Trail1.SPADDragInterpolationMethod = Bilinear;
+GMAT Trail1.SPADDragScaleFactorSigma = 1e+70;
+GMAT Trail1.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Trail1.ModelFile = 'aura.3ds';
+GMAT Trail1.ModelOffsetX = 0;
+GMAT Trail1.ModelOffsetY = 0;
+GMAT Trail1.ModelOffsetZ = 0;
+GMAT Trail1.ModelRotationX = 0;
+GMAT Trail1.ModelRotationY = 0;
+GMAT Trail1.ModelRotationZ = 0;
+GMAT Trail1.ModelScale = 1;
+GMAT Trail1.AttitudeDisplayStateType = 'Quaternion';
+GMAT Trail1.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Trail1.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Trail1.EulerAngleSequence = '321';
+
+Create Spacecraft Trail2;
+GMAT Trail2.DateFormat = UTCGregorian;
+GMAT Trail2.Epoch = '06 Mar 2024 12:23:11.769';
+GMAT Trail2.CoordinateSystem = EarthMJ2000Eq;
+GMAT Trail2.DisplayStateType = Cartesian;
+GMAT Trail2.X = 673.46059315;
+GMAT Trail2.Y = -476.95347734;
+GMAT Trail2.Z = -6685.56154133;
+GMAT Trail2.VX = -4.71341156;
+GMAT Trail2.VY = -6.07051459;
+GMAT Trail2.VZ = -0.04030231;
+GMAT Trail2.DryMass = 50;
+GMAT Trail2.Cd = 2.2;
+GMAT Trail2.Cr = 1.8;
+GMAT Trail2.DragArea = 0.01;
+GMAT Trail2.SRPArea = 1;
+GMAT Trail2.SPADDragScaleFactor = 1;
+GMAT Trail2.SPADSRPScaleFactor = 1;
+GMAT Trail2.AtmosDensityScaleFactor = 1;
+GMAT Trail2.ExtendedMassPropertiesModel = 'None';
+GMAT Trail2.NAIFId = -10000001;
+GMAT Trail2.NAIFIdReferenceFrame = -9000001;
+GMAT Trail2.OrbitColor = Red;
+GMAT Trail2.TargetColor = Teal;
+GMAT Trail2.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Trail2.CdSigma = 1e+70;
+GMAT Trail2.CrSigma = 1e+70;
+GMAT Trail2.Id = 'SatId';
+GMAT Trail2.Attitude = CoordinateSystemFixed;
+GMAT Trail2.SPADSRPInterpolationMethod = Bilinear;
+GMAT Trail2.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Trail2.SPADDragInterpolationMethod = Bilinear;
+GMAT Trail2.SPADDragScaleFactorSigma = 1e+70;
+GMAT Trail2.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Trail2.ModelFile = 'aura.3ds';
+GMAT Trail2.ModelOffsetX = 0;
+GMAT Trail2.ModelOffsetY = 0;
+GMAT Trail2.ModelOffsetZ = 0;
+GMAT Trail2.ModelRotationX = 0;
+GMAT Trail2.ModelRotationY = 0;
+GMAT Trail2.ModelRotationZ = 0;
+GMAT Trail2.ModelScale = 1;
+GMAT Trail2.AttitudeDisplayStateType = 'Quaternion';
+GMAT Trail2.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Trail2.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Trail2.EulerAngleSequence = '321';
+
+Create Spacecraft Trail3;
+GMAT Trail3.DateFormat = UTCGregorian;
+GMAT Trail3.Epoch = '06 Mar 2024 12:23:11.769';
+GMAT Trail3.CoordinateSystem = EarthMJ2000Eq;
+GMAT Trail3.DisplayStateType = Cartesian;
+GMAT Trail3.X = 2555.97476395;
+GMAT Trail3.Y = 2107.69143085;
+GMAT Trail3.Z = -5867.01167242;
+GMAT Trail3.VX = -3.78652958;
+GMAT Trail3.VY = -5.60144994;
+GMAT Trail3.VZ = -3.6563273;
+GMAT Trail3.DryMass = 50;
+GMAT Trail3.Cd = 2.2;
+GMAT Trail3.Cr = 1.8;
+GMAT Trail3.DragArea = 0.01;
+GMAT Trail3.SRPArea = 1;
+GMAT Trail3.SPADDragScaleFactor = 1;
+GMAT Trail3.SPADSRPScaleFactor = 1;
+GMAT Trail3.AtmosDensityScaleFactor = 1;
+GMAT Trail3.ExtendedMassPropertiesModel = 'None';
+GMAT Trail3.NAIFId = -10000001;
+GMAT Trail3.NAIFIdReferenceFrame = -9000001;
+GMAT Trail3.OrbitColor = Red;
+GMAT Trail3.TargetColor = Teal;
+GMAT Trail3.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Trail3.CdSigma = 1e+70;
+GMAT Trail3.CrSigma = 1e+70;
+GMAT Trail3.Id = 'SatId';
+GMAT Trail3.Attitude = CoordinateSystemFixed;
+GMAT Trail3.SPADSRPInterpolationMethod = Bilinear;
+GMAT Trail3.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Trail3.SPADDragInterpolationMethod = Bilinear;
+GMAT Trail3.SPADDragScaleFactorSigma = 1e+70;
+GMAT Trail3.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Trail3.ModelFile = 'aura.3ds';
+GMAT Trail3.ModelOffsetX = 0;
+GMAT Trail3.ModelOffsetY = 0;
+GMAT Trail3.ModelOffsetZ = 0;
+GMAT Trail3.ModelRotationX = 0;
+GMAT Trail3.ModelRotationY = 0;
+GMAT Trail3.ModelRotationZ = 0;
+GMAT Trail3.ModelScale = 1;
+GMAT Trail3.AttitudeDisplayStateType = 'Quaternion';
+GMAT Trail3.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Trail3.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Trail3.EulerAngleSequence = '321';
+
+Create Spacecraft Trail4;
+GMAT Trail4.DateFormat = UTCGregorian;
+GMAT Trail4.Epoch = '06 Mar 2024 12:23:11.769';
+GMAT Trail4.CoordinateSystem = EarthMJ2000Eq;
+GMAT Trail4.DisplayStateType = Cartesian;
+GMAT Trail4.X = 3851.26007145;
+GMAT Trail4.Y = 4234.56149824;
+GMAT Trail4.Z = -3558.83981969;
+GMAT Trail4.VX = -1.88715266;
+GMAT Trail4.VY = -3.72023522;
+GMAT Trail4.VZ = -6.45928312;
+GMAT Trail4.DryMass = 50;
+GMAT Trail4.Cd = 2.2;
+GMAT Trail4.Cr = 1.8;
+GMAT Trail4.DragArea = 0.01;
+GMAT Trail4.SRPArea = 1;
+GMAT Trail4.SPADDragScaleFactor = 1;
+GMAT Trail4.SPADSRPScaleFactor = 1;
+GMAT Trail4.AtmosDensityScaleFactor = 1;
+GMAT Trail4.ExtendedMassPropertiesModel = 'None';
+GMAT Trail4.NAIFId = -10000001;
+GMAT Trail4.NAIFIdReferenceFrame = -9000001;
+GMAT Trail4.OrbitColor = Red;
+GMAT Trail4.TargetColor = Teal;
+GMAT Trail4.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Trail4.CdSigma = 1e+70;
+GMAT Trail4.CrSigma = 1e+70;
+GMAT Trail4.Id = 'SatId';
+GMAT Trail4.Attitude = CoordinateSystemFixed;
+GMAT Trail4.SPADSRPInterpolationMethod = Bilinear;
+GMAT Trail4.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Trail4.SPADDragInterpolationMethod = Bilinear;
+GMAT Trail4.SPADDragScaleFactorSigma = 1e+70;
+GMAT Trail4.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Trail4.ModelFile = 'aura.3ds';
+GMAT Trail4.ModelOffsetX = 0;
+GMAT Trail4.ModelOffsetY = 0;
+GMAT Trail4.ModelOffsetZ = 0;
+GMAT Trail4.ModelRotationX = 0;
+GMAT Trail4.ModelRotationY = 0;
+GMAT Trail4.ModelRotationZ = 0;
+GMAT Trail4.ModelScale = 1;
+GMAT Trail4.AttitudeDisplayStateType = 'Quaternion';
+GMAT Trail4.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Trail4.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Trail4.EulerAngleSequence = '321';
+
+Create Spacecraft Trail5;
+GMAT Trail5.DateFormat = UTCGregorian;
+GMAT Trail5.Epoch = '06 Mar 2024 12:23:11.769';
+GMAT Trail5.CoordinateSystem = EarthMJ2000Eq;
+GMAT Trail5.DisplayStateType = Cartesian;
+GMAT Trail5.X = 3780.88321567;
+GMAT Trail5.Y = 5256.39309246;
+GMAT Trail5.Z = 1877.64351442;
+GMAT Trail5.VX = 2.03550719;
+GMAT Trail5.VY = 1.15398992;
+GMAT Trail5.VZ = -7.32500584;
+GMAT Trail5.DryMass = 50;
+GMAT Trail5.Cd = 2.2;
+GMAT Trail5.Cr = 1.8;
+GMAT Trail5.DragArea = 0.01;
+GMAT Trail5.SRPArea = 1;
+GMAT Trail5.SPADDragScaleFactor = 1;
+GMAT Trail5.SPADSRPScaleFactor = 1;
+GMAT Trail5.AtmosDensityScaleFactor = 1;
+GMAT Trail5.ExtendedMassPropertiesModel = 'None';
+GMAT Trail5.NAIFId = -10000001;
+GMAT Trail5.NAIFIdReferenceFrame = -9000001;
+GMAT Trail5.OrbitColor = Red;
+GMAT Trail5.TargetColor = Teal;
+GMAT Trail5.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Trail5.CdSigma = 1e+70;
+GMAT Trail5.CrSigma = 1e+70;
+GMAT Trail5.Id = 'SatId';
+GMAT Trail5.Attitude = CoordinateSystemFixed;
+GMAT Trail5.SPADSRPInterpolationMethod = Bilinear;
+GMAT Trail5.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Trail5.SPADDragInterpolationMethod = Bilinear;
+GMAT Trail5.SPADDragScaleFactorSigma = 1e+70;
+GMAT Trail5.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Trail5.ModelFile = 'aura.3ds';
+GMAT Trail5.ModelOffsetX = 0;
+GMAT Trail5.ModelOffsetY = 0;
+GMAT Trail5.ModelOffsetZ = 0;
+GMAT Trail5.ModelRotationX = 0;
+GMAT Trail5.ModelRotationY = 0;
+GMAT Trail5.ModelRotationZ = 0;
+GMAT Trail5.ModelScale = 1;
+GMAT Trail5.AttitudeDisplayStateType = 'Quaternion';
+GMAT Trail5.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Trail5.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Trail5.EulerAngleSequence = '321';
+
+Create Spacecraft Ref;
+GMAT Ref.DateFormat = UTCGregorian;
+GMAT Ref.Epoch = '06 Mar 2024 12:23:11.769';
+GMAT Ref.CoordinateSystem = EarthMJ2000Eq;
+GMAT Ref.DisplayStateType = Cartesian;
+GMAT Ref.X = -3408.502113;
+GMAT Ref.Y = -4988.05124236;
+GMAT Ref.Z = -2984.47845356;
+GMAT Ref.VX = -2.77184736;
+GMAT Ref.VY = -2.19738375;
+GMAT Ref.VZ = 6.83058437;
+GMAT Ref.DryMass = 50;
+GMAT Ref.Cd = 2.2;
+GMAT Ref.Cr = 1.8;
+GMAT Ref.DragArea = 0.01;
+GMAT Ref.SRPArea = 1;
+GMAT Ref.SPADDragScaleFactor = 1;
+GMAT Ref.SPADSRPScaleFactor = 1;
+GMAT Ref.AtmosDensityScaleFactor = 1;
+GMAT Ref.ExtendedMassPropertiesModel = 'None';
+GMAT Ref.NAIFId = -10000001;
+GMAT Ref.NAIFIdReferenceFrame = -9000001;
+GMAT Ref.OrbitColor = Red;
+GMAT Ref.TargetColor = Teal;
+GMAT Ref.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Ref.CdSigma = 1e+70;
+GMAT Ref.CrSigma = 1e+70;
+GMAT Ref.Id = 'SatId';
+GMAT Ref.Attitude = CoordinateSystemFixed;
+GMAT Ref.SPADSRPInterpolationMethod = Bilinear;
+GMAT Ref.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Ref.SPADDragInterpolationMethod = Bilinear;
+GMAT Ref.SPADDragScaleFactorSigma = 1e+70;
+GMAT Ref.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Ref.ModelFile = 'aura.3ds';
+GMAT Ref.ModelOffsetX = 0;
+GMAT Ref.ModelOffsetY = 0;
+GMAT Ref.ModelOffsetZ = 0;
+GMAT Ref.ModelRotationX = 0;
+GMAT Ref.ModelRotationY = 0;
+GMAT Ref.ModelRotationZ = 0;
+GMAT Ref.ModelScale = 1;
+GMAT Ref.AttitudeDisplayStateType = 'Quaternion';
+GMAT Ref.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Ref.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Ref.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Formation
+%----------------------------------------
+
+Create Formation Formation1;
+GMAT Formation1.Add = {Ref, Trail1, Trail2, Trail3, Trail4, Trail5};
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
+GMAT DefaultOrbitView.Size = [ 0.5 0.4496644295302014 ];
+GMAT DefaultOrbitView.RelativeZOrder = 216;
+GMAT DefaultOrbitView.Maximized = true;
+GMAT DefaultOrbitView.Add = {Trail1, Ref, Trail2, Trail3, Trail4, Trail5, Earth};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true true true true true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = Off;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = Off;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = Off;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+Create GroundTrackPlot DefaultGroundTrackPlot;
+GMAT DefaultGroundTrackPlot.SolverIterations = Current;
+GMAT DefaultGroundTrackPlot.UpperLeft = [ 0 0.4471476510067114 ];
+GMAT DefaultGroundTrackPlot.Size = [ 0.5 0.4496644295302014 ];
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 208;
+GMAT DefaultGroundTrackPlot.Maximized = false;
+GMAT DefaultGroundTrackPlot.Add = {Ref, Trail1, Trail2, Trail3, Trail4, Trail5};
+GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
+GMAT DefaultGroundTrackPlot.UpdatePlotFrequency = 50;
+GMAT DefaultGroundTrackPlot.NumPointsToRedraw = 0;
+GMAT DefaultGroundTrackPlot.ShowPlot = true;
+GMAT DefaultGroundTrackPlot.MaxPlotPoints = 20000;
+GMAT DefaultGroundTrackPlot.CentralBody = Earth;
+GMAT DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(Formation1) {Trail1.ElapsedSecs = 1};

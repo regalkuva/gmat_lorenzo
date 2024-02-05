@@ -46,7 +46,7 @@ in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, start_date)
 # Propagation time selection (poliastro)
 # time_frame = float(input('- Time frame [days]: ')) * u.day
 # time_step  = float(input('- Time step   [sec]: ')) * u.s
-time_frame = 10<<u.day
+time_frame = 30<<u.day
 time_step  = 3600<<u.s
 
 process_start_time = time.time()   # start time of python code
@@ -151,12 +151,18 @@ elapsed_days = []
 for sec in range(len(elapsedsecs)):
     elapsed_days.append(elapsedsecs[sec]/(60*60*24))
 
+altitudes = []
+mean_altitudes = []
+for sma in range(len(a_list)):
+    altitudes.append(a_list[sma] - Earth.R_mean.to_value(u.km))
+    mean_altitudes.append(a_mean_list[sma] - Earth.R_mean.to_value(u.km))
+
 print(f'\nProcess finished --- {time.time() - process_start_time}')
 
 fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
 
-ax[0,0].plot(elapsed_days, a_list, label='Osculating SMA')
-ax[0,0].plot(elapsed_days, a_mean_list, label='Mean SMA')
+ax[0,0].plot(elapsed_days, altitudes, label='Osculating Altitudes')
+ax[0,0].plot(elapsed_days, mean_altitudes, label='Mean Altitudes')
 ax[0,0].legend(loc = 'center right')
 ax[0,0].set_title('SMA')
 
