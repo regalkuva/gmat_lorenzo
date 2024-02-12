@@ -24,10 +24,10 @@ from perturbations import perturbations_coesa_J2_low, perturbations_coesa_J2_hig
 toc = time.time()
 
 ## Input parameters
-h = 500
+h = 510
 delta_a = 0.5
-delta_nu = -1
-assignment = 100%360
+delta_nu = -0.1
+assignment = 24%360
 
 ## Orbital data
 start_date = datetime(2024,1,1,9,0,0)
@@ -66,10 +66,10 @@ trailing_orbit_0 = Orbit.from_classical(
 
 reference_orbit = reference_orbit_0
 trailing_orbit = trailing_orbit_0
-
+print(trailing_orbit.rv())
 
 ## Propagation data
-time_step = 8640<<u.s
+time_step = 864<<u.s
 pred_days = (assignment-delta_nu)
 
 refsmalist = []
@@ -88,7 +88,6 @@ ref_mean = osc2mean(a.value, ecc.value, inc.value, raan.value, argp.value, nu.va
 ref_mean_orbit = Orbit.from_classical(Earth, ref_mean[0]<<u.km, ref_mean[1]<<u.one, ref_mean[2]<<u.deg, ref_mean[3]<<u.deg, ref_mean[4]<<u.deg, nu, epoch)
 trail_mean = osc2mean(a.value+delta_a, ecc.value, inc.value, raan.value, argp.value, nu.value+delta_nu)
 trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu<<u.deg), epoch)
-
 mans = 1
 
 
@@ -98,7 +97,9 @@ for i in range(mans):
     theta_err = (assignment - argl_difference(reference_orbit, trailing_orbit))%360
 
     for attempts in range(2):
+        print(pred_days)
         tra_orb_pred_high = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
+        print(tra_orb_pred_high.rv())        
         tra_pred_mean_high = osc2mean(tra_orb_pred_high.a.value, tra_orb_pred_high.ecc.value, tra_orb_pred_high.inc.to_value(u.deg), tra_orb_pred_high.raan.to_value(u.deg), tra_orb_pred_high.argp.to_value(u.deg), tra_orb_pred_high.nu.to_value(u.deg))
         tra_orb_pred_mean_high = Orbit.from_classical(Earth, tra_pred_mean_high[0]<<u.km, tra_pred_mean_high[1]<<u.one, tra_pred_mean_high[2]<<u.deg, tra_pred_mean_high[3]<<u.deg, tra_pred_mean_high[4]<<u.deg, tra_orb_pred_high.nu.to(u.deg), tra_orb_pred_high.epoch)
 
@@ -107,8 +108,8 @@ for i in range(mans):
         tra_orb_pred_mean_low = Orbit.from_classical(Earth, tra_pred_mean_low[0]<<u.km, tra_pred_mean_low[1]<<u.one, tra_pred_mean_low[2]<<u.deg, tra_pred_mean_low[3]<<u.deg, tra_pred_mean_low[4]<<u.deg, tra_orb_pred_low.nu.to(u.deg), tra_orb_pred_low.epoch)
 
         theta_dot_dot = (tra_orb_pred_mean_high.n.to(u.deg/u.s) - tra_orb_pred_mean_low.n.to(u.deg/u.s)) / ((pred_days*60*60*24)<<u.s)  
-
         t_hd = (ref_mean_orbit.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / theta_dot_dot
+        print(t_hd)
         theta_hd = 0.5 * theta_dot_dot * t_hd**2
         t_wait = ((theta_err - theta_hd.value)%360 / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s)))
 
