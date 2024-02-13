@@ -1,0 +1,85 @@
+\documentclass[12pt, oneside, openright, 
+    %uninadraft,
+    %colorlinks, 
+    blacklinks,
+    %palatino,
+    libertine,
+    %mathpazo,
+    %tgschola,
+    %tgscholamathpazo,
+    %alegreya
+]{uninathesis}
+
+%\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}} %remove page number from toc
+
+\usepackage[english]{babel}
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {\sffamily Contents}%
+}
+
+% Math
+\RequirePackage{mathtools}
+\RequirePackage{mathrsfs} %need this for mathscr
+\let\openbox\relax
+\RequirePackage{amsthm}
+\RequirePackage{stmaryrd} %for \llbracket
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+% Tikz - may be removed if unneeded
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{positioning,automata,calc,fit,shapes,backgrounds,arrows.meta}
+\usepackage{makecell}
+
+% Miscellanea Packages
+\RequirePackage[utf8]{inputenc}
+\usepackage{ marvosym } %/Lightning
+%\usepackage{ stmaryrd } %/lightning
+%\usepackage[htt]{hyphenat}
+\usepackage{subcaption} %subfigures
+
+% read configuration file
+% \input{_utils/macro.tex} %can write your macros here
+
+% Bibliography
+\RequirePackage{csquotes}
+\RequirePackage[sorting=none,maxbibnames=4]{biblatex} %dashed=false to remove dashes on repeated authors.
+\bibliography{_bib/bibliography.bib} %bib database(s)
+
+% Front page (package uninafrontespizio)
+\Universita{\pmb{Università degli Studi di Napoli Federico II}}
+\Facolta{Scuola Politecnica e delle Scienze di Base}
+\Dipartimento{Dipartimento di Ingegneria Industriale}
+\Materia{Ingegneria Aerospaziale}
+\CorsoDiLaurea{\pmb{Classe delle Lauree Magistrali in Ingegneria} \\\pmb{Aerospaziale e Astronautica} \\\pmb{(LM 20)}}}
+\AnnoAccademico{2023--2024}
+\Titolo{A fancy \LaTeX~template for your thesis at UniNA}
+\Relatore{Prof. Giancarmine \textsc{Fasano}}
+\Relatore{Ing. Egemen \textsc{Çatal}}
+%\Relatore{Baronessa Filiguelli \textsc{de Bonchamps}}
+\RelatoreLabel{Relatori}
+%\Correlatore{Megadir. Clam. Duca Conte Pier Carlo ing. \textsc{Semenzara}}
+\Candidato{Lorenzo \textsc{Regalbuto}}
+\Matricola{Matr. M53001466}
+\Logo{logo-federico-II.pdf}
+\LogoWidth{3.5cm}
+\LogoPosition{below-uni}
+
+%custom hyphenation
+\hyphenation{ERTMS/ETCS}
+
+\usepackage[title,titletoc]{appendix}
+
+\begin{document}
+
+\include{titlepage_dia_content}
+
+\end{document}

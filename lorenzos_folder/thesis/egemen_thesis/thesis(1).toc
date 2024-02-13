@@ -1,0 +1,88 @@
+\contentsline {part}{\bf {\onsoznameToC }}{\small {ix}}{Doc-Start}%
+\contentsline {part}{\bf {\contentsnameToC }}{\small {xi}}{chapter*.1}%
+\contentsline {part}{\bf {\kisaltmanameToC }}{\small {xiii}}{chapter*.2}%
+\contentsline {part}{\bf {\symbolnameToC }}{\small {xv}}{chapter*.3}%
+\contentsline {part}{\bf {\listtablenameToC }}{\small {xvii}}{chapter*.4}%
+\contentsline {part}{\bf {\listfigurenameToC }}{\small {xix}}{chapter*.5}%
+\contentsline {part}{\bf {\abstractnameToC }}{\small {xxi}}{chapter*.5}%
+\contentsline {part}{\bf {\ozetnameToC }}{\small {xxiii}}{chapter*.5}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{1. \bf {INTRODUCTION}}{\small {1}}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Cube Satellites}{\small {1}}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Cube satellite research at ITU}{\small {2}}{subsection.1.1.1}%
+\contentsline {section}{\numberline {1.2}Spacecraft Propulsion Systems}{\small {2}}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Chemical propulsion systems}{\small {4}}{subsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.1.1}Monopropellant}{\small {4}}{subsubsection.1.2.1.1}%
+\contentsline {subsubsection}{\numberline {1.2.1.2}Bi-propellant}{\small {4}}{subsubsection.1.2.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1.3}Solid rocket engines}{\small {4}}{subsubsection.1.2.1.3}%
+\contentsline {subsection}{\numberline {1.2.2}Electric propulsion systems}{\small {4}}{subsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.2.1}Electrothermal propulsion}{\small {4}}{subsubsection.1.2.2.1}%
+\contentsline {subsubsubsection}{Resistojet Thruster}{\small {4}}{subsubsection.1.2.2.1}%
+\contentsline {subsubsubsection}{Arcjet Thruster}{\small {5}}{figure.caption.7}%
+\contentsline {subsubsection}{\numberline {1.2.2.2}Electrostatic propulsion}{\small {6}}{subsubsection.1.2.2.2}%
+\contentsline {subsubsubsection}{Ion Thruster}{\small {6}}{subsubsection.1.2.2.2}%
+\contentsline {subsubsubsection}{Hall Thruster}{\small {10}}{figure.caption.11}%
+\contentsline {subsubsection}{\numberline {1.2.2.3}Electromagnetic propulsion}{\small {11}}{subsubsection.1.2.2.3}%
+\contentsline {subsubsubsection}{Pulsed Plasma Thruster (PPT)}{\small {11}}{subsubsection.1.2.2.3}%
+\contentsline {subsubsubsection}{Magnetoplasmadynamic (MPD) Thruster}{\small {11}}{subsubsection.1.2.2.3}%
+\contentsline {section}{\numberline {1.3}Thesis Purpose and Overview}{\small {12}}{section.1.3}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{2. \bf {BACKGROUND}}{\small {13}}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Basic Plasma \& RF Thruster Physics}{\small {13}}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Sheats at The Boundaries of The Plasma}{\small {16}}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}General RF Ion Thruster Design Parameters}{\small {18}}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Discharge Chamber and RF Coil}{\small {18}}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Ion Extraction Grids}{\small {22}}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Thrust}{\small {31}}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Specific Impulse}{\small {34}}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Neutralizer}{\small {35}}{subsection.2.2.5}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{3. \bf {MINIATURE RF ION THRUSTER DESIGN}}{\small {37}}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Sizing}{\small {37}}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Plasma Generation System}{\small {39}}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Discharge Chamber}{\small {39}}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}RF Coil}{\small {40}}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}Coil Impedance}{\small {41}}{subsubsection.3.2.2.1}%
+\contentsline {section}{\numberline {3.3}Ion Extraction System}{\small {44}}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Thruster Assembly}{\small {48}}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Calculations}{\small {55}}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Thrust Calculations}{\small {55}}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Specific Impulse Calculations}{\small {57}}{subsection.3.5.2}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{4. \bf {EXPERIMENTAL SETUP AND METHODOLOGY}}{\small {59}}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Experimental Setup}{\small {59}}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Vacuum Chamber}{\small {60}}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}RF Power Supply}{\small {62}}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Matching Network}{\small {62}}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}DC Power Supplies}{\small {63}}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Propellant Feed Line and Flow Controller}{\small {64}}{subsection.4.1.5}%
+\contentsline {section}{\numberline {4.2}Experimental Procedure}{\small {65}}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Firing Test No. 1}{\small {69}}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Firing Test No. 2}{\small {71}}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Firing Test No. 3}{\small {73}}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Firing Tets No. 4}{\small {74}}{subsection.4.2.4}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{5. \bf {RESULTS \& DISCUSSION}}{\small {79}}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Thrust Predictions}{\small {80}}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Specific Impulse Predictions}{\small {80}}{section.5.2}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{6. \bf {CONCLUSION AND FUTURE WORK}}{\small {83}}{chapter.6}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{7. \bf {APPENDIX A: CHILD-LANGMUIR EQUATION}}{\small {87}}{chapter.7}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{8. \bf {APPENDIX B: RF SYSTEM DESIGN}}{\small {89}}{chapter.8}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{9. \bf {APPENDIX C: FARADAY CUP}}{\small {91}}{chapter.9}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{\bf {APPENDICES}}{\small {93}}{chapter.10}%
+\addvspace {-10\p@ }
+\addvspace {0\p@ }
+\contentsline {section}{APPENDIX A: CHILD-LANGMUIR EQUATION}{\small {95}}{chapter.1}%
+\addvspace {-10\p@ }
+\addvspace {0\p@ }
+\contentsline {section}{APPENDIX B: RF SYSTEM DESIGN}{\small {97}}{chapter.2}%
+\addvspace {-10\p@ }
+\addvspace {0\p@ }
+\contentsline {section}{APPENDIX C: FARADAY CUP}{\small {99}}{chapter.3}%
+\addvspace {-10\p@ }
+\contentsline {chapter}{\bf {\ozgecmisnameToC }}{\small {101}}{chapter.3}%

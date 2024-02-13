@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{RESULTS \& DISCUSSION}\label{Ch5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The RF ion thruster development study so far have achieved the following: plasma generation, plasma containing and sustaining, ion beam extraction. During majority of the testing stage the issue with plasma arcing has been tackled. The problem was solved using SS316 grade stainless steel and nitrogen laser cutting technique for grid production. Unfortunately ion beam characteristics have not been measured. At this stage only predictions and calculations can be done regarding the thrust levels produced by the thruster. 
+
+In this chapter approximate thrust and specific impulse levels will be calculated using equations depicted in chapter \ref{ch:2_background} and experimental parameters provided in chapter \ref{Ch:Ch4_expsetup}. During tests the thruster could only be operated on the fourth test. Experimental and physical parameters during the fourth test are summarized in the table \ref{table:predictionparams} below.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{||c|c||}
+        \hline
+        \textbf{Parameter} & \textbf{Value} \\
+        \hline
+        RF Power & 80 W \\
+        \hline
+        Screen Grid Voltage & +800 V \\
+        \hline
+        Accel. Grid Voltage & -200 V \\
+        \hline 
+        Propellant Flow Rate & 12 sccm \\
+        \hline
+        Screen Grid Diameter & 2.2 mm \\
+        \hline
+        Accel. Grid Diameter & 1.2 mm \\
+        \hline
+        Distance Between Grids & 1 mm \\
+        \hline
+        Number of Apertures & 61 \\
+        \hline
+        Mass of Ion & 38.948 u \\
+        \hline
+    \end{tabular}
+    \caption{Parameters used in thruster predictions}
+    \label{table:predictionparams}
+\end{table}
+\newpage
+\section{Thrust Predictions}
+
+Thrust predictions are made using Child-Langmuir and thrust equations shown in previous chapters. In order to ease calculations they are shown below again. 
+Equation \ref{eq:resultchild} displays Child-Langmuir equation for ion beam charge density. 
+
+\begin{equation}
+    J = \frac{4}{9}\varepsilon_0 \sqrt{\frac{2e}{m_i}}\frac{V_T^{\frac{3}{2}}}{d^2}
+    \label{eq:resultchild}
+\end{equation}
+
+Equation \ref{eq:resultthrust} shown the thrust equation.
+
+\begin{equation}
+    T = \gamma \sqrt{\dfrac{2m_i V_b}{e}}I_b
+    \label{eq:resultthrust}
+\end{equation}
+
+In early chapters assumptions were made regarding the $\gamma$ thrust correction factor. These assumptions were 10\% doubly charge ion ratio and 10 degree beam divergence. Taking these assumptions into account gives $\gamma$ value as 0.959. Using rest of the parameters listed in talbe \ref{table:predictionparams} ion beam charge density is calculated as 78.82 $A/m^2$. 61 apertures of the grids results in grid active area of 231.88 $mm^2$ thus the ion beam charge is calculated as 18.28 $mA$. Inputting all these values into the equation \ref{eq:resultthrust} gives 504.14 $\mu N$ of thrust.
+
+\section{Specific Impulse Predictions}
+
+Specific impulse formula is restated as 
+
+\begin{equation}
+    I_{sp} = \gamma \frac{\eta_m}{g} \sqrt{\frac{2qV_b}{m_i}}
+    \label{eq:resultsisp}
+\end{equation}
+
+After inputting the appopriate parameters equation \ref{eq:resultsisp} turns into;
+
+\begin{equation}
+    I_{sp} = 6265.53  \eta_m
+    \label{eq:resultsisp2}
+\end{equation}
+
+From equation \ref{eq:resultsisp2} it is evident that the specific impulse levels are dependent on mass utilization efficiency. Change in specific impulse levels with different mass utilization efficiency ratio is shown in table \ref{table:resultsispchart}.
+
+\begin{table}
+    \centering
+    \begin{tabular}{||c|c||}
+        \hline
+        Mass Utilization Efficiency (\%) & $I_{sp}$ (s) \\
+        \hline
+        50 & 3132.76 \\
+        \hline
+        60 & 3759.32 \\
+        \hline
+        70 & 4385.87 \\
+        \hline
+        80 & 5012.43 \\
+        \hline
+        90 & 5638.98 \\
+        \hline
+        \end{tabular}
+        \caption{Values for $I_{sp}$ with regards to mass utilization efficiency}
+        \label{table:resultsispchart}
+\end{table}
+
+As shown in table \ref{table:resultsispchart} $I_sp$ values are predicted in the range of 3132.76 to 5638.98 seconds.
+
+\newpage
+% \section{Plume Diagnostics}
+% \section{Comparison}
+% \section{Efficiency Calculations}
+
+% In this thesis, the necessary steps for constructing an end-to-end streamflow forecasting system were discussed. These steps include the use.
+
+% \section{Second Level Title: First Letters Capital}
+
+
+% \subsection{Third level title: Only first letter capital}
+
+
+% \subsubsection{Fourth level title: Only first letter capital}
+
+
+% %\newpage
+% %{\bf Fifth level title: No numbering after fourth level titles}
+% \subsubsubsection{Fifth level title: No numbering after fourth level titles}
+
+
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=230pt,keepaspectratio=true]{./fig/sekil5}
+% 	% sekil5.eps: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=14 14 1193 701
+% 	\vspace{3mm}
+% 	\caption{Example figure in chapter 5.}
+% 	\label{Figure5.1}
+% \end{figure}
+
+% This indicates that the ANN is accurate at base flow and flow height values lower then 3 m. 
+
+% \begin{table*}[h]
+% 	{\setlength{\tabcolsep}{14pt}
+% 		\caption{Example table in chapter 5.}
+% 		\begin{center}
+% 			\vspace{-6mm}
+% 			\begin{tabular}{cccc}
+% 			    \hline \\[-2.45ex] \hline \\[-2.1ex]
+% 				Column A & Column B & Column C & Column D \\
+% 				\hline \\[-1.8ex]
+% 				Row A & Row A & Row A & Row A \\
+% 				Row B & Row B & Row B & Row B \\
+% 				Row C & Row C & Row C & Row C \\
+% 				[-0ex] \hline
+% 			\end{tabular}
+% 			\vspace{-6mm}
+% 		\end{center}
+% 		\label{Table5.1}}
+% \end{table*}
+
+ 

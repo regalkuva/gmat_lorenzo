@@ -1,0 +1,239 @@
+% ----------------------------------------------------------------- %
+%                     LATEX Thesis Template	              		    %
+%                                                                   %
+%		         		Version 1.6.2	                      	    %
+% ----------------------------------------------------------------- %
+
+% ----------------------------------------------------------------- %
+% Prepared by ITU Informatics Institute	                            %
+%                                                                   %
+% Informatics Institute, ITU Ayazaga Campus                         %
+% Maslak-34469, İstanbul, Turkey									%
+% http://www.be.itu.edu.tr											%
+% ----------------------------------------------------------------- %
+
+% ----------------------------------------------------------------- %
+% Updated voluntarily by	  :										%
+% E. Baris Ondes    : ondes@itu.edu.tr 	  OR ondesalt@pm.me			% 
+% Tamer Sener	    : senerta@itu.edu.tr  OR senertam@pm.me			%
+% Berkan Kacmaz	    : kacmazb@itu.edu.tr  OR kacmazberkan0@gmail.com%
+% S. Baris Ozturk   : ozturksb@itu.edu.tr OR salihbaris@gmail.com   %
+% O. Ozgun Altunkaya: altunkayao@itu.edu.tr OR ozgun@pm.me 			%
+% Latest update: 22-Feb-2021										%
+% ----------------------------------------------------------------- %
+
+% ----------------------------------------------------------------- %
+% Please visit the following page for the current version:			%
+% https://github.com/ondes/Template-Latex-ITU-Thesis   				%
+% ----------------------------------------------------------------- %
+
+% ----------------------------------------------------------------- %
+% 					DOCUMENT CLASS ARGUMENTS 						%
+% [onluarkali,tekyonlu],             							    %
+% [turkce,ingilizce],             							    	%
+% [lisans,yukseklisans,doktora],             					    %
+% [bez,karton],					    								%
+% [bilisim,fenbilimleri,sosyalbilimler,avrasya,enerji]			   	%
+% ----------------------------------------------------------------- %
+% Sample use: \documentclass[onluarkali,ingilizce,yukseklisans,    	%
+% karton,fenbilimleri]{itutez}					  				   	%
+% Other sample use: \documentclass[tekyonlu,ingilizce,	           	%
+% yukseklisans,bez,bilisim]{itutez}			           			   	%
+% ----------------------------------------------------------------- %
+% 					TANIMLAMALAR/DEFINITIONS						%
+% onluarkali: twoside                     			  			   	%
+% tekyonlu: oneside						 						   	%
+% turkce: turkish						 						   	%
+% ingilizce: english											   	%
+% lisans: undergraduate												%
+% yukseklisans: masters											   	%
+% doktora: phd							  						   	%
+% bez: hardcover version					  					    %
+% karton: paperback version					  					    %
+% 					INSTITUES (For grad students)					&
+% bilisim: informatics						  					    %
+% fenbilimleri: science and technology							    %
+% sosyalbilimler: social sciences				 				    %
+% avrasya: eurasia						 						    %
+% enerji: energy						   						    %
+% 					FACULTIES (For undergrads)						%
+% ucakuzay: aeronautics & astronautics 								%
+% elektrikelektronik: electrical and electronics				    %
+% ----------------------------------------------------------------- %
+% !! The following faculties will be added to the class file !!     %
+% ----------------------------------------------------------------- %
+% insaat: civil														%	
+% mimarlik: architecture											%
+% makina: mechanical												%
+% denizcilik: maritime												%
+% kimyametalurji: chemical-metallurgical							%
+% isletme: management												%
+% tekstiltek: textile tech											%
+% maden: mines														%
+% gemiinsaati: naval architecture									%
+% bilgisayarbilisim: computer & informatics							%
+% fenedebiyat: science & letters									%
+% ----------------------------------------------------------------- %
+
+\documentclass[onluarkali,ingilizce,yukseklisans,bez,fenbilimleri]{thesis_itu}
+\usepackage{pgfplots}
+% ----------------------------------------------------------------- %
+% Pay attention to letter case. The structure is case sensitive     %
+% {Name}{SURNAME} means first letter of name is capital and that    %
+% all letters of surname are capital.                               %
+% ----------------------------------------------------------------- %
+
+% ----------------------------------------------------------------- %
+% No titles, only Name and SURNAME must be written.      	        %
+% ----------------------------------------------------------------- %
+
+\yazar{Egemen}{ÇATAL}
+\ogrencino{514191041}
+
+% ----------------------------------------------------------------- %
+% If you do not use the structure, do not delete it. Just delete    %
+% the argument. \unvan{} means title.                               %
+% ----------------------------------------------------------------- %
+
+\unvan{(Physics Engineer)}
+ 
+% ----------------------------------------------------------------- %
+% For below, the first argument for Turkish, the second is for      %
+% English.       						   						    %
+% ----------------------------------------------------------------- %
+
+% ----------------------------------------------------------------- %
+% Only the first letters of words must be capital.		     	    %
+% ----------------------------------------------------------------- %
+
+\anabilimdali{Savunma Teknolojileri Anabilim  Dalı}{Department of Defense Technologies}
+\programi{Savunma Teknolojileri Programı}{Defense Technologies Programme}
+
+% ----------------------------------------------------------------- %
+% For paperback version, the submission date to the faculty. For    %
+% hardcover (indigo/black) version, date of defense.		   	    %
+% ----------------------------------------------------------------- %
+
+\tarih{TEMMUZ 2022}{JULY 2022}
+\tarihKucuk{Temmuz 2022}{July 2022}
+
+% ----------------------------------------------------------------- %
+% Thesis advisor, title, thesis submission date, defense date       %
+% ----------------------------------------------------------------- %
+
+\tezyoneticisi{Prof. Dr. Alim Rüstem Aslan}{Istanbul Technical University}   
+
+\baslik{NANO UYDULAR İÇİN}
+{MİNYATÜR}
+{ELEKTRİKLİ İTKİ SİSTEMİ TASARIMI}
+
+\title{MINIATURE ELECTRICAL}
+{PROPULSION SYSTEM DESIGN}
+{FOR CUBE SATELLITES}
+
+% ----------------------------------------------------------------- %
+% The date of submission of the paperback to the department.	    %
+% ----------------------------------------------------------------- %
+
+\tezvermetarih{1 Mayıs 2020}{1 May 2020} 
+
+\tezsavunmatarih{1 Haziran 2020}{1 June 2020}
+
+% ----------------------------------------------------------------- %
+% coadvisor and jury information. If you do not use all items,     	%
+% leave the corresponding arguments blank such as                  	%
+% \esdanismani{}{} 					           						%
+% ----------------------------------------------------------------- %
+
+\esdanismani{Assoc. Prof. Dr. Murat Çelik}{Bogazici University}   
+
+\juriBir{Prof. Dr. Alim Rüstem Aslan}{Istanbul Technical University}  
+
+\juriIki{Assoc. Prof. Dr. Murat Çelik}{Bogazici University}  
+
+\juriUc{Assist. Prof. Dr. Cuma Yarım}{Istanbul Technical University}
+
+\juriDort{Prof. Dr. Selçuk Paker}{Istanbul Technical University} 
+
+\juriBes{Prof. Dr. Emrah Kalemci}{Sabancı University}
+
+% ----------------------------------------------------------------- %
+% Packages and definitions to be used are given in the following    %
+% ----------------------------------------------------------------- %
+
+\input{defs}                                        
+
+% ----------------------------------------------------------------- %
+% For dedication page. Leave the argument blank if not used.	    %
+% ----------------------------------------------------------------- %
+
+\ithaf{"If I have seen further it is by standing on the shoulders of Giants." \\ Isaac Newton}
+
+% ----------------------------------------------------------------- %
+% Form the below files						   					    %
+% ----------------------------------------------------------------- %
+
+\kisaltmalistesi{\input{abbreviations}}
+\sembollistesi{\input{symbols}}
+
+\onsoz{\input{foreword}}       
+
+\ozet{\input{summary_TR}}               
+
+\summary{\input{summary}}             
+
+\begin{document}
+
+% ----------------------------------------------------------------- %
+% Also form the below files. All corresponding inputs should point  %
+% to a file. They are provided inside the archive.                  %
+% ----------------------------------------------------------------- %
+
+\input{chapter_01_intro}                                       
+\input{chapter_02_background}
+\input{chapter_03_design}
+\input{chapter_04_setup}
+\input{chapter_05_results}
+\input{chapter_06_conc}
+\input{appendices.tex}
+% \input{chapter_07_axA_rf}
+% \input{chapter_08_axB_faraday}
+
+% ----------------------------------------------------------------- %
+% Form thesis_bib.bib to contain your references in bibtex format   %
+% use \cite command for citing your references.                     %
+% ----------------------------------------------------------------- %
+
+\bibliographystyle{thesis_itubib}      % Designed .bst file 
+\bibliography{thesis_bib}			   % .bib file
+
+% ----------------------------------------------------------------- %
+% Appendix files. appendices_cover is the appendix title page.      %
+% ----------------------------------------------------------------- %
+
+\eklerkapak{}
+\input{appendices_cover}
+
+% ----------------------------------------------------------------- %
+% \eklerbolum{x} forms and appendix of x chapters. 				    %
+% ----------------------------------------------------------------- %
+
+\eklerbolum{0}
+\input{appendices}
+
+% ----------------------------------------------------------------- %
+% The summary page                                                  %
+% ----------------------------------------------------------------- %
+
+\ozgecmis{\input{resume}} % Edge (Sırt) of the thesis at the very end.
+\end{document}                      
+
+% ----------------------------------------------------------------- %
+% Updated voluntarily by	  :										%
+% E. Baris Ondes    : ondes@itu.edu.tr 	  OR ondesalt@pm.me			% 
+% Tamer Sener	    : senerta@itu.edu.tr  OR senertam@pm.me			%
+% Berkan Kacmaz	    : kacmazb@itu.edu.tr  OR kacmazberkan0@gmail.com%
+% S. Baris Ozturk   : ozturksb@itu.edu.tr OR salihbaris@gmail.com   %
+% O. Ozgun Altunkaya: altunkayao@itu.edu.tr OR ozgun@pm.me 			%
+% Latest update: 22-Feb-2021										%
+% ----------------------------------------------------------------- %
