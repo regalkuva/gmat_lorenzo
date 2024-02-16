@@ -112,7 +112,7 @@ for i in range(mans):
         theta_hd = 0.5 * theta_dot_dot * t_hd**2
         t_wait = ((theta_err - theta_hd.value)%360 / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s)))
 
-        pred_days = ((t_wait+t_hd.value)/(60*60*24))**(1+((h+delta_a)/10000))
+        pred_days = ((t_wait+t_hd.value)/(60*60*24))**(1+((trailing_orbit.a.value-Earth.R_mean.to_value(u.km)+(trailing_orbit.a.value-reference_orbit.a.value))/10000))
 
     num_wait = int(t_wait / time_step.value)
     tofs_wait = TimeDelta(np.linspace(0, t_wait<<u.s, num=num_wait))

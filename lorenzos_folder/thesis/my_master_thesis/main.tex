@@ -6,24 +6,27 @@
 \usepackage[bookmarks]{hyperref}
 \usepackage{tocbibind} %[nottoc]
 \newgeometry{
-left=   1.5 in,
+left=   1.25 in,
 bottom= 1.5 in,
-right=  1 in,
+right=  1.25 in,
 top=    1 in
 }
 \usepackage{fancyhdr}
 
-% Grafica
+% Graphics
 \usepackage{graphicx,pstricks}
 \usepackage{graphics}
 \graphicspath{{img/}}
 
-% Package usati per il frontespizio
-\usepackage{tikz}
-\usepackage{pgf-pie}
-\usepackage{pgfplots}
-\pgfplotsset{width=7cm,compat=1.8}
-\usetikzlibrary{patterns}
+% % Package usati per il frontespizio
+% \usepackage{tikz}
+% \usepackage{pgf-pie}
+% \usepackage{pgfplots}
+% \pgfplotsset{width=7cm,compat=1.8}
+% \usetikzlibrary{patterns}
+
+% Packages for list of abbreviations
+\usepackage{enumitem}
 
 %Algorithm
 \usepackage{algorithm}
@@ -73,9 +76,10 @@ top=    1 in
 
 \include{chapter1_introduction}
 \include{chapter2_background}
-\include{chapter3_tools}
-\include{chapter4_cases}
-\include{chapter5}
+\include{chapter3_methodology}
+\include{chapter4_tools}
+\include{chapter5_cases}
+\include{chapter6_results}
 
 \include{conclusion}
 
