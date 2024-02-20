@@ -9,7 +9,6 @@ from poliastro.core.perturbations import (
     atmospheric_drag_exponential,
     J2_perturbation,
 )
-from numba import njit as jit
 R = Earth.R.to(u.km).value
 k = Earth.k.to(u.km**3 / u.s**2).value
 
@@ -55,6 +54,7 @@ def perturbations_atm_J2(t0, state, k):
 
     return du_kep + du_ad
 
+
 def perturbations_atm_low(t0, state, k):
     du_kep = func_twobody(t0, state, k)
     ax, ay, az = atmospheric_drag_exponential(
@@ -70,6 +70,7 @@ def perturbations_atm_low(t0, state, k):
     du_ad = np.array([0, 0, 0, ax, ay, az])
 
     return du_kep + du_ad
+
 
 def perturbations_atm_high(t0, state, k):
     du_kep = func_twobody(t0, state, k)
@@ -93,6 +94,7 @@ def perturbations_atm_high(t0, state, k):
 ## my part
 from pyatmos import coesa76
 
+#@jit
 def coesa76_model(state, R, C_D, A_over_m):
     
     H = np.linalg.norm(state[:3])
@@ -102,10 +104,11 @@ def coesa76_model(state, R, C_D, A_over_m):
     
     coesa_geom = coesa76(H - R, 'geometric')
     rho = (coesa_geom.rho)
-    rho = (rho*(u.kg/u.m**3)).to_value(u.kg/u.km**3)
+    rho = rho*1e9  #(u.kg/u.m**3)).to_value(u.kg/u.km**3)
 
     return - 0.5 * rho * C_D * A_over_m * v * v_vec
 
+#@jit
 def pertubations_coesa_low(t0, state, k):
     du_kep = func_twobody(t0, state, k)
     ax, ay, az = coesa76_model(
@@ -130,6 +133,7 @@ def pertubations_coesa_high(t0, state, k):
     du_ad = np.array([0, 0, 0, ax, ay, az])
 
     return du_kep + du_ad
+
 
 def pertubations_coesa_med(t0, state, k):
     du_kep = func_twobody(t0, state, k)
@@ -167,11 +171,13 @@ def relative_acc(r_vec,v_vec):
 
     return 3 * (1/2) * C_D * rho * v * v * (A_over_m_high - A_over_m_low) / H
 
+#@jit
 def coesa_J2(t0, state, k, J2, R, C_D, A_over_m):
     return J2_perturbation(t0, state, k, J2, R) + coesa76_model(
         state, R, C_D, A_over_m
     )
 
+#@jit
 def perturbations_coesa_J2_high(t0, state, k):
     du_kep = func_twobody(t0, state, k)
     ax, ay, az = coesa_J2(
@@ -187,6 +193,7 @@ def perturbations_coesa_J2_high(t0, state, k):
 
     return du_kep + du_ad
 
+#@jit
 def perturbations_coesa_J2_low(t0, state, k):
     du_kep = func_twobody(t0, state, k)
     ax, ay, az = coesa_J2(

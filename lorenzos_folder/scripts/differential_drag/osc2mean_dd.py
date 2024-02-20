@@ -1,3 +1,5 @@
+from numba import njit as jit
+
 from astropy import units as u
 
 from poliastro.constants import J2_earth, R_earth
@@ -7,6 +9,7 @@ import numpy as np
 J2 = J2_earth.value
 R  = R_earth.to_value(u.km)
 
+@jit
 def osc2mean(a, ecc, inc, raan, argp, nu):
 
     # a = a.value
@@ -16,10 +19,10 @@ def osc2mean(a, ecc, inc, raan, argp, nu):
     # nu = nu.to_value(u.rad)
 
     a = a
-    inc = (inc<<u.deg).to_value(u.rad)
-    raan = (raan<<u.deg).to_value(u.rad)
-    argp = (argp<<u.deg).to_value(u.rad)
-    nu = (nu<<u.deg).to_value(u.rad)
+    inc = inc * np.pi/180 #(inc<<u.deg).to_value(u.rad)
+    raan = raan * np.pi/180 #(raan<<u.deg).to_value(u.rad)
+    argp = argp * np.pi/180 #(argp<<u.deg).to_value(u.rad)
+    nu = nu * np.pi/180 #(nu<<u.deg).to_value(u.rad)
 
     ecc_anomaly = np.arccos((ecc + np.cos(nu))/(1 + ecc*np.cos(nu)))
     ma = ecc_anomaly - ecc*np.sin(ecc_anomaly)

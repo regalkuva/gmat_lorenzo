@@ -147,7 +147,7 @@ for sat in range(trail_sats):
             refsmalist_mean.append(ref_mean[0])
         trailsmalist_mean[sat].append(trail_mean[0])
         
-        angle_list[sat].append(argl_difference(ref_from_ephem, trail_from_ephem))
+        angle_list[sat].append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
 
         elapsedsecs[sat].append(secs)
     
@@ -198,7 +198,7 @@ for sat in range(trail_sats):
 
         trailsmalist_mean[sat].append(trail_mean[0])
         
-        angle_list[sat].append(argl_difference(ref_from_ephem, trail_from_ephem))
+        angle_list[sat].append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
 
         elapsedsecs[sat].append(secs)
 
@@ -239,7 +239,7 @@ for sat in range(trail_sats):
 
         trailsmalist_mean[sat].append(trail_mean[0])
         
-        angle_list[sat].append(argl_difference(ref_from_ephem, trail_from_ephem))
+        angle_list[sat].append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
 
 
 

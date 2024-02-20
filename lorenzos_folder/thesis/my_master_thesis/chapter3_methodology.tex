@@ -1,22 +1,45 @@
 \chapter{Methodology}
 
-Exclusively open source tools have been used to carry out the thesis work. 
-In particular, the orbital scenarios under examination have been simulated in Python environment.
-The scripts produced by this research take advantage of existing free Python libraries.   
-Nevertheless, several functions have been written to achieve the purposes of the thesis.
-Results are always compared with the General Mission Analysis Tool (GMAT). 
-The following paragraphs present a detailed description of the tools mentioned before.
+Exclusively open-source resources have been used to carry out the thesis work. 
+In particular, the orbital scenarios under examination have been simulated through dynamic propagation models created in Python, taking advantage of existing free Python libraries.   
+In order to validate the results, the General Mission Analysis Tool (GMAT) has been chosen as the reference software to make comparisons. 
+In the following paragraphs a brief description of the tools mentioned previously is presented.
 
-\section{Python for Astrodynamics Application}
+\section{Python for Astrodynamics Applications}
 
 Due to the computationally intensive nature of astrodynamics tasks, astrodynamicists have relied on compiled programming languages such as Fortran for the development of astrodynamics software.
-Interpreted languages such as Python on the other hand offer higher flexibility and development speed thereby increasing the productivity of the programmer.
-While interpreted languages are generally slower than compiled languages recent developments such as JIT (just-in-time) compilers or transpilers have been able to close this speed gap
-significantly. Another important factor for the usefulness of a
-programming language is its wider ecosystem which consists
-of the available open-source packages and development tools
-such as integrated development environments or debuggers. \cite{eichhorn2018comparative}
+Interpreted languages like Python on the other hand offer higher flexibility and development speed thereby increasing the productivity of the programmer.
+While interpreted languages are generally slower than compiled languages, recent developments such as just-in-time (JIT) compilers or transpilers have been able to close this speed gap significantly. 
+Another important factor for the usefulness of a programming language is its wider ecosystem which consists of the available open-source packages and development tools including integrated development environments and debuggers. 
 
-\subsection{poliastro Library}
+In light of the above, Python can be considered as a suitable language for scientific computing due to the existence of well established libraries like NumPy and SciPy for mathematical calculations.
+Not only do these libraries make use of compiled code from existing accelerated libraries, but it is also possible in Python to interface with compiled code to speed up specific algorithms where required.
+This allows a user to define a problem in Python, while benefiting from the speed of compiled languages for computationally expensive algorithms.
+Indeed, JIT-compiled dynamic languages such as Python with Numba have reached a competitive level of performance while still offering the advantages of lower complexity and better programmer productivity
+\cite{eichhorn2018comparative}.
+
+And not for nothing, nowadays, by a wide margin, Python is the most popular interpreted language in astronomy
+\cite{momcheva2015software}.
+
+\subsection{Numba}
+Arguably, the most important library in the scientific Python stack is NumPy, which implements n-dimensional arrays and its related methods in C programming language, and wraps them using the CPython API (Application Programming interface).
+It is a fundamental piece of software that powers most numerical codes written in Python nowadays.
+However, while it is possible to vectorize certain kinds of numerical operations, there might be other cases where this may not be feasible and where the dynamic nature of Python leads to a performance penalty, especially when the algorithm involves several levels of nested looping.
+To overcome these limitations it is possible to use Numba, an open-source library which can infer types for array-oriented and math-heavy Python code and generate optimized machine instructions using the LLVM compiler infrastructure
+\cite{rodriguez2016poliastro}.
+In brief, Numba is a JIT compiler for scientific Python, which allows to optimize the running time.
+
+\subsection{poliastro}
+poliastro is an open-source Python library for astrodynamics and orbital mechanics released under the MIT (Massachusetts Institute of Technology) license.
+It features algorithms which are written in pure Python and compiled using Numba.
+It is dedicated to astrodynamics applications, such as orbit propagation, resolution of the Kepler and Lambert problems, conversion between position and velocity vectors and classical orbital elements and orbit plotting
+\cite{rodriguez2016poliastro}.
+In addition, thanks to Astropy, poliastro can perform seamless coordinate frame conversions and use proper pysical units and timescales.
+At the moment, poliastro is the longest-lived Python library for astrodynamics, has contributors from all around the world, and several New Space companies and people in academia use it
+\cite{rodriguez2022poliastro}.
 
 \section{General Mission Analysis Tool}
+The General Mission Analysis Tool is a software system for trajectory optimization, mission analysis, trajectory estimation, and prediction developed by NASA (National Aeronautics and Space Administration), the Air Force Research Lab, and private industry.
+GMAT is designed to model, optimize, and estimate spacecraft trajectories in flight regimes ranging from LEO to lunar applications, interplanetary trajectories, and other deep space missions.
+GMAT's design and implementation are based on four basic principles: open-source visibility for both the source code and design documentation; platform independence; modular design; and user extensibility
+\cite{conway2010general}.

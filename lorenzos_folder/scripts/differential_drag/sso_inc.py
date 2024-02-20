@@ -6,6 +6,7 @@ from astropy import units as u
 
 import math
 import numpy as np
+from numba import njit as jit
 
 h = 500     #Input sat altitude
 e = 1e-6    #Input sat eccentri
@@ -59,10 +60,21 @@ if __name__ == '__main__':
     print(f'Inclination required is {inc_from_alt(h,e)[0]:.4f} deg')
 
 
-def argl_difference(reference_orbit, trailing_orbit):
+@jit
+def argl_difference(ref_argp, ref_nu, trail_argp, trail_nu):
+ 
+    ref_argp = ref_argp * 180/np.pi
+    ref_nu = ref_nu * 180/np.pi
+    trail_argp = trail_argp * 180/np.pi
+    trail_nu = trail_nu * 180/np.pi
 
-    argl_1 = (reference_orbit.argp.to_value(u.deg) + reference_orbit.nu.to_value(u.deg))%360
-    argl_2 = (trailing_orbit.argp.to_value(u.deg) + trailing_orbit.nu.to_value(u.deg))%360
+
+
+    argl_1 = (ref_argp + ref_nu)%360
+    argl_2 = (trail_argp + trail_nu)%360
+
+    #argl_1 = (reference_orbit.argp.to_value(u.deg) + reference_orbit.nu.to_value(u.deg))%360
+    #argl_2 = (trailing_orbit.argp.to_value(u.deg) + trailing_orbit.nu.to_value(u.deg))%360
     
     return (argl_1 - argl_2)%360
 
