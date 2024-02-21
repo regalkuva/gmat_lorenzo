@@ -1,27 +1,25 @@
 \chapter{Background}
 
-This chapter aims to provide a theoretical overview on the fundamentals of Space Flight Dynamics, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this thesis work.
+This chapter aims to provide a theoretical overview on the fundamentals of Space Flight Dynamics that constitute the foundations of this thesis, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this work.
 
 \section{Space Flight Dynamics Overview}
 
 This paragraph is intended as an introductory overview in space flight dynamics. 
-Orbital Mechanics, Astrodynamics, Astronautics and Space Flight Dynamics are all titles of university courses whose principal topic is two-body orbital motion, that involves orbit determination, orbital flight time, and orbital maneuvers
-\cite{kluever2018space}.
-In this context, a proper definition of the subject can be the following: the study of the motion of man-made objects in space, subject to both natural and artificially induced forces
-\cite{griffin2004space}.
+Orbital Mechanics, Astrodynamics, Astronautics and Space Flight Dynamics are all titles of university courses whose principal topic is two-body orbital motion, that involves orbit determination, orbital flight time, and orbital maneuvers \cite{kluever2018space}.
+In this context, a proper definition of the subject can be the following: the study of the motion of man-made objects in space, subject to both natural and artificially induced forces \cite{griffin2004space}.
 
-\subsection{Orbits}
+\subsection{Satellite State Representations}
 
 % There are a number of independent parameters describing the size, shape, and spatial position of an orbit. 
 % Six of these have become the parameters of choice to define and describe an orbit.
 To define the \textit{state} of a satellite in space six quantities are required, and they may take on many equivalent forms.
-Whatever the form, the collection is called either a \textit{\textbf{state vector}}, usually associated with position and velocity vectors, or an \textit{\textbf{element set}}, typically used with scalar magnitude and angular representations of the orbit called \textit{\textbf{orbital elements}}.
+Whatever the form, the collection is called either a \textit{state vector}, usually associated with position and velocity vectors, or an \textit{element set}, typically used with scalar magnitude and angular representations of the orbit called \textit{orbital elements}.
 Either set of quantities completely specify the two-body orbit and provide a complete set of initial conditions for solving an initial value problem class of differential equations. 
 Time is always associated with a state vector and is often considered a seventh component.
-State vectors and element sets are referenced to a particular coordinate frame.
-\cite{vallado2013fundamentals} 
+State vectors and element sets are referenced to a particular coordinate frame \cite{vallado2013fundamentals}. 
 
-The most common element sets are the \textit{\textbf{classical orbital elements}}:
+This thesis will use both state vectors and a specific element set.
+The latter, which is also the most common one in this field, is represented by the \textit{\textbf{classical orbital elements}}:
 \begin{itemize}
     \item Semimajor axis, \textit{a}: the orbit size is defined by one half of the major axis dimension
     \item Eccentricity, \textit{e}: the ratio of minor to major dimensions of an orbit defines the shape
@@ -29,15 +27,29 @@ The most common element sets are the \textit{\textbf{classical orbital elements}
     \item Longitude of the ascending node or Right Ascension of the Ascending Node (RAAN), $\Omega$: the angle between the vernal equinox vector and the ascending node measured in the reference plane in a couterclockwise direction as viewed from the northern hemisphere
     \item Argument of periapsis, $\omega$: the angle from the ascending node to the periapsis, measured in the orbital plane in the direction of spacecraft motion. The ascending node is the point where the spacecraft crosses the reference plane headed from south to north. the line of nodes is the line formed by the intersection of the orbit plane and the reference plane
     \item True anomaly, $\nu$: the sixth element locates the spacecraft position on the orbit
-
-    \cite{brown1998spacecraft}
 \end{itemize}
+\cite{brown1998spacecraft}
+%---------IMMAGINI---------
 
----------IMMAGINI---------
+This thesis work makes also use of the \textit{argument of latitude, u}, which is the angle measured between the ascending node and the satellite's position vector in the direction of satellite motion.
+A relation that is always valid exists between classical orbital elements and the argument of latitude \cite{vallado2013fundamentals}:
+\begin{equation}
+    u = \omega + \nu
+\end{equation}
+One more element that is often used is the \textit{mean anomaly, M}, which is the angle between the periapsis of an orbit and the position of an imaginary body that orbits in the same period as the real one but at a constant angular speed (circular orbit).
+The angular speed assigned to the imaginary body is the satellite's average angular velocity over one orbit, and is called \textit{mean motion, n} \cite{ridpath2012dictionary}.
+
+This research utilizes also another element set which results necessary to address case studies of past missions: the \textit{Two-line element set} (TLE). 
+A two-line element consists of a satellite identifier, an epoch, six orbital elements and a \textit{B*} term related to the ballistic coefficient \cite{riesing2015orbit}.
+These elsets are available to the general public through Air Force Space Command (AFSPC) \cite{vallado2013fundamentals}.
+
+\subsection{Reference Frames}
+
+lllllllllllll
 
 \subsection{Orbital Perturbations}
 \subsection{Mean Orbital Elements}
-\subsection{Sun Synchronous Orbits}
+\subsection{Sun-Synchronous Orbit}
 
 
 

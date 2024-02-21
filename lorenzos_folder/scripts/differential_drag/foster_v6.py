@@ -47,26 +47,25 @@ reference_orbit_0 = Orbit.from_classical(
     Earth,
     a,
     ecc,
-    inc,
-    raan,
-    argp,
-    nu,
+    inc.to(u.rad),
+    raan.to(u.rad),
+    argp.to(u.rad),
+    nu.to(u.rad),
     epoch
     )
 trailing_orbit_0 = Orbit.from_classical(
     Earth,
     (a.value+delta_a)<<u.km,
     ecc,
-    inc,
-    raan,
-    argp,
-    (nu.value+delta_nu)<<u.deg,
+    inc.to(u.rad),
+    raan.to(u.rad),
+    argp.to(u.rad),
+    ((nu.value+delta_nu)<<u.deg).to(u.rad),
     epoch
     )
 
 reference_orbit = reference_orbit_0
 trailing_orbit = trailing_orbit_0
-print(trailing_orbit.rv())
 
 ## Propagation data
 time_step = 864<<u.s
@@ -94,12 +93,11 @@ mans = 1
 ## Differential drag algorithm + propagation
 for i in range(mans):
 
-    theta_err = (assignment - argl_difference(reference_orbit, trailing_orbit))%360
+    theta_err = (assignment - argl_difference(reference_orbit.argp.value, reference_orbit.nu.value, trailing_orbit.argp.value, trailing_orbit.nu.value))%360
 
     for attempts in range(2):
-        print(pred_days)
-        tra_orb_pred_high = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))
-        print(tra_orb_pred_high.rv())        
+    
+        tra_orb_pred_high = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))       
         tra_pred_mean_high = osc2mean(tra_orb_pred_high.a.value, tra_orb_pred_high.ecc.value, tra_orb_pred_high.inc.to_value(u.deg), tra_orb_pred_high.raan.to_value(u.deg), tra_orb_pred_high.argp.to_value(u.deg), tra_orb_pred_high.nu.to_value(u.deg))
         tra_orb_pred_mean_high = Orbit.from_classical(Earth, tra_pred_mean_high[0]<<u.km, tra_pred_mean_high[1]<<u.one, tra_pred_mean_high[2]<<u.deg, tra_pred_mean_high[3]<<u.deg, tra_pred_mean_high[4]<<u.deg, tra_orb_pred_high.nu.to(u.deg), tra_orb_pred_high.epoch)
 
@@ -109,7 +107,6 @@ for i in range(mans):
 
         theta_dot_dot = (tra_orb_pred_mean_high.n.to(u.deg/u.s) - tra_orb_pred_mean_low.n.to(u.deg/u.s)) / ((pred_days*60*60*24)<<u.s)  
         t_hd = (ref_mean_orbit.n.to(u.deg/u.s) - trail_mean_orbit.n.to(u.deg/u.s)) / theta_dot_dot
-        print(t_hd)
         theta_hd = 0.5 * theta_dot_dot * t_hd**2
         t_wait = ((theta_err - theta_hd.value)%360 / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s)))
 
@@ -155,7 +152,7 @@ for i in range(mans):
         refsmalist_mean.append(ref_mean[0])
         trailsmalist_mean.append(trail_mean[0])
         
-        angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
+        angle_list.append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
 
         elapsedsecs.append(secs)
     
@@ -201,7 +198,7 @@ for i in range(mans):
         refsmalist_mean.append(ref_mean[0])
         trailsmalist_mean.append(trail_mean[0])
         
-        angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
+        angle_list.append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
 
         elapsedsecs.append(secs)
 
@@ -293,7 +290,7 @@ for t in range(len(tofs_prop)):
     refsmalist_mean.append(ref_mean[0])
     trailsmalist_mean.append(trail_mean[0])
 
-    angle_list.append(argl_difference(ref_from_ephem, trail_from_ephem))
+    angle_list.append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
 
     elapsedsecs.append(secs)
 

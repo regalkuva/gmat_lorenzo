@@ -13,6 +13,8 @@ top=    1 in
 }
 \usepackage{fancyhdr}
 
+
+
 % Package for Greek alphabet
 \usepackage{textalpha}
 
@@ -60,33 +62,33 @@ top=    1 in
 
 \begin{document}
 
-%\maketitle
-%\thispagestyle{empty}
-\frontmatter
+    %\maketitle
+    %\thispagestyle{empty}
+    \frontmatter
 
-\input{dedication.tex}
-\thispagestyle{empty}
-\input{abstract.tex}
-\input{acknowledgments.tex}
-\input{contents.tex}
-\input{list_figures.tex}
-\input{list_tables.tex}
-\input{list_abbreviations.tex}
-
-
-\mainmatter
+    \input{dedication.tex}
+    \thispagestyle{empty}
+    \input{abstract.tex}
+    \input{acknowledgments.tex}
+    \input{contents.tex}
+    \input{list_figures.tex}
+    \input{list_tables.tex}
+    \input{list_abbreviations.tex}
 
 
-\include{chapter1_introduction}
-\include{chapter2_background}
-\include{chapter3_methodology}
-\include{chapter4_tools}
-\include{chapter5_cases}
-\include{chapter6_results}
+    \mainmatter
 
-\include{conclusion}
 
-\bibliography{bibliography}
-\bibliographystyle{acm}
+    \include{chapter1_introduction}
+    \include{chapter2_background}
+    \include{chapter3_methodology}
+    \include{chapter4_tools}
+    \include{chapter5_cases}
+    \include{chapter6_results}
+
+    \include{conclusion}
+
+    \bibliography{bibliography}
+    \bibliographystyle{acm}
 
 \end{document}
