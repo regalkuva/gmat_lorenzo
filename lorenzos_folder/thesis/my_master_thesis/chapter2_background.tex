@@ -1,10 +1,9 @@
 \chapter{Background}
 
-This chapter aims to provide a theoretical overview on the fundamentals of Space Flight Dynamics that constitute the foundations of this thesis, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this work.
+This chapter aims to provide an overview on the fundamentals of Space Flight Dynamics that constitute the theoretical basis of this thesis, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this work.
 
 \section{Space Flight Dynamics Overview}
 
-This paragraph is intended as an introductory overview in space flight dynamics. 
 Orbital Mechanics, Astrodynamics, Astronautics and Space Flight Dynamics are all titles of university courses whose principal topic is two-body orbital motion, that involves orbit determination, orbital flight time, and orbital maneuvers \cite{kluever2018space}.
 In this context, a proper definition of the subject can be the following: the study of the motion of man-made objects in space, subject to both natural and artificially induced forces \cite{griffin2004space}.
 
@@ -33,7 +32,7 @@ The latter, which is also the most common one in this field, is represented by t
 
 This thesis work makes also use of the \textit{argument of latitude, u}, which is the angle measured between the ascending node and the satellite's position vector in the direction of satellite motion.
 A relation that is always valid exists between classical orbital elements and the argument of latitude \cite{vallado2013fundamentals}:
-\begin{equation}
+\begin{equation} \label{eq:1}
     u = \omega + \nu
 \end{equation}
 One more element that is often used is the \textit{mean anomaly, M}, which is the angle between the periapsis of an orbit and the position of an imaginary body that orbits in the same period as the real one but at a constant angular speed (circular orbit).
@@ -43,9 +42,25 @@ This research utilizes also another element set which results necessary to addre
 A two-line element consists of a satellite identifier, an epoch, six orbital elements and a \textit{B*} term related to the ballistic coefficient \cite{riesing2015orbit}.
 These elsets are available to the general public through Air Force Space Command (AFSPC) \cite{vallado2013fundamentals}.
 
-\subsection{Reference Frames}
+The elements of a TLE are shown in Eq. \ref{eq:2}, where: 
+\begin{itemize}
+    \item[-] the bars on  the mean motion and semimajor axis denote \textit{Kozai mean values},
+    \item[-] the numerators of the first two elements of the second line represent mean motion rate and acceleration
+    \item[-] $\rho_0$ is the atmospheric density at perigee of the orbit
+    \item[-] $R_{\Earth}$ defines an Earth Radius of 6378.135 km
+    \item[-] the epoch is expressed in Coordinate Universal Time (UTC)
+\end{itemize}
 
-lllllllllllll
+\begin{equation} \label{eq:2}
+    \begin{split}
+        \bar{n}=\sqrt{\frac{\mu}{\bar{a}^{3}}} \;\;\;\;\;\;\;\;\;\; e \;\;\;\;\;\;\;\;\;\; i \;\;\;\;\;\;\;\;\;\; \Omega \;\;\;\;\;\;\;\;\;\; \omega \;\;\;\;\;\;\;\;\;\; M \\
+        \frac{\dot{n}}{2} \;\;\;\;\;\;\;\;\;\;\;\; \frac{\ddot{n}}{6} \;\;\;\;\;\;\;\;\;\;\;\; B^* = \frac{1}{2} \frac{c_D A}{m} \rho_0 R \;\;\;\;\;\;\;\;\;\;\;\; UTC
+    \end{split}
+\end{equation}
+
+
+\subsection{Reference Frames}
+llkkknnn
 
 \subsection{Orbital Perturbations}
 \subsection{Mean Orbital Elements}

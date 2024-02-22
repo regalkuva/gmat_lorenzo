@@ -197,30 +197,40 @@ for timestamp in range(len(timestamps)):
 print(f'\n- Burning time = {t_f}\n- Delta V = {deltaV}')
 print(f'\nProcess finished --- {int(time.time() - process_start_time)} seconds')
 
+elapsed_days = []
+
+for sec in range(len(elapsedsecs)):
+    elapsed_days.append(elapsedsecs[sec]/(60*60*24))
+
+altitudes_mean = []
+for sma in range(len(a_mean_list)):
+    altitudes_mean.append(a_mean_list[sma] - Earth.R_mean.to_value(u.km))
+
+
 fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
 
-ax[0,0].plot(elapsedsecs, a_list, label='Osculating SMA')
-ax[0,0].plot(elapsedsecs, a_mean_list, label='Mean SMA')
+ax[0,0].plot(elapsed_days, a_list, label='Osculating SMA')
+ax[0,0].plot(elapsed_days, altitudes_mean, label='Mean Altitude')
 ax[0,0].legend(loc = 'center right')
 ax[0,0].set_title('SMA')
 
-ax[0,1].plot(elapsedsecs, ecc_list, label='Osculating ECC')
-ax[0,1].plot(elapsedsecs, ecc_mean_list, label='Mean ECC')
+ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
+ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')
 ax[0,1].legend(loc = 'center right')
 ax[0,1].set_title('ECC')
 
-ax[1,0].plot(elapsedsecs, inc_list, label='Osculating INC')
-ax[1,0].plot(elapsedsecs, inc_mean_list, label='Mean INC')
+ax[1,0].plot(elapsed_days, inc_list, label='Osculating INC')
+ax[1,0].plot(elapsed_days, inc_mean_list, label='Mean INC')
 ax[1,0].legend(loc = 'center right')
 ax[1,0].set_title('INC')
 
-ax[1,1].plot(elapsedsecs, raan_list, label='Osculating RAAN')
-ax[1,1].plot(elapsedsecs, raan_mean_list, label='Mean RAAN')
+ax[1,1].plot(elapsed_days, raan_list, label='Osculating RAAN')
+ax[1,1].plot(elapsed_days, raan_mean_list, label='Mean RAAN')
 ax[1,1].legend(loc = 'upper left')
 ax[1,1].set_title('RAAN')
 
-ax[0,2].plot(elapsedsecs,argp_list, label='Osculating ARGP')
-ax[0,2].plot(elapsedsecs, argp_mean_list, label='Mean ARGP')
+ax[0,2].plot(elapsed_days,argp_list, label='Osculating ARGP')
+ax[0,2].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
 ax[0,2].set_title('ARGP')
 
 ax[1,2].plot(elapsedsecs, nu_list, label='Osculating TA')
