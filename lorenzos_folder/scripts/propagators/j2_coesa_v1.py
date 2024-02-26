@@ -39,8 +39,8 @@ k = Earth.k.to(u.km**3 / u.s**2).value
 J2 = Earth.J2.value
 
 # initial orbital elements
-h = 510
-start_date = datetime(2024,1,1,9,0,0)
+h = 390
+start_date = datetime(2025,1,1,9,0,0)
 ltan = 22.5
 
 a = (R + h) << u.km
@@ -58,8 +58,8 @@ in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, epoch)
 # Propagation time selection (poliastro)
 # time_frame = float(input('- Time frame [days]: ')) * u.day
 # time_step  = float(input('- Time step   [sec]: ')) * u.s
-time_frame = 1<<u.day
-time_step  = 1<<u.s
+time_frame = 10<<u.day
+time_step  = 86.4<<u.s
 
 process_start_time = time.time()   # start time of python code
 

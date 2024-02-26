@@ -44,7 +44,7 @@ These elsets are available to the general public through Air Force Space Command
 
 The elements of a TLE are shown in Eq. \ref{eq:2} \cite{vallado2013fundamentals}, where: 
 \begin{itemize}
-    \item[-] the bars on  the mean motion and semimajor axis denote \textit{Kozai mean values},
+    \item[-] the bars on  the mean motion and semimajor axis denote \textit{Kozai mean values}
     \item[-] the numerators of the first two elements of the second line represent mean motion rate and acceleration
     \item[-] $\frac{c_D A}{m}$ corresponds to the inverse of the \textit{ballistic coefficient, BC} 
     \item[-] $\rho_0$ is the atmospheric density at perigee of the orbit
@@ -83,7 +83,30 @@ This subsection provides an overview of the main perturbations for an Earth orbi
 
 \subsubsection{Earth's Gravity Field}
 
+
+
 \subsubsection{Atmospheric Drag}
+The residual atmosphere present at a few hundred kilometers of altitude strongly influences the motion of satellites in LEO.
+The basic equation of the perturbing specific force (force per unit mass) due to drag is the following \cite{vallado2013fundamentals}:
+\begin{equation} \label{eq:3}
+    \vec{a}_{drag} = - \frac{1}{2} \frac{C_D A}{m} \rho V_{rel}^{2} \frac{\vec{V_{rel}}}{|\vec{V_{rel}}|}
+\end{equation}
+In equation \ref{eq:3}, $\frac{m}{C_D A}$ is again the ballistic coefficient, that already appeared in the TLE representation (equation \ref{eq:2}): 
+$m$ is the mass of the spacecraft, $A$ represents the cross-sectional area of the satellite with respect to the atmosphere and $C_D$ is a dimensionless parameter which takes into account every aerodynamic configuration aspect of the body with respect to the drag forces \cite{sadraey2009drag}.
+The value of the drag coefficient for satellites in the upper atmosphere is generally around 2.2 \cite{vallado2013fundamentals}; 
+this number has been considered for all the case studies of the thesis. 
+Finally, the velocity vector $\vec{V_{rel}}$ is relative to the atmosphere, as well as the cross section.
+
+The main effects provided by aerodynamic drag are changes in the semimajor axis and eccentricity of the orbit.
+An accurate description of the atmospheric properties is crucial for the evaluation of drag on satellites \cite{vallado2013fundamentals}.
+However, uncertainties in the time variance of upper atmosphere make perfect prediction of spacecraft drag impossible \cite{brown1998spacecraft}
+More in depth, the density changes because of a complex interaction between three factors: the nature of the atmosphere's molecular structure, the incident solar flux, and geomagnetic interactions.
+Several atmospheric models can be found in literature, either static or time-varying. 
+The static ones are less accurate, but definitely simpler than the time-varying models, thanks to the assumption of all constant parameters \cite{vallado2013fundamentals}.
+This thesis exploits three different models, depending on the applications addressed in the case studies.
+
+
+
 
 \subsubsection{Third-Body Perturbations}
 

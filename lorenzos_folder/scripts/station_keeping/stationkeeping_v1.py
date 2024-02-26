@@ -36,7 +36,7 @@ process_start_time = time.time()   # start time of python code
 ## 1. INITIAL PARAMETERS
 
 # Earth Constants
-R = Earth.R.to(u.km).value
+R = Earth.R_mean.to(u.km).value
 k = Earth.k.to(u.km**3 / u.s**2)
 k_val = k.value
 J2 = Earth.J2.value
@@ -54,7 +54,7 @@ T  = 0.007 * (u.kg * (u.m/u.s**2))
 acc = (T/m).to(u.km/u.s**2)
 
 # Orbit
-start_date = datetime(2024,1,1,12,0,0)
+start_date = datetime(2025,1,1,12,0,0)
 ltan = 22.5
 
 a = (R + 390) << u.km
@@ -87,10 +87,10 @@ secs = 0
 elapsedsecs = [0]
 
 # Station Keeping 
-a_up   = (R + 380.25)<<u.km
-a_down = (R + 379.75)<<u.km 
-inc_up = inc_from_alt(400,ecc)[0] << u.deg
-inc_down = inc_from_alt(360,ecc)[0] << u.deg
+a_up   = (R + 380.025)<<u.km
+a_down = (R + 379.975)<<u.km 
+inc_up = inc_from_alt(380,ecc)[0] << u.deg
+inc_down = inc_from_alt(380,ecc)[0] << u.deg
 
 ## 2. ACCELERATION FUNCTIONS
 
@@ -102,7 +102,7 @@ def a_d(t0, state, k, J2, R, C_D, A_over_m):
             state, R, C_D, A_over_m
             )
 
-a_d_thrust, deltaV, t_f = change_a_inc(k, a_down, a_up, inc, inc, acc)
+a_d_thrust, deltaV, t_f = change_a_inc(k, a_down, a_up, inc_down, inc_up, acc)
 
 def f_thrust(t0, state, k):
 
@@ -178,7 +178,7 @@ for timestamp in range(len(timestamps)):
     raan_list.append(sat_orbit.raan.to_value(u.deg))
     argp_list.append(sat_orbit.argp.to_value(u.deg))
     nu_list.append(sat_orbit.nu.to_value(u.deg))
-    print(sat_orbit.inc)
+
     mean_elements = osc2mean(
         sat_orbit.a.value, 
         sat_orbit.ecc.value, 
