@@ -57,7 +57,7 @@ acc = (T/m).to(u.km/u.s**2)
 start_date = datetime(2024,1,1,12,0,0)
 ltan = 22.5
 
-a = (R + 400) << u.km
+a = (R + 390) << u.km
 ecc = 1e-6 << u.one
 inc = inc_from_alt(380,ecc)[0] << u.deg   
 raan = raan_from_ltan(Time(val=datetime.timestamp(start_date), format='unix'),ltan) << u.deg
@@ -69,8 +69,8 @@ in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, epoch)
 
 # Propagation
 start_date_ts = datetime.timestamp(start_date)
-stop_date_ts = datetime.timestamp(start_date + timedelta(hours = 24*1))
-sample_num = 24*60*60
+stop_date_ts = datetime.timestamp(start_date + timedelta(hours = 24*10))
+sample_num = 24*10*10
 timestamps = np.linspace(start_date_ts, stop_date_ts, sample_num)
 time_step = (timestamps[1]-timestamps[0]) << u.s
 
@@ -87,8 +87,8 @@ secs = 0
 elapsedsecs = [0]
 
 # Station Keeping 
-a_up   = (R + 400)<<u.km
-a_down = (R + 360)<<u.km 
+a_up   = (R + 380.25)<<u.km
+a_down = (R + 379.75)<<u.km 
 inc_up = inc_from_alt(400,ecc)[0] << u.deg
 inc_down = inc_from_alt(360,ecc)[0] << u.deg
 
@@ -144,8 +144,7 @@ def f_no_thrust(t0, state, k):
 
 
 ## 3. PROPAGATION
-
-mean_elements = osc2mean(a_list[0], ecc_list[0], inc_list[0], raan_list[0], argp_list[0], nu_list[0])
+mean_elements = osc2mean(a_list[0], ecc_list[0], inc_list[0]*np.pi/180, raan_list[0]*np.pi/180, argp_list[0]*np.pi/180, nu_list[0]*np.pi/180)
 
 a_mean_list = [mean_elements[0]]
 ecc_mean_list = [mean_elements[1]]
@@ -179,14 +178,14 @@ for timestamp in range(len(timestamps)):
     raan_list.append(sat_orbit.raan.to_value(u.deg))
     argp_list.append(sat_orbit.argp.to_value(u.deg))
     nu_list.append(sat_orbit.nu.to_value(u.deg))
-
+    print(sat_orbit.inc)
     mean_elements = osc2mean(
         sat_orbit.a.value, 
         sat_orbit.ecc.value, 
-        sat_orbit.inc.to_value(u.deg), 
-        sat_orbit.raan.to_value(u.deg), 
-        sat_orbit.argp.to_value(u.deg), 
-        sat_orbit.nu.to_value(u.deg)
+        sat_orbit.inc.value, 
+        sat_orbit.raan.value, 
+        sat_orbit.argp.value, 
+        sat_orbit.nu.value
         )
 
     a_mean_list.append(mean_elements[0])

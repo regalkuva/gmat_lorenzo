@@ -18,11 +18,11 @@ def osc2mean(a, ecc, inc, raan, argp, nu):
     # argp = argp.to_value(u.rad)
     # nu = nu.to_value(u.rad)
 
-    a = a
-    inc = inc * np.pi/180 #(inc<<u.deg).to_value(u.rad)
-    raan = raan * np.pi/180 #(raan<<u.deg).to_value(u.rad)
-    argp = argp * np.pi/180 #(argp<<u.deg).to_value(u.rad)
-    nu = nu * np.pi/180 #(nu<<u.deg).to_value(u.rad)
+    # a = a
+    # inc = inc #(inc<<u.deg).to_value(u.rad)
+    # raan = raan  #(raan<<u.deg).to_value(u.rad)
+    # argp = argp #(argp<<u.deg).to_value(u.rad)
+    # nu = nu #(nu<<u.deg).to_value(u.rad)
 
     ecc_anomaly = np.arccos((ecc + np.cos(nu))/(1 + ecc*np.cos(nu)))
     ma = ecc_anomaly - ecc*np.sin(ecc_anomaly)

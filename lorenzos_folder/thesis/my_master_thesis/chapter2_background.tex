@@ -42,27 +42,53 @@ This research utilizes also another element set which results necessary to addre
 A two-line element consists of a satellite identifier, an epoch, six orbital elements and a \textit{B*} term related to the ballistic coefficient \cite{riesing2015orbit}.
 These elsets are available to the general public through Air Force Space Command (AFSPC) \cite{vallado2013fundamentals}.
 
-The elements of a TLE are shown in Eq. \ref{eq:2}, where: 
+The elements of a TLE are shown in Eq. \ref{eq:2} \cite{vallado2013fundamentals}, where: 
 \begin{itemize}
     \item[-] the bars on  the mean motion and semimajor axis denote \textit{Kozai mean values},
     \item[-] the numerators of the first two elements of the second line represent mean motion rate and acceleration
+    \item[-] $\frac{c_D A}{m}$ corresponds to the inverse of the \textit{ballistic coefficient, BC} 
     \item[-] $\rho_0$ is the atmospheric density at perigee of the orbit
-    \item[-] $R_{\Earth}$ defines an Earth Radius of 6378.135 km
+    \item[-] $R_\mathTerra$ defines an Earth Radius of 6378.135 km
     \item[-] the epoch is expressed in Coordinate Universal Time (UTC)
 \end{itemize}
 
 \begin{equation} \label{eq:2}
     \begin{split}
         \bar{n}=\sqrt{\frac{\mu}{\bar{a}^{3}}} \;\;\;\;\;\;\;\;\;\; e \;\;\;\;\;\;\;\;\;\; i \;\;\;\;\;\;\;\;\;\; \Omega \;\;\;\;\;\;\;\;\;\; \omega \;\;\;\;\;\;\;\;\;\; M \\
-        \frac{\dot{n}}{2} \;\;\;\;\;\;\;\;\;\;\;\; \frac{\ddot{n}}{6} \;\;\;\;\;\;\;\;\;\;\;\; B^* = \frac{1}{2} \frac{c_D A}{m} \rho_0 R \;\;\;\;\;\;\;\;\;\;\;\; UTC
+        \frac{\dot{n}}{2} \;\;\;\;\;\;\;\;\;\;\;\; \frac{\ddot{n}}{6} \;\;\;\;\;\;\;\;\;\;\;\; B^* = \frac{1}{2} \frac{c_D A}{m} \rho_0 R_\mathTerra \;\;\;\;\;\;\;\;\;\;\;\; UTC
     \end{split}
 \end{equation}
 
-
 \subsection{Reference Frames}
-llkkknnn
+Two types of reference frames are adopted by this research: the geocentric-inertial coordinate system and the geographic-body-fixed system. 
+The origin of both systems is the center of mass of the central body, which in all case studies of this work is the Earth. 
+They will therefore be labeled Earth-centered inertial (ECI) and Eart-centered Earth-fixed (ECEF) coordinate frames, respectively.
+
+\subsubsection{Earth-centered inertial}
+The ECI system is shown in FIGURE???.
+The equatorial plane is the reference plane.
+The X axis is the vernal equinox vector, and the Z axis is the spin axis of the Earth; north is positive.
+The axes are fixed in inertial space or fixed with respect to the stars \cite{brown1998spacecraft}.
+
+\subsubsection{Earth-centered Earth-fixed}
+FIGURE shows a representation of the ECEF reference frame.
+The system is Earth-centered and fixed to the rotating Earth \cite{vallado2013fundamentals}.
+Considering the ECI, the Z axis is the same, while the X axis always points towards the Greenwich meridian.
+Satellite ground track is commonly plotted in this coordinate system \cite{brown1998spacecraft}.
 
 \subsection{Orbital Perturbations}
+Orbital perturbations are deviations from a normal, idealized, or undisturbed motion.
+Introducing an alteration from two-body problem assumptions, the actual motion will vary due to perturbations caused by other bodies, and additional forces not considered in Keplerian motion \cite{vallado2013fundamentals}.
+This subsection provides an overview of the main perturbations for an Earth orbiting spacecraft.
+
+\subsubsection{Earth's Gravity Field}
+
+\subsubsection{Atmospheric Drag}
+
+\subsubsection{Third-Body Perturbations}
+
+\subsubsection{Solar-Radiation Pressure}
+
 \subsection{Mean Orbital Elements}
 \subsection{Sun-Synchronous Orbit}
 
