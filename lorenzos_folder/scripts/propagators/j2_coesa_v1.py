@@ -32,6 +32,10 @@ from sso_functions.sso_inc import inc_from_alt, raan_from_ltan
 
 
 print('\n--- TWO-BODY PROPAGATOR - J2 & ATMOSPHERIC DRAG PERTURBATIONS ---\n')
+process_start_time = time.time()   # start time of python code
+process_clock_start_time = time.ctime() 
+print(f'Start of the process: {process_clock_start_time}')
+
 
 # Constants
 R = Earth.R.to(u.km).value
@@ -39,7 +43,7 @@ k = Earth.k.to(u.km**3 / u.s**2).value
 J2 = Earth.J2.value
 
 # initial orbital elements
-h = 390
+h = 500
 start_date = datetime(2025,1,1,9,0,0)
 ltan = 22.5
 
@@ -58,12 +62,8 @@ in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, epoch)
 # Propagation time selection (poliastro)
 # time_frame = float(input('- Time frame [days]: ')) * u.day
 # time_step  = float(input('- Time step   [sec]: ')) * u.s
-time_frame = 10<<u.day
-time_step  = 86.4<<u.s
-
-process_start_time = time.time()   # start time of python code
-
-
+time_frame = 1<<u.day
+time_step  = 864<<u.s
 
 # GMAT correct RHW orbit decay was for: C_D = 2.2, A = 0.02 m^2, m = 2.205 kg
 C_D = 2.2
@@ -77,6 +77,7 @@ raan_list  = []
 argp_list  = []
 nu_list    = []
 epoch_list = []
+argl_list  = []
 
 a_mean_list = []
 ecc_mean_list = []
@@ -84,6 +85,7 @@ inc_mean_list = []
 raan_mean_list = []
 argp_mean_list = []
 ma_mean_list = []
+argl_mean_list = []
 
 
 def coesa76_model(state, R, C_D, A_over_m):
@@ -124,7 +126,7 @@ def f(t0, state, k):
 number = int(time_frame.to_value(u.s) / time_step.value)
 tofs = TimeDelta(np.linspace(0, time_frame, num=number))
 
-ephem_tofs = in_orbit.to_ephem(EpochsArray(epoch+ tofs, method=CowellPropagator(rtol=1e-5, f=f)))
+ephem_tofs = in_orbit.to_ephem(EpochsArray(epoch + tofs, method=CowellPropagator(rtol=1e-5, f=f)))
 
 secs = 0
 elapsedsecs = []
@@ -140,7 +142,8 @@ for epoch in range(len(tofs)):
     inc_list.append(orb_from_eph.inc.to_value(u.deg))
     raan_list.append(orb_from_eph.raan.to_value(u.deg))
     argp_list.append(orb_from_eph.argp.to_value(u.deg))
-    nu_list.append(orb_from_eph.nu.to_value(u.deg))
+    nu_list.append(orb_from_eph.nu.to_value(u.deg)%360)
+    argl_list.append((nu_list[-1] + argp_list[-1])%360)
     epoch_list.append(orb_from_eph.epoch.value)
     
     mean_elements = osc2mean(
@@ -158,6 +161,7 @@ for epoch in range(len(tofs)):
     raan_mean_list.append(mean_elements[3])
     argp_mean_list.append(mean_elements[4])
     ma_mean_list.append(mean_elements[5])
+    argl_mean_list.append((ma_mean_list[-1] + argp_mean_list[-1])%360)
 
     elapsedsecs.append(secs)
 
@@ -171,36 +175,55 @@ for sma in range(len(a_list)):
     altitudes.append(a_list[sma] - Earth.R_mean.to_value(u.km))
     mean_altitudes.append(a_mean_list[sma] - Earth.R_mean.to_value(u.km))
 
-print(f'\nProcess finished --- {time.time() - process_start_time}')
+print(f'\nProcess finished --- {(time.time() - process_start_time)/60} min')
 
-fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
+fig, ax = plt.subplots(1, 1, figsize=(22,9), squeeze=False) # figsize=(22,9) 
 
-ax[0,0].plot(elapsed_days, altitudes, label='Osculating Altitude')
-ax[0,0].plot(elapsed_days, mean_altitudes, label='Mean Altitude')
-ax[0,0].legend(loc = 'center right')
-ax[0,0].set_title('Altitude')
+# ax[0,0].plot(elapsed_days, altitudes, label='Osculating Altitude')
+# ax[0,0].plot(elapsed_days, mean_altitudes, label='Mean Altitude')
+# ax[0,0].legend(loc = 'upper right')
+# ax[0,0].set_title('Altitude')
 
-ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
-ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')
-ax[0,1].legend(loc = 'center right')
-ax[0,1].set_title('ECC')
+ax[0,0].plot(elapsed_days, a_list, label='Osculating SMA')
+ax[0,0].plot(elapsed_days, a_mean_list, label='Mean SMA')
+ax[0,0].set_xlabel("Time [days]", fontsize=27)
+ax[0,0].set_ylabel("SMA [km]", fontsize=27)
+ax[0,0].set_xticklabels([0,0.2,0.4,0.6,0.8,1],fontsize=20)
+ax[0,0].set_yticklabels([6865,6870,6875,6880,6885,6890,6895,6900,6905,6910,6915,6920], fontsize=20)
+ax[0,0].legend(loc = 'upper right', fontsize=25)
+ax[0,0].set_title('Semi-Major Axis', fontsize=30, weight='bold')
 
-ax[1,0].plot(elapsed_days, inc_list, label='Osculating INC')
-ax[1,0].plot(elapsed_days, inc_mean_list, label='Mean INC')
-ax[1,0].legend(loc = 'center right')
-ax[1,0].set_title('INC')
+# ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
+# ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')
+# ax[0,1].set_xlabel("Time [days]")
+# ax[0,1].legend(loc = 'center right')
+# ax[0,1].set_title('Eccentricity')
 
-ax[1,1].plot(elapsed_days, raan_list, label='Osculating RAAN')
-ax[1,1].plot(elapsed_days, raan_mean_list, label='Mean RAAN')
-ax[1,1].legend(loc = 'upper left')
-ax[1,1].set_title('RAAN')
+# ax[1,0].plot(elapsed_days, inc_list, label='Osculating INC')
+# ax[1,0].plot(elapsed_days, inc_mean_list, label='Mean INC')
+# ax[1,0].set_xlabel("Time [days]")
+# ax[1,0].set_ylabel("INC [degrees]")
+# ax[1,0].legend(loc = 'upper right')
+# ax[1,0].set_title('Inclination')
 
-ax[0,2].plot(elapsed_days, argp_list, label='Osculating ARGP')
-ax[0,2].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
-ax[0,2].set_title('ARGP')
+# ax[1,1].plot(elapsed_days, raan_list, label='Osculating RAAN')
+# ax[1,1].plot(elapsed_days, raan_mean_list, label='Mean RAAN')
+# ax[1,1].legend(loc = 'upper right')
+# ax[1,1].set_title('Right Ascension of the Ascending Node')
 
-ax[1,2].plot(elapsed_days, nu_list, label='Osculating TA')
-ax[1,2].plot(elapsed_days, ma_mean_list, label='Mean MA')
-ax[1,2].set_title('MEAN ANOMALY')
+# ax[0,2].plot(elapsed_days, argp_list, label='Osculating ARGP')
+# ax[0,2].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
+# ax[0,2].legend(loc = 'upper right')
+# ax[0,2].set_title('Argument of periapsis')
+
+# # ax[1,2].plot(elapsed_days, nu_list, label='Osculating TA')
+# # ax[1,2].plot(elapsed_days, ma_mean_list, label='Mean MA')
+# # ax[1,1].legend(loc = 'upper right')
+# # ax[1,2].set_title('True Anomaly')
+
+# ax[1,2].plot(elapsed_days, argl_list, label='Osculating ARGL')
+# ax[1,2].plot(elapsed_days, argl_mean_list, label='Mean ARGL')
+# ax[1,2].legend(loc = 'upper right')
+# ax[1,2].set_title('Argument of Latitude')
 
 plt.show()

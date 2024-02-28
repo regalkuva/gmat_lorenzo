@@ -84,32 +84,23 @@ def osc2mean(a, ecc, inc, raan, argp, nu):
     d_1 = (ecc+delta_ecc)*np.sin(ma) + ecc_x_delta_ma*np.cos(ma)   #(G.309)
     d_2 = (ecc+delta_ecc)*np.cos(ma) - ecc_x_delta_ma*np.sin(ma)   #(G.310)
 
-    ma_mean = np.arctan(d_1/d_2)   #(G.311)
-
+    # ma_mean = np.arctan(d_1/d_2)   #(G.311)
+    ma_mean = np.arctan2(d_1,d_2)
     ecc_mean = np.sqrt(d_1**2 + d_2**2)   #(G.312)
 
     d_3 = (np.sin(inc/2) + np.cos(inc/2)*delta_inc/2)*np.sin(raan) + np.sin(inc/2)*delta_raan*np.cos(raan)   #(G.313)
     d_4 = (np.sin(inc/2) + np.cos(inc/2)*delta_inc/2)*np.cos(raan) - np.sin(inc/2)*delta_raan*np.sin(raan)   #(G.314)
 
-    raan_mean = np.arctan(d_3/d_4)   #(G.315)
+    # raan_mean = np.arctan(d_3/d_4)   #(G.315)
+    raan_mean = np.arctan2(d_3,d_4)
     inc_mean = 2*np.arcsin(np.sqrt(d_3**2 + d_4**2))   #(G.316)
     argp_mean = ma_argp_raan_mean - ma_mean - raan_mean   #(G.317)
     
     inc_mean = inc_mean*180/np.pi
 
-    raan_mean = np.arctan2(d_3,d_4)*180/np.pi
-    if raan_mean < 0:
-        raan_mean = raan_mean + 360
-    # if d_3>0 and d_4>0:
-    #     raan_mean = raan_mean_360*180/np.pi
-    # elif d_3<0 and d_4>0:
-    #     raan_mean = raan_mean_360*180/np.pi
-    # elif d_3<0 and d_4<0:
-    #     raan_mean = raan_mean_360*180/np.pi + 360
-    # elif d_3>0 and d_4<0:
-    #     raan_mean = raan_mean_360*180/np.pi + 360
+    raan_mean = raan_mean*180/np.pi % 360
     
-    ma_mean = ma_mean*360/np.pi
+    ma_mean = ma_mean*180/np.pi % 360
 
     argp_mean = argp_mean*180/np.pi % 360
     
@@ -117,8 +108,3 @@ def osc2mean(a, ecc, inc, raan, argp, nu):
     mean_elements = [a_mean, ecc_mean, inc_mean, raan_mean, argp_mean, ma_mean]
 
     return mean_elements
-
-
-
-
-

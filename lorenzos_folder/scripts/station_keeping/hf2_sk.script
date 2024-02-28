@@ -6,55 +6,55 @@
 %---------- Spacecraft
 %----------------------------------------
 
-Create Spacecraft sunstorm;
-GMAT sunstorm.DateFormat = UTCGregorian;
-GMAT sunstorm.Epoch = '07 Nov 2023 04:13:42.000';
-GMAT sunstorm.CoordinateSystem = EarthMJ2000Eq;
-GMAT sunstorm.DisplayStateType = Keplerian;
-GMAT sunstorm.SMA = 6778.140000000003;
-GMAT sunstorm.ECC = 3.624947727361296e-16;
-GMAT sunstorm.INC = 97.46800000000002;
-GMAT sunstorm.RAAN = 23.23710000000001;
-GMAT sunstorm.AOP = 0;
-GMAT sunstorm.TA = 1.478779333471098e-06;
-GMAT sunstorm.DryMass = 3;
-GMAT sunstorm.Cd = 2.2;
-GMAT sunstorm.Cr = 1.8;
-GMAT sunstorm.DragArea = 0.09;
-GMAT sunstorm.SRPArea = 0.09;
-GMAT sunstorm.SPADDragScaleFactor = 1;
-GMAT sunstorm.SPADSRPScaleFactor = 1;
-GMAT sunstorm.AtmosDensityScaleFactor = 1;
-GMAT sunstorm.ExtendedMassPropertiesModel = 'None';
-GMAT sunstorm.Tanks = {ElectricTank1};
-GMAT sunstorm.Thrusters = {ElectricThruster1};
-GMAT sunstorm.PowerSystem = SolarPowerSystem1;
-GMAT sunstorm.NAIFId = -10001001;
-GMAT sunstorm.NAIFIdReferenceFrame = -9001001;
-GMAT sunstorm.OrbitColor = Red;
-GMAT sunstorm.TargetColor = Teal;
-GMAT sunstorm.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
-GMAT sunstorm.CdSigma = 1e+70;
-GMAT sunstorm.CrSigma = 1e+70;
-GMAT sunstorm.Id = 'SatId';
-GMAT sunstorm.Attitude = CoordinateSystemFixed;
-GMAT sunstorm.SPADSRPInterpolationMethod = Bilinear;
-GMAT sunstorm.SPADSRPScaleFactorSigma = 1e+70;
-GMAT sunstorm.SPADDragInterpolationMethod = Bilinear;
-GMAT sunstorm.SPADDragScaleFactorSigma = 1e+70;
-GMAT sunstorm.AtmosDensityScaleFactorSigma = 1e+70;
-GMAT sunstorm.ModelFile = 'aura.3ds';
-GMAT sunstorm.ModelOffsetX = 0;
-GMAT sunstorm.ModelOffsetY = 0;
-GMAT sunstorm.ModelOffsetZ = 0;
-GMAT sunstorm.ModelRotationX = 0;
-GMAT sunstorm.ModelRotationY = 0;
-GMAT sunstorm.ModelRotationZ = 0;
-GMAT sunstorm.ModelScale = 1;
-GMAT sunstorm.AttitudeDisplayStateType = 'Quaternion';
-GMAT sunstorm.AttitudeRateDisplayStateType = 'AngularVelocity';
-GMAT sunstorm.AttitudeCoordinateSystem = EarthMJ2000Eq;
-GMAT sunstorm.EulerAngleSequence = '321';
+Create Spacecraft hf2;
+GMAT hf2.DateFormat = UTCGregorian;
+GMAT hf2.Epoch = '01 Jan 2025 12:00:00.000';
+GMAT hf2.CoordinateSystem = EarthMJ2000Eq;
+GMAT hf2.DisplayStateType = Keplerian;
+GMAT hf2.SMA = 6750.999999999996;
+GMAT hf2.ECC = 9.999999996106471e-07;
+GMAT hf2.INC = 96.94699310581477;
+GMAT hf2.RAAN = 78.31;
+GMAT hf2.AOP = 2.091309789151873e-06;
+GMAT hf2.TA = 359.9999991462263;
+GMAT hf2.DryMass = 50;
+GMAT hf2.Cd = 2.2;
+GMAT hf2.Cr = 1.8;
+GMAT hf2.DragArea = 0.207;
+GMAT hf2.SRPArea = 0.08;
+GMAT hf2.SPADDragScaleFactor = 1;
+GMAT hf2.SPADSRPScaleFactor = 1;
+GMAT hf2.AtmosDensityScaleFactor = 1;
+GMAT hf2.ExtendedMassPropertiesModel = 'None';
+GMAT hf2.Tanks = {ElectricTank1};
+GMAT hf2.Thrusters = {ElectricThruster1};
+GMAT hf2.PowerSystem = SolarPowerSystem1;
+GMAT hf2.NAIFId = -10001001;
+GMAT hf2.NAIFIdReferenceFrame = -9001001;
+GMAT hf2.OrbitColor = Red;
+GMAT hf2.TargetColor = Teal;
+GMAT hf2.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT hf2.CdSigma = 1e+70;
+GMAT hf2.CrSigma = 1e+70;
+GMAT hf2.Id = 'SatId';
+GMAT hf2.Attitude = CoordinateSystemFixed;
+GMAT hf2.SPADSRPInterpolationMethod = Bilinear;
+GMAT hf2.SPADSRPScaleFactorSigma = 1e+70;
+GMAT hf2.SPADDragInterpolationMethod = Bilinear;
+GMAT hf2.SPADDragScaleFactorSigma = 1e+70;
+GMAT hf2.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT hf2.ModelFile = 'aura.3ds';
+GMAT hf2.ModelOffsetX = 0;
+GMAT hf2.ModelOffsetY = 0;
+GMAT hf2.ModelOffsetZ = 0;
+GMAT hf2.ModelRotationX = 0;
+GMAT hf2.ModelRotationY = 0;
+GMAT hf2.ModelRotationZ = 0;
+GMAT hf2.ModelScale = 1;
+GMAT hf2.AttitudeDisplayStateType = 'Quaternion';
+GMAT hf2.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT hf2.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT hf2.EulerAngleSequence = '321';
 
 %----------------------------------------
 %---------- Hardware Components
@@ -88,7 +88,7 @@ GMAT ElectricThruster1.MassFlowCoeff4 = 0.03211;
 GMAT ElectricThruster1.MassFlowCoeff5 = 2.13781;
 GMAT ElectricThruster1.FixedEfficiency = 0.7;
 GMAT ElectricThruster1.Isp = 500;
-GMAT ElectricThruster1.ConstantThrust = 50;
+GMAT ElectricThruster1.ConstantThrust = 0.007;
 
 Create ElectricTank ElectricTank1;
 GMAT ElectricTank1.AllowNegativeFuelMass = false;
@@ -199,7 +199,7 @@ GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
 GMAT DefaultOrbitView.Size = [ 1.035495716034272 0.5889781859931114 ];
 GMAT DefaultOrbitView.RelativeZOrder = 625;
 GMAT DefaultOrbitView.Maximized = true;
-GMAT DefaultOrbitView.Add = {sunstorm, Sun, Earth};
+GMAT DefaultOrbitView.Add = {hf2, Sun, Earth};
 GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
 GMAT DefaultOrbitView.DrawObject = [ true true true ];
 GMAT DefaultOrbitView.DataCollectFrequency = 1;
@@ -230,7 +230,7 @@ GMAT DynamicDataDisplay1.UpperLeft = [ 0.113219094247246 0.7738231917336394 ];
 GMAT DynamicDataDisplay1.Size = [ 0.7576499388004896 0.8920780711825488 ];
 GMAT DynamicDataDisplay1.RelativeZOrder = 553;
 GMAT DynamicDataDisplay1.Maximized = true;
-GMAT DynamicDataDisplay1.AddParameters = {1, sunstorm.EarthMJ2000Eq.BrouwerLongSMA};
+GMAT DynamicDataDisplay1.AddParameters = {1, hf2.EarthMJ2000Eq.BrouwerLongSMA};
 GMAT DynamicDataDisplay1.RowTextColors = {1, [0 0 0]};
 GMAT DynamicDataDisplay1.WarnColor = [218 165 32];
 GMAT DynamicDataDisplay1.CritColor = [255 0 0];
@@ -241,8 +241,8 @@ GMAT XYPlot1.UpperLeft = [ 0.3623011015911873 0.460390355912744 ];
 GMAT XYPlot1.Size = [ 0.5201958384332925 0.3972445464982778 ];
 GMAT XYPlot1.RelativeZOrder = 605;
 GMAT XYPlot1.Maximized = true;
-GMAT XYPlot1.XVariable = sunstorm.ElapsedDays;
-GMAT XYPlot1.YVariables = {sunstorm.EarthMJ2000Eq.BrouwerLongSMA, trigger_alt};
+GMAT XYPlot1.XVariable = hf2.ElapsedDays;
+GMAT XYPlot1.YVariables = {hf2.EarthMJ2000Eq.BrouwerLongSMA, trigger_alt};
 GMAT XYPlot1.ShowGrid = true;
 GMAT XYPlot1.ShowPlot = true;
 
@@ -252,8 +252,8 @@ GMAT XYPlot2.UpperLeft = [ 0.4651162790697674 0.009184845005740528 ];
 GMAT XYPlot2.Size = [ 0.5195838433292533 0.3972445464982778 ];
 GMAT XYPlot2.RelativeZOrder = 621;
 GMAT XYPlot2.Maximized = true;
-GMAT XYPlot2.XVariable = sunstorm.ElapsedDays;
-GMAT XYPlot2.YVariables = {sunstorm.ElectricTank1.FuelMass};
+GMAT XYPlot2.XVariable = hf2.ElapsedDays;
+GMAT XYPlot2.YVariables = {hf2.ElectricTank1.FuelMass};
 GMAT XYPlot2.ShowGrid = true;
 GMAT XYPlot2.ShowPlot = true;
 
@@ -263,7 +263,7 @@ GMAT XYPlot3.UpperLeft = [ -0.05201958384332925 0.1113662456946039 ];
 GMAT XYPlot3.Size = [ 0.5195838433292533 0.3960964408725603 ];
 GMAT XYPlot3.RelativeZOrder = 623;
 GMAT XYPlot3.Maximized = true;
-GMAT XYPlot3.XVariable = sunstorm.ElapsedDays;
+GMAT XYPlot3.XVariable = hf2.ElapsedDays;
 GMAT XYPlot3.YVariables = {burn_time};
 GMAT XYPlot3.ShowGrid = true;
 GMAT XYPlot3.ShowPlot = true;
@@ -283,22 +283,23 @@ GMAT trigger_alt = 6770.14;
 
 
 
+
 %----------------------------------------
 %---------- Mission Sequence
 %----------------------------------------
 
 BeginMissionSequence;
 UpdateDynamicData DynamicDataDisplay1;
-While sunstorm.ElapsedDays < 300
-   Propagate LEOpropagator(sunstorm);
-   If sunstorm.EarthMJ2000Eq.BrouwerLongSMA < 6770.14
-      Propagate LEOpropagator(sunstorm) {sunstorm.Earth.Apoapsis};
+While hf2.ElapsedDays < 300
+   Propagate LEOpropagator(hf2);
+   If hf2.EarthMJ2000Eq.BrouwerLongSMA < 6770.14
+      Propagate LEOpropagator(hf2) {hf2.Earth.Apoapsis};
       Target DC1 {SolveMode = Solve, ExitMode = SaveAndContinue, ShowProgressWindow = true};
          Vary DC1(burn_time = 0.5, {Perturbation = 0.0001, Lower = 0.0, Upper = 12000, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-         BeginFiniteBurn FiniteBurn1(sunstorm);
-         Propagate LEOpropagator(sunstorm) {sunstorm.ElapsedSecs = burn_time};
-         EndFiniteBurn FiniteBurn1(sunstorm);
-         Achieve DC1(sunstorm.EarthMJ2000Eq.BrouwerLongSMA = 6780, {Tolerance = 0.001});
+         BeginFiniteBurn FiniteBurn1(hf2);
+         Propagate LEOpropagator(hf2) {hf2.ElapsedSecs = burn_time};
+         EndFiniteBurn FiniteBurn1(hf2);
+         Achieve DC1(hf2.EarthMJ2000Eq.BrouwerLongSMA = 6780, {Tolerance = 0.001});
       EndTarget;  % For targeter DC1
    EndIf;
    UpdateDynamicData DynamicDataDisplay1;
