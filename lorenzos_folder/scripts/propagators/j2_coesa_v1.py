@@ -19,6 +19,7 @@ from pyatmos import coesa76
 
 import numpy as np
 
+import matplotlib
 import matplotlib.pyplot as plt
 
 import time
@@ -36,6 +37,11 @@ process_start_time = time.time()   # start time of python code
 process_clock_start_time = time.ctime() 
 print(f'Start of the process: {process_clock_start_time}')
 
+# Propagation time selection (poliastro)
+# time_frame = float(input('- Time frame [days]: ')) * u.day
+# time_step  = float(input('- Time step   [sec]: ')) * u.s
+time_frame = 120<<u.day
+time_step  = 864<<u.s
 
 # Constants
 R = Earth.R.to(u.km).value
@@ -58,12 +64,6 @@ epoch = Time(val=start_date.isoformat(), format='isot')
 
 # Definition of the initial orbit (poliastro)
 in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, epoch)
-
-# Propagation time selection (poliastro)
-# time_frame = float(input('- Time frame [days]: ')) * u.day
-# time_step  = float(input('- Time step   [sec]: ')) * u.s
-time_frame = 1<<u.day
-time_step  = 864<<u.s
 
 # GMAT correct RHW orbit decay was for: C_D = 2.2, A = 0.02 m^2, m = 2.205 kg
 C_D = 2.2
@@ -177,7 +177,16 @@ for sma in range(len(a_list)):
 
 print(f'\nProcess finished --- {(time.time() - process_start_time)/60} min')
 
-fig, ax = plt.subplots(1, 1, figsize=(22,9), squeeze=False) # figsize=(22,9) 
+matplotlib.use("pgf")
+matplotlib.rcParams.update({
+    "pgf.texsystem": "pdflatex",
+    'font.family': 'serif',
+    'font.size' : 12,
+    'text.usetex': True,
+    'pgf.rcfonts': False,
+})
+
+fig, ax = plt.subplots(1, 1, squeeze=False) # figsize=(22,9) 
 
 # ax[0,0].plot(elapsed_days, altitudes, label='Osculating Altitude')
 # ax[0,0].plot(elapsed_days, mean_altitudes, label='Mean Altitude')
@@ -186,12 +195,12 @@ fig, ax = plt.subplots(1, 1, figsize=(22,9), squeeze=False) # figsize=(22,9)
 
 ax[0,0].plot(elapsed_days, a_list, label='Osculating SMA')
 ax[0,0].plot(elapsed_days, a_mean_list, label='Mean SMA')
-ax[0,0].set_xlabel("Time [days]", fontsize=27)
-ax[0,0].set_ylabel("SMA [km]", fontsize=27)
-ax[0,0].set_xticklabels([0,0.2,0.4,0.6,0.8,1],fontsize=20)
-ax[0,0].set_yticklabels([6865,6870,6875,6880,6885,6890,6895,6900,6905,6910,6915,6920], fontsize=20)
-ax[0,0].legend(loc = 'upper right', fontsize=25)
-ax[0,0].set_title('Semi-Major Axis', fontsize=30, weight='bold')
+ax[0,0].set_xlabel("Time [days]")
+# ax[0,0].set_ylabel("SMA [km]")
+# ax[0,0].set_xticklabels([0,0.2,0.4,0.6,0.8,1],fontsize=20)
+# ax[0,0].set_yticklabels([6865,6870,6875,6880,6885,6890,6895,6900,6905,6910,6915,6920], fontsize=20)
+ax[0,0].legend(loc = 'upper right')
+ax[0,0].set_title('Semi-Major Axis', weight='bold')
 
 # ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
 # ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')
@@ -226,4 +235,8 @@ ax[0,0].set_title('Semi-Major Axis', fontsize=30, weight='bold')
 # ax[1,2].legend(loc = 'upper right')
 # ax[1,2].set_title('Argument of Latitude')
 
-plt.show()
+fig.tight_layout()
+fig.set_size_inches(4.7747,3.5)
+plt.savefig('osc_vs_mean.pgf')
+
+# plt.show()

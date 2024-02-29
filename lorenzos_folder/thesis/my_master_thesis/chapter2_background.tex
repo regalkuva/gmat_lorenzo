@@ -9,13 +9,13 @@ In this context, a proper definition of the subject can be the following: the st
 
 \subsection{Satellite State Representations}
 
-% There are a number of independent parameters describing the size, shape, and spatial position of an orbit. 
+% There are a number of independent parameters describing the size, shape, and spatial position of an orbit.
 % Six of these have become the parameters of choice to define and describe an orbit.
 To define the \textit{state} of a satellite in space six quantities are required, and they may take on many equivalent forms.
 Whatever the form, the collection is called either a \textit{state vector}, usually associated with position and velocity vectors, or an \textit{element set}, typically used with scalar magnitude and angular representations of the orbit called \textit{orbital elements}.
-Either set of quantities completely specify the two-body orbit and provide a complete set of initial conditions for solving an initial value problem class of differential equations. 
+Either set of quantities completely specify the two-body orbit and provide a complete set of initial conditions for solving an initial value problem class of differential equations.
 Time is always associated with a state vector and is often considered a seventh component.
-State vectors and element sets are referenced to a particular coordinate frame \cite{vallado2013fundamentals}. 
+State vectors and element sets are referenced to a particular coordinate frame \cite{vallado2013fundamentals}.
 
 This thesis will use both state vectors and a specific element set.
 The latter, which is also the most common one in this field, is represented by the \textit{\textbf{classical orbital elements}}:
@@ -38,15 +38,15 @@ A relation that is always valid exists between classical orbital elements and th
 One more element that is often used is the \textit{mean anomaly, M}, which is the angle between the periapsis of an orbit and the position of an imaginary body that orbits in the same period as the real one but at a constant angular speed (circular orbit).
 The angular speed assigned to the imaginary body is the satellite's average angular velocity over one orbit, and is called \textit{mean motion, n} \cite{ridpath2012dictionary}.
 
-This research utilizes also another element set which results necessary to address case studies of past missions: the \textit{Two-line element set} (TLE). 
+This research utilizes also another element set which results necessary to address case studies of past missions: the \textit{Two-line element set} (TLE).
 A two-line element consists of a satellite identifier, an epoch, six orbital elements and a \textit{B*} term related to the ballistic coefficient \cite{riesing2015orbit}.
 These elsets are available to the general public through Air Force Space Command (AFSPC) \cite{vallado2013fundamentals}.
 
-The elements of a TLE are shown in equation \ref{eq:tle} \cite{vallado2013fundamentals}, where: 
+The elements of a TLE are shown in equation \ref{eq:tle} \cite{vallado2013fundamentals}, where:
 \begin{itemize}
-    \item[-] the bars on  the mean motion and semimajor axis denote \textit{Kozai mean values}
+    \item[-] the bars on  the mean motion and semimajor axis denote \textit{Kozai mean values} 
     \item[-] the numerators of the first two elements of the second line represent mean motion rate and acceleration
-    \item[-] $\frac{c_D A}{m}$ corresponds to the inverse of the \textit{ballistic coefficient, BC} 
+    \item[-] $\frac{c_D A}{m}$ corresponds to the inverse of the \textit{ballistic coefficient, BC}
     \item[-] $\rho_0$ is the atmospheric density at perigee of the orbit
     \item[-] $R_\mathTerra$ defines an Earth Radius of 6378.135 km
     \item[-] the epoch is expressed in Coordinate Universal Time (UTC)
@@ -60,8 +60,8 @@ The elements of a TLE are shown in equation \ref{eq:tle} \cite{vallado2013fundam
 \end{equation}
 
 \subsection{Reference Frames}
-Two types of reference frames are adopted by this research: the geocentric-inertial coordinate system and the geographic-body-fixed system. 
-The origin of both systems is the center of mass of the central body, which in all case studies of this work is the Earth. 
+Two types of reference frames are adopted by this research: the geocentric-inertial coordinate system and the geographic-body-fixed system.
+The origin of both systems is the center of mass of the central body, which in all case studies of this work is the Earth.
 They will therefore be labeled Earth-centered inertial (ECI) and Eart-centered Earth-fixed (ECEF) coordinate frames, respectively.
 
 \subsubsection{Earth-centered inertial}
@@ -76,7 +76,7 @@ The system is Earth-centered and fixed to the rotating Earth \cite{vallado2013fu
 Considering the ECI, the Z axis is the same, while the X axis always points towards the Greenwich meridian.
 Satellite ground track is commonly plotted in this coordinate system \cite{brown1998spacecraft}.
 
-\subsection{Orbital Perturbations}
+\subsection{Orbital Perturbations} \label{perturbations}
 Orbital perturbations are deviations from a normal, idealized, or undisturbed motion.
 Introducing an alteration from two-body problem assumptions, the actual motion will vary due to perturbations caused by other bodies, and additional forces not considered in Keplerian motion \cite{vallado2013fundamentals}.
 This subsection provides an overview of the main perturbations for an Earth orbiting spacecraft.
@@ -88,7 +88,7 @@ The planet's oblateness provides a rotationally symmetric perturbation $\Phi$, w
 
 In particular, $\Phi$ is given by an infinite series characterized by the so-called \textit{zonal harmonics} $J_k$ of the planet of reference.
 Considering a spherical coordinate system for convenience, with origin at the planet's center of mass and third axis as the axis of rotational symmetry,
-in this series, shown in equation \ref{eq:harmonics_series}, $r$ and $\phi$ are the distance from the origin and the polar angle respectively, $\mu$ is the Earth's standard gravitational parameter, $R$ the equatorial radius and $P_k$ represent the Legendre polynomials \cite{curtis2020orbital}. 
+in this series, shown in equation \ref{eq:harmonics_series}, $r$ and $\phi$ are the distance from the origin and the polar angle respectively, $\mu$ is the Earth's standard gravitational parameter, $R$ the equatorial radius and $P_k$ represent the Legendre polynomials \cite{curtis2020orbital}.
 \begin{equation} \label{eq:harmonics_series}
     \Phi (r,\phi) = \frac{\mu}{r} \sum_{k=2}^{\infty} J_k \left(\frac{R}{r} \right)^k P_k (\cos{\phi})
 \end{equation}
@@ -96,13 +96,13 @@ The zonal harmonics are non-dimensional quantities which are evaluated from sate
 The summation starts from $k = 2$, and the Earth's set of zonal harmonics is highly dominated by $J_2$.
 Taking into account only $J_2$ and starting from equation \ref{eq:harmonics_series}, it is possible to derivate the perturbing gravitational acceleration due to the respective zonal harmonic \cite{curtis2020orbital}:
 \begin{equation} \label{eq:j2_acc}
-    \vec{a}_{J_2} = \frac{3}{2} \frac{J_2 \mu R^2}{r^4} \left[\frac{x}{r}\left(5 \frac{z^2}{r^2} - 1 \right)\hat{\textbf{i}} + \frac{y}{r}\left(5 \frac{z^2}{r^2} - 1\right)\hat{\textbf{j}} + \frac{z}{r}\left(5 \frac{z^2}{r^2} - 3\right)\hat{\textbf{k}} \right] 
+    \vec{a}_{J_2} = \frac{3}{2} \frac{J_2 \mu R^2}{r^4} \left[\frac{x}{r}\left(5 \frac{z^2}{r^2} - 1 \right)\hat{\textbf{i}} + \frac{y}{r}\left(5 \frac{z^2}{r^2} - 1\right)\hat{\textbf{j}} + \frac{z}{r}\left(5 \frac{z^2}{r^2} - 3\right)\hat{\textbf{k}} \right]
 \end{equation}
 
-The right ascension $\Omega$ and the argument of perigee $\omega$ are significantly affected by oblateness \cite{curtis2020orbital}. 
+The right ascension $\Omega$ and the argument of perigee $\omega$ are significantly affected by oblateness \cite{curtis2020orbital}.
 % Their variation in time is described by equations \ref{eq:5} and \ref{eq:6} respectively \cite{curtis2020orbital}:
 % \begin{equation} \label{eq:5}
-%     \dot{\Omega} = - \left[\frac{3}{2} \frac{\sqrt{\mu} J_2 R^2}{(1-e^2)^2 a^{7/2}}\right]\cos{i} 
+%     \dot{\Omega} = - \left[\frac{3}{2} \frac{\sqrt{\mu} J_2 R^2}{(1-e^2)^2 a^{7/2}}\right]\cos{i}
 % \end{equation}
 % \begin{equation} \label{eq:6}
 %     \dot{\omega} = - \left[\frac{3}{2} \frac{\sqrt{\mu} J_2 R^2}{(1-e^2)^2 a^{7/2}}\right] \left(\frac{5}{2} \sin^2{i} - 2\right)
@@ -118,20 +118,20 @@ The basic equation of the perturbing specific force (force per unit mass) due to
 \begin{equation} \label{eq:drag_acc}
     \vec{a}_{drag} = - \frac{1}{2} \frac{C_D A}{m} \rho V_{rel}^{2} \frac{\vec{V_{rel}}}{|\vec{V_{rel}}|}
 \end{equation}
-In equation \ref{eq:drag_acc}, $\frac{m}{C_D A}$ is again the ballistic coefficient, that already appeared in the TLE representation (equation \ref{eq:tle}): 
+In equation \ref{eq:drag_acc}, $\frac{m}{C_D A}$ is again the ballistic coefficient, that already appeared in the TLE representation (equation \ref{eq:tle}):
 $m$ is the mass of the spacecraft, $A$ represents the cross-sectional area of the satellite with respect to the atmosphere and $C_D$ is the drag coefficient, a dimensionless parameter which takes into account every aerodynamic configuration aspect of the body with respect to the drag forces \cite{sadraey2009drag}.
-The value of the drag coefficient for satellites in the upper atmosphere is generally around 2.2 \cite{vallado2013fundamentals}; 
-this number has been considered for all the case studies of the thesis. 
+The value of the drag coefficient for satellites in the upper atmosphere is generally around 2.2 \cite{vallado2013fundamentals};
+this number has been considered for all the case studies of the thesis.
 Finally, the velocity vector $\vec{V_{rel}}$ is relative to the atmosphere, as well as the cross section.
 
 The main effects provided by aerodynamic drag are changes in the semimajor axis and eccentricity of the orbit and an accurate description of the atmospheric properties is crucial for the evaluation of drag on satellites \cite{vallado2013fundamentals}.
 However, uncertainties in the time variance of upper atmosphere make perfect prediction of spacecraft drag impossible \cite{brown1998spacecraft}.
 More in depth, the density changes because of a complex interaction between three factors: the nature of the atmosphere's molecular structure, the incident solar flux, and geomagnetic interactions.
-Several atmospheric models can be found in literature, either static or time-varying. 
+Several atmospheric models can be found in literature, either static or time-varying.
 The static ones are less accurate, but definitely simpler than the time-varying models, thanks to the assumption of all constant parameters \cite{vallado2013fundamentals}.
 This thesis exploits three different models, depending on the applications addressed in the case studies.
 
-The first model considered by this research is static: the exponential model, valid in the range of altitudes between 0 and 1000 km. 
+The first model considered by this research is static: the exponential model, valid in the range of altitudes between 0 and 1000 km.
 It assumes a spherically symmetrical distribution of particles of the atmosphere, in which the density decreases exponentially with increasing the altitude according to equation \ref{eq:exp_model} \cite{vallado2013fundamentals}
 \begin{equation} \label{eq:exp_model}
     \rho = \rho_0 \exp{\left[- \frac{h - h_0}{H}\right]}
@@ -148,7 +148,7 @@ Geomagnetic effects are modeled too.
 The model is validated in the altitude range of 175 to 1000 km through comparisons with accurate daily density drag data previously collected for numerous satellites, existing atmospheric models and other measurements from several Earth orbiting satellite missions \cite{bowman2008jb2006,bowman2008new}.
 
 \subsubsection{Third-Body Perturbations}
-All the orbital elements are periodically affected by the gravitational forces of the Sun and the Moon. 
+All the orbital elements are periodically affected by the gravitational forces of the Sun and the Moon.
 Similarly to what is triggered by the Earth's equatorial bulge, they apply an external torque to the orbits and cause the angular momentum to rotate.
 This perturbation is highly negligible in LEO, where the main effects are provided by $J_2$ and aerodynamic drag \cite{wertz2009orbit}.
 However, low Earth orbits characterized by a constant geometry with respect to the perturbing body can be affected by emphasized long-period effects.
@@ -163,7 +163,7 @@ The perturbing acceleration can be approximated by the following equation \cite{
     \vec{a}_{SRP} = - \frac{p_{SRP} c_{R} A_{\mathSun}}{m_{sat}} \frac{\vec{r}_{\mathTerra \mathSun}}{|\vec{r}_{\mathTerra \mathSun}|}
 \end{equation}
 $p_{SRP}$ is the solar pressure, which is a quantity representing the change in momentum per unit area, derived by the ratio between the solar flux and the speed of light.
-The reflectivity, $c_R$, a value between 0.0 and 2.0, models the type of interaction between radiation and surface exposed to the Sun, $A_{\mathSun}$ \cite{vallado2013fundamentals}. 
+The reflectivity, $c_R$, a value between 0.0 and 2.0, models the type of interaction between radiation and surface exposed to the Sun, $A_{\mathSun}$ \cite{vallado2013fundamentals}.
 $m_{sat}$ is trivially the mass of the satellite.
 
 \subsection{Mean Orbital Elements}
@@ -178,18 +178,29 @@ The oblateness of the Earth is the main guilty of periodic effects, provoking va
 On the other hand, only even zonal gravitational harmonics and atmospheric drag give raise to secular effects in osculating elements, which are constant or non-periodic.
 Aerodynamic drag secular perturbation plays a crucial role in LEO \cite{der1996conversion}.
 
-Figure \ref{fig:osc_vs_mean_sma} shows the comparison between osculating and mean semi-major axis of a LEO satellite motion over the course of four months.
+Figure %\ref{fig:osc_vs_mean_sma} shows the comparison between osculating and mean semi-major axis of a LEO satellite motion over the course of four months.
 The orbital decay induced by the atmospheric drag secular effect is evident, as well as the periodic consequences of $J_2$ perturbation.
-\begin{figure}[ht]\label{fig:osc_vs_mean_sma}
-    \centering
-    \includegraphics[scale=0.2]{img/moe_thesis.png}
+\begin{figure}[h] \label{fig:osc_vs_mean_sma}
+    \begin{center}
+        \textbf{Semi-Major Axis}\par\medskip
+        %\input{img/osc_vs_mean.pgf}
+    \end{center}
     \caption{Osculating vs. mean semi-major axis for a LEO satellite under atmospheric drag and $J_2$ perturbations}
 \end{figure}
 
+Several perturbation techniques have been proposed to perform the conversion between osculating and mean elements. 
+Brouwer and Kozai works were ones of the first methods appeared in literature, both consisting of first order solutions which take into account the Earth's asphericity but neglect drag effects \cite{arnas2022analytic}.
+This thesis uses a refinement of Brouwer's approach, suggested by Lyddane, which solves zero eccentricity and inclination singularities that are involved in the original theory.
+Moreover, the algorithm will account only first order $J_2$ terms \cite{schaub2002analytical}.
 
 \subsection{Sun-Synchronous Orbit} \label{sso_paragraph}
-
-
+Sun-synchronous orbits are specialized orbits characterized by a constant geometry with the Sun over time \cite{vallado2013fundamentals}. 
+They are used for several reasons, from technical needs like that ones deriving from thermal and electric power subsystems of the spacecraft to application requirements such as remote sensing.
+Indeed, a constant Sun angle is very precious for missions working with electro-optical sensors \cite{brown1998spacecraft}.
+This is the case, for instance, of hyperspectral technology. 
+An SSO can be obtained by matching the regression of nodes to the solar motion projected on the equator.
+This will allow the satellite's line of nodes to keep a constant angular separation with respect to the Sun.
+This separation can be achieved with very good approximation only considering the dominant cause of the secular motion of RAAN: $J_2$ perturbation.  
 
 \section{Repetitive ground tracks}
 
