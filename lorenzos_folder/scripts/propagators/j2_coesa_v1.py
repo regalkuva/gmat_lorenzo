@@ -200,7 +200,7 @@ ax[0,0].set_xlabel("Time [days]")
 # ax[0,0].set_xticklabels([0,0.2,0.4,0.6,0.8,1],fontsize=20)
 # ax[0,0].set_yticklabels([6865,6870,6875,6880,6885,6890,6895,6900,6905,6910,6915,6920], fontsize=20)
 ax[0,0].legend(loc = 'upper right')
-ax[0,0].set_title('Semi-Major Axis', weight='bold')
+# ax[0,0].set_title('Semi-Major Axis', weight='bold')
 
 # ax[0,1].plot(elapsed_days, ecc_list, label='Osculating ECC')
 # ax[0,1].plot(elapsed_days, ecc_mean_list, label='Mean ECC')

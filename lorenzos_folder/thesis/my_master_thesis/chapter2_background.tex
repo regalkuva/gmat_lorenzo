@@ -178,14 +178,15 @@ The oblateness of the Earth is the main guilty of periodic effects, provoking va
 On the other hand, only even zonal gravitational harmonics and atmospheric drag give raise to secular effects in osculating elements, which are constant or non-periodic.
 Aerodynamic drag secular perturbation plays a crucial role in LEO \cite{der1996conversion}.
 
-Figure %\ref{fig:osc_vs_mean_sma} shows the comparison between osculating and mean semi-major axis of a LEO satellite motion over the course of four months.
+Figure \ref{osc_vs_mean_sma} shows the comparison between osculating and mean semi-major axis of a LEO satellite motion over the course of four months.
 The orbital decay induced by the atmospheric drag secular effect is evident, as well as the periodic consequences of $J_2$ perturbation.
-\begin{figure}[h] \label{fig:osc_vs_mean_sma}
+\begin{figure}[h] 
     \begin{center}
         \textbf{Semi-Major Axis}\par\medskip
-        %\input{img/osc_vs_mean.pgf}
+        %\import{img}{osc_vs_mean.pgf}
     \end{center}
-    \caption{Osculating vs. mean semi-major axis for a LEO satellite under atmospheric drag and $J_2$ perturbations}
+    \caption{Osculating vs. mean semi-major axis for a LEO satellite under atmospheric drag and $J_2$ perturbations.}
+    \label{osc_vs_mean_sma}
 \end{figure}
 
 Several perturbation techniques have been proposed to perform the conversion between osculating and mean elements. 
@@ -193,17 +194,53 @@ Brouwer and Kozai works were ones of the first methods appeared in literature, b
 This thesis uses a refinement of Brouwer's approach, suggested by Lyddane, which solves zero eccentricity and inclination singularities that are involved in the original theory.
 Moreover, the algorithm will account only first order $J_2$ terms \cite{schaub2002analytical}.
 
+\section{Specialized Orbits}
+\textit{Specialized orbits} are the results of specific orbital features selected during the design of a mission, which can be simply related to the orbit period or, more commonly, to one of the main orbit perturbations \cite{wertz2009orbit}. 
+In this section, two special Earth orbits will be analysed, both of interest for the purposes of the thesis.
+
 \subsection{Sun-Synchronous Orbit} \label{sso_paragraph}
 Sun-synchronous orbits are specialized orbits characterized by a constant geometry with the Sun over time \cite{vallado2013fundamentals}. 
 They are used for several reasons, from technical needs like that ones deriving from thermal and electric power subsystems of the spacecraft to application requirements such as remote sensing.
 Indeed, a constant Sun angle is very precious for missions working with electro-optical sensors \cite{brown1998spacecraft}.
 This is the case, for instance, of hyperspectral technology. 
-An SSO can be obtained by matching the regression of nodes to the solar motion projected on the equator.
+
+An SSO can be obtained by matching the Westward motion of the line of nodes (\textit{regression of the nodes}) to the solar motion projected on the equator, like shown in equation \ref{sso_raan} \cite{brown1998spacecraft}.
+\begin{equation} \label{sso_raan}
+    \dot{\Omega} = 360^{\circ} / 365.242\;days = 0.9856\;^{\circ}/day 
+\end{equation}
 This will allow the satellite's line of nodes to keep a constant angular separation with respect to the Sun.
 This separation can be achieved with very good approximation only considering the dominant cause of the secular motion of RAAN: $J_2$ perturbation.  
+The secular behavior of $\Omega$ induced by the oblateness is function of semi-major axis, eccentricity and inclination and is given by the following formula \cite{vallado2013fundamentals}:
+\begin{equation} \label{raan_variation}
+    \dot{\Omega}(a,e,i) = - \frac{3n R_{\mathTerra}^2 J_2}{2a^2 (1-e^2)^2} \cos{i}
+\end{equation}
+Equations \ref{sso_raan} and \ref{raan_variation} suggest that to achieve the proper $\dot{\Omega}$ of an SSO, the inclination has to be more than 90$^\circ$ (\textit{retrograde orbit}), so that the term $\cos{i}$ will become negative \cite{wertz2009orbit}.
+As for the other two variables, eccentricity is generally supposed to be near-zero because low-Earth orbits usually imply very small values of $e$.
+Hence, with the assumption of $e=0$, an SSO will be characterized by a direct relationship between $a$ and $i$.
+Figure \ref{inc_h_sso} shows the range of inclinations and altitudes that would provide the proper regression of nodes.
+\begin{figure} 
+    \begin{center} 
+        \includegraphics[scale=0.5]{img/inc_vs_h_sso.png}
+    \end{center}
+        \caption{SSO condition: inclination vs. altitude ($e=0$) \cite{brown1998spacecraft}.}
+        \label{inc_h_sso}
+\end{figure}
 
-\section{Repetitive ground tracks}
+In addition, it is possible to select the initial value of the RAAN between 0 and 360 degrees according to the mission requirements for example \cite{vallado2013fundamentals}.
+The angle between the ascending node and the direction of the Sun is commonly labeled like \textit{Mean Local Time of the Ascending Node} (MLTAN), because of the relative time to the noon meridian.
+This is a crucial design parameter because, while for an arbitrary orbit the MLTAN would continually change, for a Sun-synchronous orbit it will remain constant \cite{boain2004ab} (not only at the nodes, but at any latitude).
 
+In order to provide a better understanding of the problem, figure \ref{sso_curtis} shows an example of an SSO with an LTAN of 15:00.
+\begin{figure} 
+    \begin{center} 
+        \includegraphics[scale=1]{img/sso_curtis.png}
+    \end{center}
+        \caption{Sun-synchronous orbit 15:00 LTAN illustration \cite{curtis2020orbital}.}
+        \label{sso_curtis}
+\end{figure}
+
+\subsection{Repeat-Groundtrack Orbit}
+The peculiarity of a \textit{repeat-groundtrak orbit} is the repetitive transit of the satelite to the same location relative to the surface of the Earth after a certain time interval \cite{wertz2009orbit}.
 
 \section{Orbit Maintenance}
 

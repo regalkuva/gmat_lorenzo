@@ -29,10 +29,12 @@ top=    1 in
 
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{pgf}
 \usepackage{pgfmath}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
-
+\usepackage{lmodern}
+\usepackage{import}
 % % Package usati per il frontespizio
 % \usepackage{tikz}
 % \usepackage{pgf-pie}
@@ -104,8 +106,7 @@ top=    1 in
     \include{chapter6_results}
 
     \include{conclusion}
-
-    \bibliography{bibliography}
-    \bibliographystyle{acm}
+  \bibliography{bibliography} % bibliography, sampleBibFile
+  \bibliographystyle{unsrt} % acm
 
 \end{document}
