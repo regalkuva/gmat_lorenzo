@@ -8,14 +8,14 @@
 
 Create Spacecraft DefaultSC;
 GMAT DefaultSC.DateFormat = UTCGregorian;
-GMAT DefaultSC.Epoch = '01 Jan 2024 12:00:00.000';
+GMAT DefaultSC.Epoch = '01 Jan 2025 12:00:00.000';
 GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
 GMAT DefaultSC.DisplayStateType = Keplerian;
-GMAT DefaultSC.SMA = 6751.000000000001;
-GMAT DefaultSC.ECC = 9.999999998513332e-07;
+GMAT DefaultSC.SMA = 6750.999999999997;
+GMAT DefaultSC.ECC = 9.999999996106475e-07;
 GMAT DefaultSC.INC = 96.94699310581477;
 GMAT DefaultSC.RAAN = 78.31;
-GMAT DefaultSC.AOP = 8.537736462515939e-07;
+GMAT DefaultSC.AOP = 1.707547292503188e-06;
 GMAT DefaultSC.TA = 0;
 GMAT DefaultSC.DryMass = 50;
 GMAT DefaultSC.Cd = 2.2;
@@ -52,6 +52,7 @@ GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
 GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT DefaultSC.EulerAngleSequence = '321';
+
 
 
 %----------------------------------------
@@ -101,9 +102,9 @@ GMAT DefaultProp.StopIfAccuracyIsViolated = true;
 
 Create OrbitView DefaultOrbitView;
 GMAT DefaultOrbitView.SolverIterations = Current;
-GMAT DefaultOrbitView.UpperLeft = [ 0.06880341880341881 -0.01258389261744966 ];
-GMAT DefaultOrbitView.Size = [ 0.5 0.4496644295302014 ];
-GMAT DefaultOrbitView.RelativeZOrder = 60;
+GMAT DefaultOrbitView.UpperLeft = [ -0.7272727272727273 -0.01174496644295302 ];
+GMAT DefaultOrbitView.Size = [ -5.318181818181818 0.4496644295302014 ];
+GMAT DefaultOrbitView.RelativeZOrder = 12;
 GMAT DefaultOrbitView.Maximized = false;
 GMAT DefaultOrbitView.Add = {DefaultSC, Earth};
 GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
@@ -132,9 +133,9 @@ GMAT DefaultOrbitView.EnableStars = On;
 GMAT DefaultOrbitView.EnableConstellations = On;
 
 Create DynamicDataDisplay DynamicDataDisplay1;
-GMAT DynamicDataDisplay1.UpperLeft = [ 0.7158119658119658 0.09983221476510067 ];
-GMAT DynamicDataDisplay1.Size = [ 0.1841880341880342 0.4312080536912752 ];
-GMAT DynamicDataDisplay1.RelativeZOrder = 64;
+GMAT DynamicDataDisplay1.UpperLeft = [ -7.609090909090909 0.09899328859060402 ];
+GMAT DynamicDataDisplay1.Size = [ -2.027272727272727 0.4630872483221476 ];
+GMAT DynamicDataDisplay1.RelativeZOrder = 17;
 GMAT DynamicDataDisplay1.Maximized = false;
 GMAT DynamicDataDisplay1.AddParameters = {1, DefaultSC.EarthMJ2000Eq.BrouwerLongSMA};
 GMAT DynamicDataDisplay1.RowTextColors = {1, [0 0 0]};
@@ -143,9 +144,9 @@ GMAT DynamicDataDisplay1.CritColor = [255 0 0];
 
 Create XYPlot XYPlot1;
 GMAT XYPlot1.SolverIterations = Current;
-GMAT XYPlot1.UpperLeft = [ 0.1534188034188034 0.4580536912751678 ];
-GMAT XYPlot1.Size = [ 0.5 0.4496644295302014 ];
-GMAT XYPlot1.RelativeZOrder = 68;
+GMAT XYPlot1.UpperLeft = [ -1.627272727272727 0.4572147651006712 ];
+GMAT XYPlot1.Size = [ -5.318181818181818 0.4496644295302014 ];
+GMAT XYPlot1.RelativeZOrder = 61;
 GMAT XYPlot1.Maximized = false;
 GMAT XYPlot1.XVariable = DefaultSC.ElapsedDays;
 GMAT XYPlot1.YVariables = {DefaultSC.EarthMJ2000Eq.BrouwerLongSMA, DefaultSC.EarthMJ2000Eq.BrouwerShortSMA};

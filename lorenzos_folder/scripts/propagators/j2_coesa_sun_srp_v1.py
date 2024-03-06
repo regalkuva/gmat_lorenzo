@@ -30,13 +30,13 @@ from sso_functions.orbital_elements import osc2mean
 from sso_functions.sso_inc import inc_from_alt, raan_from_ltan
 
 
-print('\n--- TWO-BODY PROPAGATOR - J2 & ATMOSPHERIC DRAG PERTURBATIONS ---\n')
+print('\n--- TWO-BODY PROPAGATOR - J2 + ATMOSPHERIC DRAG + 3rd BODY (SUN) + SOLAR RADIATION PRESSURE ---\n')
 
 # Propagation time selection (poliastro)
 # time_frame = float(input('- Time frame [days]: ')) * u.day
 # time_step  = float(input('- Time step   [sec]: ')) * u.s
-time_frame = 1<<u.day
-time_step  = 8.64<<u.s
+time_frame = 150<<u.day
+time_step  = (8640*10)<<u.s
 start_date = datetime(2025,1,1,12,0,0)
 epoch = Time(val=start_date.isoformat(), format='isot')
 start_date_ephem = Time("2025-01-01 12:00:00.000", scale = "utc")
@@ -69,7 +69,7 @@ process_start_time = time.time()   # start time of python code
 
 # Satellite
 C_D = 2.2
-A_over_m = ((0.2 * u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)   # km**2/kg
+A_over_m = ((0.207 * u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)   # km**2/kg
 B = C_D * A_over_m   # ballistic coefficient at low drag mode
 C_R = 1.8
 

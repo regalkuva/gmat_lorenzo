@@ -230,7 +230,7 @@ In addition, it is possible to select the initial value of the RAAN between 0 an
 The angle between the ascending node and the direction of the Sun is commonly labeled like \textit{Mean Local Time of the Ascending Node} (MLTAN), because of the relative time to the noon meridian.
 This is a crucial design parameter because, while for an arbitrary orbit the MLTAN would continually change, for a Sun-synchronous orbit it will remain constant \cite{boain2004ab} (not only at the nodes, but at any latitude).
 
-In order to provide a better understanding of the problem, figure \ref{sso_curtis} shows an example of an SSO with an LTAN of 15:00.
+In order to provide a better understanding of the concepts, figure \ref{sso_curtis} shows an example of an SSO with an LTAN of 15:00.
 \begin{figure} 
     \begin{center} 
         \includegraphics[scale=1]{img/sso_curtis.png}
@@ -239,18 +239,76 @@ In order to provide a better understanding of the problem, figure \ref{sso_curti
         \label{sso_curtis}
 \end{figure}
 
-\subsection{Repeat-Groundtrack Orbit}
-The peculiarity of a \textit{repeat-groundtrak orbit} is the repetitive transit of the satelite to the same location relative to the surface of the Earth after a certain time interval \cite{wertz2009orbit}.
+\subsection{Repeat-Groundtrack Orbit} \label{repeat_groundtrack}
+The peculiarity of a \textit{repeat-groundtrak orbit} is the repetitive transit of the satellite to the same location relative to the surface of the Earth after a certain time interval \cite{wertz2009orbit}.
+Hence, they are used by missions which need to periodically revisit a specific point on the Earth \cite{vallado2013fundamentals}, playing an interesting role in remote sensing applications.
 
-\section{Orbit Maintenance}
+Considering $j$ orbit periods and the relative $k$ days spent, an orbit is repetitive if and only if the ratio $Q$ between $j$ and $k$ is a rational number, where $Q$ represents the number of orbits per day.
+This means that $j$ and $k$ are integer and prime to each other.
+For instance, if a satellite performs 15.25 orbits per day, it will make a 4-day repeating ground track, because the respective rational $Q$ is given by $j=61$ orbits in $k=4$ days \cite{wertz2009orbit}.
+$k$ is typically known as the \textit{revisit time} of the spacecraft, defined as the time elapsed between two successive observations of the same ground point \cite{luo2017novel}.
+It is necessary to underline that the effects of perturbations should be taken into account in order to obtain accurate repetition properties, since the actual period appears more complex \cite{wertz2009orbit}. 
+
+In light of the above, it can be easily understood that the minimum achievable revisit time for a generic orbit is 1 day.
+However, mission objectives might require shorter revisit times.
+The solution to this issue is the design of a constellation of satellites, as will be discussed later.
+
 
 
 \section{Satellite Constellations}
 \subsection{Walker Delta Constellation}
 \subsection{Constellation Design}
-\subsection{Constellation Maintenance}
+
+\section{Orbit Maintenance}
+Over the life of a space mission, the need to adjust or maintain the orbit elements might arise. In general, orbit maintenance is required because of two main reasons:
+ targeting to reach an end orbit or position (such as a rendezvous maneuver), or to maintain absolute or relative orientations (as for station-keeping) \cite{wertz2009orbit}.
+
+This thesis studies two different scenarios of orbit management. The first one is the \textit{station-keeping}, which aims at periodically restoring the mission nominal altitude. 
+Secondly, the study of the \textit{orbit phasing} is carried out with the purpose of achieving the desired pattern of a group of satellites along the same orbit.
+
+\subsection{Station-Keeping}
+From LEO to geostationary orbit (GEO), station-keeping maneuvers must be considered due to perturbations, if requested by one or more mission requirements.  
+In the case of Earth observation applications, electro-optical sensors and radars are generally designed to work approximately at a specific distance from the ground. 
+In addition, the repetition factor $Q$ introduced in the paragraph \ref{repeat_groundtrack} will be significantly altered by even small changes in the semimajor axis.
+The maneuver of station-keeping that counteracts the orbital decay in LEO is called \textit{drag makeup maneuver}. 
+Assuming that this distance has been reached from the satellite, in LEO it will be threatened over time by atmospheric drag secular effects.
+
+\subsubsection{Edelbaum-Kechichian Theory}
+An analytic solution for the optimum low-thrust transfer between inclined circular orbits of different radius is provided by the equations of \textit{Edelbaum} reformulated by \textit{Kechichian} in 1992 \cite{edelbaum1961propulsion, kechichian1992reformulation}.
+This thesis takes advantage of this theory to compute $\Delta V$, burning time and related acceleration needed to satisfy the requirements of station-keeping.
+
+The problem obviously needs the thrust force acceleration $f$ as input parameter, deriving from the ratio between the thrust provided by the thruster and the spacecraft mass, is broken down into three mutually orthogonal components:
+the first one is tangential to the velocity vector of the satellite, the second component is normal to the orbital plane, and the last one is normal to the other two.
+They are expressed in terms of two angles: 
+$\alpha$ is the angle between the velocity vector and the component of the thrust vector in the plane of the orbit,
+while $\beta$ represents the angle between the thrust vector and the plane of the orbit \cite{edelbaum1961propulsion}.
+\begin{equation} \label{acceleration_thrust_components}
+    f_T = f \cos{\beta} \cos{\alpha} \;\;\;\;\;\;\;\;\;\; f_N = f \cos{\beta} \sin{\alpha} \;\;\;\;\;\;\;\;\;\; f_z = f \sin{\beta}
+\end{equation}
+
+After that, initial and final desired orbit are only assigned by the changes in inclination and semimajor axis ($\Delta i$, $\Delta a$).
+From the initial and final semimajor axis, the velocities $V_0$ and $V_f$ are computed 
+\begin{equation} \label{sma_velocities}
+    V_0 = \sqrt{\frac{\mu}{a_0}} \;\;\;\;\;\;\;\;\;\; V_f = \sqrt{\frac{\mu}{a_f}}
+\end{equation}
+where $\mu$ is always the Earth's gravity constant.
+Kechichian's reformulation derives the initial angle $\beta_0$ from the velocities in \ref{sma_velocities} and $\Delta i$:
+\begin{equation} \label{beta0}
+    \beta_0 = \tan^{-1}{\frac{\sin{\frac{\pi}{2}}\Delta i}{\frac{V_0}{V_f} - \cos{\frac{\pi}{2}}\Delta i}}
+\end{equation}
+It is now possible to write total $\Delta V$
+\begin{equation} \label{deltaV}
+    \Delta V = V_0 \cos{\beta_0} - \frac{V_0 \sin{\beta_0}}{\tan{\left(\frac{\pi}{2}\Delta i + \beta_0\right)}}
+\end{equation}
+and consequently achieve the transfer time
+\begin{equation} \label{transfer_time}
+    t_f = \frac{\Delta V}{f}
+\end{equation}
+In case of coplanar transfers, $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities}.
 
 
-\section{Differential Drag Method}
+
+
+\subsection{Differential Drag Method}
 
 
