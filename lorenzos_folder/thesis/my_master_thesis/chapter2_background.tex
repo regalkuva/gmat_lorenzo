@@ -2,7 +2,7 @@
 
 This chapter aims to provide an overview on the fundamentals of Space Flight Dynamics that constitute the theoretical basis of this thesis, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this work.
 
-\section{Space Flight Dynamics Overview}
+\section{Space Flight Dynamics Introduction}
 
 Orbital Mechanics, Astrodynamics, Astronautics and Space Flight Dynamics are all titles of university courses whose principal topic is two-body orbital motion, that involves orbit determination, orbital flight time, and orbital maneuvers \cite{kluever2018space}.
 In this context, a proper definition of the subject can be the following: the study of the motion of man-made objects in space, subject to both natural and artificially induced forces \cite{griffin2004space}.
@@ -18,7 +18,7 @@ Time is always associated with a state vector and is often considered a seventh 
 State vectors and element sets are referenced to a particular coordinate frame \cite{vallado2013fundamentals}.
 
 This thesis will use both state vectors and a specific element set.
-The latter, which is also the most common one in this field, is represented by the \textit{\textbf{classical orbital elements}}:
+The latter, which is also the most common one in this field, is represented by the \textit{\textbf{classical orbital elements}} \cite{brown1998spacecraft}:
 \begin{itemize}
     \item Semimajor axis, \textit{a}: the orbit size is defined by one half of the major axis dimension
     \item Eccentricity, \textit{e}: the ratio of minor to major dimensions of an orbit defines the shape
@@ -27,7 +27,7 @@ The latter, which is also the most common one in this field, is represented by t
     \item Argument of periapsis, $\omega$: the angle from the ascending node to the periapsis, measured in the orbital plane in the direction of spacecraft motion. The ascending node is the point where the spacecraft crosses the reference plane headed from south to north. the line of nodes is the line formed by the intersection of the orbit plane and the reference plane
     \item True anomaly, $\nu$: the sixth element locates the spacecraft position on the orbit
 \end{itemize}
-\cite{brown1998spacecraft}
+
 %---------IMMAGINI---------
 
 This thesis work makes also use of the \textit{argument of latitude, u}, which is the angle measured between the ascending node and the satellite's position vector in the direction of satellite motion.
@@ -194,9 +194,33 @@ Brouwer and Kozai works were ones of the first methods appeared in literature, b
 This thesis uses a refinement of Brouwer's approach, suggested by Lyddane, which solves zero eccentricity and inclination singularities that are involved in the original theory.
 Moreover, the algorithm will account only first order $J_2$ terms \cite{schaub2002analytical}.
 
+\subsection{Orbit Propagation}
+Orbit propagation is the principal problem in perturbation analysis.
+There are numerous methods to analyse the perturbing force models, and they can be classified in three categories  \cite{vallado2013fundamentals}:
+\begin{itemize}
+    \item \textit{Special perturbation techniques}: they are numerical solutions, and they represent the most accurate way.
+    \item \textit{General perturbation techniques}: they are analytical methods based on approximations, which means the accuracy is lower, but the computation is speeded up.
+    \item \textit{Semianalytical techniques}: these techniques combine the best features of the previous categories, which means both good accuracy and computational efficiency.
+\end{itemize}
+The technique selected to design the tools shown in chapter \ref{chapter_tools} falls into the first category.
+Actually, the purposes of the thesis would even be achieved by a general perturbation method, saving time in the calculation phase.
+Indeed, there are not strict requirements of accuracy, since the research look of this work.
+However, a special perturbation technique has been chosen in order to provide more valuable tools which might be useful in the advanced stages of future Kuva Space missions.
+Furthermore, this is also a reasonable choice due to the long-time propagations needed by operations that will be discussed later.
+
+\subsubsection{Cowell's Technique}
+The Cowell's special perturbation technique is implemented in the algorithms produced by this thesis.
+The idea of this method is to add the perturbing accelerations to the two-body equation:
+\begin{equation} \label{cowell_eq}
+    \ddot{\vec{r}} = - \frac{\mu}{r^3}\vec{r} + \vec{a}_p
+\end{equation}
+$\vec{a}_p$ represents the total acceleration given by the perturbing forces, like that ones seen in paragraph \ref{perturbations} (e.g., equation \ref{eq:drag_acc}), while $\vec{r}$ is clearly the state vector of the satellite.
+Equation \ref{cowell_eq} is called \textit{Cowell's formulation} \cite{vallado2013fundamentals}.
+
 \section{Specialized Orbits}
 \textit{Specialized orbits} are the results of specific orbital features selected during the design of a mission, which can be simply related to the orbit period or, more commonly, to one of the main orbit perturbations \cite{wertz2009orbit}. 
 In this section, two special Earth orbits will be analysed, both of interest for the purposes of the thesis.
+Ïn fact, in general methods, the higher the propagation times, the lower the accuracy.
 
 \subsection{Sun-Synchronous Orbit} \label{sso_paragraph}
 Sun-synchronous orbits are specialized orbits characterized by a constant geometry with the Sun over time \cite{vallado2013fundamentals}. 
@@ -256,28 +280,58 @@ The solution to this issue is the design of a constellation of satellites, as wi
 
 
 \section{Satellite Constellations}
+A satellite constellation can be defined as a group of similar satellites, with comparable functions and properties, designed to operate in similar, complementary orbits to undertake common objectives, under shared control \cite{wood2003satellite}.
+In the context of this thesis, constellations are of notable interest thanks to the wide coverage of the world they can enhance with respect to a single satellite mission. 
+Applications like communication, navigation and surveillance drastically improve their service performances and extend market opportunities when considering a constellation infrastructure.
+
+
+
 \subsection{Walker Delta Constellation}
+\textit{Walker constellations} are the most symmetric of the satellite pattern families.
+The \textit{Walker Delta} is the most popular model within the latter, which is also the one selected for the future Kuva Space constellation.
+This satellite pattern can be fully determined through four parameters. 
+$T$ represents the total number of satellites, uniformly distributed in each of the $P$ orbit planes.
+$i$ is the inclination of the orbits, which is supposed to be the same for all.
+The last term is $F$, and is defined as the relative spacing between satellites in adjacent planes.
+In a constellation $\Delta \phi$ is defined like the \textit{phase difference}, which is the angle in the direction of motion from the ascending node to the nearest satellite at a time when a satellite in the next most westerly plane is at its ascending node.
+$\Delta \phi$ must be an integral multiple of $360^\circ / T$, and can be any integer number from $0$ to $P-1$: this value is $F$.
+\begin{equation} \label{walker_delta_notation}
+    i : T/P/F
+\end{equation}
+Equation \ref{walker_delta_notation} shows the shorthand notation used to indicate a Walker Delta constellation.
+
+\cite{wertz2009orbit}
+
 \subsection{Constellation Design}
 
 \section{Orbit Maintenance}
 Over the life of a space mission, the need to adjust or maintain the orbit elements might arise. In general, orbit maintenance is required because of two main reasons:
  targeting to reach an end orbit or position (such as a rendezvous maneuver), or to maintain absolute or relative orientations (as for station-keeping) \cite{wertz2009orbit}.
 
-This thesis studies two different scenarios of orbit management. The first one is the \textit{station-keeping}, which aims at periodically restoring the mission nominal altitude. 
+This thesis studies two different scenarios of orbit management. 
+The first one is the \textit{station-keeping}, which aims at routinely restoring the mission nominal altitude and inclination of the case studies analysed. 
 Secondly, the study of the \textit{orbit phasing} is carried out with the purpose of achieving the desired pattern of a group of satellites along the same orbit.
 
 \subsection{Station-Keeping}
 From LEO to geostationary orbit (GEO), station-keeping maneuvers must be considered due to perturbations, if requested by one or more mission requirements.  
 In the case of Earth observation applications, electro-optical sensors and radars are generally designed to work approximately at a specific distance from the ground. 
 In addition, the repetition factor $Q$ introduced in the paragraph \ref{repeat_groundtrack} will be significantly altered by even small changes in the semimajor axis.
-The maneuver of station-keeping that counteracts the orbital decay in LEO is called \textit{drag makeup maneuver}. 
-Assuming that this distance has been reached from the satellite, in LEO it will be threatened over time by atmospheric drag secular effects.
+Therefore, focusing on the orbits of interest of this research, perturbations to inclination and SMA must be counteracted if SSO and repeating ground track properties want to be preserved.
+Moreover, the orbit altitude's maintenance must be taken into account to increase the lifetime of a mission.
+Indeed, the latter condition is strongly required by the main case study of this thesis.
+
+More in detail, changes in inclination are predominately driven by third body perturbations, whereas variations in the SMA come from atmospheric drag.
+Both for a single satellite and a constellation mission, each spacecraft has to regularly perform annual Inclination Adjust Maneuvers (IAM) and periodic Drag Make Up (DMU) maneuvers to compensate these perturbing effects, respectively \cite{johnson2014maintaining}.
+Note that orbit elements variations under examination are always secular.
 
 \subsubsection{Edelbaum-Kechichian Theory}
 An analytic solution for the optimum low-thrust transfer between inclined circular orbits of different radius is provided by the equations of \textit{Edelbaum} reformulated by \textit{Kechichian} in 1992 \cite{edelbaum1961propulsion, kechichian1992reformulation}.
 This thesis takes advantage of this theory to compute $\Delta V$, burning time and related acceleration needed to satisfy the requirements of station-keeping.
 
-The problem obviously needs the thrust force acceleration $f$ as input parameter, deriving from the ratio between the thrust provided by the thruster and the spacecraft mass, is broken down into three mutually orthogonal components:
+The problem assumes only tangential and out-of-plane acceleration, and circular orbits during the transfer ($e = 0$).
+These assumptions are widely acceptable in this context, because all the case studies of this research are characterized by near-circular orbits, and the thrust direction of the satellites is ideally intended to be parallel to the velocity vector.
+
+The first input parameter is the thrust force acceleration $f$, deriving from the ratio between the thrust provided by the thruster and the spacecraft mass, which is broken down into three mutually orthogonal components:
 the first one is tangential to the velocity vector of the satellite, the second component is normal to the orbital plane, and the last one is normal to the other two.
 They are expressed in terms of two angles: 
 $\alpha$ is the angle between the velocity vector and the component of the thrust vector in the plane of the orbit,
@@ -285,8 +339,7 @@ while $\beta$ represents the angle between the thrust vector and the plane of th
 \begin{equation} \label{acceleration_thrust_components}
     f_T = f \cos{\beta} \cos{\alpha} \;\;\;\;\;\;\;\;\;\; f_N = f \cos{\beta} \sin{\alpha} \;\;\;\;\;\;\;\;\;\; f_z = f \sin{\beta}
 \end{equation}
-
-After that, initial and final desired orbit are only assigned by the changes in inclination and semimajor axis ($\Delta i$, $\Delta a$).
+Initial and final desired orbit are only assigned by the variations in semimajor axis an inclination ($\Delta a$, $\Delta i$).
 From the initial and final semimajor axis, the velocities $V_0$ and $V_f$ are computed 
 \begin{equation} \label{sma_velocities}
     V_0 = \sqrt{\frac{\mu}{a_0}} \;\;\;\;\;\;\;\;\;\; V_f = \sqrt{\frac{\mu}{a_f}}
@@ -296,7 +349,7 @@ Kechichian's reformulation derives the initial angle $\beta_0$ from the velociti
 \begin{equation} \label{beta0}
     \beta_0 = \tan^{-1}{\frac{\sin{\frac{\pi}{2}}\Delta i}{\frac{V_0}{V_f} - \cos{\frac{\pi}{2}}\Delta i}}
 \end{equation}
-It is now possible to write total $\Delta V$
+It is then possible to write the total $\Delta V$
 \begin{equation} \label{deltaV}
     \Delta V = V_0 \cos{\beta_0} - \frac{V_0 \sin{\beta_0}}{\tan{\left(\frac{\pi}{2}\Delta i + \beta_0\right)}}
 \end{equation}
@@ -304,10 +357,7 @@ and consequently achieve the transfer time
 \begin{equation} \label{transfer_time}
     t_f = \frac{\Delta V}{f}
 \end{equation}
-In case of coplanar transfers, $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities}.
-
-
-
+In case of coplanar transfers, $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities} \cite{kechichian1992reformulation}.
 
 \subsection{Differential Drag Method}
 
