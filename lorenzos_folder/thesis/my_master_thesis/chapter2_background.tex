@@ -392,6 +392,13 @@ This method has also been selected for collision avoidance scenarios.
 What is of huge interest for the purposes of the thesis is the experience provided by Planet company.
 They applied differential drag control to fleets of propulsion-less satellites deployed in the same orbit with successful results for several missions.
 The goal of Planet's controller was to bring all the spacecrafts at the same altitude and perform phasing with only differential drag after deployment from launcher.
+Three examples of constellation phasing are shown in figure \ref{phasing_examples_figure}
+\begin{figure}
+    \centering
+    \includegraphics[scale=1]{img/phasing_examples.png}
+    \caption{Generic cases of desired relative placement of four satellites \cite{foster2018differential}.}
+    \label{phasing_examples_figure}
+\end{figure}
 The initial conditions subsequent to the deployment contain small but significant variations in SMA: achieving the same orbital altitude means zero-relative speed between them.
 On the other hand, the phasing aims to symmetrically separate the vehicles in terms of angular distance, along the same orbit. 
 Once the desired constellation pattern is achieved, the differential drag control continues to operate as station-keeping to maintain the formation, since the propulsion-less nature of the satellites.
