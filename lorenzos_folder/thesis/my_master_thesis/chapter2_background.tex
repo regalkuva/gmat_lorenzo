@@ -375,18 +375,23 @@ In case of coplanar transfers, $\Delta i$ is equal to 0 and $\Delta V$ will be s
 \subsection{Differential Drag Method}
 
 Differential drag can be defined as the difference in atmospheric drag acting on each of a couple of satellites.
-Assuming that the spacecrafts travel through similar atmospheric density areas, the differential drag is almost fully determined by differences in ballistic coefficient of the spacecrafts \cite{leonard1991formationkeeping}.
+Assuming that the spacecrafts travel through similar atmospheric density areas, the differential drag is almost fully determined by differences in ballistic coefficient of them \cite{leonard1991formationkeeping}.
 Considering identical satellites, and remembering that BC depends on the area perpendicular to the velocity vector, differential drag can be achieved controlling the attitude of the body, leading to different values of surface exposed to the aerodynamic flux. 
-To clarify ideas and simplify the problem, two attitudes will be identified as shown in figure \ref{low_vs_high_dragmode_fig}: low drag and high drag modes.
+
+To clarify ideas and simplify the problem, only two attitudes will be identified as shown in figure \ref{low_vs_high_dragmode_fig}: low drag and high drag modes.
 \begin{figure}
     \centering
     \includegraphics[scale=1]{img/low_vs_high_dragmode.png}
     \caption{Low drag vs. high drag mode example for a simple satellite shape \cite{foster2018differential}.}
     \label{low_vs_high_dragmode_fig}
 \end{figure}
+Moreover, the satellite on the lower orbit will be indicated as the \textit{leading satellite}, whereas the other one \textit{trailing satellite}.
+Imagining of using differential drag only to equalize the altitudes, with both spacecrafts travelling in low drag mode, the trailing satellite shall be set to high drag mode until the leader's orbit is reached.
+Indeed, the acceleration of its motion is the same as if the air drag force, reversed, were pushing the satellite. 
+This phenomena is known as \textit{satellite paradox} \cite{mills1959satellite}. 
 
 Several applications can take advantage from differential drag. It was first proposed for \textit{formationkeeping} to keep a satellite in a specific position with respect to another.
-Even rendezvous maneuvers involve differential drag actions for the initial phase.
+Even rendezvous maneuvers involve differential drag actions for its initial phase.
 This method has also been selected for collision avoidance scenarios.
 
 What is of huge interest for the purposes of the thesis is the experience provided by Planet company.
