@@ -2,7 +2,9 @@
 
 Exclusively open-source resources have been used to carry out the thesis work. 
 In particular, the orbital scenarios under examination have been simulated through dynamic propagation models created in Python, taking advantage of existing free Python libraries.   
-In order to validate the results, the General Mission Analysis Tool (GMAT) has been chosen as the reference software to make comparisons. 
+In order to validate the results, the \textit{General Mission Analysis Tool} (GMAT) has been chosen as the reference software to make comparisons.
+Even space debris mitigation has been performed thanks to the availability of an open-source software provided by ESA.
+
 In the following paragraphs a brief description of the tools mentioned previously is presented.
 
 \section{Python for Astrodynamics Applications}
@@ -34,7 +36,7 @@ In brief, Numba is a JIT compiler for scientific Python, which allows to optimiz
 It features algorithms which are written in pure Python and compiled using Numba.
 It is dedicated to astrodynamics applications, such as orbit propagation, resolution of the Kepler and Lambert problems, conversion between position and velocity vectors and classical orbital elements and orbit plotting
 \cite{rodriguez2016poliastro}.
-In addition, thanks to Astropy, poliastro can perform seamless coordinate frame conversions and use proper pysical units and timescales.
+In addition, thanks to Astropy, poliastro can perform seamless coordinate frame conversions and use proper physical units and timescales.
 At the moment, poliastro is the longest-lived Python library for astrodynamics, has contributors from all around the world, and several New Space companies and people in academia use it
 \cite{rodriguez2022poliastro}.
 
@@ -45,3 +47,25 @@ GMAT's design and implementation are based on four basic principles: open-source
 \cite{conway2010general}.
 
 \section{Debris Risk Assessment and Mitigation Analysis}
+The \textit{Debris Risk Assessment and Mitigation Analysis} (DRAMA) software tool supports space missions in the analysis of every kind of debris related problems.
+It is provided with the necessary computational and data reference by another tool: MASTER (Meteoroid and Space Debris Terrestrial Environment Reference).
+DRAMA includes five individual components, aiming at  aiding the verification of the compliance of space missions with mitigation guidelines and standards, like that ones mentioned in subsection \ref{space_debris_mitigation} \cite{braun2013drama}.
+
+The first one is the \textit{Assessment of Risk Event Statistics} (ARES) tool which evaluates the annual rates of close approaches between an operational satellite of interest and debris in Earth orbits along with statistics on the necessary number of collision avoidance maneuvers and related $\Delta V$ and propellant mass.
+
+The \textit{MASTER-based Impact flux and Damage Assessment Software} (MIDAS) assists the assessment of debris and meteoroid impact rates over the satellite's lifetime.
+
+DRAMA also provides the estimation of the orbital lifetime and the evaluation of different possible disposal strategies after the End-of-Life (EOL) thanks to the \textit{Orbital SpaceCraft Active Removal} (OSCAR) tool.
+
+The \textit{re-entry Survival And Risk Analysis} (SARA) tool allows the assessment of the re-entry survivability of all the different spacecraft components. 
+It then provides the combined on-ground casualty risk given a world population model and the impact footprint of the surviving fragments.  
+
+Finally, the \textit{Cross-section of Complex bodies} (CROC) intends to compute the cross-sectional areas of complex satellites and different possible attitudes laws after the EOL \cite{braun2020drama}.
+
+Figure \ref{drama_main_window} shows the main window of DRAMA software.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.25]{img/drama_mainwindow.png}
+    \caption{Main window of DRAMA}
+    \label{drama_main_window}
+\end{figure}
