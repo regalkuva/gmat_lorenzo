@@ -27,8 +27,8 @@ start_date = Time("2018-11-30 03:53:03.550", scale = "utc")   # epoch
 in_orbit = Orbit.from_classical(Earth, a, ecc, inc, raan, argp, nu, start_date)
 
 # Keplerian two-body propagation (poliastro)
-time_frame = float(input('Time frame [days]: ')) * u.day
-time_step  = float(input('Time step [sec]: ')) * u.s
+time_frame = 60*90<<u.s # float(input('Time frame [days]: ')) * u.day
+time_step  = 60*1<<u.s # float(input('Time step [sec]: ')) * u.s
 
 t = time_step
 old_orbit = in_orbit
@@ -42,7 +42,7 @@ nu_list    = [in_orbit.nu.value]
 epoch_list = [in_orbit.epoch.value]
 
 
-while t <= time_frame:
+while t.value <= time_frame.value:
     
     new_orbit = old_orbit.propagate(time_step)   # two-body propagation
     
@@ -51,7 +51,7 @@ while t <= time_frame:
     inc_list.append(new_orbit.inc.to_value(u.deg))
     raan_list.append(new_orbit.raan.to_value(u.deg))
     argp_list.append(new_orbit.argp.to_value(u.deg))
-    nu_list.append(new_orbit.nu.to_value(u.deg))
+    nu_list.append(new_orbit.nu.to_value(u.deg)%360)
     epoch_list.append(new_orbit.epoch.value)
 
     old_orbit = new_orbit

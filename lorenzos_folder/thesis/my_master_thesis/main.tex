@@ -3,7 +3,7 @@
 \usepackage[utf8x]{inputenc} %[utf8x]
 \usepackage{geometry}
 \usepackage{courier}
-\usepackage[bookmarks]{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{tocbibind} %[nottoc]
 \newgeometry{
 left=   1.25 in,
@@ -27,20 +27,24 @@ top=    1 in
 \usepackage{graphics}
 \graphicspath{img/}
 
-\usepackage{tikz}
-\usepackage{tikz-cd}
-\usepackage{pgf}
-\usepackage{pgfmath}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.14}
-\usepackage{lmodern}
-\usepackage{import}
-% % Package usati per il frontespizio
 % \usepackage{tikz}
-% \usepackage{pgf-pie}
+% \usepackage{tikz-cd}
+% \usepackage{pgf}
+% \usepackage{pgfmath}
 % \usepackage{pgfplots}
-% \pgfplotsset{width=7cm,compat=1.8}
-% \usetikzlibrary{patterns}
+% \pgfplotsset{compat=1.14}
+% \usepackage{lmodern}
+% \usepackage{import}
+
+% Package usati per il frontespizio
+\usepackage{tikz}
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.8}
+\usetikzlibrary{patterns}
+
+% Package for lines of code
+\usepackage{listings}
 
 % Packages for lists
 \usepackage{enumitem}

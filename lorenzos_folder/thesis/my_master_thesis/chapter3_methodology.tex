@@ -3,7 +3,7 @@
 Exclusively open-source resources have been used to carry out the thesis work. 
 In particular, the orbital scenarios under examination have been simulated through dynamic propagation models created in Python, taking advantage of existing free Python libraries.   
 In order to validate the results, the \textit{General Mission Analysis Tool} (GMAT) has been chosen as the reference software to make comparisons.
-Even space debris mitigation has been performed thanks to the availability of an open-source software provided by ESA.
+Even space debris mitigation has been performed thanks to the availability of an open-source software, DRAMA, published by ESA.
 
 In the following paragraphs a brief description of the tools mentioned previously is presented.
 
@@ -46,9 +46,9 @@ GMAT is designed to model, optimize, and estimate spacecraft trajectories in fli
 GMAT's design and implementation are based on four basic principles: open-source visibility for both the source code and design documentation; platform independence; modular design; and user extensibility
 \cite{conway2010general}.
 
-\section{Debris Risk Assessment and Mitigation Analysis}
-The \textit{Debris Risk Assessment and Mitigation Analysis} (DRAMA) software tool supports space missions in the analysis of every kind of debris related problems.
-It is provided with the necessary computational and data reference by another tool: MASTER (Meteoroid and Space Debris Terrestrial Environment Reference).
+\section{Debris Risk Assessment and Mitigation Analysis} \label{drama_section}
+The \textit{Debris Risk Assessment and Mitigation Analysis} software tool supports space missions in the analysis of every kind of debris related problems.
+It is provided with the necessary computational and data reference by another tool: MASTER (\textit{Meteoroid and Space Debris Terrestrial Environment Reference}).
 DRAMA includes five individual components, aiming at  aiding the verification of the compliance of space missions with mitigation guidelines and standards, like that ones mentioned in subsection \ref{space_debris_mitigation} \cite{braun2013drama}.
 
 The first one is the \textit{Assessment of Risk Event Statistics} (ARES) tool which evaluates the annual rates of close approaches between an operational satellite of interest and debris in Earth orbits along with statistics on the necessary number of collision avoidance maneuvers and related $\Delta V$ and propellant mass.
@@ -63,9 +63,9 @@ It then provides the combined on-ground casualty risk given a world population m
 Finally, the \textit{Cross-section of Complex bodies} (CROC) intends to compute the cross-sectional areas of complex satellites and different possible attitudes laws after the EOL \cite{braun2020drama}.
 
 Figure \ref{drama_main_window} shows the main window of DRAMA software.
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.25]{img/drama_mainwindow.png}
     \caption{Main window of DRAMA}
-    \label{drama_main_window}
+    \label{drama_main_window_fig}
 \end{figure}

@@ -7,7 +7,7 @@ This chapter aims to provide an overview on the fundamentals of Space Flight Dyn
 Orbital Mechanics, Astrodynamics, Astronautics and Space Flight Dynamics are all titles of university courses whose principal topic is two-body orbital motion, that involves orbit determination, orbital flight time, and orbital maneuvers \cite{kluever2018space}.
 In this context, a proper definition of the subject can be the following: the study of the motion of man-made objects in space, subject to both natural and artificially induced forces \cite{griffin2004space}.
 
-\subsection{Satellite State Representations}
+\subsection{Satellite State Representations} \label{sat_state_rep_paragraph}
 
 % There are a number of independent parameters describing the size, shape, and spatial position of an orbit.
 % Six of these have become the parameters of choice to define and describe an orbit.
@@ -180,12 +180,10 @@ Aerodynamic drag secular perturbation plays a crucial role in LEO \cite{der1996c
 
 Figure \ref{osc_vs_mean_sma} shows the comparison between osculating and mean semi-major axis of a LEO satellite motion over the course of four months.
 The orbital decay induced by the atmospheric drag secular effect is evident, as well as the periodic consequences of $J_2$ perturbation.
-\begin{figure}[h] 
-    \begin{center}
-        \textbf{Semi-Major Axis}\par\medskip
-        %\import{img}{osc_vs_mean.pgf}
-    \end{center}
-    \caption{Osculating vs. mean semi-major axis for a LEO satellite under atmospheric drag and $J_2$ perturbations.}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.9]{img/osc_vs_mean.pdf}
+        \caption{Osculating vs. mean semi-major axis for a LEO satellite under atmospheric drag and $J_2$ perturbations.}
     \label{osc_vs_mean_sma}
 \end{figure}
 
@@ -194,7 +192,7 @@ Brouwer and Kozai works were ones of the first methods appeared in literature, b
 This thesis uses a refinement of Brouwer's approach, suggested by Lyddane, which solves zero eccentricity and inclination singularities that are involved in the original theory.
 Moreover, the algorithm will account only first order $J_2$ terms \cite{schaub2002analytical}.
 
-\subsection{Orbit Propagation}
+\subsection{Orbit Propagation} \label{orbit_prop_paragraph}
 Orbit propagation is the principal problem in perturbation analysis.
 There are numerous methods to analyse the perturbing force models, and they can be classified in three categories  \cite{vallado2013fundamentals}:
 \begin{itemize}
@@ -242,12 +240,11 @@ Equations \ref{sso_raan} and \ref{raan_variation} suggest that to achieve the pr
 As for the other two variables, eccentricity is generally supposed to be near-zero because low-Earth orbits usually imply very small values of $e$.
 Hence, with the assumption of $e=0$, an SSO will be characterized by a direct relationship between $a$ and $i$.
 Figure \ref{inc_h_sso} shows the range of inclinations and altitudes that would provide the proper regression of nodes.
-\begin{figure} 
-    \begin{center} 
-        \includegraphics[scale=0.5]{img/inc_vs_h_sso.png}
-    \end{center}
-        \caption{SSO condition: inclination vs. altitude ($e=0$) \cite{brown1998spacecraft}.}
-        \label{inc_h_sso}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/inc_vs_h_sso.png}
+    \caption{SSO condition: inclination vs. altitude ($e=0$) \cite{brown1998spacecraft}.}
+    \label{inc_h_sso}
 \end{figure}
 
 In addition, it is possible to select the initial value of the RAAN between 0 and 360 degrees according to the mission requirements for example \cite{vallado2013fundamentals}.
@@ -255,12 +252,11 @@ The angle between the ascending node and the direction of the Sun is commonly la
 This is a crucial design parameter because, while for an arbitrary orbit the MLTAN would continually change, for a Sun-synchronous orbit it will remain constant \cite{boain2004ab} (not only at the nodes, but at any latitude).
 
 In order to provide a better understanding of the concepts, figure \ref{sso_curtis} shows an example of an SSO with an LTAN of 15:00.
-\begin{figure} 
-    \begin{center} 
-        \includegraphics[scale=1]{img/sso_curtis.png}
-    \end{center}
-        \caption{Sun-synchronous orbit 15:00 LTAN illustration \cite{curtis2020orbital}.}
-        \label{sso_curtis}
+\begin{figure}[h]
+    \centering 
+    \includegraphics[scale=1]{img/sso_curtis.png}
+    \caption{Sun-synchronous orbit 15:00 LTAN illustration \cite{curtis2020orbital}.}
+    \label{sso_curtis}
 \end{figure}
 
 \subsection{Repeat-Groundtrack Orbit} \label{repeat_groundtrack}
@@ -299,19 +295,23 @@ $\Delta \phi$ must be an integral multiple of $360^\circ / T$, and can be any in
     i : T/P/F
 \end{equation}
 Equation \ref{walker_delta_notation} shows the shorthand notation used to indicate a Walker Delta constellation.
-An example of a Walker Delta configuration is displayed in figure \ref{walker_delta_representation}.
 
-\begin{figure}
+An example of a Walker Delta configuration is displayed in figure \ref{walker_delta_representation}.
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{img/walker_delta.png}        
     \caption{Illustration of a 65:15/3/2 Walker Delta configuration \cite{wertz2009orbit}.}
     \label{walker_delta_representation}
 \end{figure}
+The complete symmetry in longitude is one of its main advantages.
+In addition, there is a finite number of Walker constellations, and all of them can be identified and investigated.
+This allows the mission designer a full analysis of the constellation on every aspect of interest \cite{wertz2009orbit}. 
 
-\subsection{Constellation Design}
+% \subsection{Constellation Design}
 
 
-\section{Orbit Maintenance}
+
+\section{Orbit Management}
 Over the life of a space mission, the need to adjust or maintain the orbit elements might arise. In general, orbit maintenance is required because of two main reasons:
  targeting to reach an end orbit or position (such as a rendezvous maneuver), or to maintain absolute or relative orientations (as for station-keeping) \cite{wertz2009orbit}.
 
@@ -379,7 +379,7 @@ Assuming that the spacecrafts travel through similar atmospheric density areas, 
 Considering identical satellites, and remembering that BC depends on the area perpendicular to the velocity vector, differential drag can be achieved controlling the attitude of the body, leading to different values of surface exposed to the aerodynamic flux. 
 
 To clarify ideas and simplify the problem, only two attitudes will be identified as shown in figure \ref{low_vs_high_dragmode_fig}: low drag and high drag modes.
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[scale=1]{img/low_vs_high_dragmode.png}
     \caption{Low drag vs. high drag mode example for a simple satellite shape \cite{foster2018differential}.}
@@ -398,7 +398,7 @@ What is of huge interest for the purposes of the thesis is the experience provid
 They applied differential drag control to fleets of propulsion-less satellites deployed in the same orbit with successful results for several missions.
 The goal of Planet's controller was to bring all the spacecrafts at the same altitude and perform phasing with only differential drag after deployment from launcher.
 Three examples of constellation phasing are shown in figure \ref{phasing_examples_figure}
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[scale=1]{img/phasing_examples.png}
     \caption{Generic cases of desired relative placement of four satellites \cite{foster2018differential}.}
@@ -415,11 +415,24 @@ Space debris mitigation consists of a series of design and operational provision
 The space debris population includes spacecraft and launch vehicle orbital stages becoming non-functional, as well as all the other mission-related objects.
 They are all candidates at triggering fragmentation events due to on-orbit break-ups and collisions.
 The short and long-term survivability of any other operational space object is put at risk by fragmentation debris \cite{esa2023debrisguidelines}.
+Mitigation actions taken into account by this thesis are mainly related to the tools provided by the \textit{Debris Risk Assessment and Mitigation Analysis} (DRAMA) software, developed under ESA contract \cite{braun2013drama}.
+Section \ref{drama_section} presents a detailed explanation of DRAMA and its features. 
 
-The analysis conducted by this thesis follow a regulatory framework adopted by the European Space Agency (ESA), reported in the document \textit{ESSB-HB-U-002 "ESA Space Debris Mitigation Compliance Verification Guidelines"}.
+% The analysis conducted by this thesis follow a regulatory framework adopted by the European Space Agency (ESA), reported in the document \textit{ESSB-HB-U-002 "ESA Space Debris Mitigation Compliance Verification Guidelines"} \cite{esa2023debrisguidelines}.
 
-
-In the context of this thesis, debris is not the only hazard to consider.
+In the context of this thesis, there is one more essential point to make.
 Constellations involve narrowly defined intersecting orbits and often respond to high levels of symmetry which lead to patterns where, in principle, two spacecrafts will end up at the same place at the same time in orbit. 
 This scenario fully represents the main case study of this research.
-\cite{wertz2009orbit}
+The above considerations suggest how fundamental the issue of collision avoidance is in the systems engineering of a satellite constellation.
+
+Typically, two key elements are estimated to assess this topic.
+The first one is the collision probability.
+It is determined by the collision opportunities, defined as the events between two satellites in which they pass close to each other.
+
+The second key element consists of the consequences of a collision.
+They are extremely deleterious for two main reasons.
+First, the amount of energy released by a collision is enormous, because this energy is proportional to the square of the relative velocity between the colliding objects.
+Orbital velocities in LEO are in the order of 7 km/s.
+Secondly, the destruction of a satellite generates a huge number of fragments, giving rise to a \textit{debris cloud} of various sizes particles which practically travel in the same orbit where the satellite exploded.
+As a result, the collision probability of other operating spacecrafts definitely increases, since each one of the fragments might potentially collide with them.
+Their decay process will obviously depend on the level of atmospheric drag \cite{wertz2009orbit}.
