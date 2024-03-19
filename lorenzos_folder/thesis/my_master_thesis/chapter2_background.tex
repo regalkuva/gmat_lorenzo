@@ -2,10 +2,13 @@
 
 This chapter aims to provide an overview on the fundamentals of Space Flight Dynamics that constitute the theoretical basis of this thesis, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this work.
 
+
+
 \section{Space Flight Dynamics Introduction}
 
 Orbital Mechanics, Astrodynamics, Astronautics and Space Flight Dynamics are all titles of university courses whose principal topic is two-body orbital motion, that involves orbit determination, orbital flight time, and orbital maneuvers \cite{kluever2018space}.
 In this context, a proper definition of the subject can be the following: the study of the motion of man-made objects in space, subject to both natural and artificially induced forces \cite{griffin2004space}.
+
 
 \subsection{Satellite State Representations} \label{sat_state_rep_paragraph}
 
@@ -59,10 +62,12 @@ The elements of a TLE are shown in equation \ref{eq:tle} \cite{vallado2013fundam
     \end{split}
 \end{equation}
 
+
 \subsection{Reference Frames}
 Two types of reference frames are adopted by this research: the geocentric-inertial coordinate system and the geographic-body-fixed system.
 The origin of both systems is the center of mass of the central body, which in all case studies of this work is the Earth.
 They will therefore be labeled Earth-centered inertial (ECI) and Eart-centered Earth-fixed (ECEF) coordinate frames, respectively.
+
 
 \subsubsection{Earth-centered inertial}
 The ECI system is shown in FIGURE???.
@@ -70,16 +75,42 @@ The equatorial plane is the reference plane.
 The X axis is the vernal equinox vector, and the Z axis is the spin axis of the Earth; north is positive.
 The axes are fixed in inertial space or fixed with respect to the stars \cite{brown1998spacecraft}.
 
+
 \subsubsection{Earth-centered Earth-fixed}
 FIGURE shows a representation of the ECEF reference frame.
 The system is Earth-centered and fixed to the rotating Earth \cite{vallado2013fundamentals}.
 Considering the ECI, the Z axis is the same, while the X axis always points towards the Greenwich meridian.
 Satellite ground track is commonly plotted in this coordinate system \cite{brown1998spacecraft}.
 
+
+\subsection{Two-Body Problem} \label{twobody_par}
+The two-body problem is an indispensable theory to soak up the concepts of astrodynamics \cite{vallado2013fundamentals}.
+The Newton's law of universal gravitation (equation \ref{newton_law_eq}) states that all celestial bodies are attracted to each other by a force proportional to the product of their masses and inversely proportional to the square of the distance between their centers of mass.
+\begin{equation} \label{newton_law_eq}
+    F_g = \frac{M m G}{r^2}
+\end{equation}
+$G$ is the \textit{universal gravitational constant}, while the other parameters clearly represents the masses and the distance.
+The motion of every particle in the universe is therefore determined by an infinite network attractive forces to all celestial bodies.
+
+A real study of this scenario would be unfeasible, but since the motion of a spacecraft is dominated by one central body at time, is possible to define some plausible assumptions which lead to a simplification of the problem \cite{brown1998spacecraft}.
+\begin{enumerate}
+    \item The motion of the satellite is governed by attraction to only one central body.
+    \item The mass of the spacecraft can be neglected with respect to the central body one.
+    \item The two bodies are spherically symmetrical with uniform density.
+    \item Only gravitational and centrifugal forces act on the bodies, along the line of their centers. 
+\end{enumerate}
+Under these assumptions, it is possible to develop a second-order, nonlinear, vector, differential equation called the \textit{two-body equation} \cite{vallado2013fundamentals}:
+\begin{equation} \label{kepler_eq}
+    \ddot{\vec{r}} + \frac{\mu}{r^3}\vec{r} = 0
+\end{equation}
+where $\mu$ is equal to the product between the central body and the universal gravitational constant $G$.
+
+
 \subsection{Orbital Perturbations} \label{perturbations}
 Orbital perturbations are deviations from a normal, idealized, or undisturbed motion.
 Introducing an alteration from two-body problem assumptions, the actual motion will vary due to perturbations caused by other bodies, and additional forces not considered in Keplerian motion \cite{vallado2013fundamentals}.
 This subsection provides an overview of the main perturbations for an Earth orbiting spacecraft.
+
 
 \subsubsection{Earth's Gravity Field}
 Spinning celestial bodies are nor perfect spheres, but they are much more similar to oblate spheroids.
@@ -111,6 +142,7 @@ The right ascension $\Omega$ and the argument of perigee $\omega$ are significan
 It is necessary to underline that the Earth's gravitational field vary not only with latitude but also with longitude due to irregularities in geometry and mass distribution \cite{curtis2020orbital}.
 However, with negligible approximation, it is definitely reasonable to consider only oblateness with $J_2$ effects in LEO missions, which is the major force for this range of altitudes, second only to Earth's gravity \cite{brown1998spacecraft}.
 In light of the above, this thesis will take into account only $J_2$ forces with respect to the Earth's gravity field perturbations.
+
 
 \subsubsection{Atmospheric Drag}
 The residual atmosphere present at a few hundred kilometers of altitude strongly influences the motion of satellites in LEO.
@@ -147,6 +179,7 @@ Density variations are described by semiannual density equations based on 81-day
 Geomagnetic effects are modeled too.
 The model is validated in the altitude range of 175 to 1000 km through comparisons with accurate daily density drag data previously collected for numerous satellites, existing atmospheric models and other measurements from several Earth orbiting satellite missions \cite{bowman2008jb2006,bowman2008new}.
 
+
 \subsubsection{Third-Body Perturbations}
 All the orbital elements are periodically affected by the gravitational forces of the Sun and the Moon.
 Similarly to what is triggered by the Earth's equatorial bulge, they apply an external torque to the orbits and cause the angular momentum to rotate.
@@ -154,6 +187,7 @@ This perturbation is highly negligible in LEO, where the main effects are provid
 However, low Earth orbits characterized by a constant geometry with respect to the perturbing body can be affected by emphasized long-period effects.
 This is the case of Sun-synchronous orbits (SSO), for which the constant pattern with the Sun causes a long-term phenomenon of variation of the inclination (around 0.05 degrees per year) \cite{giacaglia1994long}.
 Although this number might appear meaningless, inclination is critical to SSO, as will be explained in paragraph \ref{sso_paragraph}.
+
 
 \subsubsection{Solar-Radiation Pressure}
 The last perturbation treated by this thesis is the solar-radiation pressure (SRP), which induces periodic variations in all the orbital elements.
@@ -165,6 +199,7 @@ The perturbing acceleration can be approximated by the following equation \cite{
 $p_{SRP}$ is the solar pressure, which is a quantity representing the change in momentum per unit area, derived by the ratio between the solar flux and the speed of light.
 The reflectivity, $c_R$, a value between 0.0 and 2.0, models the type of interaction between radiation and surface exposed to the Sun, $A_{\mathSun}$ \cite{vallado2013fundamentals}.
 $m_{sat}$ is trivially the mass of the satellite.
+
 
 \subsection{Mean Orbital Elements}
 The previous subsection has described how orbital perturbations generate continuous variations and oscillations in the orbit elements.
@@ -192,6 +227,7 @@ Brouwer and Kozai works were ones of the first methods appeared in literature, b
 This thesis uses a refinement of Brouwer's approach, suggested by Lyddane, which solves zero eccentricity and inclination singularities that are involved in the original theory.
 Moreover, the algorithm will account only first order $J_2$ terms \cite{schaub2002analytical}.
 
+
 \subsection{Orbit Propagation} \label{orbit_prop_paragraph}
 Orbit propagation is the principal problem in perturbation analysis.
 There are numerous methods to analyse the perturbing force models, and they can be classified in three categories  \cite{vallado2013fundamentals}:
@@ -206,6 +242,7 @@ Indeed, there are not strict requirements of accuracy, since the research look o
 However, a special perturbation technique has been chosen in order to provide more valuable tools which might be useful in the advanced stages of future Kuva Space missions.
 Furthermore, this is also a reasonable choice due to the long-time propagations needed by operations that will be discussed later.
 
+
 \subsubsection{Cowell's Technique}
 The Cowell's special perturbation technique is implemented in the algorithms produced by this thesis.
 The idea of this method is to add the perturbing accelerations to the two-body equation:
@@ -215,10 +252,14 @@ The idea of this method is to add the perturbing accelerations to the two-body e
 $\vec{a}_p$ represents the total acceleration given by the perturbing forces, like that ones seen in paragraph \ref{perturbations} (e.g., equation \ref{eq:drag_acc}), while $\vec{r}$ is clearly the state vector of the satellite.
 Equation \ref{cowell_eq} is called \textit{Cowell's formulation} \cite{vallado2013fundamentals}.
 
+
+
+
 \section{Specialized Orbits}
 \textit{Specialized orbits} are the results of specific orbital features selected during the design of a mission, which can be simply related to the orbit period or, more commonly, to one of the main orbit perturbations \cite{wertz2009orbit}. 
 In this section, two special Earth orbits will be analysed, both of interest for the purposes of the thesis.
-Ïn fact, in general methods, the higher the propagation times, the lower the accuracy.
+In fact, in general methods, the higher the propagation times, the lower the accuracy.
+
 
 \subsection{Sun-Synchronous Orbit} \label{sso_paragraph}
 Sun-synchronous orbits are specialized orbits characterized by a constant geometry with the Sun over time \cite{vallado2013fundamentals}. 
@@ -259,6 +300,7 @@ In order to provide a better understanding of the concepts, figure \ref{sso_curt
     \label{sso_curtis}
 \end{figure}
 
+
 \subsection{Repeat-Groundtrack Orbit} \label{repeat_groundtrack}
 The peculiarity of a \textit{repeat-groundtrak orbit} is the repetitive transit of the satellite to the same location relative to the surface of the Earth after a certain time interval \cite{wertz2009orbit}.
 Hence, they are used by missions which need to periodically revisit a specific point on the Earth \cite{vallado2013fundamentals}, playing an interesting role in remote sensing applications.
@@ -279,7 +321,6 @@ The solution to this issue is the design of a constellation of satellites, as wi
 A satellite constellation can be defined as a group of similar satellites, with comparable functions and properties, designed to operate in similar, complementary orbits to undertake common objectives, under shared control \cite{wood2003satellite}.
 In the context of this thesis, constellations are of notable interest thanks to the wide coverage of the world they can enhance with respect to a single satellite mission. 
 Applications like communication, navigation and surveillance drastically improve their service performances and extend market opportunities when considering a constellation infrastructure.
-
 
 
 \subsection{Walker Delta Constellation}
@@ -309,8 +350,6 @@ This allows the mission designer a full analysis of the constellation on every a
 
 % \subsection{Constellation Design}
 
-
-
 \section{Orbit Management}
 Over the life of a space mission, the need to adjust or maintain the orbit elements might arise. In general, orbit maintenance is required because of two main reasons:
  targeting to reach an end orbit or position (such as a rendezvous maneuver), or to maintain absolute or relative orientations (as for station-keeping) \cite{wertz2009orbit}.
@@ -318,6 +357,7 @@ Over the life of a space mission, the need to adjust or maintain the orbit eleme
 This thesis studies two different scenarios of orbit management. 
 The first one is the \textit{station-keeping}, which aims at routinely restoring the mission nominal altitude and inclination of the case studies analysed. 
 Secondly, the study of the \textit{orbit phasing} is carried out with the purpose of achieving the desired pattern of a group of satellites along the same orbit.
+
 
 \subsection{Station-Keeping}
 From LEO to geostationary orbit (GEO), station-keeping maneuvers must be considered due to perturbations, if requested by one or more mission requirements.  
@@ -336,6 +376,7 @@ In a constellation scenario, station-keeping has the further role of maintaining
 Spacecraft can rely on on-board propulsive systems to compensate all these disturbances.
 All the case studies examined in chapter \ref{case_studies_chapter} deal with small satellites, which are typically designed without any kind of thrusters or with low-thrust engines.  
 The scenarios of this thesis that involve forces generated by thrusters rely on the \textit{Edelbaum-Kechichian} formulas to obtain realistic simulations.
+
 
 \subsubsection{Edelbaum-Kechichian Theory}
 An analytic solution for the optimum low-thrust transfer between inclined circular orbits of different radius is provided by the equations of Edelbaum reformulated by Kechichian in 1992 \cite{edelbaum1961propulsion, kechichian1992reformulation}.
@@ -372,8 +413,8 @@ and consequently achieve the transfer time
 \end{equation}
 In case of coplanar transfers, $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities} \cite{kechichian1992reformulation}.
 
-\subsection{Differential Drag}
 
+\subsection{Differential Drag}
 Differential drag can be defined as the difference in atmospheric drag acting on each of a couple of satellites.
 Assuming that the spacecrafts travel through similar atmospheric density areas, the differential drag is almost fully determined by differences in ballistic coefficient of them \cite{leonard1991formationkeeping}.
 Considering identical satellites, and remembering that BC depends on the area perpendicular to the velocity vector, differential drag can be achieved controlling the attitude of the body, leading to different values of surface exposed to the aerodynamic flux. 
@@ -409,6 +450,7 @@ On the other hand, the phasing aims to symmetrically separate the vehicles in te
 Once the desired constellation pattern is achieved, the differential drag control continues to operate as station-keeping to maintain the formation, since the propulsion-less nature of the satellites \cite{foster2018differential}.
 
 This thesis will demonstrate the advantages of using differential drag for initial phasing of a large group of satellites after launch vehicle deployment. 
+
 
 \subsection{Space Debris Mitigation} \label{space_debris_mitigation}
 Space debris mitigation consists of a series of design and operational provisions, with the aim of limiting the number of debris in orbit, the probability and effects of on-orbit fragmentation and collision events, and the risks associated to re-entry, whether expected or planned.

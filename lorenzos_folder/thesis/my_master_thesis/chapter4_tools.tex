@@ -1,6 +1,8 @@
 \chapter{Satellite Constellation Management Tools} \label{chapter_tools}
 This chapter presents all the tools developed along this work to achieve the purposes of the thesis.
 
+
+
 \section{Orbit Propagators}
 Applications and topics covered by this thesis clearly require an orbital propagator to be studied.
 All the propagators produced along this work exploit the Cowell's model shown in subsection \ref{orbit_prop_paragraph}.
@@ -30,23 +32,60 @@ Orbit propagators must take in input the following data:
 
 \begin{figure}[h]
       \centering
-      \includegraphics[scale=0.9]{img/time_step.pdf}
-      \caption{Osculating SMA output plot of a LEO satellite during one orbit (\textit{time step = 5 minutes, time frame = 50 minutes}).}
+      %\textbf{Your title}\par\medskip
+      \includegraphics[scale=0.8]{img/time_step.pdf}
+      \caption{Osculating SMA of a LEO satellite during one orbit. Propagation time settings: time step = 5 minutes, time frame = 50 minutes.}
       \label{time_step_fig}
   \end{figure}
 
+
 \subsection{Undisturbed Motion}
-The first orbit propagator proposed by this thesis consists of the ideal motion of a spacecraft neglecting all the possible perturbation that might affect it.
-Therefore, the only force acting on the body derives from the Earth's gravity (equation \ref{kepler_eq}).
-\begin{equation} \label{kepler_eq}
-      \ddot{\vec{r}} + \frac{\mu}{r^3}\vec{r} = 0
-\end{equation}
+The first orbit propagator proposed by this thesis consists of the ideal motion of a spacecraft neglecting all the possible perturbations that might affect it.
+Therefore, this kind of propagation is governed by the two-body equation shown in subsection \ref{twobody_par}.
+
 This model is mainly useful for two reasons.
-First, it requires computation times definitely shorter than a perturbed propagation, allowing quick results when perturbations are not 
+First, it requires computation times definitely shorter than a perturbed propagation, allowing quick results when perturbations are not considered decisive for the purposes of the user.
+Secondly, it provides an educational method to better understand the perturbing effects when compared to more realistic propagators.
+
+Figure \ref{kep_low_ecc_fig} shows the orbital elements values of the motion of a satellite in LEO.
+\begin{figure}[h]
+      \centering
+      \includegraphics[scale=0.5]{img/keplerian_elements_low_ecc.pdf}
+      \caption{SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.001}
+      \label{kep_low_ecc_fig}
+\end{figure}
+Only SMA and true anomaly are reported for matters of layout.
+The graph of the other elements is constant like the semi-major axis, because no perturbation affects their behavior.
+The true anomaly is the only time-variant parameter, and in this case its curve looks like varying constantly.
+The reason of this aspect lies in the eccentricity: this example is characterized by a near-circular orbit, therefore the velocity of the satellite is almost the same along the entire orbit.
+Increasing the eccentricity value, like in figure \ref{kep_high_ecc_fig}, the true anomaly changes more rapidly when is in proximity of the perigee and vice-versa.
+\begin{figure}[h]
+      \centering
+      \includegraphics[scale=0.5]{img/keplerian_elements_high_ecc.pdf}
+      \caption{SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.5}
+      \label{kep_high_ecc_fig}
+\end{figure}
+
+All the case studies of this research consist of near-circular orbits.
+Despite the fact that zero-eccentricity condition is not feasible, this comparison demonstrates that very low values of eccentricity make the assumption of circular orbit highly acceptable.  
 
 
 \subsection{Perturbations}
+The propagators developed by this work which take into account perturbing effects are based on the Cowell's technique of subsection \ref{orbit_prop_paragraph}.
+
+Since Sun-synchronous orbits at low altitudes denote the main discussion point of this thesis, Earth's oblateness and atmospheric drag represent the perturbations of greatest interest. 
+However, propagations with SRP and 3rd-body forces have been examined as well for assessing long-term effects. 
+
+The perturbing acceleration functions performed by this thesis come from poliastro's library.
+
 \subsection{Atmospheric Models}
+Atmospheric drag exponential model has been found to be too approximate compared to the results provided by GMAT of same examples.
+For that reason, two more accurate atmospheric models have been implemented into the scripts designed along this work.
+The first one consists of COESA76 model, while the second is the JB2008 one.
+Their theoretical background has been already exposed in paragraph \ref{orbit_prop_paragraph}.
+JB2008 is definitely the most accurate model
+
+
 \subsection{Mean Orbital Elements Converter}
 \subsection{Sun Synchronous Orbits Functions}
 \subsection{Satellite Constellation Propagator}

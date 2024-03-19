@@ -185,7 +185,7 @@ for sma in range(len(a_list)):
 
 print(f'\nProcess finished --- {time.time() - process_start_time}')
 
-fig, ax = plt.subplots(2, 3, figsize=(22,9), squeeze=False) 
+fig, ax = plt.subplots(3, 2, figsize=(22,9), squeeze=False) 
 
 ax[0,0].plot(elapsed_days, altitudes, label='Osculating Altitude')
 ax[0,0].plot(elapsed_days, mean_altitudes, label='Mean Altitude')
@@ -207,12 +207,12 @@ ax[1,1].plot(elapsed_days, raan_mean_list, label='Mean RAAN')
 ax[1,1].legend(loc = 'upper left')
 ax[1,1].set_title('RAAN')
 
-ax[0,2].plot(elapsed_days, argp_list, label='Osculating ARGP')
-ax[0,2].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
-ax[0,2].set_title('ARGP')
+ax[2,0].plot(elapsed_days, argp_list, label='Osculating ARGP')
+ax[2,0].plot(elapsed_days, argp_mean_list, label='Mean ARGP')
+ax[2,0].set_title('ARGP')
 
-ax[1,2].plot(elapsed_days, nu_list, label='Osculating TA')
-ax[1,2].plot(elapsed_days, ma_mean_list, label='Mean MA')
-ax[1,2].set_title('MEAN ANOMALY')
+ax[2,1].plot(elapsed_days, nu_list, label='Osculating TA')
+ax[2,1].plot(elapsed_days, ma_mean_list, label='Mean MA')
+ax[2,1].set_title('MEAN ANOMALY')
 
 plt.show()
