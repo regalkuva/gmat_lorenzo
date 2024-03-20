@@ -3,7 +3,7 @@ This chapter presents all the tools developed along this work to achieve the pur
 
 
 
-\section{Orbit Propagators}
+\section{Orbit Propagators} \label{orbit_propagators_par}
 Applications and topics covered by this thesis clearly require an orbital propagator to be studied.
 All the propagators produced along this work exploit the Cowell's model shown in subsection \ref{orbit_prop_paragraph}.
 Both undisturbed and perturbed motion have been analysed.
@@ -91,7 +91,58 @@ JB2008 is definitely the most accurate model
 \subsection{Satellite Constellation Propagator}
 
 \section{Revisit Time Collector}
+The revisit time collector (RTC) tool intends to compute the amount of passages of a satellite above a specific position on Earth.
+It collects the \textit{access times} of the spacecraft when its target on the ground is within the area delimited by the swath width of the satellite's on-board camera. 
+It can work with a single space vehicle or with a constellation. 
+In the latter case, the script provides all the access times taking into account every single satellite of the pattern. 
+
+In addition to the input parameters required by the selected propagator (paragraph \ref{orbit_propagators_par}), the RTC needs the target coordinates in latitude and longitude, as well as the swath width of the electro-optical sensor.
+The algorithm computes the distance between the sub-satellite point on the ground and the target at each time step.
+This calculation is performed considering some meaningful aspects.
+
+The goal of the RTC clearly requires the estimation of the satellite's position in an ECEF reference frame.
+If its motion was evaluated with respect to an ECI system, the ground track of the orbit would be always the same after each orbital period.
+ECEF coordinates shall be then converted into the geodetic latitude-longitude location of the spacecraft's subpoint in order to proceed with the distance calculation.
+
+The computation of the distance between two points on the Earth surface shall take into account the sphericity of the planet.
+To accomplish this condition, the algorithm computes the so-called geodesic distance, which can be defined as the shortest path between two points on the surface of an ellipsoidal model of the Earth. 
+As regards the geodetics, the script takes advantage of the method proposed by Karney \cite{karney2013algorithms}.
+
+Summarizing, the algorithm extracts the sub-point latitude and longitude from the ECEF state vector of the satellite and, after that, calculates the geodesic distance with respect to the ground target.
+This path is then compared with half the value of the potential swath width (PSW) at each time step of the propagation.
+If the distance is smaller than PSW then the script saves the epoch related to that time step.
+
+\begin{algorithm}
+      \caption{Revisit Time Collector algorithm}
+      \begin{algorithmic}[1]
+            \Procedure{Collect the revisit time epochs for a specific target}{} 
+                  \State propagate the satellite's orbit for the desired time frame
+                  \For{each time step of the propagation}
+                        \State convert satellite state vector from ECI to ECEF
+                        \State extract geodetic latitude and longitude
+                        \State compute the geodesic distance between target and sub-satellite point
+                        \If{distance between the two points < $\frac{PSW}{2}$}
+                              \State collect the epoch of the current time step
+                        \EndIf
+                  \EndFor
+            \EndProcedure
+      \end{algorithmic}
+\end{algorithm}
+
+It is important to underline that the actual sensor input value to be implemented in the RTC should be related to the concept of \textit{potential swath coverage}.
+It identifies the potential path reachable by a pointable space system.
+If the satellite can not work off-nadir then the input parameter will be simply equal to half the SW due to the fact that the subpoint always lies in the middle of the observed area.
+Therefore, according to the figure \ref{potential_sw_fig}, a correct use of the algorithm should receive half the potential swath width (PSW) as input value.
+\begin{figure}[h]
+      \centering
+      \includegraphics[scale=0.6]{img/potential_sw.png}
+      \caption[ok]{Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite{hodgson2008modeling}.}
+      \label{potential_sw_fig}
+\end{figure}
+
 
 \section{Station-Keeping Simulator}
+
+
 
 \section{Differential Drag Algorithm}

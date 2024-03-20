@@ -43,19 +43,21 @@ top=    1 in
 \pgfplotsset{width=7cm,compat=1.8}
 \usetikzlibrary{patterns}
 
-% Package for lines of code
-\usepackage{listings}
-
 % Packages for lists
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep}
 
-%Algorithm
+% Algorithm
 \usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
+\usepackage{algpseudocode}  % \usepackage[noend]{algpseudocode}
+\makeatletter   % to remove algorithm numbering
+\renewcommand{\fnum@algorithm}{\fname@algorithm}
+\makeatother
+%\usepackage{algorithmic}
+\usepackage{listings}
 
 \setlength\headheight{44.2pt}
-%Page Style
+%P age Style
 \usepackage{setspace}
 %\setstretch{2.5} 
 \doublespace
@@ -69,8 +71,11 @@ top=    1 in
 \rhead{\footnotesize{Titolo abbreviato come intestazione}}
 }
 
+% Bibliography
+\usepackage{notoccite}  
 
-%Other
+
+% Other
 \usepackage{comment}
 \usepackage{amsmath}
 
@@ -79,7 +84,7 @@ top=    1 in
 \DeclareMathSymbol{\mathSun}{\mathord}{starfontsym}{115}
 \DeclareMathSymbol{\mathMoon}{\mathord}{starfontsym}{100}
 
-%Testo riempitivo
+% Testo riempitivo
 \usepackage{lipsum}
 
 
