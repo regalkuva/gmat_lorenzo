@@ -14,7 +14,7 @@
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Osculating SMA of a LEO satellite during one orbit. Propagation time settings: time step = 5 minutes, time frame = 50 minutes.}}{33}{figure.4.1}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.001}}{34}{figure.4.2}%
 \contentsline {figure}{\numberline {4.3}{\ignorespaces SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.5}}{35}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces ok}}{38}{figure.4.4}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite {hodgson2008modeling}.}}{38}{figure.4.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

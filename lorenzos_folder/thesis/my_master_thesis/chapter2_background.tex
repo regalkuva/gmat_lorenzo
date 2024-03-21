@@ -1,4 +1,4 @@
-\chapter{Background}
+\chapter{Background} \label{background_chapter}
 
 This chapter aims to provide an overview on the fundamentals of Space Flight Dynamics that constitute the theoretical basis of this thesis, with a specific focus on Earth Observation applications in Low Earth Orbit (LEO), as well as a literature review on orbit management methods addressed by this work.
 
@@ -359,7 +359,7 @@ The first one is the \textit{station-keeping}, which aims at routinely restoring
 Secondly, the study of the \textit{orbit phasing} is carried out with the purpose of achieving the desired pattern of a group of satellites along the same orbit.
 
 
-\subsection{Station-Keeping}
+\subsection{Station-Keeping} \label{station_keeping_par}
 From LEO to geostationary orbit (GEO), station-keeping maneuvers must be considered due to perturbations, if requested by one or more mission requirements.  
 In the case of Earth observation applications, electro-optical sensors and radars are generally designed to work approximately at a specific distance from the ground. 
 In addition, the repetition factor $Q$ introduced in the paragraph \ref{repeat_groundtrack} will be significantly altered by even small changes in the semimajor axis.
@@ -386,13 +386,15 @@ The problem assumes only tangential and out-of-plane acceleration, and circular 
 These assumptions are widely acceptable in this context, because all the case studies of this research are characterized by near-circular orbits, and the thrust direction of the satellites is ideally intended to be parallel to the velocity vector.
 
 The first input parameter is the thrust force acceleration $f$, deriving from the ratio between the thrust provided by the thruster and the spacecraft mass, which is broken down into three mutually orthogonal components:
-the first one is tangential to the velocity vector of the satellite, the second component is normal to the orbital plane, and the last one is normal to the other two.
+the first one is tangential to the velocity vector of the satellite, the second component is normal to the orbital plane, and the last one is in the out-of-plane direction.
+ 
 They are expressed in terms of two angles: 
 $\alpha$ is the angle between the velocity vector and the component of the thrust vector in the plane of the orbit,
 while $\beta$ represents the angle between the thrust vector and the plane of the orbit \cite{edelbaum1961propulsion}.
 \begin{equation} \label{acceleration_thrust_components}
     f_T = f \cos{\beta} \cos{\alpha} \;\;\;\;\;\;\;\;\;\; f_N = f \cos{\beta} \sin{\alpha} \;\;\;\;\;\;\;\;\;\; f_z = f \sin{\beta}
 \end{equation}
+According to the hypotheses of this theory, $\alpha$ is always assumed to be zero and consequently $f_N$ is null.
 Initial and final desired orbit are only assigned by the variations in semimajor axis an inclination ($\Delta a$, $\Delta i$).
 From the initial and final semimajor axis, the velocities $V_0$ and $V_f$ are computed 
 \begin{equation} \label{sma_velocities}
@@ -411,7 +413,12 @@ and consequently achieve the transfer time
 \begin{equation} \label{transfer_time}
     t_f = \frac{\Delta V}{f}
 \end{equation}
-In case of coplanar transfers, $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities} \cite{kechichian1992reformulation}.
+Given the the initial $\beta_0$ and the burning time, Kechichian finally formulates the following control law for the yaw angle $\beta$:
+\begin{equation} \label{yaw_angle_equation}
+    \beta = \tan^{-1}{\frac{V_0 \sin{\beta_0}}{V_0 \cos{\beta_0} - f t_f}}
+\end{equation} 
+
+In case of coplanar transfers ($\beta = 0$), $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities} \cite{kechichian1992reformulation}.
 
 
 \subsection{Differential Drag}
