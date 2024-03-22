@@ -1,11 +1,8 @@
-## DDIFFERENTIAL DRAG ALGORITHM BASED ON FOSTER THEORY
-
 import time
 
 import numpy as np
 
 import matplotlib.pyplot as plt
-from poliastro.plotting import OrbitPlotter3D
 
 from poliastro.bodies import Earth
 from poliastro.twobody import Orbit
@@ -25,9 +22,9 @@ toc = time.time()
 
 ## Input parameters
 h = 510
-delta_a = 0.5
+delta_a = 1
 delta_nu = -2
-assignment = 100%360
+assignment = 50%360
 
 ## Orbital data
 start_date = datetime(2024,1,1,9,0,0)
@@ -110,7 +107,8 @@ for i in range(mans):
         theta_hd = 0.5 * theta_dot_dot * t_hd**2
         t_wait = ((theta_err - theta_hd.value)%360 / (ref_mean_orbit.n.to_value(u.deg/u.s) - trail_mean_orbit.n.to_value(u.deg/u.s)))
 
-        pred_days = ((t_wait+t_hd.value)/(60*60*24))**(1+((trail_mean_orbit.a.value-Earth.R_mean.to_value(u.km)+(trail_mean_orbit.a.value-ref_mean_orbit.a.value))/10000))
+        pred_days = ((t_wait+t_hd.value)/(60*60*24))**(1+((trail_mean_orbit.a.value-Earth.R_mean.to_value(u.km)+(trail_mean_orbit.a.value-ref_mean_orbit.a.value))/(trail_mean_orbit.a.value + ref_mean_orbit.a.value)))
+        print(pred_days)
 
     num_wait = int(t_wait / time_step.value)
     tofs_wait = TimeDelta(np.linspace(0, t_wait<<u.s, num=num_wait))

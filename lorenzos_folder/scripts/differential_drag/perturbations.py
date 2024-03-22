@@ -24,7 +24,7 @@ A_over_m_high = ((0.15 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^
 
 B_high = C_D * A_over_m_high
 
-A_over_m_med = ((0.05 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
+A_over_m_med = ((0.1 << u.m**2) / (50 * u.kg)).to_value(u.km**2 / u.kg)  # km^2/kg
 
 B_med = C_D * A_over_m_med
 

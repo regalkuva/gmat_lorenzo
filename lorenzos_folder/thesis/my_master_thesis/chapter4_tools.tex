@@ -132,8 +132,8 @@ If the distance is smaller than PSW then the script saves the epoch related to t
 It is important to underline that the actual sensor input value to be implemented in the RTC should be related to the concept of \textit{potential swath coverage}.
 It identifies the potential path reachable by a pointable space system.
 If the satellite can not work off-nadir then the input parameter will be simply equal to half the SW due to the fact that the subpoint always lies in the middle of the observed area.
-Therefore, according to the figure \ref{potential_sw_fig}, a correct use of the algorithm should receive half the potential swath width (PSW) as input value.
-\begin{figure}[h]
+Therefore, according to the figure \ref{potential_sw_fig}, a proper use of the algorithm should get half the potential swath width (PSW) as input value.
+\begin{figure}[H]
       \centering
       \includegraphics[scale=0.6]{img/potential_sw.png}
       \caption{Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite{hodgson2008modeling}.}
@@ -146,14 +146,13 @@ This station-keeping simulator aims to perform the altitude and inclination main
 The tool combines the orbit propagator and an algorithm that keep the spacecraft within a defined range of altitudes and inclinations.
 The required input parameters include the thrust force of the propulsion system as well as the edge values of the orbital elements that define the station-keeping box.
 The simulator works with the perturbations, therefore it is indispensable to deal with the mean orbital elements to carry out the maintenance.
-
 The logic behind the method is shown below.
-\begin{algorithm}[h]
+\begin{algorithm}[H]
       \caption{\textbf{Station-Keeping Simulator}}
       \begin{algorithmic}[1]
             \Procedure{Simulate the absolute station-keeping of a spacecraft}{} 
-                  \State propagate the satellite's orbit for the desired time frame
                   \For{each time step in the time frame}
+                        \State propagate the satellite's orbit
                         \If{current mean SMA < lower SMA}
                             \While{current mean SMA < upper SMA}
                                 \State activate thruster
@@ -176,9 +175,52 @@ The update of the satellite's position at each time step allows a better accurac
 Nevertheless, the equations of the Kechichian's method are used to provide the $\Delta V$ required by the station-keeping, which is a fundamental parameter for the mission designer.
 
 
-\section{Differential Drag Algorithm}
+\section{Differential Drag Controller}
 The differential drag algorithm represents the main effort of this thesis.
-It consists of a method to perform the relative station-keeping between two or more satellites, with different shapes and masses, only taking advantage of the differential drag.
+It consists of a method to perform the phasing through the differential drag of two or more satellites, of any shape and mass, after their deployment at the beginning of the mission.
+The goal is to achieve an assigned orbital slot and same mean semi-major axis respectively on all spacecraft forming the constellation, resulting in zero relative velocity between them.
+
+\subsection{Planet's Control Algorithm}
+Since the algorithm designed by this thesis takes inspiration from the controller adopted by Planet, a description of the latter is presented.
+The objective of Planet's algorithm is the same as that of the thesis.
+It consists of labeling the satellite in the lowest orbit as the leading satellite.
+Then, a two-component state composed by the mean Earth-centered angular distance to its desired slot $\theta_i$, and the angular velocity $\dot{\theta}_i$ relative to the leader, is computed for each trailing satellite.
+The procedure is reported below in the identical form presented by the company \cite{foster2015orbit}.
+
+\begin{algorithm}[H]
+      \caption{\textbf{Planet's Control Algorithm}}
+      \begin{algorithmic}[1]
+            \Procedure{Create high-drag windows}{} 
+                  \State remove any previously issued high-drag windows
+                  \State compute $\theta_i$, $\dot{\theta}_i$ of each satellite \textit{i} relative to previous leader (mean, not osculating)
+                  \State compute $\ddot{\theta}$ of a satellite in high-drag vs. low-drag mode
+                  \State assign leader to be satellite with greatest $\dot{\theta}$ (i.e. lowest altitude)
+                  \For{each satellite \textit{i} that is not the leader}
+                        \State offset $\theta_i$, $\dot{\theta}_i$ to be relative to new leader: $\theta_i = \theta_i - \theta_{leader}, \dot{\theta}_i = \dot{\theta}_i - \dot{\theta}_{leader}$
+                        \State get required high-drag duration to null relative speed with leader: $\Delta t_{i,hd} = - \frac{\dot{\theta}_i}{\ddot{\theta}}$
+                        \State get angle travelled during desired high-drag window: $\theta_{i,hd} = \frac{1}{2} \ddot{\theta} \Delta t_{i,hd}^2$
+                        \State get wait time to target desired slot: $\Delta t_{i,wait} = \frac{\theta_{i,hd} - \theta_i}{\dot{\theta}_i}$
+                        \State create high-drag window for satellite \textit{i} starting at $t_{now} + \Delta t_{i,wait}$ for duration $\Delta t_{i,hd}$
+                  \EndFor
+            \EndProcedure
+      \end{algorithmic}
+\end{algorithm}
+
+The strategy is to first obtain the high-drag time $\Delta t_{i,hd}$ (high-drag window) needed by the trailing satellite for matching the leader's semi-major axis.
+Next, the amount of time $\Delta t_{i.wait}$ each spacecraft has to wait in the low-drag configuration before the high-drag window is initiated is computed.
+\cite{foster2015orbit}
+
+
+
+
+
+
+
+
+
+
+
+
 
 It is absolutely necessary the use of the mean orbital elements over all the phases of the script.
 This tool assumes that the space vehicles involved have the same initial orbital elements except SMA and argument of latitude.  
@@ -201,19 +243,25 @@ Secondly, the strategy aims at evaluating the waiting time before performing the
       \caption{\textbf{Differential Drag Phasing}}
       \begin{algorithmic}[1]
             \Procedure{Perform phasing through differential drag}{} 
-                  \State establish the leader satellite (smallest SMA)
+                  \State establish the leading satellite (smallest SMA)
                   \For{each trailing satellite of the constellation}
-                        \State calculate difference in mean SMA with respect to the leader
-                        \State calculate angular error to reach the desired slot relative to the leader
-                        \State estimate high drag time window $t_{hd} = \frac{\Delta n}{\ddot{\theta}}$
-                        \State estimate waiting time window $t_{wait}$
+                        \For{each assigned iteration}
+                              \State compute difference in mean anomaly with respect to the leader $\Delta n$
+                              \State compute angle to reach the desired slot relative to the leader $\theta_{err}$
+                              \State Assign and estimation time $t_{est}$ from $\theta_{err}$
+                              \State estimate $\ddot{\theta}$ from high drag vs. low drag mode over $t_{est}$
+                              \State estimate high drag time window $t_{hd} = \frac{\Delta n}{\ddot{\theta}}$
+                              \State compute angle travelled during high drag window $\theta_{hd} = \frac{1}{2}\ddot{\theta}t_{hd}^2$
+                              \State estimate waiting time window $t_{wait} = \frac{\theta_{err} - \theta_{hd}}{\Delta n}$
+                              \State get new estimation time $t_{est} = f(t_{wait}, t_{hd}, h_{lead}, h_{trail})$ 
+                        \EndFor
                         \For{each time step in $t_{wait}$}
-                        \State propagate the leader in low drag mode
-                        \State propagate the trailer in low drag mode
+                              \State propagate the leader in low drag mode
+                              \State propagate the trailer in low drag mode
                         \EndFor
                         \For{each time step in $t_{hd}$}
-                        \State propagate the leader in low drag mode
-                        \State propagate the trailer in high drag mode
+                              \State propagate the leader in low drag mode
+                              \State propagate the trailer in high drag mode
                         \EndFor
                   \EndFor
             \EndProcedure
