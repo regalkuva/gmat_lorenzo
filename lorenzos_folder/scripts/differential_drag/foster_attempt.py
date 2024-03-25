@@ -21,10 +21,10 @@ from perturbations import perturbations_coesa_J2_low, perturbations_coesa_J2_hig
 toc = time.time()
 
 ## Input parameters
-h = 510
+h = 475
 delta_a = 1
 delta_nu = -2
-assignment = 50%360
+assignment = 336%360
 
 ## Orbital data
 start_date = datetime(2024,1,1,9,0,0)
@@ -80,11 +80,58 @@ hd_window = []
 hd_duration = []
 
 start_date_prop = epoch
-ref_mean = osc2mean(a.value, ecc.value, inc.value, raan.value, argp.value, nu.value)
-ref_mean_orbit = Orbit.from_classical(Earth, ref_mean[0]<<u.km, ref_mean[1]<<u.one, ref_mean[2]<<u.deg, ref_mean[3]<<u.deg, ref_mean[4]<<u.deg, nu, epoch)
-trail_mean = osc2mean(a.value+delta_a, ecc.value, inc.value, raan.value, argp.value, nu.value+delta_nu)
-trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu<<u.deg), epoch)
+
 mans = 1
+
+t_prop = (60*60*24*7*5)<<u.s
+num_prop = int(t_prop.value / time_step.value)
+tofs_prop = TimeDelta(np.linspace(0, t_prop, num=num_prop))
+
+reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_orbit.epoch + tofs_prop, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high)))
+trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_orbit.epoch + tofs_prop, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
+
+for t in range(len(tofs_prop)):
+
+    secs += time_step.value
+
+    ref_from_ephem = Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epochs[t])
+    trail_from_ephem = Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[t])
+
+    refsmalist.append(ref_from_ephem.a.value)
+    trailsmalist.append(trail_from_ephem.a.value)
+
+    ref_mean = osc2mean(
+        ref_from_ephem.a.value,
+        ref_from_ephem.ecc.value,
+        ref_from_ephem.inc.to_value(u.deg),
+        ref_from_ephem.raan.to_value(u.deg),
+        ref_from_ephem.argp.to_value(u.deg),
+        ref_from_ephem.nu.to_value(u.deg)
+
+    )
+    trail_mean = osc2mean(
+        trail_from_ephem.a.value,
+        trail_from_ephem.ecc.value,
+        trail_from_ephem.inc.to_value(u.deg),
+        trail_from_ephem.raan.to_value(u.deg),
+        trail_from_ephem.argp.to_value(u.deg),
+        trail_from_ephem.nu.to_value(u.deg)
+    )
+
+    refsmalist_mean.append(ref_mean[0])
+    trailsmalist_mean.append(trail_mean[0])
+
+    angle_list.append(argl_difference(ref_from_ephem.argp.value, ref_from_ephem.nu.value, trail_from_ephem.argp.value, trail_from_ephem.nu.value))
+
+    elapsedsecs.append(secs)
+
+start_date_prop = ref_from_ephem.epoch
+
+reference_orbit = ref_from_ephem
+trailing_orbit = trail_from_ephem
+ref_mean_orbit = Orbit.from_classical(Earth, ref_mean[0]<<u.km, ref_mean[1]<<u.one, ref_mean[2]<<u.deg, ref_mean[3]<<u.deg, ref_mean[4]<<u.deg, nu, start_date_prop)
+trail_mean_orbit = Orbit.from_classical(Earth, trail_mean[0]<<u.km, trail_mean[1]<<u.one, trail_mean[2]<<u.deg, trail_mean[3]<<u.deg, trail_mean[4]<<u.deg, nu+(delta_nu<<u.deg), start_date_prop)
+
 
 
 ## Differential drag algorithm + propagation
@@ -250,7 +297,6 @@ reference_orbit = Orbit.from_ephem(Earth, reference_ephem, reference_ephem.epoch
 trailing_orbit = Orbit.from_ephem(Earth, trailing_ephem, trailing_ephem.epochs[-1])
 
 t_prop = (60*60*24*7*4)<<u.s
-
 num_prop = int(t_prop.value / time_step.value)
 tofs_prop = TimeDelta(np.linspace(0, t_prop, num=num_prop))
 

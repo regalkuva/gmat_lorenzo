@@ -113,7 +113,7 @@ This path is then compared with half the value of the potential swath width (PSW
 If the distance is smaller than PSW then the script saves the epoch related to that time step.
 
 \begin{algorithm}
-      \caption{\textbf{Revisit Time Collector algorithm}}
+      \caption{\textbf{Revisit Time Collection}}
       \begin{algorithmic}[1]
             \Procedure{Collect revisit time epochs over a specific target}{} 
                   \State propagate the satellite's orbit for the desired time frame
@@ -146,9 +146,10 @@ This station-keeping simulator aims to perform the altitude and inclination main
 The tool combines the orbit propagator and an algorithm that keep the spacecraft within a defined range of altitudes and inclinations.
 The required input parameters include the thrust force of the propulsion system as well as the edge values of the orbital elements that define the station-keeping box.
 The simulator works with the perturbations, therefore it is indispensable to deal with the mean orbital elements to carry out the maintenance.
+
 The logic behind the method is shown below.
 \begin{algorithm}[H]
-      \caption{\textbf{Station-Keeping Simulator}}
+      \caption{\textbf{Station-Keeping Simulation}}
       \begin{algorithmic}[1]
             \Procedure{Simulate the absolute station-keeping of a spacecraft}{} 
                   \For{each time step in the time frame}
@@ -167,6 +168,7 @@ The logic behind the method is shown below.
             \EndProcedure
       \end{algorithmic}
 \end{algorithm}
+
 The algorithm uses the Edelbaum-Kechichian theory reported in subsection \ref{station_keeping_par}.
 However, a careful observer would notice that actually the script takes advantage of this theory only to compute the yaw angle (equation \ref{yaw_angle_equation}) in case of out-of-plane maneuver (change in inclination).
 Indeed, the burning time estimated by the equations is never taken into account.
@@ -175,20 +177,20 @@ The update of the satellite's position at each time step allows a better accurac
 Nevertheless, the equations of the Kechichian's method are used to provide the $\Delta V$ required by the station-keeping, which is a fundamental parameter for the mission designer.
 
 
-\section{Differential Drag Controller}
+\section{Differential Drag Controller} \label{differential_drag_control_par}
 The differential drag algorithm represents the main effort of this thesis.
 It consists of a method to perform the phasing through the differential drag of two or more satellites, of any shape and mass, after their deployment at the beginning of the mission.
 The goal is to achieve an assigned orbital slot and same mean semi-major axis respectively on all spacecraft forming the constellation, resulting in zero relative velocity between them.
+Since the algorithm designed by this thesis takes inspiration from the controller adopted by Planet (Foster et al. \cite{foster2015orbit}), a description of the latter is presented.
 
-\subsection{Planet's Control Algorithm}
-Since the algorithm designed by this thesis takes inspiration from the controller adopted by Planet, a description of the latter is presented.
+\subsection{Planet's Control Algorithm} \label{planet_algorithm_par}
 The objective of Planet's algorithm is the same as that of the thesis.
-It consists of labeling the satellite in the lowest orbit as the leading satellite.
+The technique consists of labeling the satellite in the lowest orbit as the leading satellite.
 Then, a two-component state composed by the mean Earth-centered angular distance to its desired slot $\theta_i$, and the angular velocity $\dot{\theta}_i$ relative to the leader, is computed for each trailing satellite.
-The procedure is reported below in the identical form presented by the company \cite{foster2015orbit}.
+The procedure to achieve the wanted pattern is reported below in the identical form presented by the company \cite{foster2015orbit}.
 
 \begin{algorithm}[H]
-      \caption{\textbf{Planet's Control Algorithm}}
+      \caption{\textbf{Planet's Control}}
       \begin{algorithmic}[1]
             \Procedure{Create high-drag windows}{} 
                   \State remove any previously issued high-drag windows
@@ -206,45 +208,67 @@ The procedure is reported below in the identical form presented by the company \
       \end{algorithmic}
 \end{algorithm}
 
-The strategy is to first obtain the high-drag time $\Delta t_{i,hd}$ (high-drag window) needed by the trailing satellite for matching the leader's semi-major axis.
-Next, the amount of time $\Delta t_{i.wait}$ each spacecraft has to wait in the low-drag configuration before the high-drag window is initiated is computed.
-\cite{foster2015orbit}
+The strategy is to first obtain the high-drag time $\Delta t_{i,hd}$ (high-drag window) needed by the trailing satellite for matching the leader's semi-major axis, and then the amount of time $\Delta t_{i,wait}$ each spacecraft has to wait in the low-drag configuration before the high-drag maneuver is initiated.
+
+Despite this method has successfully worked for the initial orbit phasing of a satellite constellation, it presents some limitations and ambiguities.
+The durations $\Delta t_{i,wait}$ and $\Delta t_{i,hd}$ are predicted making assumptions related to the density of the atmosphere and the attitude of the vehicles.
+This leads to unavoidable errors in accuracy.
+In addition, it is not clear how the angular acceleration $\ddot{\theta}$ is estimated.
+The angle $\theta_{i,hd}$ might also contain inaccuracies because is computed via Taylor approximation.
+The accuracy of the algorithm is then strongly sensitive to the initial conditions of dispersion.
+Too small differences between satellite orbits do not allow the control to function properly, as well as too big variations lead to inaccurate results.
+Despite these negative observations, this algorithm has successfully worked for the initial phasing of a satellite constellation.
+The Taylor approximation seems to be quite effective according to the on-orbit results shown in figure \cite{lee2017cubesat}.
+The curves on the graph represent the relative angular distance between each satellite and the leader (which remains at zero degrees in the plot), and the blue lines are the high-drag windows.  
+Indeed, Planet reruns its algorithm on a regular cycle to minimize the errors deriving from the forecast of the future state of the atmosphere.
+As for the initial dispersion, it can be adjusted always through differential drag maneuvers, in order to achieve more proper initial conditions for the controller \cite{foster2015orbit}.
+However, there is no clear information about the appropriate circumstances which make the algorithm work correctly.
+
+\begin{figure}
+      \centering
+      \includegraphics[scale=0.8]{img/planet_orbit_results.png}
+      \caption{Actual Planet's fleet relative motion achieved by using differential drag. 
+      Blue lines represent high-drag windows \cite{foster2015orbit}.}
+      \label{kep_high_ecc_fig}
+\end{figure}
+
+Planet has applied this tool to groups of propulsion-less spacecraft.
+Once the desired formation is achieved, the same differential drag control is used to maintain the requested relative angular distances between the vehicles.
 
 
 
+\subsection{Thesis Controller}
+This paragraph contains the work carried out to achieve the main goal of this thesis: the design of a differential drag controller for the initial orbit phasing of a group of spacecraft.
+This is then combined with a low-thrust relative station-keeping.
+Their coupling enables the orbital management of a LEO SSO constellation of low-thrust satellites throughout the mission lifetime. 
+The drag control derives from an improvement of the Planet's algorithm.
 
+First essential requirement is the use of the mean orbital elements.
+All the space vehicles involved are supposed to have the same initial orbital elements except SMA and argument of latitude.  
+Similarly to Planet's algorithm, this method is sensitive to the initial dispersion after the deployment.
+This issue is addressed as follows:
 
+\begin{itemize}
+      \item[-] If 
+      
+\end{itemize}
 
+The algorithm establishes a reference vehicle, the \textit{leading satellite}, which is identified by the spacecraft travelling in the lowest orbit (lower mean SMA).
+The \textit{trailing satellites} have the task of reaching the desired relative placement with respect to the leader.
+For each of them, the scripts computes the angular error $\theta_{err}$ from their position to the relative target, as well as the first attempt value of $t_{est}$.
+The calculation of $t_{hd}$, which is the high-drag window to match the leader's semi-major axis, requires the acceleration of the satellite $\ddot{\theta}$ given by the comparison high-drag vs. low-drag mode.
+After that, the algorithm evaluates the path travelled in high-drag configuration and finally the wait time $t_{wait}.$ 
+At this point, the estimation of $t_{hd}$ $t_{wait}$ is repeated with a new $t_{est}$ provided by a function which depends on the altitudes of the satellites and the time intervals computed before.
+The procedure is shown below.
 
-
-
-
-
-
-
-It is absolutely necessary the use of the mean orbital elements over all the phases of the script.
-This tool assumes that the space vehicles involved have the same initial orbital elements except SMA and argument of latitude.  
-In the following explanation of the algorithm two identical spacecraft will be considered.
-
-First of all, the algorithm needs to establish a reference vehicle, the \textit{leading satellite}, which will be identified by the spacecraft travelling in the lowest orbit (lower mean SMA).
-On the other side, the \textit{trailing satellite} is the one with the highest altitude.
-In addition to the initial in-orbit positions, the tool requires the BC related to the various drag profiles the satellite can achieve.
-Moreover, the user shall indicate the desired relative angular path between the spacecraft.
-For simplicity, only two attitude modes will be treated: high drag and low drag.
-Figure \ref{low_vs_high_dragmode_fig} in chapter \ref{background_chapter} basically represents the problem at hand.
-At this point, the algorithm's core begins.
-The first calculation consists of the current angular distance from the trailing satellite to the desired placement with respect to the leader at the initial time step.
-After that, two predictions are made.
-First, the estimation of the necessary time for the trailing satellite in high drag to reach the same mean SMA of the leader.
-The latter is set to nominal low drag during the entire operation.
-Secondly, the strategy aims at evaluating the waiting time before performing the high drag attitude, in order to match the leader's altitude and the assigned phasing at the same time.
-
-\begin{algorithm}[h]
-      \caption{\textbf{Differential Drag Phasing}}
+\begin{algorithm}[H]
+      \caption{\textbf{Differential Drag Control}}
       \begin{algorithmic}[1]
             \Procedure{Perform phasing through differential drag}{} 
                   \State establish the leading satellite (smallest SMA)
                   \For{each trailing satellite of the constellation}
+                  \State compute difference in mean anomaly with respect to the leader $\Delta n$
+                                        
                         \For{each assigned iteration}
                               \State compute difference in mean anomaly with respect to the leader $\Delta n$
                               \State compute angle to reach the desired slot relative to the leader $\theta_{err}$
