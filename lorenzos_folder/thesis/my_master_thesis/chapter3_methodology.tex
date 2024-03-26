@@ -14,10 +14,10 @@ Interpreted languages like Python on the other hand offer higher flexibility and
 While interpreted languages are generally slower than compiled languages, recent developments such as just-in-time (JIT) compilers or transpilers have been able to close this speed gap significantly. 
 Another important factor for the usefulness of a programming language is its wider ecosystem which consists of the available open-source packages and development tools including integrated development environments and debuggers. 
 
-In light of the above, Python can be considered as a suitable language for scientific computing due to the existence of well established libraries like NumPy and SciPy for mathematical calculations.
+In light of the above, Python can be considered as a suitable language for scientific computing due to the existence of well established libraries like \textit{NumPy} and \textit{SciPy} for mathematical calculations.
 Not only do these libraries make use of compiled code from existing accelerated libraries, but it is also possible in Python to interface with compiled code to speed up specific algorithms where required.
 This allows a user to define a problem in Python, while benefiting from the speed of compiled languages for computationally expensive algorithms.
-Indeed, JIT-compiled dynamic languages such as Python with Numba have reached a competitive level of performance while still offering the advantages of lower complexity and better programmer productivity
+Indeed, JIT-compiled dynamic languages such as Python with \textit{Numba} have reached a competitive level of performance while still offering the advantages of lower complexity and better programmer productivity
 \cite{eichhorn2018comparative}.
 
 And not for nothing, nowadays, by a wide margin, Python is the most popular interpreted language in astronomy
@@ -32,7 +32,7 @@ To overcome these limitations it is possible to use Numba, an open-source librar
 In brief, Numba is a JIT compiler for scientific Python, which allows to optimize the running time.
 
 \subsection{poliastro}
-\texttt{poliastro} is an open-source Python library for astrodynamics and orbital mechanics released under the MIT (Massachusetts Institute of Technology) license.
+\textit{poliastro} is an open-source Python library for astrodynamics and orbital mechanics released under the MIT (Massachusetts Institute of Technology) license.
 It features algorithms which are written in pure Python and compiled using Numba.
 It is dedicated to astrodynamics applications, such as orbit propagation, resolution of the Kepler and Lambert problems, conversion between position and velocity vectors and classical orbital elements and orbit plotting
 \cite{rodriguez2016poliastro}.

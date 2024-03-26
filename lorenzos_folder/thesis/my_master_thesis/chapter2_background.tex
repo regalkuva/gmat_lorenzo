@@ -250,8 +250,18 @@ The idea of this method is to add the perturbing accelerations to the two-body e
     \ddot{\vec{r}} = - \frac{\mu}{r^3}\vec{r} + \vec{a}_p
 \end{equation}
 $\vec{a}_p$ represents the total acceleration given by the perturbing forces, like that ones seen in paragraph \ref{perturbations} (e.g., equation \ref{eq:drag_acc}), while $\vec{r}$ is clearly the state vector of the satellite.
-Equation \ref{cowell_eq} is called \textit{Cowell's formulation} \cite{vallado2013fundamentals}.
+Equation \ref{cowell_eq} is called \textit{Cowell's formulation}.
+This second-order differential equation of motion needs a numerical integration method to be solved \cite{vallado2013fundamentals}.
 
+
+\subsubsection{Dormand-Prince Method}
+The topic of numerical integration would require in-depth treatment due to its complexity, but only the method used by this work is briefly described in the next lines.
+The propagators developed to accomplish the purposes of the thesis take advantage of an eigth-order \textit{Dormand-Prince} (DOPRI) method to solve the Cowell's equation.
+It is a single-step and variable step-size integrator.
+This means that it determines the subsequent steps exclusively from the information of the latest previous step.
+On the other hand, while fixed-step techniques divide the propagation into equal time steps, variable step-size algorithms dynamically adjust the step size.
+This is carried out including tolerance criteria to identify the accuracy at each step by considering two methods \cite{rocha2018numerical}.
+For instance, the thesis uses a DOPRI$8_{(5,3)}$, which means order 8 for the integration, with a 5th order error estimator combined with a 3rd order correction.
 
 
 

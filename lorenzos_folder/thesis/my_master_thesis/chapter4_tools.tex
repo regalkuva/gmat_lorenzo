@@ -1,11 +1,11 @@
 \chapter{Satellite Constellation Management Tools} \label{chapter_tools}
-This chapter presents all the tools developed along this work to achieve the purposes of the thesis.
-
+This chapter presents all the scripts designed along this work to achieve the purposes of the thesis.
+The first paragraph contains the primary functions needed for the development of the main tools proposed from section \ref{revisit_time_collector_par} to \ref{differential_drag_control_par}.
 
 
 \section{Orbit Propagators} \label{orbit_propagators_par}
-Applications and topics covered by this thesis clearly require an orbital propagator to be studied.
-All the propagators produced along this work exploit the Cowell's model shown in subsection \ref{orbit_prop_paragraph}.
+The study of the applications and topics covered by this thesis clearly require an orbital propagator.
+The core of all the propagators produced along this work exploit the Cowell's model shown in subsection \ref{orbit_prop_paragraph}.
 Both undisturbed and perturbed motion have been analysed.
 
 Orbit propagators must take in input the following data:
@@ -14,21 +14,24 @@ Orbit propagators must take in input the following data:
           All the six orbital elements (see subsection \ref{sat_state_rep_paragraph}) and the epoch are required. 
           The scripts can also work defining the six components of position and velocity vectors.
           Even the TLE can be set as input, which will be appropriately converted into the classical elements representation.  
-    \item \textbf{Spacecraft specifications}. According to the features of the selected propagator, one or more satellite characteristics shall be provided when considering perturbations.
-          For instance, in presence of atmospheric drag, $C_D$ and $BC$ (which means cross-sectional area and mass) are needed. 
           The reflectivity coefficient must be added if the problem takes into account the SRP.
     \item \textbf{Time settings}. These input parameters include \textit{time frame} and \textit{time step}.
           The first one simply consists of the total temporal period of propagation requested by the user.
-          On the other hand, the time step is strictly related to the output accuracy.
-          Lower values imply more accurate results, as well as longer computation times.
+          On the other hand, the time step is strictly related to the output density.
+          Lower values imply more detailed results, as well as longer computation times.
           In a nutshell, the outputs will be discretized in as many points as those deriving from the ratio between time frame and time step.
-          The accuracy of the model is actually always the same. 
-          The difference lies in the shape of the outputs: small time steps provide narrower plots. 
-          Figure \ref{time_step_fig} shows the SMA of a LEO satellite propagated for one orbit that lasts approximately 50 minutes. The assigned time step is of 5 minutes (the curve is therefore discretized into 10 points).
+          Small time steps provide narrower plots. 
+          Figure \ref{time_step_fig} shows the SMA of a LEO satellite under drag perturbation during one orbit (around 50 minutes). 
+          The assigned time step is of 5 minutes (the curve is therefore discretized into 10 points).
+          It is important to underline that the accuracy of the integrator used by thesis does not depend on this time step value at all.
     \item \textbf{Perturbations parameters}. Propagators that involve any perturbing acceleration need the parameters which describe that force. 
           For example, the perturbing specific force of atmospheric drag (equation \ref{eq:drag_acc}) requires the air density, which will be given by a specific atmospheric model.
           Even for the acceleration of an eventual thruster it is necessary to specify the force it generates.
-\end{itemize}
+    \item \textbf{Spacecraft specifications}. According to the features of the selected propagator, one or more satellite characteristics shall be provided when considering perturbations.
+          For instance, in presence of atmospheric drag, $C_D$ and $BC$ (which means cross-sectional area and mass) are needed. 
+%     \item \textbf{Relative tolerance}. It represents the admitted percent error at any step of the simulation. 
+%           For instance, a relative tolerance of 0.01 indicates a 1 allowable error limit relative to each state value at each step.
+%           This setting controls the accuracy of the solution of the used integrator (DOPRI$8_{(5,3)}$).
 
 \begin{figure}[h]
       \centering
@@ -37,7 +40,6 @@ Orbit propagators must take in input the following data:
       \caption{Osculating SMA of a LEO satellite during one orbit. Propagation time settings: time step = 5 minutes, time frame = 50 minutes.}
       \label{time_step_fig}
   \end{figure}
-
 
 \subsection{Undisturbed Motion}
 The first orbit propagator proposed by this thesis consists of the ideal motion of a spacecraft neglecting all the possible perturbations that might affect it.
@@ -69,7 +71,6 @@ Increasing the eccentricity value, like in figure \ref{kep_high_ecc_fig}, the tr
 All the case studies of this research consist of near-circular orbits.
 Despite the fact that zero-eccentricity condition is not feasible, this comparison demonstrates that very low values of eccentricity make the assumption of circular orbit highly acceptable.  
 
-
 \subsection{Perturbations}
 The propagators developed by this work which take into account perturbing effects are based on the Cowell's technique of subsection \ref{orbit_prop_paragraph}.
 
@@ -90,7 +91,8 @@ JB2008 is definitely the most accurate model
 \subsection{Sun Synchronous Orbits Functions}
 \subsection{Satellite Constellation Propagator}
 
-\section{Revisit Time Collector}
+
+\section{Revisit Time Collector} \label{revisit_time_collector_par}
 The revisit time collector (RTC) tool intends to compute the amount of passages of a satellite above a specific position on Earth.
 It collects the \textit{access times} of the spacecraft when its target on the ground is within the area delimited by the swath width of the satellite's on-board camera. 
 It can work with a single space vehicle or with a constellation. 
@@ -141,7 +143,7 @@ Therefore, according to the figure \ref{potential_sw_fig}, a proper use of the a
 \end{figure}
 
 
-\section{Station-Keeping Simulator}
+\section{Station-Keeping Simulator} \label{sk_simulator_par}
 This station-keeping simulator aims to perform the altitude and inclination maintenance of low-thrust propelled satellites.
 The tool combines the orbit propagator and an algorithm that keep the spacecraft within a defined range of altitudes and inclinations.
 The required input parameters include the thrust force of the propulsion system as well as the edge values of the orbital elements that define the station-keeping box.
@@ -159,8 +161,8 @@ The logic behind the method is shown below.
                                 \State activate thruster
                             \EndWhile
                         \EndIf           
-                        \If{current mean inclination < lower inclination}
-                            \While{current mean inclination < upper inclination}
+                        \If{current mean inclination < lower inclination value}
+                            \While{current mean inclination < upper inclination value}
                                 \State activate thruster
                             \EndWhile
                     \EndIf
@@ -244,52 +246,57 @@ Their coupling enables the orbital management of a LEO SSO constellation of low-
 The drag control derives from an improvement of the Planet's algorithm.
 
 First essential requirement is the use of the mean orbital elements.
-All the space vehicles involved are supposed to have the same initial orbital elements except SMA and argument of latitude.  
-Similarly to Planet's algorithm, this method is sensitive to the initial dispersion after the deployment.
-This issue is addressed as follows:
+All the space vehicles involved are supposed to have the same initial orbital elements except SMA and argument of latitude, and all the operations require the use of the mean orbital elements.
 
-\begin{itemize}
-      \item[-] If 
-      
-\end{itemize}
-
-The algorithm establishes a reference vehicle, the \textit{leading satellite}, which is identified by the spacecraft travelling in the lowest orbit (lower mean SMA).
+The algorithm establishes a reference vehicle, the \textit{leading satellite}, which is identified by the spacecraft travelling in the lowest orbit (greatest mean motion $n$).
 The \textit{trailing satellites} have the task of reaching the desired relative placement with respect to the leader.
-For each of them, the scripts computes the angular error $\theta_{err}$ from their position to the relative target, as well as the first attempt value of $t_{est}$.
-The calculation of $t_{hd}$, which is the high-drag window to match the leader's semi-major axis, requires the acceleration of the satellite $\ddot{\theta}$ given by the comparison high-drag vs. low-drag mode.
-After that, the algorithm evaluates the path travelled in high-drag configuration and finally the wait time $t_{wait}.$ 
-At this point, the estimation of $t_{hd}$ $t_{wait}$ is repeated with a new $t_{est}$ provided by a function which depends on the altitudes of the satellites and the time intervals computed before.
+For each of them, the script computes the distance from the leader by the mean motion, the angular error $\theta_{err}$ from their position to the relative target, and the first attempt value of $t_{est}$.
+Angular separations are calculated in terms of argument of latitude.
+The latter parameter represents the interval of time in which the algorithm evaluates the variation of $n$.
+$\dot{n}$ derives from the acceleration generated by the switch from low-drag to high-drag configuration.
+This lead to the assessment of $t_{hd}$, the high-drag window.
+After that, the algorithm evaluates the path travelled in high-drag configuration $\theta_{hd}$ and finally the wait time $t_{wait}.$ 
+At this point, the estimation of $t_{hd}$ and $t_{wait}$ is repeated with a new $t_{est}$ provided by a function which depends on the altitudes of the satellites and the time intervals computed before.
+The procedure is rerun for a sufficient number of iterations.
 The procedure is shown below.
 
 \begin{algorithm}[H]
       \caption{\textbf{Differential Drag Control}}
       \begin{algorithmic}[1]
             \Procedure{Perform phasing through differential drag}{} 
-                  \State establish the leading satellite (smallest SMA)
+
+                  \State establish the leading satellite (greatest mean motion)
+
                   \For{each trailing satellite of the constellation}
-                  \State compute difference in mean anomaly with respect to the leader $\Delta n$
+
+                  \State compute difference in mean motion with respect to the leader $\Delta n$
+                  \State compute angle to reach the desired slot relative to the leader $\theta_{err}$ 
+                  \State assign first attempt value to $t_{est}$ from $\theta_{err}$  
                                         
-                        \For{each assigned iteration}
-                              \State compute difference in mean anomaly with respect to the leader $\Delta n$
-                              \State compute angle to reach the desired slot relative to the leader $\theta_{err}$
-                              \State Assign and estimation time $t_{est}$ from $\theta_{err}$
-                              \State estimate $\ddot{\theta}$ from high drag vs. low drag mode over $t_{est}$
-                              \State estimate high drag time window $t_{hd} = \frac{\Delta n}{\ddot{\theta}}$
-                              \State compute angle travelled during high drag window $\theta_{hd} = \frac{1}{2}\ddot{\theta}t_{hd}^2$
-                              \State estimate waiting time window $t_{wait} = \frac{\theta_{err} - \theta_{hd}}{\Delta n}$
+                        \For{assigned number of iterations}
+                              
+                              \State get mean motion variation $\dot{n}$ from low to high drag mode over $t_{est}$
+                              \State get high drag time window $t_{hd} = \frac{\Delta n}{\dot{n}}$
+                              \State get angle travelled during high drag window $\theta_{hd} = \frac{1}{2}\dot{n}t_{hd}^2$
+                              \State get waiting time window $t_{wait} = \frac{\theta_{err} - \theta_{hd}}{\Delta n}$
                               \State get new estimation time $t_{est} = f(t_{wait}, t_{hd}, h_{lead}, h_{trail})$ 
-                        \EndFor
-                        \For{each time step in $t_{wait}$}
-                              \State propagate the leader in low drag mode
-                              \State propagate the trailer in low drag mode
-                        \EndFor
-                        \For{each time step in $t_{hd}$}
-                              \State propagate the leader in low drag mode
-                              \State propagate the trailer in high drag mode
                         \EndFor
                   \EndFor
             \EndProcedure
       \end{algorithmic}
 \end{algorithm}
 
+The strong point of the proposed method lies in the last line.
+The estimation time is a critical factor in terms of accuracy for the final result.
+It is estimated thanks to an empirical equation formulated within this thesis work.
+This function enables a significant better prediction of the two time windows, making unnecessary the rerun of the algorithm in several cases.
+Despite this, regular repetition of the calculations remains a good and sometimes necessary action as for the Planet's strategy.
+$t_{est}$ is evaluated for an assigned number of iterations, but the experience shows that just twice in enough.
+The statements above as will be proven in chapter \ref{results_chapter}.
+Similarly to Planet's algorithm, this method is sensitive to the initial dispersion after the deployment.
+However, this is issue is easily addressed implementing preliminary high-drag or wait windows.
+The only determining factors of this problem are the initial difference in semi-major axis and the altitude from which the launcher deploys the satellites.
+The first condition is managed with proper high-drag maneuvers.
+On the other hand, when the deployment altitude it is too high, differential drag is unavoidably too low.
+Therefore, a preparatory wait time window might be required for the entire fleet of spacecraft, eventually applying high-drag mode to them in order to speed up the process.
 
