@@ -29,9 +29,10 @@ Orbit propagators must take in input the following data:
           Even for the acceleration of an eventual thruster it is necessary to specify the force it generates.
     \item \textbf{Spacecraft specifications}. According to the features of the selected propagator, one or more satellite characteristics shall be provided when considering perturbations.
           For instance, in presence of atmospheric drag, $C_D$ and $BC$ (which means cross-sectional area and mass) are needed. 
-%     \item \textbf{Relative tolerance}. It represents the admitted percent error at any step of the simulation. 
-%           For instance, a relative tolerance of 0.01 indicates a 1 allowable error limit relative to each state value at each step.
-%           This setting controls the accuracy of the solution of the used integrator (DOPRI$8_{(5,3)}$).
+    \item \textbf{Relative tolerance}. It represents the admitted percent error at any step of the simulation. 
+          For instance, a relative tolerance of 0.01 indicates a 1\% allowable error limit relative to each state value at each step.
+          This setting controls the accuracy of the solution of the used integrator (DOPRI$8_{(5,3)}$) \cite{rocha2018numerical}.
+\end{itemize}
 
 \begin{figure}[h]
       \centering
