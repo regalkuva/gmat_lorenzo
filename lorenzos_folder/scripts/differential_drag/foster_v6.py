@@ -24,7 +24,7 @@ from perturbations import perturbations_coesa_J2_low, perturbations_coesa_J2_hig
 toc = time.time()
 
 ## Input parameters
-h = 475
+h = 510
 delta_a = 0.5
 delta_nu = -2
 assignment = 100%360
@@ -69,6 +69,7 @@ trailing_orbit = trailing_orbit_0
 
 ## Propagation data
 time_step = 864<<u.s
+rel_err = 1e-5
 pred_days = (assignment-delta_nu)
 
 refsmalist = []
@@ -95,13 +96,13 @@ for i in range(mans):
 
     theta_err = (assignment - argl_difference(reference_orbit.argp.value, reference_orbit.nu.value, trailing_orbit.argp.value, trailing_orbit.nu.value))%360
 
-    for attempts in range(3):
+    for attempts in range(2):
     
-        tra_orb_pred_high = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high))       
+        tra_orb_pred_high = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_high))       
         tra_pred_mean_high = osc2mean(tra_orb_pred_high.a.value, tra_orb_pred_high.ecc.value, tra_orb_pred_high.inc.to_value(u.deg), tra_orb_pred_high.raan.to_value(u.deg), tra_orb_pred_high.argp.to_value(u.deg), tra_orb_pred_high.nu.to_value(u.deg))
         tra_orb_pred_mean_high = Orbit.from_classical(Earth, tra_pred_mean_high[0]<<u.km, tra_pred_mean_high[1]<<u.one, tra_pred_mean_high[2]<<u.deg, tra_pred_mean_high[3]<<u.deg, tra_pred_mean_high[4]<<u.deg, tra_orb_pred_high.nu.to(u.deg), tra_orb_pred_high.epoch)
 
-        tra_orb_pred_low = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low))
+        tra_orb_pred_low = trailing_orbit.propagate(pred_days<<u.day, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_low))
         tra_pred_mean_low = osc2mean(tra_orb_pred_low.a.value, tra_orb_pred_low.ecc.value, tra_orb_pred_low.inc.to_value(u.deg), tra_orb_pred_low.raan.to_value(u.deg), tra_orb_pred_low.argp.to_value(u.deg), tra_orb_pred_low.nu.to_value(u.deg))
         tra_orb_pred_mean_low = Orbit.from_classical(Earth, tra_pred_mean_low[0]<<u.km, tra_pred_mean_low[1]<<u.one, tra_pred_mean_low[2]<<u.deg, tra_pred_mean_low[3]<<u.deg, tra_pred_mean_low[4]<<u.deg, tra_orb_pred_low.nu.to(u.deg), tra_orb_pred_low.epoch)
 
@@ -114,8 +115,8 @@ for i in range(mans):
 
     num_wait = int(t_wait / time_step.value)
     tofs_wait = TimeDelta(np.linspace(0, t_wait<<u.s, num=num_wait))
-    reference_ephem = reference_orbit.to_ephem(EpochsArray(start_date_prop + tofs_wait, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
-    trailing_ephem = trailing_orbit.to_ephem(EpochsArray(start_date_prop + tofs_wait, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
+    reference_ephem = reference_orbit.to_ephem(EpochsArray(start_date_prop + tofs_wait, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_low)))
+    trailing_ephem = trailing_orbit.to_ephem(EpochsArray(start_date_prop + tofs_wait, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_low)))
 
     hd_window.append((secs+t_wait)/(60*60*24))
     hd_duration.append(t_hd.to(u.day))
@@ -163,8 +164,8 @@ for i in range(mans):
     num_hd = int(t_hd.value / time_step.value)
     tofs_hd = TimeDelta(np.linspace(0, t_hd, num=num_hd))
 
-    reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_ephem.epochs[-1] + tofs_hd, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
-    trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_ephem.epochs[-1] + tofs_hd, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_high)))
+    reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_ephem.epochs[-1] + tofs_hd, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_low)))
+    trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_ephem.epochs[-1] + tofs_hd, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_high)))
 
 
     for t in range(len(tofs_hd)):
@@ -256,8 +257,8 @@ t_prop = (60*60*24*7*4)<<u.s
 num_prop = int(t_prop.value / time_step.value)
 tofs_prop = TimeDelta(np.linspace(0, t_prop, num=num_prop))
 
-reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_ephem.epochs[-1] + tofs_prop, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
-trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_ephem.epochs[-1] + tofs_prop, method=CowellPropagator(rtol=1e-5, f=perturbations_coesa_J2_low)))
+reference_ephem = reference_orbit.to_ephem(EpochsArray(reference_ephem.epochs[-1] + tofs_prop, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_low)))
+trailing_ephem = trailing_orbit.to_ephem(EpochsArray(trailing_ephem.epochs[-1] + tofs_prop, method=CowellPropagator(rtol=rel_err, f=perturbations_coesa_J2_low)))
 
 for t in range(len(tofs_prop)):
 

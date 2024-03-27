@@ -7,15 +7,17 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces SSO condition: inclination vs. altitude ($e=0$) \cite {brown1998spacecraft}.}}{17}{figure.2.2}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Sun-synchronous orbit 15:00 LTAN illustration \cite {curtis2020orbital}.}}{18}{figure.2.3}%
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Illustration of a 65:15/3/2 Walker Delta configuration \cite {wertz2009orbit}.}}{20}{figure.2.4}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Low drag vs. high drag mode example for a simple satellite shape \cite {foster2018differential}.}}{24}{figure.2.5}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Generic cases of desired relative placement of four satellites \cite {foster2018differential}.}}{25}{figure.2.6}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Low drag vs. high drag mode of a generic satellite shape \cite {foster2018differential}.}}{22}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Generic cases of desired relative placement of four satellites \cite {foster2018differential}.}}{23}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Satellite's drift in the station-keeping box \cite {wertz2009orbit}.}}{24}{figure.2.7}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Absolute station-keeping of a group of satellites within the same orbit \cite {wertz2009orbit}.}}{24}{figure.2.8}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Osculating SMA of a LEO satellite during one orbit. Propagation time settings: time step = 5 minutes, time frame = 50 minutes.}}{33}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.001}}{34}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.5}}{35}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite {hodgson2008modeling}.}}{38}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Actual Planet's fleet relative motion achieved by using differential drag. Blue lines represent high-drag windows \cite {foster2015orbit}.}}{42}{figure.4.5}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Osculating SMA of a LEO satellite during one orbit. Propagation time settings: time step = 5 minutes, time frame = 50 minutes.}}{35}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.001}}{36}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces SMA and true anomaly variation along around one LEO satellite orbit with eccentricity of 0.5}}{37}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Actual Planet's fleet relative motion achieved by using differential drag. Blue lines represent high-drag windows \cite {foster2015orbit}.}}{40}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite {hodgson2008modeling}.}}{46}{figure.4.5}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

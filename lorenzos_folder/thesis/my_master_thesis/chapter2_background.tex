@@ -329,9 +329,9 @@ The solution to this issue is the design of a constellation of satellites, as wi
 
 \section{Satellite Constellations}
 A satellite constellation can be defined as a group of similar satellites, with comparable functions and properties, designed to operate in similar, complementary orbits to undertake common objectives, under shared control \cite{wood2003satellite}.
-In the context of this thesis, constellations are of notable interest thanks to the wide coverage of the world they can enhance with respect to a single satellite mission. 
-Applications like communication, navigation and surveillance drastically improve their service performances and extend market opportunities when considering a constellation infrastructure.
-
+In the context of this thesis, Earth-orbiting constellations are of notable interest thanks to the global coverage of the world they can enhance with respect to a single satellite mission. 
+In recent years, the availability of smaller, lower-cost satellites, and the easier access to space have led to a drastic evolution in the design of constellations.
+Thanks to this trend, applications like observation, communication and navigation have drastically expanded their potential \cite{wertz2009orbit}. 
 
 \subsection{Walker Delta Constellation}
 \textit{Walker constellations} are the most symmetric of the satellite pattern families.
@@ -360,33 +360,92 @@ This allows the mission designer a full analysis of the constellation on every a
 
 % \subsection{Constellation Design}
 
-\section{Orbit Management}
+\section{Constellation Orbit Management}
 Over the life of a space mission, the need to adjust or maintain the orbit elements might arise. In general, orbit maintenance is required because of two main reasons:
- targeting to reach an end orbit or position (such as a rendezvous maneuver), or to maintain absolute or relative orientations (as for station-keeping) \cite{wertz2009orbit}.
+targeting to reach an end orbit or position, or to maintain absolute or relative orientations \cite{wertz2009orbit}.
 
-This thesis studies two different scenarios of orbit management. 
-The first one is the \textit{station-keeping}, which aims at routinely restoring the mission nominal altitude and inclination of the case studies analysed. 
-Secondly, the study of the \textit{orbit phasing} is carried out with the purpose of achieving the desired pattern of a group of satellites along the same orbit.
+This thesis focuses on two different phases of constellation orbit management, proposing a possible strategy for the main case study. 
+The first maneuver addresses the \textit{initial orbit phasing} of a satellite fleet after the deployment from the launcher.
+The plan is to dispose the spacecraft into the desired pattern through a \textit{differential drag} method.
+The second action consists of the \textit{relative station-keeping}.
+It aims to maintain the relative positions of the vehicles within the same orbit, taking advantage of low-thrust propulsion systems.
+
+Downstream of this two-step strategy, an analysis of space debris mitigation is carried out in order to assess the importance of collision avoidance in a satellite constellation. 
 
 
-\subsection{Station-Keeping} \label{station_keeping_par}
-From LEO to geostationary orbit (GEO), station-keeping maneuvers must be considered due to perturbations, if requested by one or more mission requirements.  
-In the case of Earth observation applications, electro-optical sensors and radars are generally designed to work approximately at a specific distance from the ground. 
-In addition, the repetition factor $Q$ introduced in the paragraph \ref{repeat_groundtrack} will be significantly altered by even small changes in the semimajor axis.
-Therefore, focusing on the orbits of interest of this research, perturbations to inclination and SMA must be counteracted if SSO and repeating ground track properties want to be preserved.
-Moreover, the orbit altitude's maintenance must be taken into account to increase the lifetime of a mission.
-Indeed, the latter condition is strongly required by the main case study of this thesis.
+\subsection{Initial Orbit Phasing (Differential Drag)}
+The initial orbit phasing treated by this work consists of the achievement of the desired formation of a group of satellites deployed within the same orbit.
+In particular, the final scheme considered by the thesis is composed by a nominal altitude (lower than the deployment's one) and a symmetric pattern with equal relative angular separation between the spacecraft.
+A differential drag method is proposed to accomplish this purpose.
 
-More in detail, changes in inclination are predominately driven by third body perturbations, whereas variations in the SMA come from atmospheric drag.
-Both for a single satellite and a constellation mission, each spacecraft has to regularly perform annual Inclination Adjust Maneuvers (IAM) and periodic Drag Make Up (DMU) maneuvers to compensate these perturbing effects, respectively \cite{johnson2014maintaining}.
-Note that orbit elements variations under examination are always secular.
+Differential drag can be defined as the difference in atmospheric drag acting on each of a couple of satellites.
+Assuming that the spacecraft travel through similar atmospheric density areas, the differential drag is almost fully determined by differences in ballistic coefficient of them \cite{leonard1991formationkeeping}.
+Considering identical satellites, and remembering that BC depends on the area perpendicular to the velocity vector, differential drag can be achieved controlling the attitude of the body, leading to different values of surface exposed to the aerodynamic flux. 
 
-In a constellation scenario, station-keeping has the further role of maintaining the desired relative position between satellites, affected by perturbations and variations in the initial conditions for each individual satellite \cite{wertz2009orbit}.
+To clarify ideas and simplify the problem, only two configurations will be identified as shown in figure \ref{low_vs_high_dragmode_fig}: low-drag and high-drag modes.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{img/low_vs_high_dragmode.png}
+    \caption{Low drag vs. high drag mode of a generic satellite shape \cite{foster2018differential}.}
+    \label{low_vs_high_dragmode_fig}
+\end{figure}
 
-Spacecraft can rely on on-board propulsive systems to compensate all these disturbances.
-All the case studies examined in chapter \ref{case_studies_chapter} deal with small satellites, which are typically designed without any kind of thrusters or with low-thrust engines.  
-The scenarios of this thesis that involve forces generated by thrusters rely on the \textit{Edelbaum-Kechichian} formulas to obtain realistic simulations.
+Moreover, the satellite on the lower orbit will be indicated as the \textit{leading satellite}, whereas the other one \textit{trailing satellite}.
+Supposing of using differential drag only to equalize the altitudes, with both spacecrafts travelling in low-drag profile, the trailing satellite shall be set to high-drag mode until the leader's orbit is reached.
+Indeed, the acceleration of its motion is the same as if the air drag force, reversed, were pushing the satellite. 
+This phenomenon is known as \textit{satellite paradox} \cite{mills1959satellite}. 
 
+Several applications can take advantage from differential drag. 
+It was first proposed for \textit{formationkeeping} to keep a satellite in a specific position with respect to another.
+Even rendezvous maneuver strategies have been combined with differential drag actions.
+This method has also been selected for collision avoidance scenarios \cite{foster2018differential}.
+
+What is of huge interest for the purposes of the thesis is the experience provided by Planet company (formerly Planet Labs).
+They applied differential drag control to fleets of propulsion-less satellites deployed in the same orbit with successful results for several missions.
+The goal of Planet's controller was to bring all the spacecrafts at the same altitude and perform phasing with only differential drag after deployment from launcher.
+Three examples of constellation phasing are shown in figure \ref{phasing_examples_figure}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{img/phasing_examples.png}
+    \caption{Generic cases of desired relative placement of four satellites \cite{foster2018differential}.}
+    \label{phasing_examples_figure}
+\end{figure}
+The initial conditions subsequent to the deployment contain small but significant variations in SMA: achieving the same orbital altitude means zero-relative speed between them.
+On the other hand, the phasing aims to symmetrically separate the vehicles in terms of angular distance, along the same orbit. 
+Once the desired constellation pattern is achieved, the differential drag control continues to operate as station-keeping to maintain the formation, since the propulsion-less nature of the satellites \cite{foster2018differential}.
+
+Based on the Planet's controller, this thesis proposes an algorithm for the phasing of a group of satellites after the initial dispersion from the launcher only using differential drag. 
+
+
+\subsection{Absolute Station-Keeping} \label{station_keeping_par}
+Station-keeping can be defined as the procedure of controlling a satellite in order to maintain its position within a specific imaginary box or with respect to inertial space or other spacecraft. 
+In constellation maintenance, the only goal is to keep the relative placement between satellites.
+Orbit perturbations and variations in initial conditions for each vehicle are the major causes which make necessary maintenance maneuvers.
+A long-lived LEO constellation must principally fight the atmospheric drag in order to avoid orbit decay.
+
+The strategy addressed by the thesis follows the approach of constantly negating the perturbing force, which requires continuous propellant usage.
+More in detail, each vehicle is kept in a well-defined mathematical box under \textit{absolute station-keeping}.
+The idea is to periodically put back the $\Delta V$ taken out by drag.
+This is equivalent to keep the satellite in a box by letting it drift to one side of the box, hitting it with a thruster, letting it drift across the box and back, and repeat the cycle, as shown in figure \ref{sk_box_figure}
+The objective is to maintain a desired pattern as illustrated by figure \ref{constellation_sk_boxes_figure}.
+Station-keeping boxes must typically be 10 to 50 kilometers long, and accounting for low-thrust propulsion systems, this strategy will need a large number of small burns \cite{wertz2009orbit}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.7]{img/sk_box.png}
+    \caption{Satellite's drift in the station-keeping box \cite{wertz2009orbit}.}
+    \label{sk_box_figure}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.7]{img/constellation_sk_boxes.png}
+    \caption{Absolute station-keeping of a group of satellites within the same orbit \cite{wertz2009orbit}.}
+    \label{constellation_sk_boxes_figure}
+\end{figure}
+
+In conclusion, this thesis takes into account the regular execution of annual Inclination Adjust Maneuvers (IAM) and frequent Drag Make Up (DMU) maneuvers to counteract perturbing effects \cite{johnson2014maintaining}.
+The simulations of these scenarios, which naturally involve forces generated by thrusters, rely on the \textit{Edelbaum-Kechichian} formulas.
 
 \subsubsection{Edelbaum-Kechichian Theory}
 An analytic solution for the optimum low-thrust transfer between inclined circular orbits of different radius is provided by the equations of Edelbaum reformulated by Kechichian in 1992 \cite{edelbaum1961propulsion, kechichian1992reformulation}.
@@ -429,45 +488,6 @@ Given the the initial $\beta_0$ and the burning time, Kechichian finally formula
 \end{equation} 
 
 In case of coplanar transfers ($\beta = 0$), $\Delta i$ is equal to 0 and $\Delta V$ will be simply given by the difference of the velocities in equation \ref{sma_velocities} \cite{kechichian1992reformulation}.
-
-
-\subsection{Differential Drag}
-Differential drag can be defined as the difference in atmospheric drag acting on each of a couple of satellites.
-Assuming that the spacecrafts travel through similar atmospheric density areas, the differential drag is almost fully determined by differences in ballistic coefficient of them \cite{leonard1991formationkeeping}.
-Considering identical satellites, and remembering that BC depends on the area perpendicular to the velocity vector, differential drag can be achieved controlling the attitude of the body, leading to different values of surface exposed to the aerodynamic flux. 
-
-To clarify ideas and simplify the problem, only two configurations will be identified as shown in figure \ref{low_vs_high_dragmode_fig}: low-drag and high-drag modes.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=1]{img/low_vs_high_dragmode.png}
-    \caption{Low drag vs. high drag mode example for a simple satellite shape \cite{foster2018differential}.}
-    \label{low_vs_high_dragmode_fig}
-\end{figure}
-Moreover, the satellite on the lower orbit will be indicated as the \textit{leading satellite}, whereas the other one \textit{trailing satellite}.
-Supposing of using differential drag only to equalize the altitudes, with both spacecrafts travelling in low-drag profile, the trailing satellite shall be set to high-drag mode until the leader's orbit is reached.
-Indeed, the acceleration of its motion is the same as if the air drag force, reversed, were pushing the satellite. 
-This phenomenon is known as \textit{satellite paradox} \cite{mills1959satellite}. 
-
-Several applications can take advantage from differential drag. 
-It was first proposed for \textit{formationkeeping} to keep a satellite in a specific position with respect to another.
-Even rendezvous maneuver strategies have been combined with differential drag actions.
-This method has also been selected for collision avoidance scenarios \cite{foster2018differential}.
-
-What is of huge interest for the purposes of the thesis is the experience provided by Planet company (formerly Planet Labs).
-They applied differential drag control to fleets of propulsion-less satellites deployed in the same orbit with successful results for several missions.
-The goal of Planet's controller was to bring all the spacecrafts at the same altitude and perform phasing with only differential drag after deployment from launcher.
-Three examples of constellation phasing are shown in figure \ref{phasing_examples_figure}.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=1]{img/phasing_examples.png}
-    \caption{Generic cases of desired relative placement of four satellites \cite{foster2018differential}.}
-    \label{phasing_examples_figure}
-\end{figure}
-The initial conditions subsequent to the deployment contain small but significant variations in SMA: achieving the same orbital altitude means zero-relative speed between them.
-On the other hand, the phasing aims to symmetrically separate the vehicles in terms of angular distance, along the same orbit. 
-Once the desired constellation pattern is achieved, the differential drag control continues to operate as station-keeping to maintain the formation, since the propulsion-less nature of the satellites \cite{foster2018differential}.
-
-Based on the Planet's controller, this thesis proposes an algorithm for the phasing of a group of satellites after the deployment from the launcher only using differential drag. 
 
 
 \subsection{Space Debris Mitigation} \label{space_debris_mitigation}

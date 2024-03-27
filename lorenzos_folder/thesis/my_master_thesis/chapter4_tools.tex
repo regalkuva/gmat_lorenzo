@@ -31,7 +31,7 @@ Orbit propagators must take in input the following data:
           For instance, in presence of atmospheric drag, $C_D$ and $BC$ (which means cross-sectional area and mass) are needed. 
     \item \textbf{Relative tolerance}. It represents the admitted percent error at any step of the simulation. 
           For instance, a relative tolerance of 0.01 indicates a 1\% allowable error limit relative to each state value at each step.
-          This setting controls the accuracy of the solution of the used integrator (DOPRI$8_{(5,3)}$) \cite{rocha2018numerical}.
+          This setting controls the accuracy of the solution of the selected integrator \cite{rocha2018numerical} (DOPRI$8_{(5,3)}$ is the method used by the thesis).
 \end{itemize}
 
 \begin{figure}[h]
@@ -70,114 +70,35 @@ Increasing the eccentricity value, like in figure \ref{kep_high_ecc_fig}, the tr
 \end{figure}
 
 All the case studies of this research consist of near-circular orbits.
-Despite the fact that zero-eccentricity condition is not feasible, this comparison demonstrates that very low values of eccentricity make the assumption of circular orbit highly acceptable.  
+Despite the fact that zero-eccentricity condition is not feasible, this comparison demonstrates that very low values of eccentricity would make the assumption of circular orbit highly acceptable.
+However, all the executed propagations in this thesis account for realistic values of $e$.  
 
-\subsection{Perturbations}
+
+\subsection{Perturbed Motion}
 The propagators developed by this work which take into account perturbing effects are based on the Cowell's technique of subsection \ref{orbit_prop_paragraph}.
 
 Since Sun-synchronous orbits at low altitudes denote the main discussion point of this thesis, Earth's oblateness and atmospheric drag represent the perturbations of greatest interest. 
-However, propagations with SRP and 3rd-body forces have been examined as well for assessing long-term effects. 
+Despite this, propagations with SRP and 3rd-body forces have been examined as well for assessing long-term effects. 
 
-The perturbing acceleration functions performed by this thesis come from poliastro's library.
+The perturbing acceleration functions performed by this thesis come from the poliastro's library.
 
-\subsection{Atmospheric Models}
-Atmospheric drag exponential model has been found to be too approximate compared to the results provided by GMAT of same examples.
-For that reason, two more accurate atmospheric models have been implemented into the scripts designed along this work.
+
+\subsubsection{Atmospheric Models}
+The atmospheric drag exponential model provided by poliastro has been found to be too approximate compared to the results obtained by GMAT of equal examples.
+For this reason, two more accurate atmospheric models have been implemented into the scripts designed along this work.
 The first one consists of COESA76 model, while the second is the JB2008 one.
 Their theoretical background has been already exposed in paragraph \ref{orbit_prop_paragraph}.
 JB2008 is definitely the most accurate model
 
 
-\subsection{Mean Orbital Elements Converter}
-\subsection{Sun Synchronous Orbits Functions}
+\subsubsection{Mean Orbital Elements Converter}
+
+
+\subsubsection{Sun Synchronous Orbits Functions}
+
+
 \subsection{Satellite Constellation Propagator}
 
-
-\section{Revisit Time Collector} \label{revisit_time_collector_par}
-The revisit time collector (RTC) tool intends to compute the amount of passages of a satellite above a specific position on Earth.
-It collects the \textit{access times} of the spacecraft when its target on the ground is within the area delimited by the swath width of the satellite's on-board camera. 
-It can work with a single space vehicle or with a constellation. 
-In the latter case, the script provides all the access times taking into account every single satellite of the pattern. 
-
-In addition to the input parameters required by the selected propagator (paragraph \ref{orbit_propagators_par}), the RTC needs the target coordinates in latitude and longitude, as well as the swath width of the electro-optical sensor.
-The algorithm computes the distance between the sub-satellite point on the ground and the target at each time step.
-This calculation is performed considering some meaningful aspects.
-
-The goal of the RTC clearly requires the estimation of the satellite's position in an ECEF reference frame.
-If its motion was evaluated with respect to an ECI system, the ground track of the orbit would be always the same after each orbital period.
-ECEF coordinates shall be then converted into the geodetic latitude-longitude location of the spacecraft's subpoint in order to proceed with the distance calculation.
-
-The computation of the distance between two points on the Earth surface shall take into account the sphericity of the planet.
-To accomplish this condition, the algorithm computes the so-called geodesic distance, which can be defined as the shortest path between two points on the surface of an ellipsoidal model of the Earth. 
-As regards the geodetics, the script takes advantage of the method proposed by Karney \cite{karney2013algorithms}.
-
-Summarizing, the algorithm extracts the sub-point latitude and longitude from the ECEF state vector of the satellite and, after that, calculates the geodesic distance with respect to the ground target.
-This path is then compared with half the value of the potential swath width (PSW) at each time step of the propagation.
-If the distance is smaller than PSW then the script saves the epoch related to that time step.
-
-\begin{algorithm}
-      \caption{\textbf{Revisit Time Collection}}
-      \begin{algorithmic}[1]
-            \Procedure{Collect revisit time epochs over a specific target}{} 
-                  \State propagate the satellite's orbit for the desired time frame
-                  \For{each time step in the time frame}
-                        \State convert satellite state vector from ECI to ECEF
-                        \State extract geodetic latitude and longitude
-                        \State compute the geodesic distance between target and sub-satellite point
-                        \If{distance between the two points < $\frac{PSW}{2}$}
-                              \State collect the epoch of the current time step
-                        \EndIf
-                  \EndFor
-            \EndProcedure
-      \end{algorithmic}
-\end{algorithm}
-
-It is important to underline that the actual sensor input value to be implemented in the RTC should be related to the concept of \textit{potential swath coverage}.
-It identifies the potential path reachable by a pointable space system.
-If the satellite can not work off-nadir then the input parameter will be simply equal to half the SW due to the fact that the subpoint always lies in the middle of the observed area.
-Therefore, according to the figure \ref{potential_sw_fig}, a proper use of the algorithm should get half the potential swath width (PSW) as input value.
-\begin{figure}[H]
-      \centering
-      \includegraphics[scale=0.6]{img/potential_sw.png}
-      \caption{Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite{hodgson2008modeling}.}
-      \label{potential_sw_fig}
-\end{figure}
-
-
-\section{Station-Keeping Simulator} \label{sk_simulator_par}
-This station-keeping simulator aims to perform the altitude and inclination maintenance of low-thrust propelled satellites.
-The tool combines the orbit propagator and an algorithm that keep the spacecraft within a defined range of altitudes and inclinations.
-The required input parameters include the thrust force of the propulsion system as well as the edge values of the orbital elements that define the station-keeping box.
-The simulator works with the perturbations, therefore it is indispensable to deal with the mean orbital elements to carry out the maintenance.
-
-The logic behind the method is shown below.
-\begin{algorithm}[H]
-      \caption{\textbf{Station-Keeping Simulation}}
-      \begin{algorithmic}[1]
-            \Procedure{Simulate the absolute station-keeping of a spacecraft}{} 
-                  \For{each time step in the time frame}
-                        \State propagate the satellite's orbit
-                        \If{current mean SMA < lower SMA}
-                            \While{current mean SMA < upper SMA}
-                                \State activate thruster
-                            \EndWhile
-                        \EndIf           
-                        \If{current mean inclination < lower inclination value}
-                            \While{current mean inclination < upper inclination value}
-                                \State activate thruster
-                            \EndWhile
-                    \EndIf
-                  \EndFor
-            \EndProcedure
-      \end{algorithmic}
-\end{algorithm}
-
-The algorithm uses the Edelbaum-Kechichian theory reported in subsection \ref{station_keeping_par}.
-However, a careful observer would notice that actually the script takes advantage of this theory only to compute the yaw angle (equation \ref{yaw_angle_equation}) in case of out-of-plane maneuver (change in inclination).
-Indeed, the burning time estimated by the equations is never taken into account.
-The update of the satellite's position at each time step allows a better accuracy which otherwise would be affected by the uncertainties generated by the unpredictable factors of the perturbing effects over a long time frame.
-
-Nevertheless, the equations of the Kechichian's method are used to provide the $\Delta V$ required by the station-keeping, which is a fundamental parameter for the mission designer.
 
 
 \section{Differential Drag Controller} \label{differential_drag_control_par}
@@ -221,7 +142,7 @@ The angle $\theta_{i,hd}$ might also contain inaccuracies because is computed vi
 The accuracy of the algorithm is then strongly sensitive to the initial conditions of dispersion.
 Too small differences between satellite orbits do not allow the control to function properly, as well as too big variations lead to inaccurate results.
 Despite these negative observations, this algorithm has successfully worked for the initial phasing of a satellite constellation.
-The Taylor approximation seems to be quite effective according to the on-orbit results shown in figure \cite{lee2017cubesat}.
+The Taylor approximation seems to be quite effective according to the on-orbit results shown in figure \ref{planet_orbit_results_fig} \cite{lee2017cubesat}.
 The curves on the graph represent the relative angular distance between each satellite and the leader (which remains at zero degrees in the plot), and the blue lines are the high-drag windows.  
 Indeed, Planet reruns its algorithm on a regular cycle to minimize the errors deriving from the forecast of the future state of the atmosphere.
 As for the initial dispersion, it can be adjusted always through differential drag maneuvers, in order to achieve more proper initial conditions for the controller \cite{foster2015orbit}.
@@ -229,10 +150,10 @@ However, there is no clear information about the appropriate circumstances which
 
 \begin{figure}
       \centering
-      \includegraphics[scale=0.8]{img/planet_orbit_results.png}
+      \includegraphics[scale=0.7]{img/planet_orbit_results.png}
       \caption{Actual Planet's fleet relative motion achieved by using differential drag. 
       Blue lines represent high-drag windows \cite{foster2015orbit}.}
-      \label{kep_high_ecc_fig}
+      \label{planet_orbit_results_fig}
 \end{figure}
 
 Planet has applied this tool to groups of propulsion-less spacecraft.
@@ -301,3 +222,91 @@ The first condition is managed with proper high-drag maneuvers.
 On the other hand, when the deployment altitude it is too high, differential drag is unavoidably too low.
 Therefore, a preparatory wait time window might be required for the entire fleet of spacecraft, eventually applying high-drag mode to them in order to speed up the process.
 
+
+
+\section{Station-Keeping Simulator} \label{sk_simulator_par}
+This tool is an absolute station-keeping simulator which aims to perform the altitude and inclination maintenance of low-thrust propelled satellites.
+The method combines an orbit propagator and an algorithm that keep the spacecraft within a defined range of altitudes and inclinations.
+The required input parameters include the thrust force of the propulsion system as well as the edge values of the orbital elements that define the station-keeping box (paragraph \ref{station_keeping_par}).
+The simulator works with the perturbations, therefore it is indispensable to deal with the mean orbital elements to carry out the maintenance.
+
+The logic behind the method is shown below.
+\begin{algorithm}[H]
+      \caption{\textbf{Station-Keeping Simulation}}
+      \begin{algorithmic}[1]
+            \Procedure{Simulate the absolute station-keeping of a spacecraft}{} 
+                  \For{each time step in the time frame}
+                        \State propagate the satellite's orbit
+                        \If{current mean SMA < lower SMA}
+                            \While{current mean SMA < upper SMA}
+                                \State activate thruster
+                            \EndWhile
+                        \EndIf           
+                        \If{current mean inclination < lower inclination value}
+                            \While{current mean inclination < upper inclination value}
+                                \State activate thruster
+                            \EndWhile
+                    \EndIf
+                  \EndFor
+            \EndProcedure
+      \end{algorithmic}
+\end{algorithm}
+
+The algorithm uses the Edelbaum-Kechichian theory reported in subsection \ref{station_keeping_par}.
+However, a careful observer would notice that actually the script takes advantage of this theory only to compute the yaw angle (equation \ref{yaw_angle_equation}) in case of out-of-plane maneuver (change in inclination).
+Indeed, the burning time estimated by the equations is never taken into account.
+The update of the satellite's position at each time step allows a better accuracy which otherwise would be affected by the uncertainties generated by the unpredictable factors of the perturbing effects over a long time frame.
+
+Nevertheless, the equations of the Kechichian's method are used to provide the $\Delta V$ required by the station-keeping, which is a fundamental parameter for the mission designer.
+
+
+
+\section{Revisit Time Collector} \label{revisit_time_collector_par}
+The revisit time collector (RTC) tool intends to compute the amount of passages of a satellite above a specific position on Earth.
+It collects the \textit{access times} of the spacecraft when its target on the ground is within the area delimited by the swath width of the satellite's on-board camera. 
+It can work with a single space vehicle or with a constellation. 
+In the latter case, the script provides all the access times taking into account every single satellite of the pattern. 
+
+In addition to the input parameters required by the selected propagator (paragraph \ref{orbit_propagators_par}), the RTC needs the target coordinates in latitude and longitude, as well as the swath width of the electro-optical sensor.
+The algorithm computes the distance between the sub-satellite point on the ground and the target at each time step.
+This calculation is performed considering some meaningful aspects.
+
+The goal of the RTC clearly requires the estimation of the satellite's position in an ECEF reference frame.
+If its motion was evaluated with respect to an ECI system, the ground track of the orbit would be always the same after each orbital period.
+ECEF coordinates shall be then converted into the geodetic latitude-longitude location of the spacecraft's subpoint in order to proceed with the distance calculation.
+
+The computation of the distance between two points on the Earth surface shall take into account the sphericity of the planet.
+To accomplish this condition, the algorithm computes the so-called geodesic distance, which can be defined as the shortest path between two points on the surface of an ellipsoidal model of the Earth. 
+As regards the geodetics, the script takes advantage of the method proposed by Karney \cite{karney2013algorithms}.
+
+Summarizing, the algorithm extracts the sub-point latitude and longitude from the ECEF state vector of the satellite and, after that, calculates the geodesic distance with respect to the ground target.
+This path is then compared with half the value of the potential swath width (PSW) at each time step of the propagation.
+If the distance is smaller than PSW then the script saves the epoch related to that time step.
+
+\begin{algorithm}
+      \caption{\textbf{Revisit Time Collection}}
+      \begin{algorithmic}[1]
+            \Procedure{Collect revisit time epochs over a specific target}{} 
+                  \State propagate the satellite's orbit for the desired time frame
+                  \For{each time step in the time frame}
+                        \State convert satellite state vector from ECI to ECEF
+                        \State extract geodetic latitude and longitude
+                        \State compute the geodesic distance between target and sub-satellite point
+                        \If{distance between the two points < $\frac{PSW}{2}$}
+                              \State collect the epoch of the current time step
+                        \EndIf
+                  \EndFor
+            \EndProcedure
+      \end{algorithmic}
+\end{algorithm}
+
+It is important to underline that the actual sensor input value to be implemented in the RTC should be related to the concept of \textit{potential swath coverage}.
+It identifies the potential path reachable by a pointable space system.
+If the satellite can not work off-nadir then the input parameter will be simply equal to half the SW due to the fact that the subpoint always lies in the middle of the observed area.
+Therefore, according to the figure \ref{potential_sw_fig}, a proper use of the algorithm should get half the potential swath width (PSW) as input value.
+\begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.6]{img/potential_sw.png}
+      \caption{Projection of satellite ground track and potential swath width with respect to its swath width at two time steps \cite{hodgson2008modeling}.}
+      \label{potential_sw_fig}
+\end{figure}
