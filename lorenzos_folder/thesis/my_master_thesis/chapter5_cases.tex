@@ -1,9 +1,52 @@
 \chapter{Case Studies} \label{case_studies_chapter}
+The tools developed by this thesis have been tested on four case studies. 
+They can be classified in two groups: two examples of single satellite missions and two constellation scenarios respectively.
+For both categories, there is one mission accomplished and another planned for the next few years.
 
-\section{Reaktor Hello World}
+The projects in the pipeline relate to the objectives of Kuva Space and lay the foundations for the purposes of this research.
+The designed tools arise from the need of providing useful instruments to the management of a LEO SSO satellite constellation.
 
-\section{Hyperfield Next Generation}
+Despite this, single spacecraft simulations are still beneficial to assess the performances of the scripts.
+Indeed, they require much less processing time, which is advantageous in the software design phase, and serve as an optimal comparison model to evaluate the qualities of a constellation. 
+Each case study is analysed with the tools that best suit the representative features of the respective mission.
 
-\section{Planet CubeSat Constellation}
 
-\section{Future Kuva Constellation}
+
+\section{Reaktor Hello World} \label{reaktor_hw_par}
+
+
+
+
+\section{Hyperfield 2nd Generation} \label{hf_nextgen_par}
+The second generation of Hyperfield represents the evolution of Hyperfield-1a and Hyperfield 1-b.
+They consist of satellites whose platform features hyperspectral imagers operating in the visible-to-near-infrared (VIS-NIR) and visible-to-short-wave-infrared (VIS-SWIR) \cite{tikka2023hyperfield}.
+The first generation models are propulsion-less 6U CubeSats which will be operating on-orbit starting from middle year 2024.
+Hyperfield 2 (HF2) is still in the design phase, therefore the specifications selected within this work are not definitive yet. 
+HF2 will be considered to be a microsatellite of around 60 kilograms, propelled by a low-thrust system of 7 millinewtons of force.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ |c|c| } % {|p{3cm}|p{3cm}|}
+        \hline
+        \textbf{Spacecraft sizes} & Mass: 60 kg \\  
+                                  & Low-Drag Area: 0.05 m\textsuperscript{2} \\ 
+                                  & High-Drag Area: 0.15 m\textsuperscript{2} \\ \hline
+        \textbf{Orbit}            & Type: SSO \\ 
+                                  & Altitude: 380 km \\ \hline
+        \textbf{Mission life}     & 5 years \\ \hline
+    \end{tabular}
+\caption{HF2 specifications}
+\label{hf2_specs_tab}
+\end{table}
+
+
+
+\section{Doves Constellation} \label{planet_constellation_par}
+
+
+
+\section{Hyperfield Constellation} \label{kuva_constellation_par}
+The Hyperfield constellation will be the result of all the Hyperfield satellites launched starting from 2024.
+According to the requirements that satisfy the objective of Kuva Space of providing three times daily images from any location on Earth, the final number of spacecraft in orbit is around 100 \cite{tikka2023hyperfield}.
+
+Since the satellites will travel in different orbital planes in order to form a Walker Delta pattern, the case study analysed consists of 15 vehicles operating in the same orbit.

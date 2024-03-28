@@ -27,7 +27,7 @@ toc = time.time()
 h = 510
 delta_a = 0.5
 delta_nu = -2
-assignment = 100%360
+assignment = 50%360
 
 ## Orbital data
 start_date = datetime(2024,1,1,9,0,0)
@@ -69,7 +69,7 @@ trailing_orbit = trailing_orbit_0
 
 ## Propagation data
 time_step = 864<<u.s
-rel_err = 1e-5
+rel_err = 1e-10
 pred_days = (assignment-delta_nu)
 
 refsmalist = []
